@@ -1,10 +1,11 @@
 import { fontButtonDarkBlue } from '../fonts';
+import { lightGreen } from '../colors';
 
 function Link({ children, }) {
     return (
         <span style={{
             ...fontButtonDarkBlue,
-            borderBottomColor: 'rgba(127, 227, 137, 1)',
+            borderBottomColor: lightGreen,
             borderBottomWidth: '4px',
             borderBottomStyle: 'solid',
             paddingTop: 0,

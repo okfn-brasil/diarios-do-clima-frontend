@@ -1,3 +1,5 @@
+import { green, darkBlue } from './colors';
+
 const fontTitle1 = {
     fontSize: 50,
     fontWeight: 600,
@@ -10,7 +12,7 @@ const fontTitle1White = {
 
 const fontTitle1Green = {
     ...fontTitle1,
-    color: 'rgba(82, 206, 95, 1)',
+    color: green,
 };
 
 const fontTitle3 = {
@@ -48,6 +50,12 @@ const fontNormal1White = {
     color: 'white',
 };
 
+const fontNormal1WhiteMenu = {
+    ...fontNormal1,
+    fontWeight: 500,
+    color: 'white',
+};
+
 const fontNormal1WhiteBold = {
     ...fontNormal1,
     fontWeight: 600,
@@ -72,7 +80,7 @@ const fontNormal2Black = {
 const fontButtonDarkBlue = {
     fontSize: 16,
     fontWeight: 700,
-    color: 'rgba(23, 32, 48, 1)',
+    color: darkBlue,
 };
 
 const fontButtonWhite = {
@@ -91,6 +99,7 @@ export {
     fontSubTitleWhite,
     fontNormal1,
     fontNormal1White,
+    fontNormal1WhiteMenu,
     fontNormal1WhiteBold,
     fontNormal2,
     fontNormal2White,
