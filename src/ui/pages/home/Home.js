@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import Lead from './Lead';
+import Lead from './Lead/Lead';
 import Data from './Data';
 import WeOffer from './WeOffer';
 import HelpUs from './HelpUs';
