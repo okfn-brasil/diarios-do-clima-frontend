@@ -57,10 +57,11 @@ function Option({ id, selectedId, label, sideLabel = true, icon, onClick }) {
                 height: '68px',
                 backgroundColor: 'rgba(23, 32, 48, 1)',
                 borderRadius: '100%',
-                marginRight: '16px',
+                marginRight: sideLabel ? '16px' : null,
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                marginBottom: '14px',
             }}>
                 <img src={icon} alt="logo" style={{
                     width: '20px',
@@ -121,11 +122,14 @@ function WeOffer() {
                     <Option sideLabel={isBig} id={2} onClick={() => setSelectedId(2)} icon={ThemeLogo} label="TEMAS" selectedId={selectedId} />
                     <Option sideLabel={isBig} id={3} onClick={() => setSelectedId(3)} icon={AlertsLogo} label="ALERTAS" selectedId={selectedId} />
                 </Grid>
-                <Grid item xs={12} md={5}>
+                <Grid item xs={12} md={5} sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}>
                     <img src={getLeadImage(selectedId)} alt="visual representation of option"
                         style={{
-
-                            height: '320px',
+                            maxWidth: '100%',
+                            maxHeight: '320px',
                         }}
                     />
                 </Grid>
