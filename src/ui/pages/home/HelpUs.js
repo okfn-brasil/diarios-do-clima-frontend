@@ -1,3 +1,5 @@
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Grid } from "@mui/material";
 import ButtonSolidGreen from "../../components/button/ButtonGreen";
 import ButtonSolidDarkBlue from "../../components/button/ButtonDarkBlue";
@@ -5,6 +7,8 @@ import { fontTitle3White, fontNormal2White } from "../../fonts";
 
 
 function HelpUs() {
+    const theme = useTheme();
+    const isBig = useMediaQuery(theme.breakpoints.up('lg'));
     return (
         <Grid item container xs={12}
             justifyContent='center'
@@ -15,21 +19,28 @@ function HelpUs() {
                 paddingBottom: '80px',
             }}
         >
-            <Grid item xs={8}>
+            <Grid item xs={10} md={8}>
                 <p style={fontTitle3White}>Ajude o diário do clima a crescer e receba benefícios</p>
                 <p style={fontNormal2White}>Tenha em mãos todas as informações que você e sua equipe precisam sobre políticas públicas ambientais</p>
             </Grid>
-            <Grid item xs={8}>
 
-                <ButtonSolidGreen
-                    sx={{ marginRight: '16px', }}
-                >
+            <Grid item xs={10} md={8}>
+
+                <ButtonSolidGreen sx={{
+                    marginRight: isBig ? '16px' : null,
+                    marginBottom: isBig ? null : '16px',
+                    minWidth: isBig ? null : '100%',
+                }}>
                     Quero apoiar assinando
                 </ButtonSolidGreen>
 
-                <ButtonSolidDarkBlue >
+
+                <ButtonSolidDarkBlue sx={{
+                    minWidth: isBig ? null : '100%',
+                }}>
                     Começar a buscar grátis
                 </ButtonSolidDarkBlue>
+
             </Grid>
         </Grid>
     );

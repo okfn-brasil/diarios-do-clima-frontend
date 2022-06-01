@@ -38,8 +38,19 @@ const fontSubTitleWhite = {
     color: 'white',
 };
 
-const fontNormal1White = {
+const fontNormal1 = {
     fontSize: 14,
+    fontWeight: 400,
+};
+
+const fontNormal1White = {
+    ...fontNormal1,
+    color: 'white',
+};
+
+const fontNormal1WhiteBold = {
+    ...fontNormal1,
+    fontWeight: 600,
     color: 'white',
 };
 
@@ -78,7 +89,9 @@ export {
     fontTitle3Black,
     fontSubTitle,
     fontSubTitleWhite,
+    fontNormal1,
     fontNormal1White,
+    fontNormal1WhiteBold,
     fontNormal2,
     fontNormal2White,
     fontNormal2Black,
