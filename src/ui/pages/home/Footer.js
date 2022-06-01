@@ -4,6 +4,7 @@ import { Grid } from "@mui/material";
 import { Fragment } from 'react';
 import DiarioLogo from '../../../assets/images/logo.svg';
 import { fontNormal1WhiteBold } from '../../fonts';
+import { gray, darkBlue } from '../../colors';
 
 function FooterXS() {
     return (
@@ -45,11 +46,11 @@ function Footer() {
             alignItems='center'
             sx={{
                 ...fontNormal1WhiteBold,
-                backgroundColor: 'rgba(23, 32, 48, 100);',
+                backgroundColor: darkBlue,
                 paddingTop: '60px',
                 paddingBottom: '80px',
                 paddingLeft: isNotXS ? '130px' : '26px',
-                color: 'rgba(172, 181, 189, 1)',
+                color: gray,
             }}
         >
             <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center', }}>
