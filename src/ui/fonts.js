@@ -77,14 +77,21 @@ const fontNormal2Black = {
     color: 'black',
 };
 
+const fontNormal2BlackBold = {
+    ...fontNormal2,
+    fontWeight: 600,
+    color: 'black',
+};
+
 const fontButtonDarkBlue = {
     fontSize: 16,
-    fontWeight: 700,
+    fontWeight: 500,
     color: darkBlue,
 };
 
 const fontButtonWhite = {
     fontSize: 16,
+    fontWeight: 500,
     color: 'white',
 };
 
@@ -104,6 +111,7 @@ export {
     fontNormal2,
     fontNormal2White,
     fontNormal2Black,
+    fontNormal2BlackBold,
     fontButtonDarkBlue,
     fontButtonWhite,
 }

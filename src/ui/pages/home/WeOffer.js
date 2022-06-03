@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Grid, Box } from "@mui/material";
-import { fontTitle3Black } from '../../fonts';
+import { fontTitle3Black, fontNormal2Black, fontNormal2BlackBold } from '../../fonts';
 import Link from '../../components/Link';
 import ButtonGreen from '../../components/button/ButtonGreen';
 
@@ -43,6 +43,7 @@ function Option({ id, selectedId, label, sideLabel = true, icon, onClick }) {
         <Grid item xs={3} md={12}
             onClick={onClick}
             sx={{
+                
                 display: 'flex',
                 alignItems: 'center',
                 ...(!sideLabel && {
@@ -61,7 +62,7 @@ function Option({ id, selectedId, label, sideLabel = true, icon, onClick }) {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginBottom: '14px',
+                marginBottom: sideLabel ? null: '14px',
             }}>
                 <img src={icon} alt="logo" style={{
                     width: '20px',
@@ -117,7 +118,7 @@ function WeOffer() {
                 </p>
             </Grid>
             <Grid item container xs={12}>
-                <Grid item container xs={12} md={3} justifyContent='space-between'>
+                <Grid item container xs={12} md={3} justifyContent='flex-start'>
                     <Option sideLabel={isBig} id={1} onClick={() => setSelectedId(1)} icon={HistoryLogo} label="HISTÓRICO" selectedId={selectedId} />
                     <Option sideLabel={isBig} id={2} onClick={() => setSelectedId(2)} icon={ThemeLogo} label="TEMAS" selectedId={selectedId} />
                     <Option sideLabel={isBig} id={3} onClick={() => setSelectedId(3)} icon={AlertsLogo} label="ALERTAS" selectedId={selectedId} />
@@ -134,17 +135,22 @@ function WeOffer() {
                     />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <h3 style={{
+                    <h3 style={{                        
+                        ...fontNormal2BlackBold,
+                        margin: 0,
                         paddingTop: 0,
                         paddingBottom: 8,
                     }}>Acesse todo o histórico de resultados</h3>
                     <p style={{
+                        ...fontNormal2Black,
+                        margin: 0,
                         paddingTop: 0,
                         paddingBottom: 24,
+
                     }}>Veja tudo o que já foi publicado, além dos três últimos meses, sobre políticas públicas ambientais</p>
                     <div style={{
                         paddingTop: 0,
-                        paddingBottom: 19,
+                        paddingBottom: 18,
                     }}>
                         <ButtonGreen sx={{
                             minWidth: isBig ? null : '100%',

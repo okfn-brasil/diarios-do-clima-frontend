@@ -12,11 +12,12 @@ function DataLabel({ data, featured, label }) {
                 textAlign: 'center',
                 margin: 0,
                 paddingBottom: 6.5,
-                paddingTop: 30,
+                paddingTop: 28,
+                lineHeight: '65px',
             }}>
                 {data}
             </p>
-            <p style={{ ...fontNormal2Black, textAlign: 'center', marginBottom: 80, marginTop: 0, }}><b>{featured}</b>{label}</p>
+            <p style={{ ...fontNormal2Black, textAlign: 'center', margin: 0, }}><b>{featured}</b>{label}</p>
         </span>
     );
 }
@@ -27,8 +28,18 @@ function Data() {
 
     return (
         <Grid item container xs={12} sx={{
-            paddingTop: isBig? '80px': '380px',
-            paddingBottom: '80px'
+            ...(isBig ? {
+                paddingTop: '80px',
+                paddingBottom: '80px',
+                paddingLeft: '128px',
+                paddingRight: '128px',
+            } : {
+                paddingTop: '380px',
+                paddingBottom: '80px',
+                paddingLeft: '24px',
+                paddingRight: '24px',
+            }),
+
         }} >
             <Grid item xs={12}>
                 <p style={{ ...fontTitle3Black, textAlign: 'center', margin: 0, }}>

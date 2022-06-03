@@ -1,13 +1,13 @@
 import { Grid } from "@mui/material";
 import { useState } from "react";
-import MenuIcon from '../../../../assets/images/home/icons/menu.svg';
+import MenuIcon from '../../../../../assets/images/home/icons/menu.svg';
 import MenuMobileOverlay from "./MenuMobileOverlay";
 
 function MenuMobile() {
     const [showMenu, setShowMenu] = useState(false);
     return (
-        <Grid
-            item xs={12}
+        <span
+            
             sx={{
                 display: 'flex',
                 justifyContent: 'right'
@@ -20,7 +20,7 @@ function MenuMobile() {
                     paddingRight: '20px',
                 }} />
             {showMenu && <MenuMobileOverlay onClose={()=>setShowMenu(false)}/>}
-        </Grid>
+        </span>
     );
 }
 

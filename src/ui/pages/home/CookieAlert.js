@@ -3,26 +3,25 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Grid from '@mui/material/Grid';
 import CloseIcon from '@mui/icons-material/Close';
 import { fontNormal1White } from '../../fonts';
+import { darkBlue } from '../../colors';
 
 const bigStyle = {
-    paddingLeft: '128px',
-    paddingRight: '140px',
+    paddingLeft: '130px',
+    paddingRight: '130px',
 };
 
 const smallStyle = {
     paddingLeft: '24px',
-    paddingRight: '30px',
+    paddingRight: '24px',
 };
 
-function CookieAlert({ show, onClick, }) {
-    const opacity = show ? 1 : 0;
+function CookieAlert({ onClick, }) {    
     const theme = useTheme();
     const isBig = useMediaQuery(theme.breakpoints.up('sm'));
 
     return (
         <Grid item xs={12} style={{
-            backgroundColor: 'black',
-            opacity: opacity,
+            backgroundColor: darkBlue,            
             display: 'flex',
             flexDirection: isBig ? 'row' : 'row-reverse',
             justifyContent: 'space-between',

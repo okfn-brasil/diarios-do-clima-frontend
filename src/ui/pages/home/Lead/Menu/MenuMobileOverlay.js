@@ -1,9 +1,9 @@
 import { Grid } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import DiarioLogo from '../../../../assets/images/logo.svg';
-import ButtonGreen from "../../../components/button/ButtonGreen";
-import ButtonOutlined from "../../../components/button/ButtonOutlined";
-import { darkBlue, green } from '../../../colors';
+import DiarioLogo from '../../../../../assets/images/logo.svg';
+import ButtonGreen from "../../../../components/button/ButtonGreen";
+import ButtonOutlined from "../../../../components/button/ButtonOutlined";
+import { darkBlue, green } from '../../../../colors';
 
 import './MenuMobileOverlay.css';
 
