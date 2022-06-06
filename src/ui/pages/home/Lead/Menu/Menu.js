@@ -3,8 +3,6 @@ import MenuMobile from './MenuMobile';
 import MenuDesktop from './MenuDesktop';
 import DiarioLogo from '../../../../../assets/images/logo.svg';
 
-//{{ }}
-
 function Menu({ isBig }) {
     return (
         <Grid
@@ -12,10 +10,10 @@ function Menu({ isBig }) {
             alignItems="center"
             xs={12} sx={{
                 paddingTop: '16px',
-                paddingLeft: isBig ? '130px' : '24px', 
-                paddingRight: isBig ? '130px' : '24px',       
+                paddingLeft: isBig ? '130px' : '24px',
+                paddingRight: isBig ? '130px' : '24px',
                 display: 'flex',
-                justifyContent: 'space-between',      
+                justifyContent: 'space-between',
                 alignItems: 'center',
                 flexDirection: 'row'
             }}>

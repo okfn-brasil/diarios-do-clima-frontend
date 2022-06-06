@@ -4,6 +4,7 @@ import DiarioLogo from '../../../../../assets/images/logo.svg';
 import ButtonGreen from "../../../../components/button/ButtonGreen";
 import ButtonOutlined from "../../../../components/button/ButtonOutlined";
 import { darkBlue, green } from '../../../../colors';
+import { fontRoboto, fontSora } from "../../../../fonts";
 
 import './MenuMobileOverlay.css';
 
@@ -20,7 +21,8 @@ function MenuMobileOverlay({ onClose }) {
             fontSize: 22,
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'flex-start'
+            justifyContent: 'flex-start',
+            ...fontSora,
         }}>
             <Grid item container>
                 <Grid item xs={12}
@@ -65,7 +67,7 @@ function MenuMobileOverlay({ onClose }) {
 
 
             </Grid>
-            <div style={{                
+            <div style={{
                 display: 'flex',
                 flexDirection: 'column-reverse',
                 flex: 1,
@@ -78,6 +80,7 @@ function MenuMobileOverlay({ onClose }) {
                     color: green,
                     display: 'flex',
                     justifyContent: 'space-between',
+                    ...fontRoboto,
                 }}>
                     <span style={{
                         width: '50%',

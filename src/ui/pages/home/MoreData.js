@@ -5,6 +5,8 @@ import Link from '../../components/Link';
 import {
     fontTitle3Black,
     fontNormal2Black,
+    fontRoboto,
+    fontSora,
 } from '../../fonts';
 
 function MoreData() {
@@ -21,17 +23,19 @@ function MoreData() {
             <Grid item xs={10} md={8}>
                 <p style={{
                     ...fontTitle3Black,
+                    ...fontSora,
                     margin: 0,
                     marginBottom: 8,
                 }}>Mais dados. Mais insights</p>
                 <p style={{
                     ...fontNormal2Black,
+                    ...fontRoboto,
                     margin: 0,
                     marginBottom: 44,
                     maxWidth: 782,
                     lineHeight: '22px',
                 }}>Informações curadas por profissionais e baseadas nos diários oficiais para ajudar pesquisadores, consultores e organizações a estarem a par dos últimos acontecimentos.</p>
-                <Link>
+                <Link >
                     Saiba mais sobre os relatórios
                 </Link>
             </Grid>

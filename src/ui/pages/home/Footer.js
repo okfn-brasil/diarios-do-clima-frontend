@@ -3,16 +3,23 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Grid } from "@mui/material";
 import { Fragment } from 'react';
 import DiarioLogo from '../../../assets/images/logo.svg';
-import { fontNormal1WhiteBold } from '../../fonts';
+import { fontNormal1WhiteBold, fontSora } from '../../fonts';
 import { gray, darkBlue } from '../../colors';
 
 function FooterXS() {
+    const baseSx = {
+        fontSize: '14px',
+        fontWeight: 400,
+        lineHeight: '22px',
+        paddingBottom: '16px',
+        color: 'white',        
+    };
     return (
         <Fragment>
-            <Grid item xs={12} sx={{ paddingBottom: '16px', paddingTop: '56px', }} >Assinatura PRO</Grid>
-            <Grid item xs={12} sx={{ paddingBottom: '16px', }} >Relatórios de análises aprofundadas</Grid>
-            <Grid item xs={12} sx={{ paddingBottom: '16px', }} >Sobre o diário do clima</Grid>
-            <Grid item xs={12} sx={{ paddingBottom: '16px', }} >Termos e condições</Grid>
+            <Grid item xs={12} sx={{ ...baseSx, paddingTop: '56px', }} >Sobre o diário do clima</Grid>
+            <Grid item xs={12} sx={{ ...baseSx, }} >Relatórios de análises aprofundadas</Grid>
+            <Grid item xs={12} sx={{ ...baseSx, }} >Assinatura PRO</Grid>
+            <Grid item xs={12} sx={{ ...baseSx, }} >Termos e condições</Grid>
         </Fragment>
     );
 }
@@ -38,25 +45,25 @@ function FooterMD() {
 
 function Footer() {
     const theme = useTheme();
-    const isNotXS = useMediaQuery(theme.breakpoints.up('lg'));
-    const EE = isNotXS ? FooterMD() : FooterXS();
+    const isBig = useMediaQuery(theme.breakpoints.up('lg'));
     return (
         <Grid item container
             xs={12}
             alignItems='center'
             sx={{
-                ...fontNormal1WhiteBold,
+                ...fontNormal1WhiteBold,          
+                ...fontSora,      
                 backgroundColor: darkBlue,
                 paddingTop: '60px',
                 paddingBottom: '80px',
-                paddingLeft: isNotXS ? '130px' : '26px',
+                paddingLeft: isBig ? '130px' : '26px',
                 color: gray,
             }}
         >
             <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center', }}>
                 <img src={DiarioLogo} alt="Logo do Diario do Clima" />
             </Grid>
-            {EE}
+            {isBig ? <FooterMD /> : <FooterXS />}
         </Grid>
     );
 }

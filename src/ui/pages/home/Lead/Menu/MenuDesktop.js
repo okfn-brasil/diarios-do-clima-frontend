@@ -1,6 +1,6 @@
 import ButtonGreen from '../../../../components/button/ButtonGreen';
 import ButtonOutlined from '../../../../components/button/ButtonOutlined';
-import { fontNormal1WhiteMenu } from '../../../../fonts';
+import { fontNormal1WhiteMenu, fontRoboto } from '../../../../fonts';
 
 import './MenuDesktop.css';
 
@@ -9,6 +9,7 @@ function MenuDesktop() {
         <div className='menu'
             style={{
                 ...fontNormal1WhiteMenu,
+                ...fontRoboto,
             }}
         >
             <span>
@@ -22,7 +23,7 @@ function MenuDesktop() {
             </span>
             <ButtonGreen sx={{
                 marginRight: '16px',
-                fontSize: 14,                
+                fontSize: 14,
             }}>
                 Começar a buscar
             </ButtonGreen>

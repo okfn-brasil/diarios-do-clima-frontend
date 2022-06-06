@@ -2,7 +2,7 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Grid from '@mui/material/Grid';
 import CloseIcon from '@mui/icons-material/Close';
-import { fontNormal1White } from '../../fonts';
+import { fontRoboto, fontNormal1White } from '../../fonts';
 import { darkBlue } from '../../colors';
 
 const bigStyle = {
@@ -15,13 +15,13 @@ const smallStyle = {
     paddingRight: '24px',
 };
 
-function CookieAlert({ onClick, }) {    
+function CookieAlert({ onClick, }) {
     const theme = useTheme();
     const isBig = useMediaQuery(theme.breakpoints.up('sm'));
 
     return (
         <Grid item xs={12} style={{
-            backgroundColor: darkBlue,            
+            backgroundColor: darkBlue,
             display: 'flex',
             flexDirection: isBig ? 'row' : 'row-reverse',
             justifyContent: 'space-between',
@@ -31,7 +31,7 @@ function CookieAlert({ onClick, }) {
             ...(isBig ? bigStyle : smallStyle),
         }}>
 
-            <span style={{ ...fontNormal1White, }}>
+            <span style={{ ...fontNormal1White, ...fontRoboto, }}>
                 Nós utilizamos cookies essenciais para o site funcionar e alguns adicionais para entender como você utiliza o Diário do Clima. Mais detalhes nos Termos.
             </span>
             <CloseIcon onClick={onClick} sx={{
