@@ -1,5 +1,4 @@
-const buttonBaseStyle = {
-    minWidth: '250px',
+const buttonBaseStyle = {    
     padding: '14px 40px',
 };
 

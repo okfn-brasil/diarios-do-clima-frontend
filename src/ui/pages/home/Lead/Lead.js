@@ -3,51 +3,15 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import backgroundImage from '../../../../assets/images/home/lead.background.png';
 import deviceImage from '../../../../assets/images/home/lead.device.png';
-import CookieAlert from '../CookieAlert';
-import { useState } from "react";
-import DiarioLogo from '../../../../assets/images/logo.svg';
 import ButtonGreen from '../../../components/button/ButtonGreen';
-import ButtonOutlined from '../../../components/button/ButtonOutlined';
-import { fontTitle1White, fontSubTitle, fontNormal1WhiteMenu } from '../../../fonts';
+import { fontTitle1White, fontSubTitle, fontSora, fontRoboto } from '../../../fonts';
+import { green } from '../../../colors';
+import Menu from './Menu';
 
-import MenuMobile from './MenuMobile';
 
-function MenuBig() {
-    return (
-        <Grid
-            item container xs={10}
-            alignItems="center"
-            justifyContent="space-between"
-            sx={{
-                ...fontNormal1WhiteMenu,
-            }}
-        >
-            <span>
-                Diario do Clima PRO
-            </span>
-            <span>
-                Relatorios
-            </span>
-            <span>
-                Sobre o Diário do Clima
-            </span>
-            <ButtonGreen sx={{
-                minWidth: '100px',
-            }}>
-                Começar a buscar
-            </ButtonGreen>
-            <ButtonOutlined sx={{
-                minWidth: '100px',
-            }}>
-                Iniciar Sessão
-            </ButtonOutlined>
-        </Grid>
-    );
-}
 
 
 function Lead() {
-    var [showAlert, setShowAlert] = useState(true);
     const theme = useTheme();
     const isBig = useMediaQuery(theme.breakpoints.up('lg'));
     return (
@@ -58,34 +22,37 @@ function Lead() {
                 backgroundSize: 'cover',
                 color: 'white',
             }}>
-            <CookieAlert show={showAlert} onClick={() => setShowAlert(false)} />
-            <Grid
-                item container
-                xs={12} sx={{
-                    paddingTop: '16px',
-                }}
-                alignItems="center"
-            >
-                <Grid item xs={6} lg={4} sx={{ paddingLeft: isBig ? '130px' : '26px', }}>
-                    <img src={DiarioLogo} alt="Logo do Diario do Clima" />
-                </Grid>
-                <Grid item container xs={6} lg={8}>
-                    {isBig ? <MenuBig /> : <MenuMobile />}
-                </Grid>
-            </Grid>
-            <Grid item container xs={12} sx={{ marginBottom: '100px', marginTop: '50px', }}>
+            <Menu isBig={isBig} />
+            <Grid item container xs={12} sx={{
+                marginBottom: '100px',
+                marginTop: isBig ? '80px' : '92px',
+            }}>
                 <Grid item xs={12} lg={6}
                     sx={isBig ? {
+
                         paddingLeft: '230px',
                     } : {
                         paddingLeft: '26px',
                         paddingRight: '26px',
                     }}
                 >
-                    <p style={fontTitle1White}>
-                        Encontre um ato ambiental
+                    <p style={{
+                        ...fontTitle1White,
+                        ...fontSora,
+                        margin: 0,
+                        marginTop: isBig ? '45px' : '0px',
+                    }}>
+                        Encontre um <span style={{
+                            color: isBig ? null : green,
+                        }}>ato ambiental</span>
                     </p>
-                    <p style={fontSubTitle}>O diário do Clima filtra as informações dos diários oficiais para você descobrir o que precisa mais fácil e rapidamente</p>
+                    <p style={{
+                        ...fontSubTitle,
+                        ...fontRoboto,
+                        marginTop: isBig ? '16px' : '0px',
+                    }}>
+                        O diário do Clima filtra as informações dos diários oficiais para você descobrir o que precisa mais fácil e rapidamente
+                    </p>
                     <ButtonGreen sx={{
                         minWidth: '200px',
                         ...(!isBig && { marginBottom: '80px' }),
@@ -94,11 +61,11 @@ function Lead() {
                     </ButtonGreen>
                 </Grid>
                 <Grid item xs={12} lg={6} sx={{
-                    ...(!isBig && { marginBottom: '-110%', }),
+                    ...(!isBig && { marginBottom: '-110%', paddingLeft: '0px', paddingRight: '0px', }),
                     display: 'flex',
                     justifyContent: 'center',
                 }}>
-                    <img src={deviceImage} style={{ maxHeight: '423px', }} alt="Exemplo de ui do diario do clima" />
+                    <img src={deviceImage} style={{ maxHeight: '423px', maxWidth: '100%',}} alt="Exemplo de ui do diario do clima" />
                 </Grid>
             </Grid>
         </Grid >

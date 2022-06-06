@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Grid, Box } from "@mui/material";
-import { fontTitle3Black } from '../../fonts';
+import { fontTitle3Black, fontNormal2Black, fontNormal2BlackBold, fontSora, fontRoboto } from '../../fonts';
 import Link from '../../components/Link';
 import ButtonGreen from '../../components/button/ButtonGreen';
 
@@ -53,6 +53,7 @@ function Option({ id, selectedId, label, sideLabel = true, icon, onClick }) {
                 paddingBottom: '24px',
             }}>
             <Box style={{
+
                 width: '68px',
                 height: '68px',
                 backgroundColor: 'rgba(23, 32, 48, 1)',
@@ -61,14 +62,15 @@ function Option({ id, selectedId, label, sideLabel = true, icon, onClick }) {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginBottom: '14px',
+                marginBottom: sideLabel ? null : '14px',
             }}>
                 <img src={icon} alt="logo" style={{
                     width: '20px',
                     height: '20px',
                 }} />
             </Box>
-            <UnderlinText padding="4px" style={{
+            <UnderlinText padding={sideLabel ? '4px' : '6px'} style={{
+                ...fontSora,
                 ...(!isSelected && { borderBottomColor: 'rgba(0, 0, 0, 0)' }),
             }}>{label}</UnderlinText>
         </Grid>
@@ -108,16 +110,19 @@ function WeOffer() {
             <Grid item container xs={12} justifyContent='center'>
                 <p style={{
                     ...fontTitle3Black,
+                    ...fontSora,
                     paddingTop: 0,
                     marginTop: 0,
-                    paddingBottom: '60px',
+                    paddingBottom: isBig ? '56px' : '39px',
+                    fontSize: isBig ? '22px' : '24px',
                     marginBottom: 0,
+                    textAlign: 'center',
                 }}>
                     O que oferecemos no <span style={{ color: 'rgba(82, 206, 95, 1)' }}>Diário do Clima PRO</span>
                 </p>
             </Grid>
             <Grid item container xs={12}>
-                <Grid item container xs={12} md={3} justifyContent='space-between'>
+                <Grid item container xs={12} md={3} justifyContent={isBig ? 'flex-start' : 'space-between'}>
                     <Option sideLabel={isBig} id={1} onClick={() => setSelectedId(1)} icon={HistoryLogo} label="HISTÓRICO" selectedId={selectedId} />
                     <Option sideLabel={isBig} id={2} onClick={() => setSelectedId(2)} icon={ThemeLogo} label="TEMAS" selectedId={selectedId} />
                     <Option sideLabel={isBig} id={3} onClick={() => setSelectedId(3)} icon={AlertsLogo} label="ALERTAS" selectedId={selectedId} />
@@ -129,22 +134,30 @@ function WeOffer() {
                     <img src={getLeadImage(selectedId)} alt="visual representation of option"
                         style={{
                             maxWidth: '100%',
-                            maxHeight: '320px',
+                            maxHeight: isBig ? '320px' : '196px',
+                            marginBottom: isBig ? null : '14px',
                         }}
                     />
                 </Grid>
                 <Grid item xs={12} md={4}>
                     <h3 style={{
+                        ...fontNormal2BlackBold,
+                        ...fontSora,
+                        margin: 0,
                         paddingTop: 0,
                         paddingBottom: 8,
                     }}>Acesse todo o histórico de resultados</h3>
                     <p style={{
+                        ...fontNormal2Black,
+                        ...fontRoboto,
+                        margin: 0,
                         paddingTop: 0,
                         paddingBottom: 24,
+
                     }}>Veja tudo o que já foi publicado, além dos três últimos meses, sobre políticas públicas ambientais</p>
                     <div style={{
                         paddingTop: 0,
-                        paddingBottom: 19,
+                        paddingBottom: 18,
                     }}>
                         <ButtonGreen sx={{
                             minWidth: isBig ? null : '100%',
@@ -153,6 +166,7 @@ function WeOffer() {
                         </ButtonGreen>
                     </div>
                     <Link style={{
+                        ...fontRoboto,
                         padding: 0,
                     }}>
                         Saiba mais sobre a assinatura
