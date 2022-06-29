@@ -1,0 +1,55 @@
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  
+a, a span, a button  {
+  color: white;
+  text-decoration: none;
+}
+
+.hover-animation {
+  opacity: 1;
+  cursor: pointer;
+  transition: 0.4s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.top-space {
+  margin-top: -80px;
+  padding-top: 10px;
+}
+
+.container {
+  @media only screen and (max-width: 600px) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+.password-field {
+  position: relative;
+
+  img {
+    z-index: 88;
+    width: 22px;
+    position: absolute;
+    right: 0;
+    top: calc(50% + 12px);
+    cursor: pointer;
+  }
+}

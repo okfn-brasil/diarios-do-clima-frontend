@@ -1,0 +1,62 @@
+@import '/src/ui/utils/colors.scss';
+
+.lds div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: $green;
+  animation: lds 1.4s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  border-radius: 3px;
+}
+.lds div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.4s;
+}
+.lds div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.2s;
+}
+.lds div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes lds {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%, 100% {
+    top: 24px;
+    height: 32px;
+  }
+}
+
+.lds {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.loading-area {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0, 0.3);
+  top: 0;
+  left: 0;
+  z-index: 99999;
+}
+
+.loading-box {
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+  background-color: rgba(255,255,255, 0.8);
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
