@@ -13,6 +13,10 @@ import { urls } from '/src/ui/utils/urls';
 import { LoginModel, LoginResponse } from '/src/models/login.model';
 import LoginService from '/src/services/login';
 import Loading from '/src/ui/components/loading/Loading';
+import { userUpdate } from '/src/stores/user.store';
+import { useDispatch } from 'react-redux';
+import AccountService from '/src/services/accounts';
+import { RegistrationResponse } from '/src/models/registration.model';
 
 interface PropsLoginForm{
   isDesktop: boolean;
@@ -20,7 +24,9 @@ interface PropsLoginForm{
 }
 
 const LoginForm = ({isDesktop, showLoginForm}: PropsLoginForm) => {
+  const dispatch = useDispatch();
   const loginService = new LoginService();
+  const accountService = new AccountService();
   const [passFieldType, setPassType]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(true);
   const [isLoading, setLoading]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
   const [error, setError]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
@@ -47,11 +53,30 @@ const LoginForm = ({isDesktop, showLoginForm}: PropsLoginForm) => {
     setError(false);
     setLoading(true);
     loginService.login(inputs).then(
-      response => {
-        setLoading(false);
-        closeModal();
+      (response: LoginResponse) => {
+        getUserData();
+        dispatch(userUpdate({
+          access: response.access,
+          refresh: response.refresh,
+        }));
       },
       ).catch(() => {
+        setLoading(false);
+        setError(true);
+    });
+  }
+
+  const getUserData = () => {
+    accountService.getUserData().then(
+      (response: RegistrationResponse) => {
+        dispatch(userUpdate({
+          id: response.id,
+          full_name: response.full_name,
+          plan_pro: accountService.checkPlan(response),
+        }));
+        setLoading(false);
+        closeModal();
+      }).catch(() => {
         setLoading(false);
         setError(true);
     });

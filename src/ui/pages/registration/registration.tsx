@@ -2,9 +2,9 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import selectArrow from '/src/assets/images/icons/arrow-down.svg'
 import computerImage from '/src/assets/images/computer-registration.svg';
-import PasswordField from '../../components/passwordField/PasswordField';
+import PasswordField from '../../components/passwordField/passwordField';
 import SubmitForm from '/src/ui/components/submitForm/SubmitForm';
-import InputError from '../../components/inputError/InputError';
+import InputError from '../../components/inputError/inputError';
 import Loading from '/src/ui/components/loading/Loading';
 import { fontRoboto, fontTitle3 } from '/src/ui/utils/fonts';
 import { black, blue, gray, darkGray, red } from '/src/ui/utils/colors';
@@ -14,7 +14,7 @@ import { useTheme } from '@material-ui/core/styles';
 import { FormControl, Grid, Input, InputLabel, MenuItem, Select } from '@mui/material';
 import { InputModel, RegistrationModel } from '/src/models/registration.model';
 import AccountService from '/src/services/accounts';
-import './Registration.scss';
+import './registration.scss';
 import { inputStyle } from '/src/ui/utils/generalStyles';
 
 const Registration = () => {

@@ -11,7 +11,7 @@ export default class LoginService {
     };
     return fetch(config.apiUrl + this.currentUrl, {
       method: 'POST',
-      headers: config.headers,
+      headers: config.tokenHeaders(),
       body: JSON.stringify(newForm)
     })
     .then(response => config.handleResponse(response));

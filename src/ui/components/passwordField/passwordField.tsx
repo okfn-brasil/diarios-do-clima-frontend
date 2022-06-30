@@ -4,7 +4,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import ShowPassIcon from '/src/assets/images/icons/show-pass.svg';
 import './passwordField.scss';
 import { Dispatch, SetStateAction, useState } from "react";
-import InputError from "/src/ui/components/inputError/InputError";
+import InputError from "../inputError/inputError";
 
 interface PropsPasswordField {
   sx?: React.CSSProperties;

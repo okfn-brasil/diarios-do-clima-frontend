@@ -1,4 +1,4 @@
-import { RegistrationModel } from '/src/models/registration.model';
+import { RegistrationModel, RegistrationResponse } from '/src/models/registration.model';
 import { config } from './api-config';
 
 export default class AccountService {
@@ -20,5 +20,19 @@ export default class AccountService {
       body: JSON.stringify(newForm)
     })
     .then(response => config.handleResponse(response));
+  }
+
+  getUserData() {
+    return fetch(config.apiUrl + this.currentUrl + 'me/', {
+      method: 'GET',
+      headers: config.tokenHeaders(),
+    })
+    .then(response => config.handleResponse(response, true));
+  }
+
+  checkPlan(userData: RegistrationResponse) {
+    return !!(userData.plan_subscription && 
+    userData.plan_subscription.plan && 
+    userData.plan_subscription.plan.pagseguro_plan_id);
   }
 }
