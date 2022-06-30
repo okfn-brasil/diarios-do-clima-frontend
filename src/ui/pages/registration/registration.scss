@@ -1,0 +1,24 @@
+.registration-form {
+  .MuiInput-input {
+    &::placeholder {
+      opacity: 1 !important;
+    }
+  }
+
+  .MuiInput-root:before {
+    border-bottom: 2px solid rgba(172, 181, 189, 1) !important;
+  }
+}
+
+.MuiInputLabel-root {
+  left: -12px !important;
+  color: black !important;
+}
+
+.MuiSelect-select {
+  padding: 15px 0 !important;
+}
+
+.selected {
+  background-color: rgba(127, 227, 137, 0.45);
+}
