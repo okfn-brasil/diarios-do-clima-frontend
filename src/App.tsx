@@ -17,18 +17,17 @@ import BecomePro from "./ui/pages/becomePro/BecomePro";
 import StartSearch from "./ui/pages/startSearch/StartSearch";
 
 const App = () => {
-  let [showCookieAlert, setShowCookieAlert] = useState(!sessionStorage.getItem('cookieAlertClosed'));
+  let [showCookieAlert, setShowCookieAlert] = useState(!localStorage.getItem('cookieAlertClosed'));
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
 
   const hideCookieAlert = () => {
-    sessionStorage.setItem('cookieAlertClosed', 'closed');
+    localStorage.setItem('cookieAlertClosed', 'closed');
     setShowCookieAlert(false);
   }
 
   return (
     <div>
-        
       <Router>
         {showCookieAlert && <CookieAlert onClick={hideCookieAlert} />}
         <Menu isDesktop={isDesktop}/>
