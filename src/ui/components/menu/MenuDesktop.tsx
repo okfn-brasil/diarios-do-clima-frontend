@@ -5,6 +5,8 @@ import { fontNormal1WhiteMenu, fontRoboto } from '/src/ui/utils/fonts';
 
 import './MenuDesktop.scss';
 import { darkBlue } from '/src/ui/utils/colors';
+import { useSelector } from 'react-redux';
+import { RootState } from '/src/stores/store';
 
 interface PropsMenuDesktop {
   isWhite: boolean;
@@ -12,6 +14,7 @@ interface PropsMenuDesktop {
 }
 
 const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
+  const userData = useSelector((state: RootState) => state.user);
   const linkStyle: React.CSSProperties = {
     cursor: 'pointer',
     marginRight: '24px',

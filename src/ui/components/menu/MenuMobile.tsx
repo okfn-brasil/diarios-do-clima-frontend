@@ -2,6 +2,8 @@ import { useState } from "react";
 import MenuIcon from '/src/assets/images/icons/menu.svg';
 import MenuBlackIcon from '/src/assets/images/icons/menu-black.svg';
 import MenuMobileOverlay from "./MenuMobileOverlay";
+import { useSelector } from "react-redux";
+import { RootState } from "/src/stores/store";
 
 interface PropsMenuMobile {
   isWhite: boolean;
@@ -9,6 +11,7 @@ interface PropsMenuMobile {
 }
 
 const MenuMobile = ({isWhite, showLoginForm}: PropsMenuMobile) => {
+    const userData = useSelector((state: RootState) => state.user);
     const [showMenu, setShowMenu] = useState(false);
     return (
         <span
