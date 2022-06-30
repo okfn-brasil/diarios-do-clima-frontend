@@ -25,6 +25,7 @@
   "devDependencies": {
     "@babel/preset-flow": "7.16.7",
     "babel-plugin-root-import": "6.6.0",
+    "babel-loader": "8.2.3",
     "css-loader": "6.5.1",
     "flow-bin": "0.169.0",
     "html-webpack-plugin": "^5.5.0",
