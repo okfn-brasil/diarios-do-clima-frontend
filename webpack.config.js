@@ -9,6 +9,11 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  },
   plugins: [new HtmlWebpackPlugin({ template: path.resolve(__dirname, "public", "index.html"),
     favicon: "./public/favicon.ico",
     filename: "index.html",

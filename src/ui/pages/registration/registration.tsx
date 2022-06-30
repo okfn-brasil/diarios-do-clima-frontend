@@ -75,11 +75,11 @@ const Registration = () => {
         navigate(urls.becomePro.url);
       },
       ).catch(e => {
-        const errorKey = Object.keys(e)[0];
+        const errorKey = e ? Object.keys(e)[0] : '';
         setSubmitError(
           <span>
             Ocorreu um erro ao tentar criar a sua conta, por favor, tente novamente.
-            <br/>Motivo do erro: {e[errorKey]}
+            { e? <><br/>Motivo do erro: {e[errorKey]}</> : <></> }
             <br/><a className='hover-animation' style={{color: red, textDecoration: 'underline'}} onClick={resetForm}>Clique aqui para voltar ao inicio do cadastro</a>
           </span>)
         setLoading(false);
