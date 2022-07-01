@@ -17,7 +17,6 @@ interface PropsMenuDesktop {
 
 const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
   const userData: UserState = useSelector((state: RootState) => state.user);
-  console.log(userData)
   const linkStyle: React.CSSProperties = {
     cursor: 'pointer',
     marginRight: '24px',
