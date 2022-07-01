@@ -1,6 +1,6 @@
 import Menu from "./ui/components/menu";
 import Home from "./ui/pages/home/Home";
-import React from "react";
+import React, { Fragment, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -18,51 +18,50 @@ import StartSearch from "./ui/pages/startSearch/StartSearch";
 import AccountService from "./services/accounts";
 import { RegistrationResponse } from "./models/registration.model";
 import { useDispatch } from "react-redux";
-import { userUpdate, userReset } from "./stores/user.store";
+import { userUpdate } from "./stores/user.store";
+import { tokenKeys } from "./ui/utils/storage-utils";
+import RouteChangeManager from "./ui/components/routeChangeManager/RouteChangeManager";
 
 const App = () => {
   const dispatch = useDispatch();
   const accountService = new AccountService();
-  let [showCookieAlert, setShowCookieAlert] = useState(!localStorage.getItem('cookieAlertClosed'));
+  let [showCookieAlert, setShowCookieAlert] = useState(!localStorage.getItem(tokenKeys.cookies));
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
 
-  
-
-  if(localStorage.getItem('tk')) {
-    accountService.getUserData().then(
-      (response: RegistrationResponse) => {
-        dispatch(userUpdate({
-          id: response.id,
-          full_name: response.full_name,
-          plan_pro: accountService.checkPlan(response),
-        }));
-    }).catch(err => {
-      if(err == 401) {
-        console.log(err)
-        localStorage.removeItem('tk');
-        dispatch(userReset());
-      }
-    });
-  }
+  useEffect(() => {
+    if(localStorage.getItem(tokenKeys.access)) {
+      accountService.getUserData(localStorage.getItem(tokenKeys.access) as string).then(
+        (response: RegistrationResponse) => {
+          dispatch(userUpdate({
+            id: response.id,
+            full_name: response.full_name,
+            plan_pro: accountService.checkPlan(response),
+          }));
+      });
+    }
+  }, []);
 
   const hideCookieAlert = () => {
-    localStorage.setItem('cookieAlertClosed', 'closed');
+    localStorage.setItem(tokenKeys.cookies, 'closed');
     setShowCookieAlert(false);
   }
 
   return (
     <div>
       <Router>
-        {showCookieAlert && <CookieAlert onClick={hideCookieAlert} />}
-        <Menu isDesktop={isDesktop}/>
-        <Routes>
-          <Route path={urls.home.url} element={<Home />} />
-          <Route path={urls.registration.url} element={<Registration />} />
-          <Route path={urls.becomePro.url} element={<BecomePro isDesktop={isDesktop} />} />
-          <Route path={urls.startSearch.url} element={<StartSearch isDesktop={isDesktop} />} />
-        </Routes>
-        <Footer />
+        <RouteChangeManager />
+        <Fragment>
+          {showCookieAlert && <CookieAlert onClick={hideCookieAlert} />}
+          <Menu isDesktop={isDesktop}/>
+          <Routes>
+            <Route path={urls.home.url} element={<Home />} />
+            <Route path={urls.registration.url} element={<Registration />} />
+            <Route path={urls.becomePro.url} element={<BecomePro isDesktop={isDesktop} />} />
+            <Route path={urls.startSearch.url} element={<StartSearch isDesktop={isDesktop} />} />
+          </Routes>
+          <Footer />
+        </Fragment>
       </Router>
     </div>
   );

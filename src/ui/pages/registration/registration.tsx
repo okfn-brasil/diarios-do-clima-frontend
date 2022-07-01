@@ -12,14 +12,17 @@ import { urls } from '/src/ui/utils/urls';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { FormControl, Grid, Input, InputLabel, MenuItem, Select } from '@mui/material';
-import { InputModel, RegistrationModel } from '/src/models/registration.model';
+import { InputModel, RegistrationModel, RegistrationResponse } from '/src/models/registration.model';
 import AccountService from '/src/services/accounts';
 import './registration.scss';
 import { inputStyle } from '/src/ui/utils/generalStyles';
+import { useDispatch } from 'react-redux';
+import { userUpdate } from '/src/stores/user.store';
 
 const Registration = () => {
+  const dispatch = useDispatch();
   const navigate: NavigateFunction = useNavigate();
-  const AccountsService = new AccountService();
+  const accountsService = new AccountService();
   const emptyError = <></>;
   const inputsDefaultValue = {
     username: { value: '' },
@@ -35,7 +38,8 @@ const Registration = () => {
   const fieldValidations: any = {
     username: (s: InputModel) => { return s.value && s.value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false },
     password: (s: InputModel) => { return s.isValid ? false : 'A senha deve atender todos os requisitos a baixo' },
-    email: (s: InputModel) => { return /\S+@\S+\.\S+/.test(s.value) ? false : 'O e-mail inserido é invalido';}
+    email: (s: InputModel) => { return /\S+@\S+\.\S+/.test(s.value) ? false : 'O e-mail inserido é invalido' },
+    city: (s: InputModel) => { return s.value && s.value.length < 5  ? 'O campo deve possuir no mínimo 5 caracteres' : false }
   }
 
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
@@ -50,18 +54,20 @@ const Registration = () => {
 
   const handleSubmit = (event: any) => {
     let errors = [];
-    ['username', 'email', 'password'].forEach((key: string) => {
+    ['username', 'email', 'password', 'city'].forEach((key: string) => {
       let input: InputModel = inputs[key];
       let validator: any = fieldValidations[key] ? fieldValidations[key](input) : false;
-      setInputs((values: RegistrationModel) => ({...values, [key]: {...input, errorMessage: validator}}))
-      if(typeof validator === 'string' || validator instanceof String) {
-        errors.push(key);
+      if(inputs[key].value) {
+        setInputs((values: RegistrationModel) => ({...values, [key]: {...input, errorMessage: validator}}))
+        if(typeof validator === 'string' || validator instanceof String) {
+          errors.push(key);
+        }
       }
     });
     if(!errors.length && step < 3) {
       const nextStep = step + 1;
       setStep(nextStep);
-    } else if(step === 3) {
+    } else if(!errors.length && step === 3) {
       submit();
     }
     event.preventDefault();
@@ -70,8 +76,15 @@ const Registration = () => {
   const submit = () => {
     setLoading(true);
     setSubmitError(emptyError);
-    AccountsService.createNewAcount(inputs).then(
-      () => {
+    accountsService.createNewAcount(inputs).then(
+      (response: RegistrationResponse) => {
+        dispatch(userUpdate({
+          access: response.jwt.access,
+          refresh: response.jwt.refresh,
+          id: response.id,
+          full_name: response.full_name,
+          plan_pro: accountsService.checkPlan(response),
+        }));
         navigate(urls.becomePro.url);
       },
       ).catch(e => {
@@ -110,13 +123,19 @@ const Registration = () => {
           Crie uma conta para começar a buscar no Diário do Clima
         </div>
         <div>
-          <Input required error={!!inputs.username.errorMessage} type='text' value={inputs.username.value} name='username'  onChange={inputChange} sx={inputStyle} placeholder='Nome completo' />
-          <InputError>{inputs.username.errorMessage}</InputError>
+          <FormControl className='form-input' fullWidth style={{marginTop: '40px'}}>
+            <InputLabel id='username'>Nome Completo</InputLabel>
+            <Input required error={!!inputs.username.errorMessage} type='text' value={inputs.username.value} name='username'  onChange={inputChange} sx={inputStyle}/>
+            <InputError>{inputs.username.errorMessage}</InputError>
+          </FormControl>
 
-          <Input required error={!!inputs.email.errorMessage} type='email' value={inputs.email.value} sx={inputStyle} name='email' onChange={inputChange} placeholder='E-mail' />
-          <InputError>{inputs.email.errorMessage}</InputError>
+          <FormControl className='form-input' fullWidth>
+            <InputLabel id='email'>E-mail</InputLabel>
+            <Input required error={!!inputs.email.errorMessage} type='email' value={inputs.email.value} sx={inputStyle} name='email' onChange={inputChange} />
+            <InputError>{inputs.email.errorMessage}</InputError>
+          </FormControl>
 
-          <PasswordField errorMessage={inputs.password.errorMessage} value={inputs.password.value} onChange={inputChange} name='password' sx={inputStyle} placeholder='Senha'/>
+          <PasswordField errorMessage={inputs.password.errorMessage} value={inputs.password.value} onChange={inputChange} name='password' sx={inputStyle}/>
           
           <SubmitForm />
         </div>
@@ -138,6 +157,7 @@ const Registration = () => {
           <FormControl fullWidth sx={selectAreaStyle} style={{marginTop: '40px'}}>
             <InputLabel id='gender-select'>Gênero</InputLabel>
             <Select required variant='standard' IconComponent={selectIcon} labelId='gender-select' value={inputs.gender.value} name='gender' onChange={inputChange} label='Gênero'>
+              <MenuItem value={0} disabled>Selecione um gênero</MenuItem>
               <MenuItem value={'f'}>Feminino</MenuItem>
               <MenuItem value={'m'}>Masculino</MenuItem>
               <MenuItem value={'o'}>Outro</MenuItem>
@@ -147,6 +167,7 @@ const Registration = () => {
           <FormControl fullWidth sx={selectAreaStyle} >
             <InputLabel id='sector-select'>Area de Atuação</InputLabel>
             <Select required variant='standard' IconComponent={selectIcon} labelId='sector-select' value={inputs.sector.value} name='sector' onChange={inputChange} label='Area de Atuação'>
+              <MenuItem value={0} disabled>Selecione uma área</MenuItem>
               <MenuItem value={'Area 1'}>Area 1</MenuItem>
               <MenuItem value={'Area 2'}>Area 2</MenuItem>
               <MenuItem value={'Area 3'}>Area 3</MenuItem>
@@ -167,21 +188,19 @@ const Registration = () => {
         <FormControl fullWidth sx={selectAreaStyle} style={{marginTop: '40px'}}>
             <InputLabel id='state-select'>Estado</InputLabel>
             <Select required variant='standard' IconComponent={selectIcon} labelId='state-select' value={inputs.state.value} name='state' onChange={inputChange} label='Estado'>
+              <MenuItem value={0} disabled>Selecione um estado</MenuItem>
               <MenuItem value={'SP'}>São Paulo</MenuItem>
               <MenuItem value={'RJ'}>Rio de Janeiro</MenuItem>
             </Select>
           </FormControl>
 
-          <FormControl fullWidth sx={selectAreaStyle} >
-            <InputLabel id='city-select'>Cidade</InputLabel>
-            <Select required variant='standard' IconComponent={selectIcon} labelId='city-select' value={inputs.city.value} name='city' onChange={inputChange} label='Cidade'>
-              <MenuItem value={'São Paulo'}>São Paulo</MenuItem>
-              <MenuItem value={'Mogi das Cruzes'}>Mogi das Cruzes</MenuItem>
-              <MenuItem value={'São José dos Campos'}>São José dos Campos</MenuItem>
-            </Select>
+          <FormControl fullWidth className='form-input' sx={{marginTop: '12px'}}>
+            <InputLabel id='city'>Cidade</InputLabel>
+            <Input required type='text' value={inputs.city.value} sx={inputStyle} name='city' onChange={inputChange} />
+            <InputError>{inputs.city.errorMessage}</InputError>
           </FormControl>
 
-          <SubmitForm disabled={isLoading}/>
+          <SubmitForm sx={{marginTop: '26px'}} disabled={isLoading}/>
         </div>
       </div>
     )
@@ -222,12 +241,13 @@ const Registration = () => {
                     style={{padding: isDesktop ? '56px 0 0' : '45px 0 0', overflowX: 'hidden'}}
                   >
                     <div>
-                      {step > 1 ? 
+                     
                         <div style={{display: 'flex', marginBottom: '38px'}}>
-                          <div style={stepStyle} className={step === 2 ? 'selected' : ''}>1</div>
-                          <div style={stepStyle} className={step === 3 ? 'selected' : ''}>2</div>
-                        </div> : <></>
-                      }
+                          <div style={stepStyle} className={step === 1 ? 'selected' : ''}>1</div>
+                          <div style={stepStyle} className={step === 2 ? 'selected' : ''}>2</div>
+                          <div style={stepStyle} className={step === 3 ? 'selected' : ''}>3</div>
+                        </div> 
+                      
                     </div>
                     {getFormStep(step)}
                   </div>
@@ -319,7 +339,7 @@ const linkStyle: React.CSSProperties = {
 
 const stepStyle: React.CSSProperties = {
   width: '24px',
-  height: '24px',
+  height: '22px',
   textAlign: 'center',
   marginRight: '14px',
   transition: '0.4s',

@@ -11,9 +11,18 @@ export default class LoginService {
     };
     return fetch(config.apiUrl + this.currentUrl, {
       method: 'POST',
-      headers: config.tokenHeaders(),
+      headers: config.headers,
       body: JSON.stringify(newForm)
     })
-    .then(response => config.handleResponse(response));
+    .then(response => config.handleResponse(response, true));
+  }
+
+  refreshLogin(refresh: string) {
+    return fetch(config.apiUrl + this.currentUrl + 'refresh/', {
+      method: 'POST',
+      headers: config.headers,
+      body: JSON.stringify({ refresh })
+    })
+    .then(response => config.handleResponse(response, true));
   }
 }

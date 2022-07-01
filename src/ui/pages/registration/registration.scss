@@ -10,7 +10,15 @@
   }
 }
 
-.MuiInputLabel-root {
+.form-input .MuiInputLabel-formControl {
+  top: 28px !important;
+
+  &.Mui-focused, &.MuiFormLabel-filled {
+    top: 35px !important;
+  }
+}
+
+.MuiInputLabel-formControl {
   left: -12px !important;
   color: black !important;
 }

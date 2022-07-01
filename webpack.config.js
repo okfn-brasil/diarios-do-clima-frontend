@@ -1,11 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require("webpack");
 
 module.exports = {
-  entry: './src/index',
+  entry: {
+    app: './src/index',
+    hot: 'webpack/hot/dev-server.js',
+    client: 'webpack-dev-server/client/index.js?hot=true&live-reload=true',
+  },
   mode: 'development',
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
@@ -14,11 +19,14 @@ module.exports = {
     maxEntrypointSize: 512000,
     maxAssetSize: 512000
   },
-  plugins: [new HtmlWebpackPlugin({ template: path.resolve(__dirname, "public", "index.html"),
-    favicon: "./public/favicon.ico",
-    filename: "index.html",
-    manifest: "./public/manifest.json",
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({ template: path.resolve(__dirname, "public", "index.html"),
+      favicon: "./public/favicon.ico",
+      filename: "index.html",
+      manifest: "./public/manifest.json",
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
   devtool: 'inline-source-map',
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.png'],
@@ -26,7 +34,7 @@ module.exports = {
   devServer: {
     compress: true,
     port: 3000,
-    hot: true,
+    hot: false,
     historyApiFallback: true,
   },
   module: {

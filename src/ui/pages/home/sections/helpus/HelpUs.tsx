@@ -4,6 +4,8 @@ import { Grid } from "@mui/material";
 import ButtonSolidGreen from "/src/ui/components/button/ButtonGreen";
 import ButtonSolidDarkBlue from "/src/ui/components/button/ButtonDarkBlue";
 import { fontSora, fontRoboto, fontTitle3White, fontNormal2White } from "/src/ui/utils/fonts";
+import { Link } from 'react-router-dom';
+import { urls } from '/src/ui/utils/urls';
 
 import './HelpUs.scss';
 
@@ -58,11 +60,13 @@ const HelpUs = () => {
                 </ButtonSolidGreen>
 
 
-                <ButtonSolidDarkBlue sx={{
-                    minWidth: isDesktop ? '' : '100%',
-                }}>
-                    Começar a buscar grátis
-                </ButtonSolidDarkBlue>
+                <Link to={urls.registration.url}>
+                  <ButtonSolidDarkBlue sx={{
+                      minWidth: isDesktop ? '' : '100%',
+                  }}>
+                      Começar a buscar grátis
+                  </ButtonSolidDarkBlue>
+                </Link>
 
             </Grid>
         </Grid>

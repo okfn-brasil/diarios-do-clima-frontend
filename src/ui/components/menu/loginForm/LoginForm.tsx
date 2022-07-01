@@ -54,11 +54,11 @@ const LoginForm = ({isDesktop, showLoginForm}: PropsLoginForm) => {
     setLoading(true);
     loginService.login(inputs).then(
       (response: LoginResponse) => {
-        getUserData();
         dispatch(userUpdate({
           access: response.access,
           refresh: response.refresh,
         }));
+        getUserData(response.access);
       },
       ).catch(() => {
         setLoading(false);
@@ -66,8 +66,8 @@ const LoginForm = ({isDesktop, showLoginForm}: PropsLoginForm) => {
     });
   }
 
-  const getUserData = () => {
-    accountService.getUserData().then(
+  const getUserData = (token: string) => {
+    accountService.getUserData(token).then(
       (response: RegistrationResponse) => {
         dispatch(userUpdate({
           id: response.id,

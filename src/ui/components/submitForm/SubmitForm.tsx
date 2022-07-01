@@ -9,18 +9,24 @@ interface PropsSubmitForm{
 }
 
 const SubmitForm = ({ sx, label, disabled }: PropsSubmitForm) => {
-    return (
-        <input disabled={disabled} value={label || 'Continuar'} type='submit' className='hover-animation' style={{
-            ...buttonBaseStyle,
-            ...fontButtonDarkBlue,
-            backgroundColor: 'rgba(127, 227, 137, 1)',
-            fontWeight: '500px',
-            width: '100%',
-            marginTop: '32px',
-            border: '0',
-            ...sx,
-        }}/>
-    );
+  return (
+    <input 
+    className='submit-form hover-animation' 
+    disabled={disabled} 
+    value={label || 'Continuar'} 
+    type='submit' 
+    style={{
+      ...buttonBaseStyle,
+      ...fontButtonDarkBlue,
+      backgroundColor: 'rgba(127, 227, 137, 1)',
+      fontWeight: '500px',
+      width: '100%',
+      marginTop: '32px',
+      border: '0',
+      transition: 'none',
+      ...sx,
+    }}/>
+  );
 }
 
 export default SubmitForm;
