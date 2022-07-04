@@ -1,47 +1,49 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
-import selectArrow from '/src/assets/images/icons/arrow-down.svg'
 import computerImage from '/src/assets/images/computer-registration.svg';
 import PasswordField from '../../components/passwordField/passwordField';
 import SubmitForm from '/src/ui/components/submitForm/SubmitForm';
 import InputError from '../../components/inputError/inputError';
 import Loading from '/src/ui/components/loading/Loading';
 import { fontRoboto, fontTitle3 } from '/src/ui/utils/fonts';
-import { black, blue, gray, darkGray, red } from '/src/ui/utils/colors';
+import { black, blue, gray, gray5, red } from '/src/ui/utils/colors';
 import { urls } from '/src/ui/utils/urls';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { FormControl, Grid, Input, InputLabel, MenuItem, Select } from '@mui/material';
-import { InputModel, RegistrationModel, RegistrationResponse } from '/src/models/registration.model';
+import { RegistrationModel, RegistrationResponse } from '/src/models/registration.model';
+import { InputModel } from '/src/models/forms.model';
 import AccountService from '/src/services/accounts';
 import './registration.scss';
-import { inputStyle } from '/src/ui/utils/generalStyles';
 import { useDispatch } from 'react-redux';
 import { userUpdate } from '/src/stores/user.store';
+import { selectIcon } from '../../utils/forms.utils';
+import { inputStyle } from '../../utils/generalStyles';
+
+const emptyError = <></>;
+const inputsDefaultValue = {
+  username: { value: '' },
+  email: { value: '' },
+  password: { value: '' },
+  gender: { value: '' },
+  sector: { value: '' },
+  state: { value: '' },
+  city: { value: '' },
+};
+
+const fieldValidations: any = {
+  username: (s: InputModel) => { return s.value && s.value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false },
+  password: (s: InputModel) => { return s.isValid ? false : 'A senha deve atender todos os requisitos a baixo' },
+  email: (s: InputModel) => { return /\S+@\S+\.\S+/.test(s.value) ? false : 'O e-mail inserido é invalido' },
+  city: (s: InputModel) => { return s.value && s.value.length < 5  ? 'O campo deve possuir no mínimo 5 caracteres' : false },
+};
 
 const Registration = () => {
   const dispatch = useDispatch();
   const navigate: NavigateFunction = useNavigate();
   const accountsService = new AccountService();
-  const emptyError = <></>;
-  const inputsDefaultValue = {
-    username: { value: '' },
-    email: { value: '' },
-    password: { value: '' },
-    gender: { value: '' },
-    sector: { value: '' },
-    state: { value: '' },
-    city: { value: '' },
-  };
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
-  const fieldValidations: any = {
-    username: (s: InputModel) => { return s.value && s.value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false },
-    password: (s: InputModel) => { return s.isValid ? false : 'A senha deve atender todos os requisitos a baixo' },
-    email: (s: InputModel) => { return /\S+@\S+\.\S+/.test(s.value) ? false : 'O e-mail inserido é invalido' },
-    city: (s: InputModel) => { return s.value && s.value.length < 5  ? 'O campo deve possuir no mínimo 5 caracteres' : false }
-  }
-
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [submitError, setSubmitError] : [JSX.Element, Dispatch<JSX.Element>] = useState(emptyError);
   const [step, setStep] : [number, Dispatch<SetStateAction<number>>] = useState(1);
@@ -143,12 +145,6 @@ const Registration = () => {
     )
   }
 
-  const selectIcon = () => {
-    return (
-      <img style={{width: '16px'}} src={selectArrow} />
-    )
-  }
-
   const formStepTwo = () => {
     return (
       <div>
@@ -217,7 +213,7 @@ const Registration = () => {
         <div
           style={{
             ...fontRoboto,
-            color: darkGray,
+            color: gray5,
             fontSize: '18px',
             marginTop: '8px',
           }}
@@ -233,89 +229,87 @@ const Registration = () => {
       <Loading isLoading={isLoading}></Loading>
       <form className='registration-form' onSubmit={handleSubmit}>
         <Grid item container xs={12} className='container'>
-            <Grid item sm={1} xs={0}></Grid>
-            <Grid item sm={6}>
-              <Grid container>
-                <Grid item sm={10} xs={12}>
-                  <div 
-                    style={{padding: isDesktop ? '56px 0 0' : '45px 0 0', overflowX: 'hidden'}}
-                  >
-                    <div>
-                     
-                        <div style={{display: 'flex', marginBottom: '38px'}}>
-                          <div style={stepStyle} className={step === 1 ? 'selected' : ''}>1</div>
-                          <div style={stepStyle} className={step === 2 ? 'selected' : ''}>2</div>
-                          <div style={stepStyle} className={step === 3 ? 'selected' : ''}>3</div>
-                        </div> 
-                      
-                    </div>
-                    {getFormStep(step)}
-                  </div>
+          <Grid item sm={1} xs={0}></Grid>
+          <Grid item sm={6}>
+            <Grid container>
+              <Grid item sm={10} xs={12}>
+                <div 
+                  style={{padding: isDesktop ? '56px 0 0' : '45px 0 0', overflowX: 'hidden'}}
+                >
                   <div>
+                    <div style={{display: 'flex', marginBottom: '38px'}}>
+                      <div style={stepStyle} className={step === 1 ? 'selected' : ''}>1</div>
+                      <div style={stepStyle} className={step === 2 ? 'selected' : ''}>2</div>
+                      <div style={stepStyle} className={step === 3 ? 'selected' : ''}>3</div>
+                    </div> 
+                  </div>
+                  {getFormStep(step)}
+                </div>
+                <div>
+                  <div  style={{
+                    ...fontRoboto,
+                    fontSize: '14px',
+                    color: gray,
+                    marginTop: '32px',
+                    marginBottom: '2px'
+                  }}>
+                    Ao se cadastrar, você está aceitando os nossos
+                  </div>
+                  <div style={{marginBottom: step > 1 ? '30px' : ''}}>
+                    <Link to='' className='hover-animation'>
+                      <span style={{
+                        ...linkStyle,
+                        paddingRight: '5px',
+                        borderRightStyle: 'solid',
+                        borderRightWidth: '2px',
+                        borderRightColor: gray,
+                        
+                      }}>
+                        Fale conosco
+                      </span>
+                    </Link>
+                    <Link to={urls.terms.url} className='hover-animation'>
+                      <span
+                        style={{
+                          ...linkStyle,
+                          paddingLeft: '5px',
+                        }}>
+                        Termos e condições
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+                <div>
+                  {step === 1 ? 
                     <div  style={{
                       ...fontRoboto,
                       fontSize: '14px',
-                      color: gray,
                       marginTop: '32px',
-                      marginBottom: '2px'
+                      marginBottom: '30px'
                     }}>
-                      Ao se cadastrar, você está aceitando os nossos
-                    </div>
-                    <div style={{marginBottom: step > 1 ? '30px' : ''}}>
+                      Já possui uma conta?
                       <Link to='' className='hover-animation'>
-                        <span style={{
-                          ...linkStyle,
-                          paddingRight: '5px',
-                          borderRightStyle: 'solid',
-                          borderRightWidth: '2px',
-                          borderRightColor: gray,
-                          
-                        }}>
-                          Fale conosco
-                        </span>
-                      </Link>
-                      <Link to={urls.terms.url} className='hover-animation'>
                         <span
                           style={{
-                            ...linkStyle,
-                            paddingLeft: '5px',
-                          }}>
-                          Termos e condições
-                        </span>
-                      </Link>
-                    </div>
-                  </div>
-                  <div>
-                    {step === 1 ? 
-                      <div  style={{
-                        ...fontRoboto,
-                        fontSize: '14px',
-                        marginTop: '32px',
-                        marginBottom: '30px'
-                      }}>
-                        Já possui uma conta?
-                        <Link to='' className='hover-animation'>
-                          <span
-                            style={{
-                              color: blue,
-                              fontWeight: 600,
-                              marginLeft: '5px',
-                            }}
-                          >
-                            Faça o login
-                            </span>
-                          </Link>
-                      </div> : <></>
-                    }
-                  </div>
-                  <div style={{color: red, fontSize: '14px', marginBottom: '30px', ...fontRoboto}}>{submitError}</div>
-                </Grid>
+                            color: blue,
+                            fontWeight: 600,
+                            marginLeft: '5px',
+                          }}
+                        >
+                          Faça o login
+                          </span>
+                        </Link>
+                    </div> : <></>
+                  }
+                </div>
+                <div style={{color: red, fontSize: '14px', marginBottom: '30px', ...fontRoboto}}>{submitError}</div>
               </Grid>
             </Grid>
-            <Grid item sm={5} xs={0}>
-              <img src={computerImage}/>
-            </Grid>
           </Grid>
+          <Grid item sm={5} xs={0}>
+            <img src={computerImage}/>
+          </Grid>
+        </Grid>
       </form>
     </section>
   );
@@ -343,6 +337,6 @@ const stepStyle: React.CSSProperties = {
   textAlign: 'center',
   marginRight: '14px',
   transition: '0.4s',
-  color: darkGray,
+  color: gray5,
   fontSize: '18px'
 }

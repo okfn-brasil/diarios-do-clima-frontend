@@ -77,7 +77,7 @@ const AboutPage = ({isDesktop}: PropsAboutPage) => {
         
         <Grid container item sm={12} justifyContent='center' style={{backgroundColor: lightGray3, padding: isDesktop? '80px 0' : '56px 0'}}>
           <Grid item sm={8} className='container'>
-            <h3 style={{...h3Style, marginBottom: '0',}}>Contamos com seu apoio!</h3>
+            <h3 style={{...h3Style, margin: '0',}}>Contamos com seu apoio!</h3>
             <p style={{...paragraphStyle, marginTop: '8px'}}>Você pode se tornar um assinante. Assim, você recebe os benefícios de ser PRO e ainda ajuda o Diário do Clima a abrir os dados de novas cidades e desenvolver novas ferramentas!</p>
             <Link to=''>
               <ButtonSolidGreen  >
@@ -89,12 +89,13 @@ const AboutPage = ({isDesktop}: PropsAboutPage) => {
 
         
         <Grid container item sm={12} justifyContent='center' style={{padding: isDesktop? '80px 0' : '56px 0'}}>
-          <Grid className='container' sm={10}>
+          <Grid className='container' item sm={10}>
             <h3 style={h3Style}>Quem está por trás disso</h3>
             <Grid container style={{paddingTop: '10px'}}>
               {partners.map(partner => {
                 return (
                   <div 
+                    key={partner.logo}
                     style={{
                       ...(isDesktop ? partnerStyleDesktop : partnerStyleMobile), 
                       borderBottom: partner !== partners[partners.length - 1] && !isDesktop ? '1px solid ' + lightGray : ''

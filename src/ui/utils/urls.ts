@@ -5,6 +5,8 @@ export interface UrlsModel {
   home: urlModel;
   becomePro: urlModel;
   about: urlModel;
+  startSearch: urlModel;
+  purchase: urlModel;
   [key: string]: urlModel;
 }
 
@@ -23,4 +25,5 @@ export const urls: UrlsModel = {
   terms: { url: '/termos', isWhiteMenu: true },
   about: { url: '/sobre', customColor: blue },
   reports: { url: '/relatorios' },
+  purchase: { url: '/assine', isWhiteMenu: true }
 }

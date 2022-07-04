@@ -24,6 +24,7 @@ import RouteChangeManager from "./ui/components/routeChangeManager/RouteChangeMa
 import TermsPage from "./ui/pages/terms/Terms";
 import AboutPage from "./ui/pages/about/About";
 import ReportsPage from "./ui/pages/reports/Reports";
+import Purchase from "./ui/pages/purchase/Purchase";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -65,6 +66,7 @@ const App = () => {
             <Route path={urls.terms.url} element={<TermsPage isDesktop={isDesktop} />} />
             <Route path={urls.about.url} element={<AboutPage isDesktop={isDesktop} />} />
             <Route path={urls.reports.url} element={<ReportsPage isDesktop={isDesktop} />} />
+            <Route path={urls.purchase.url} element={<Purchase isDesktop={isDesktop} />} />
           </Routes>
           <Footer />
         </Fragment>

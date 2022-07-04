@@ -3,3 +3,8 @@ export const tokenKeys = {
   refresh: 'rh',
   cookies: 'cookieAlertClosed',
 }
+
+export const deleteTokens = () => {
+  localStorage.removeItem(tokenKeys.access);
+  localStorage.removeItem(tokenKeys.refresh);
+}

@@ -34,7 +34,6 @@ const CookieAlert = ({ onClick }: PropsCookieAlert) => {
         cursor: 'pointer',
         ...(!isDesktop && { paddingRight: '24px' }),
       }} />
-
     </Grid>
   );
 }
