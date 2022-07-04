@@ -110,7 +110,8 @@ const PurchaseForm = () => {
       newInputs[key] = { value: getInputWithoutMask(inputs[key].value) }
     })
     setLoading(true);
-    console.log(newInputs)
+    // TO DO
+    /*console.log(newInputs) 
     billingService.subscribe(inputs).then(
       () => {
         navigate(urls.startSearch.url);
@@ -123,7 +124,7 @@ const PurchaseForm = () => {
             { e? <><br/>Motivo do erro: {e[errorKey]}</> : <></> }
           </span>)
         setLoading(false);
-    });
+    });*/
   }
 
   return (
