@@ -7,24 +7,33 @@ import { darkBlue, green } from '/src/ui/utils/colors';
 import { fontRoboto, fontSora } from '/src/ui/utils/fonts';
 
 import './MenuMobileOverlay.scss';
-import { Link } from 'react-router-dom';
-import { MouseEventHandler } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { MouseEventHandler, useEffect } from 'react';
 import { urls } from '/src/ui/utils/urls';
 
 interface PropsMenuMobileOverlay {
   onClose: MouseEventHandler<SVGSVGElement>;
   showLoginForm: any;
   isLoggedIn: boolean;
+  history: any;
 }
 
-const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobileOverlay)  => {
+const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn, history }: PropsMenuMobileOverlay)  => {
+
+  const closeMenu = () => {
+    setTimeout(() => {
+      onClose({} as any);
+    }, 100);
+  }
     const onShowLoginForm = () => {
       showLoginForm(true);
       onClose({} as any);
     }
 
     return (
-        <div style={{
+        <div 
+          onClick={closeMenu}
+          style={{
             zIndex: 999,
             position: 'fixed',
             left: 0,
@@ -37,7 +46,8 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobi
             flexDirection: 'column',
             justifyContent: 'flex-start',
             ...fontSora,
-        }}>
+          }}
+        >
             <Grid item container>
                 <Grid item xs={12}
                     sx={{
@@ -56,7 +66,7 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobi
                 { isLoggedIn ? <div className='menu-item'><Link to=''>Buscar</Link></div> : <></>}
                 <div className='menu-item'><Link to=''>Diário do clima PRO</Link></div>
                 <div className='menu-item'><Link to=''>Relatórios</Link></div>
-                <div className='menu-item'><Link to=''>Sobre o Diário do Clima</Link></div>
+                <div className='menu-item'><Link to={urls.about.url}>Sobre o Diário do Clima</Link></div>
                 { isLoggedIn ? <></> :
                   <>
                     <Grid item xs={12} sx={{
@@ -102,18 +112,29 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobi
                     justifyContent: 'space-between',
                     ...fontRoboto,
                 }}>
-                    <span style={{
-                        width: '50%',
-                        height: '100%',
-                        borderRightStyle: 'solid',
-                        borderRightWidth: '1px',
-                        borderRightColor: green,
-                    }}>Fale conosco</span>
-                    <span
+                  <span style={{
+                    width: '50%',
+                    height: '100%',
+                    borderRightStyle: 'solid',
+                    borderRightWidth: '1px',
+                    borderRightColor: green,
+                  }}>
+                    Fale conosco
+                  </span>
+                  <Link to={urls.terms.url}
                     style={{
                       width: '50%',
                       height: '100%',
-                  }}>Termos e condições</span>
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: green
+                      }}
+                    >
+                      Termos e condições
+                    </span>
+                  </Link>
                 </div>
             </div>
         </div>

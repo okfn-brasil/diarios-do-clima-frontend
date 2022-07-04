@@ -1,0 +1,15 @@
+@import '/src/ui/utils/colors.scss';
+
+.list div{
+  padding-left: 22px;
+  position: relative;
+
+  &::after {
+    content: '●';
+    color: $gray5;
+    font-size: 9px;
+    left: 0;
+    top: 0px;
+    position: absolute;
+  }
+}

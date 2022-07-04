@@ -1,6 +1,7 @@
 import { buttonBaseStyle } from '/src/ui/components/button/styles';
 import { fontButtonDarkBlue } from '/src/ui/utils/fonts';
 import './SubmitForm.scss';
+import { lightGreen } from '../../utils/colors';
 
 interface PropsSubmitForm{
   sx?: React.CSSProperties;
@@ -18,7 +19,7 @@ const SubmitForm = ({ sx, label, disabled }: PropsSubmitForm) => {
     style={{
       ...buttonBaseStyle,
       ...fontButtonDarkBlue,
-      backgroundColor: 'rgba(127, 227, 137, 1)',
+      backgroundColor: lightGreen,
       fontWeight: '500px',
       width: '100%',
       marginTop: '32px',

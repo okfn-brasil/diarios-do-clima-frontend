@@ -3,7 +3,7 @@ import MenuMobile from './menuMobile/MenuMobile';
 import MenuDesktop from './menuDesktop/MenuDesktop';
 import DiarioLogo from '/src/assets/images/logo.svg';
 import DiarioLogoBlack from '/src/assets/images/logo-black.svg';
-import { darkBlue } from '/src/ui/utils/colors';
+import { darkBlue, lightGray2 } from '/src/ui/utils/colors';
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { urls } from "../../utils/urls";
@@ -62,6 +62,7 @@ const Menu = ({ isDesktop }: PropsMenu) => {
 
   const invertedHeaderStyle: React.CSSProperties = {
     ...defaultHeaderStyle,
+    borderBottom: '1px solid ' + lightGray2,
     backgroundColor: 'white',
   };
 

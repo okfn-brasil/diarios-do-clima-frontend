@@ -5,6 +5,8 @@ import { Fragment } from 'react';
 import DiarioLogo from '/src/assets/images/logo.svg';
 import { fontNormal1WhiteBold, fontSora } from '/src/ui/utils/fonts';
 import { gray, darkBlue } from '/src/ui/utils/colors';
+import { Link } from 'react-router-dom';
+import { urls } from '../../utils/urls';
 
 const FooterXS = () => {
     const baseSx = {
@@ -19,7 +21,7 @@ const FooterXS = () => {
             <Grid item xs={12} sx={{ ...baseSx, paddingTop: '56px', }} >Sobre o diário do clima</Grid>
             <Grid item xs={12} sx={{ ...baseSx, }} >Relatórios de análises aprofundadas</Grid>
             <Grid item xs={12} sx={{ ...baseSx, }} >Assinatura PRO</Grid>
-            <Grid item xs={12} sx={{ ...baseSx, }} >Termos e condições</Grid>
+            <Grid item xs={12} sx={{ ...baseSx, }} ><Link to={urls.terms.url}>Termos e condições</Link></Grid>
         </Fragment>
     );
 }
@@ -37,8 +39,8 @@ const FooterMD = () => {
         >
             <span >Assinatura PRO</span>
             <span >Relatórios de análises aprofundadas</span>
-            <span >Sobre o diário do clima</span>
-            <span >Termos e condições</span>
+            <Link to={urls.about.url}><span >Sobre o diário do clima</span></Link>
+            <Link to={urls.terms.url}><span style={{color: gray}}>Termos e condições</span></Link>
         </Grid>
     );
 }
