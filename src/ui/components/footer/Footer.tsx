@@ -19,7 +19,7 @@ const FooterXS = () => {
     return (
         <Fragment>
             <Grid item xs={12} sx={{ ...baseSx, paddingTop: '56px', }} >Sobre o diário do clima</Grid>
-            <Grid item xs={12} sx={{ ...baseSx, }} >Relatórios de análises aprofundadas</Grid>
+            <Grid item xs={12} sx={{ ...baseSx, }} ><Link to={urls.reports.url}>Relatórios de análises aprofundadas</Link></Grid>
             <Grid item xs={12} sx={{ ...baseSx, }} >Assinatura PRO</Grid>
             <Grid item xs={12} sx={{ ...baseSx, }} ><Link to={urls.terms.url}>Termos e condições</Link></Grid>
         </Fragment>
@@ -37,9 +37,9 @@ const FooterMD = () => {
                 paddingRight: '128px',
             }}
         >
-            <span >Assinatura PRO</span>
-            <span >Relatórios de análises aprofundadas</span>
-            <Link to={urls.about.url}><span >Sobre o diário do clima</span></Link>
+            <Link to=''><span style={{color: gray}}>Assinatura PRO</span></Link>
+            <Link to={urls.reports.url}><span style={{color: gray}}>Relatórios de análises aprofundadas</span></Link>
+            <Link to={urls.about.url}><span style={{color: gray}}>Sobre o diário do clima</span></Link>
             <Link to={urls.terms.url}><span style={{color: gray}}>Termos e condições</span></Link>
         </Grid>
     );

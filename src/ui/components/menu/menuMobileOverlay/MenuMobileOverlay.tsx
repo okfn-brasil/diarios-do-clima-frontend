@@ -65,7 +65,7 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn, history }: Prop
                 </Grid>
                 { isLoggedIn ? <div className='menu-item'><Link to=''>Buscar</Link></div> : <></>}
                 <div className='menu-item'><Link to=''>Diário do clima PRO</Link></div>
-                <div className='menu-item'><Link to=''>Relatórios</Link></div>
+                <div className='menu-item'><Link to={urls.reports.url}>Relatórios</Link></div>
                 <div className='menu-item'><Link to={urls.about.url}>Sobre o Diário do Clima</Link></div>
                 { isLoggedIn ? <></> :
                   <>

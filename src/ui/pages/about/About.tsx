@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import { fontRoboto, fontSora } from '/src/ui/utils/fonts';
 import { blue, gray5, green, lightGray, lightGray3 } from '../../utils/colors';
-import { h2Style, h3Style, paragrathStyle } from '../../utils/generalStyles';
+import { h2Style, h3Style, paragraphStyle } from '../../utils/generalStyles';
 import mobileBanner from '/src/assets/images/about/about-mobile.png';
 import desktopBanner from '/src/assets/images/about/about-desktop.png';
 import { Link } from 'react-router-dom';
@@ -50,7 +50,7 @@ const AboutPage = ({isDesktop}: PropsAboutPage) => {
               <div style={{...fontSora, fontSize: '38px', fontWeight: 600, lineHeight: '48px', margin: '8px 0',}}>
                 Nós estamos aqui para promover transparência
               </div>
-              <p style={{...paragrathStyle, color: 'white', marginBottom: 0}}>
+              <p style={{...paragraphStyle, color: 'white', marginBottom: 0}}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.
               </p>
             </div>
@@ -64,8 +64,8 @@ const AboutPage = ({isDesktop}: PropsAboutPage) => {
             <div style={{...fontRoboto, fontSize: '14px', lineHeight: '16px', marginTop: '8px', color: gray5}}>Foto por USGS no Unsplash</div>
             <div style={{marginTop: isDesktop? '80px' : '56px'}}>
               <h3 style={h3Style}>Onde tudo começou</h3>
-              <p style={paragrathStyle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.</p>
-              <p style={paragrathStyle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.</p>
+              <p style={paragraphStyle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.</p>
+              <p style={paragraphStyle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.</p>
             </div>
 
             <div style={{padding: isDesktop ? '58px 0' : '58px 0 34px'}}>
@@ -78,7 +78,7 @@ const AboutPage = ({isDesktop}: PropsAboutPage) => {
         <Grid container item sm={12} justifyContent='center' style={{backgroundColor: lightGray3, padding: isDesktop? '80px 0' : '56px 0'}}>
           <Grid item sm={8} className='container'>
             <h3 style={{...h3Style, marginBottom: '0',}}>Contamos com seu apoio!</h3>
-            <p style={{...paragrathStyle, marginTop: '8px'}}>Você pode se tornar um assinante. Assim, você recebe os benefícios de ser PRO e ainda ajuda o Diário do Clima a abrir os dados de novas cidades e desenvolver novas ferramentas!</p>
+            <p style={{...paragraphStyle, marginTop: '8px'}}>Você pode se tornar um assinante. Assim, você recebe os benefícios de ser PRO e ainda ajuda o Diário do Clima a abrir os dados de novas cidades e desenvolver novas ferramentas!</p>
             <Link to=''>
               <ButtonSolidGreen  >
                 Quero assinar

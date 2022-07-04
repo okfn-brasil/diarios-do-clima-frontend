@@ -30,7 +30,7 @@ export const h4Style: React.CSSProperties = {
   margin: '22px 0'
 }
 
-export const paragrathStyle: React.CSSProperties = {
+export const paragraphStyle: React.CSSProperties = {
   ...fontRoboto,
   fontSize: '18px',
   lineHeight: '22px',

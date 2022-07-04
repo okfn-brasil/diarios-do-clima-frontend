@@ -27,7 +27,7 @@ const Menu = ({ isDesktop }: PropsMenu) => {
     }
   }, []);
 
-  const {isWhiteMenu, hideLinks} = Object.keys(urls).map(key => {
+  const {isWhiteMenu, hideLinks, customColor} = Object.keys(urls).map(key => {
       let item = urls[key] as any;
       if(item.url === location.pathname) {
         return item
@@ -56,7 +56,7 @@ const Menu = ({ isDesktop }: PropsMenu) => {
     height: '80px',
     top: 0,
     paddingTop: 0,
-    backgroundColor: hasScrolled ? darkBlue : '',
+    backgroundColor: hasScrolled ? (customColor || darkBlue) : '',
     zIndex: 999,
   };
 
