@@ -5,7 +5,7 @@ import { urls } from '../../utils/urls';
 import { RootState } from '/src/stores/store';
 import { UserState } from '/src/stores/user.store';
 
-const loggedPaths = [urls.becomePro.url, urls.startSearch.url];
+const loggedPaths = [urls.becomePro.url, urls.startSearch.url, urls.purchase.url];
 const notLoggedPaths = [urls.registration.url];
 
 const RouteChangeManager = () => {
@@ -13,7 +13,7 @@ const RouteChangeManager = () => {
   const location = useLocation();
   const userData: UserState = useSelector((state: RootState) => state.user);
   useEffect(() => {
-    window.scrollTo(0, 0);
+    //window.scrollTo(0, 0);
     if(userData.access && notLoggedPaths.includes(location.pathname)) {
       navigate(urls.home.url);
     }

@@ -6,11 +6,11 @@ interface PropsInputError {
 }
 
 const InputError = ({ children, sx }: PropsInputError) => {
-    return (
-        <div style={{color: red, marginTop: '5px'}}>
-          { children }
-        </div>
-    );
+  return (
+    <div style={{color: red, marginTop: '5px', ...sx}}>
+      { children }
+    </div>
+  );
 }
 
 export default InputError;

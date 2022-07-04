@@ -11,8 +11,13 @@ interface TokensModel {
 export const config = {
   apiUrl: `http${location.hostname.includes('localhost') ? '' : 's'}://staging.diariodoclima.jurema.la/api`,
   headers: contentType,
-  tokenHeaders: (tokens: TokensModel) => {
+  tokenHeaders: (tokens?: TokensModel) => {
     const headers = contentType as any;
+    if(!tokens) {
+      tokens = {
+        access: localStorage.getItem(tokenKeys.access) as string,
+      }
+    }
     if(tokens.refresh || tokens.access) {
       headers.Authorization = 'Bearer ' + (tokens.refresh || tokens.access);
     }

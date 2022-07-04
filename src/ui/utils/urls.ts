@@ -2,6 +2,8 @@ export interface UrlsModel {
   registration: urlModel;
   home: urlModel;
   becomePro: urlModel;
+  startSearch: urlModel;
+  purchase: urlModel;
   [key: string]: urlModel;
 }
 
@@ -16,4 +18,5 @@ export const urls: UrlsModel = {
   registration: { url: '/cadastro', isWhiteMenu: true, hideLinks: true  },
   becomePro: { url: '/seja-assinante', isWhiteMenu: true, hideLinks: true },
   startSearch: { url: '/iniciar-busca', isWhiteMenu: true, hideLinks: true },
+  purchase: { url: '/assine', isWhiteMenu: true }
 }

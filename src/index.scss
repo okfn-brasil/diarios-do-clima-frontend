@@ -15,7 +15,8 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
-  
+
+// general
 a, a span, a button  {
   color: white;
   text-decoration: none;
@@ -43,6 +44,7 @@ a, a span, a button  {
   }
 }
 
+// forms
 .password-field {
   position: relative;
 
@@ -55,3 +57,36 @@ a, a span, a button  {
     cursor: pointer;
   }
 }
+
+
+.form-input .MuiInputLabel-formControl {
+  top: 28px !important;
+
+  &.Mui-focused, &.MuiFormLabel-filled {
+    top: 35px !important;
+  }
+}
+
+.form-select {
+  .MuiSelect-select:focus {
+    background-color: transparent !important;
+  }
+
+  .MuiInputLabel-formControl {
+    top: 10px !important;
+  
+    &.Mui-focused, &.MuiFormLabel-filled {
+      top: 12px !important;
+    }
+  }
+}
+
+.MuiInputLabel-formControl {
+  left: -12px !important;
+  color: black !important;
+}
+
+.MuiSelect-select {
+  padding: 15px 0 !important;
+}
+

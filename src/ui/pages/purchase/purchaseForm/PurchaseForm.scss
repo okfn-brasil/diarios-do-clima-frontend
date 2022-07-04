@@ -1,0 +1,35 @@
+@import '/src/ui/utils/colors.scss';
+
+.purchase-form {
+  .MuiInputLabel-formControl {
+    left: -12px !important;
+    color: $gray4 !important;
+    font-size: 16px;
+  }
+
+  .form-input .MuiInputLabel-formControl {
+    top: 30px !important;
+  
+    &.Mui-focused, &.MuiFormLabel-filled {
+      top: 34px !important;
+    }
+  }
+
+  
+  
+  .form-select{
+    .MuiSelect-select {
+      padding-bottom: 5px !important;
+      padding-left: 2px !important;
+      color: black !important;
+    }
+  
+    .MuiInputLabel-formControl {
+      top: 15px !important;
+    
+      &.Mui-focused, &.MuiFormLabel-filled {
+        top: 16px !important;
+      }
+    }
+  }
+}

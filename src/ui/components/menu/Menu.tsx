@@ -28,10 +28,10 @@ const Menu = ({ isDesktop }: PropsMenu) => {
   }, []);
 
   const {isWhiteMenu, hideLinks} = Object.keys(urls).map(key => {
-      let item = urls[key] as any;
-      if(item.url === location.pathname) {
-        return item
-      }
+    let item = urls[key] as any;
+    if(item.url === location.pathname) {
+      return item
+    }
   }).filter(item => !!item)[0];
 
   const getScroll = () => {

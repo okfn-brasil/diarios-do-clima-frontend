@@ -1,3 +1,5 @@
+import { InputModel } from "./forms.model";
+
 export interface RegistrationModel {
   username: InputModel;
   email: InputModel;
@@ -7,12 +9,6 @@ export interface RegistrationModel {
   state: InputModel;
   city: InputModel;
   [key: string]: InputModel;
-}
-
-export interface InputModel {
-  value: string;
-  isValid?: boolean;
-  errorMessage?: string;
 }
 
 export interface RegistrationResponse {
