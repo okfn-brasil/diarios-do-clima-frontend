@@ -6,6 +6,8 @@ import deviceImage from '/src/assets/images/home/lead.device.png';
 import ButtonGreen from '/src/ui/components/button/ButtonGreen';
 import { fontTitle1White, fontSubTitle, fontSora, fontRoboto } from '/src/ui/utils/fonts';
 import { green } from '/src/ui/utils/colors';
+import { urls } from "/src/ui/utils/urls";
+import { Link } from "react-router-dom";
 
 const Lead = () => {
     const theme = useTheme();
@@ -49,12 +51,14 @@ const Lead = () => {
                     }}>
                         O diário do Clima filtra as informações dos diários oficiais para você descobrir o que precisa mais fácil e rapidamente
                     </p>
-                    <ButtonGreen sx={{
-                        minWidth: '200px',
-                        ...(!isDesktop && { marginBottom: '80px' }),
-                    }}>
-                        Começar a buscar
-                    </ButtonGreen>
+                    <Link to={urls.registration.url}>
+                      <ButtonGreen sx={{
+                          minWidth: '200px',
+                          ...(!isDesktop && { marginBottom: '80px' }),
+                      }}>
+                          Começar a buscar
+                      </ButtonGreen>
+                    </Link>
                 </Grid>
                 <Grid item xs={12} lg={6} sx={{
                     ...(!isDesktop && { marginBottom: '-110%', paddingLeft: '0px', paddingRight: '0px', }),

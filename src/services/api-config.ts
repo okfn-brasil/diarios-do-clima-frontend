@@ -1,20 +1,24 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../stores/store";
+import { refreshToken } from "./refreshToken";
+import { tokenKeys } from "../ui/utils/storage-utils";
 
 const contentType = { 'Content-Type': 'application/json' };
 
+interface TokensModel {
+  access?: string;
+  refresh?:string;
+}
+
 export const config = {
-  apiUrl: 'http://staging.diariodoclima.jurema.la/api',
+  apiUrl: `http${location.hostname.includes('localhost') ? '' : 's'}://staging.diariodoclima.jurema.la/api`,
   headers: contentType,
-  tokenHeaders: () => {
+  tokenHeaders: (tokens: TokensModel) => {
     const headers = contentType as any;
-    console.log(localStorage.getItem('tk'))
-    if(localStorage.getItem('tk')) {
-      headers.Authorization = 'Bearer ' + localStorage.getItem('tk');
+    if(tokens.refresh || tokens.access) {
+      headers.Authorization = 'Bearer ' + (tokens.refresh || tokens.access);
     }
     return headers;
   },
-  handleResponse: (response: any, isLogin: boolean = false): any => {
+  handleResponse: (response: any, preventRefresh = false): any => {
     return new Promise(async (resolve, reject) => {
       const contentType = response.headers.get("content-type");
       let newResponse;
@@ -24,8 +28,18 @@ export const config = {
       if(response.ok && newResponse) {
         resolve(newResponse);
       } else {
-        reject(isLogin ? newResponse : response.status);
+        if(response.status === 401 && !preventRefresh) {
+          refreshToken();
+        } else {
+          reject(newResponse);
+        }
       }
     })
   },
 }
+
+export const deleteTokens = () => {
+  localStorage.removeItem(tokenKeys.access);
+  localStorage.removeItem(tokenKeys.refresh);
+}
+

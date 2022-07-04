@@ -9,13 +9,15 @@ import { fontRoboto, fontSora } from '/src/ui/utils/fonts';
 import './MenuMobileOverlay.scss';
 import { Link } from 'react-router-dom';
 import { MouseEventHandler } from 'react';
+import { urls } from '/src/ui/utils/urls';
 
 interface PropsMenuMobileOverlay {
   onClose: MouseEventHandler<SVGSVGElement>;
   showLoginForm: any;
+  isLoggedIn: boolean;
 }
 
-const MenuMobileOverlay = ({ onClose, showLoginForm }: PropsMenuMobileOverlay)  => {
+const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobileOverlay)  => {
     const onShowLoginForm = () => {
       showLoginForm(true);
       onClose({} as any);
@@ -45,39 +47,44 @@ const MenuMobileOverlay = ({ onClose, showLoginForm }: PropsMenuMobileOverlay)  
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
+                        paddingBottom: '52px',
                     }}
                 >
                     <img style={{width: '160px'}} src={DiarioLogo} alt='Logo do Diario do Clima' />
                     <CloseIcon sx={{ color: 'white' }} onClick={onClose} />
                 </Grid>
-                <div className='menu-item first-menu-item'><Link to=''>Diário do clima PRO</Link></div>
+                { isLoggedIn ? <div className='menu-item'><Link to=''>Buscar</Link></div> : <></>}
+                <div className='menu-item'><Link to=''>Diário do clima PRO</Link></div>
                 <div className='menu-item'><Link to=''>Relatórios</Link></div>
                 <div className='menu-item'><Link to=''>Sobre o Diário do Clima</Link></div>
-
-                <Grid item xs={12} sx={{
-                    paddingLeft: '24px',
-                    paddingRight: '24px',
-                    paddingBottom: '16px',
-                }}>
-                    <ButtonGreen
-                        sx={{
+                { isLoggedIn ? <></> :
+                  <>
+                    <Grid item xs={12} sx={{
+                        paddingLeft: '24px',
+                        paddingRight: '24px',
+                        paddingBottom: '16px',
+                    }}>
+                      <Link to={urls.registration.url}>
+                        <ButtonGreen
+                            sx={{
+                                minWidth: '100%',
+                            }}>
+                            Começar a buscar
+                        </ButtonGreen>
+                      </Link>
+                    </Grid>
+                    <Grid  onClick={onShowLoginForm} item xs={12} sx={{
+                        paddingLeft: '24px',
+                        paddingRight: '24px',
+                    }}>
+                        <ButtonOutlined sx={{
                             minWidth: '100%',
                         }}>
-                        Começar a buscar
-                    </ButtonGreen>
-                </Grid>
-                <Grid  onClick={onShowLoginForm} item xs={12} sx={{
-                    paddingLeft: '24px',
-                    paddingRight: '24px',
-                }}>
-                    <ButtonOutlined sx={{
-                        minWidth: '100%',
-                    }}>
-                        Iniciar sessão
-                    </ButtonOutlined>
-                </Grid>
-
-
+                            Iniciar sessão
+                        </ButtonOutlined>
+                    </Grid>
+                  </>
+                }
             </Grid>
             <div style={{
                 display: 'flex',

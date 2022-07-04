@@ -1,0 +1,40 @@
+@import '/src/ui/utils/colors.scss';
+
+.user-menu {
+  position: relative;
+  border: none;
+  background-color: unset;
+  padding: 0;
+
+  .dropdown-menu {
+    position: absolute;
+    width: 340px;
+    right: 0;
+    top: 20px;
+    background-color: white;
+    overflow: hidden;
+    animation: slideDown 0.4s;
+    border: 1px solid $lightGray;
+
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+      position: fixed;
+      top: 80px;
+    }
+
+    a {
+      color: $darkBlue;
+    }
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    max-height: 0;
+  }
+
+  100% {
+    max-height: 300px;
+  }
+}
+

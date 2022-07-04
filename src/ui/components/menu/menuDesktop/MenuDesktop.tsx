@@ -7,6 +7,8 @@ import './MenuDesktop.scss';
 import { darkBlue } from '/src/ui/utils/colors';
 import { useSelector } from 'react-redux';
 import { RootState } from '/src/stores/store';
+import LoggedMenu from '../loggedMenu/LoggedMenu';
+import { UserState } from '/src/stores/user.store';
 
 interface PropsMenuDesktop {
   isWhite: boolean;
@@ -14,7 +16,7 @@ interface PropsMenuDesktop {
 }
 
 const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
-  const userData = useSelector((state: RootState) => state.user);
+  const userData: UserState = useSelector((state: RootState) => state.user);
   const linkStyle: React.CSSProperties = {
     cursor: 'pointer',
     marginRight: '24px',
@@ -31,6 +33,8 @@ const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
       style={{
         ...fontNormal1WhiteMenu,
         ...fontRoboto,
+        display: 'flex',
+        alignItems: 'center',
       }}
     >
       <Link to=''>
@@ -42,24 +46,28 @@ const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
       <Link to=''>
         <span className='hover-animation' style={linkStyle}>Sobre o Diário do Clima</span>
       </Link>
-      
-      <Link to='/cadastro'>
-        <ButtonGreen sx={{
-          marginRight: '16px',
-          fontSize: 14,
-        }}>
-          Começar a buscar
-        </ButtonGreen>
-      </Link>
+      { userData.access ? 
+        <LoggedMenu isWhite={isWhite} sx={{marginLeft: '4px'}}></LoggedMenu> :
+        <>
+          <Link to='/cadastro'>
+            <ButtonGreen sx={{
+              marginRight: '16px',
+              fontSize: 14,
+            }}>
+              Começar a buscar
+            </ButtonGreen>
+          </Link>
 
-      <Link to='' onClick={onShowLoginForm}>
-        <ButtonOutlined sx={{
-          fontSize: 14,
-          color: isWhite ? darkBlue : 'white'
-        }}>
-          Iniciar Sessão
-        </ButtonOutlined>
-      </Link>
+          <Link to='' onClick={onShowLoginForm}>
+            <ButtonOutlined sx={{
+              fontSize: 14,
+              color: isWhite ? darkBlue : 'white'
+            }}>
+              Iniciar Sessão
+            </ButtonOutlined>
+          </Link>
+        </>
+      }
     </div>
   );
 }

@@ -22,12 +22,12 @@ export default class AccountService {
     .then(response => config.handleResponse(response));
   }
 
-  getUserData() {
+  getUserData(token: string) {
     return fetch(config.apiUrl + this.currentUrl + 'me/', {
       method: 'GET',
-      headers: config.tokenHeaders(),
+      headers: config.tokenHeaders({access: token}),
     })
-    .then(response => config.handleResponse(response, true));
+    .then(response => config.handleResponse(response));
   }
 
   checkPlan(userData: RegistrationResponse) {

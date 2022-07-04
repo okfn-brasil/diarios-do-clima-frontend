@@ -1,4 +1,4 @@
-export interface RegistrationModel {
+export interface UrlsModel {
   registration: urlModel;
   home: urlModel;
   becomePro: urlModel;
@@ -11,10 +11,9 @@ interface urlModel {
   hideLinks?: boolean;
 }
 
-
-export const urls: RegistrationModel = {
-  registration: { url: '/cadastro', isWhiteMenu: true, hideLinks: true  },
+export const urls: UrlsModel = {
   home: { url: '/', isWhiteMenu: false},
+  registration: { url: '/cadastro', isWhiteMenu: true, hideLinks: true  },
   becomePro: { url: '/seja-assinante', isWhiteMenu: true, hideLinks: true },
   startSearch: { url: '/iniciar-busca', isWhiteMenu: true, hideLinks: true },
 }

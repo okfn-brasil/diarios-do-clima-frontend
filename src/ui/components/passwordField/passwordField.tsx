@@ -1,4 +1,4 @@
-import {Input } from "@mui/material";
+import {FormControl, Input, InputLabel } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import ShowPassIcon from '/src/assets/images/icons/show-pass.svg';
@@ -22,7 +22,7 @@ interface PasswordValidation {
   uppercase: boolean;
 }
 
-const PasswordField = ({ sx, value, name, errorMessage, placeholder, onChange }: PropsPasswordField) => {
+const PasswordField = ({ sx, value, name, errorMessage, onChange }: PropsPasswordField) => {
   const [fieldType, setType]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(true);
   const [inputValue, setInputValue]: [string, Dispatch<SetStateAction<string>>] = useState(value);
   const [fieldValidation, setValidation]: [PasswordValidation, Dispatch<SetStateAction<any>>] = useState({
@@ -54,17 +54,20 @@ const PasswordField = ({ sx, value, name, errorMessage, placeholder, onChange }:
     <>
       <div className='password-field'>
         <img className={'hover-animation ' + (fieldType ? 'low-opacity' : '')} src={ShowPassIcon} onClick={changeFieldType} />
-        <Input 
-          type={fieldType ? 'password' : 'text'} 
-          name={name} 
-          value={inputValue} 
-          className='password-field'
-          required 
-          sx={sx}
-          onChange={inputChange} 
-          placeholder={placeholder}
-          error={!!errorMessage} 
-        />
+        
+        <FormControl className='form-input' fullWidth>
+            <InputLabel id='senha'>Senha</InputLabel>
+          <Input 
+            type={fieldType ? 'password' : 'text'} 
+            name={name} 
+            value={inputValue} 
+            className='password-field'
+            required 
+            sx={sx}
+            onChange={inputChange}
+            error={!!errorMessage} 
+          />
+        </FormControl>
       </div>
       <InputError>{errorMessage}</InputError>
 
