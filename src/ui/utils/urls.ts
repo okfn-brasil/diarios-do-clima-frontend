@@ -7,6 +7,8 @@ export interface UrlsModel {
   about: urlModel;
   startSearch: urlModel;
   purchase: urlModel;
+  reports: urlModel;
+  terms: urlModel;
   [key: string]: urlModel;
 }
 

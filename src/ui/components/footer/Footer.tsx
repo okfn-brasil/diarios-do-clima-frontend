@@ -18,7 +18,7 @@ const FooterXS = () => {
   };
   return (
     <Fragment>
-      <Grid item xs={12} sx={{ ...baseSx, paddingTop: '56px', }} >Sobre o diário do clima</Grid>
+      <Grid item xs={12} sx={{ ...baseSx, paddingTop: '56px', }} ><Link to={urls.about.url}>Sobre o diário do clima</Link></Grid>
       <Grid item xs={12} sx={{ ...baseSx, }} ><Link to={urls.reports.url}>Relatórios de análises aprofundadas</Link></Grid>
       <Grid item xs={12} sx={{ ...baseSx, }} >Assinatura PRO</Grid>
       <Grid item xs={12} sx={{ ...baseSx, }} ><Link to={urls.terms.url}>Termos e condições</Link></Grid>
