@@ -1,3 +1,5 @@
+@import '/src/ui/utils/colors.scss';
+
 .registration-form {
   .MuiInput-input {
     &::placeholder {
@@ -6,25 +8,8 @@
   }
 
   .MuiInput-root:before {
-    border-bottom: 2px solid rgba(172, 181, 189, 1) !important;
+    border-bottom: 2px solid $gray !important;
   }
-}
-
-.form-input .MuiInputLabel-formControl {
-  top: 28px !important;
-
-  &.Mui-focused, &.MuiFormLabel-filled {
-    top: 35px !important;
-  }
-}
-
-.MuiInputLabel-formControl {
-  left: -12px !important;
-  color: black !important;
-}
-
-.MuiSelect-select {
-  padding: 15px 0 !important;
 }
 
 .selected {

@@ -8,17 +8,17 @@ interface PropsButtonDarkBlue {
 }
 
 const ButtonDarkBlue = ({ children, sx }: PropsButtonDarkBlue) => {
-    return (
-        <ButtonBase style={{
-            ...fontButtonWhite,
-            ...buttonBaseStyle,
-            fontWeight: 600,
-            backgroundColor: 'rgba(23, 32, 48, 1)',
-            ...sx,
-        }}>
-            {children}
-        </ButtonBase>
-    );
+  return (
+    <ButtonBase style={{
+      ...fontButtonWhite,
+      ...buttonBaseStyle,
+      fontWeight: 600,
+      backgroundColor: 'rgba(23, 32, 48, 1)',
+      ...sx,
+    }}>
+      {children}
+    </ButtonBase>
+  );
 }
 
 export default ButtonDarkBlue;

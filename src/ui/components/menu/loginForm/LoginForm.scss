@@ -12,6 +12,10 @@
   .container {
     animation: fadeIn 0.4s;
   }
+
+  .password-field img {
+    top: calc(50% + 2px);
+  }
 }
 
 @keyframes fadeIn {
