@@ -2,13 +2,14 @@ import { Grid } from '@mui/material';
 import ButtonGreen from '/src/ui/components/button/ButtonGreen';
 import { Link } from 'react-router-dom';
 import { fontRoboto, fontSora } from '/src/ui/utils/fonts';
-import { darkBlue, darkGray1, gray2, gray5, green } from '../../utils/colors';
-import { h2Style, paragraphStyle } from '../../utils/generalStyles';
+import { darkBlue, darkGray1, gray2, gray5, green, lightGray3, pink } from '../../utils/colors';
+import { h2Style, h3Style, paragraphStyle } from '../../utils/generalStyles';
 import LinkManager from '../../components/linkManager/LinkManager';
 import { urls } from '../../utils/urls';
 import ButtonOutlined from '../../components/button/ButtonOutlined';
 import CheckIcon from '@mui/icons-material/Check';
 import HyperLink from '../../components/hyperLink/HyperLink';
+import FAQItem from './FaqItem/FaqItem';
 
 interface PropsPlans {
   isDesktop: boolean;
@@ -76,7 +77,7 @@ const Plans = ({isDesktop}: PropsPlans) => {
               </div>
             </div>
 
-            <div style={isDesktop ? cardStyle : cardStyleMobile}>
+            <div style={{...isDesktop ? cardStyle : cardStyleMobile, border: '2px solid ' + pink}}>
               <h4 style={cardTitle}>PRO</h4>
               <p style={cardDesc}>Para organizações que precisam das informações mais quentes sobre políticas ambientais</p>
               <h1 style={cardPrice}>R$0,00<span>/mês</span></h1>
@@ -108,15 +109,15 @@ const Plans = ({isDesktop}: PropsPlans) => {
                   Visualização de resultados publicados nos últimos 3 meses
                 </div>
                 <div style={cardListCheckPro}>
-                  <span style={checkIconPro}><CheckIcon color='success'/></span>
+                  <span style={checkIconPro}><CheckIcon sx={{color: pink}}/></span>
                   Visualização de resultados de <span style={{textDecoration: 'underline'}}>todo o histórico disponível</span> no banco de dados
                 </div>
                 <div style={cardListCheckPro}>
-                  <span style={checkIconPro}><CheckIcon color='success'/></span>
+                  <span style={checkIconPro}><CheckIcon sx={{color: pink}}/></span>
                   Filtro de busca por temas inteligentes
                 </div>
                 <div style={cardListCheckPro}>
-                  <span style={checkIconPro}><CheckIcon color='success'/></span>
+                  <span style={checkIconPro}><CheckIcon sx={{color: pink}}/></span>
                   Criação de alertas com filtros e palavras-chaves personalizadas
                 </div>
               </div>
@@ -124,6 +125,60 @@ const Plans = ({isDesktop}: PropsPlans) => {
           </Grid>
         </Grid>
       </Grid>
+
+      <Grid container item sm={12} justifyContent='center' style={{backgroundColor: lightGray3, padding: isDesktop? '80px 0' : '56px 0'}}>
+          <Grid item sm={8} className='container'>
+            <h3 style={{...h3Style, margin: '0',}}>Encomende seu relatório</h3>
+            <p style={{...paragraphStyle, marginTop: '8px'}}>Para organização que precisam de conteúdo centralizado e curado por especialistas sobre um determinado assunto</p>
+            <Grid>
+              <Link to=''>
+                <ButtonGreen sx={!isDesktop ? {width: '100%', marginBottom: '16px'} : {}}>
+                  Contactar vendas
+                </ButtonGreen>
+              </Link>
+              <Link to=''>
+                <ButtonOutlined sx={{color: gray5, marginLeft: isDesktop ? '16px' : '', width: isDesktop ? '' : '100%'}}>
+                  Simular custo
+                </ButtonOutlined>
+              </Link>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid container item sm={12} justifyContent='center' style={{padding: isDesktop? '80px 0' : '56px 0'}}>
+          <Grid item sm={8} className='container'>
+            <h3 style={{...h3Style, margin: '0',}}>50% para organizações que não visam lucro</h3>
+            <p style={{...paragraphStyle, marginTop: '8px'}}>Seu impacto é importante. O Diário do Clima apoia pessoas e organizações independentes que desejam utilizar nosso conteúdo para transformar a sociedade. Para se inscrever na lista de espera, preencha o formulário.</p>
+            <Link to=''>
+              <ButtonGreen>
+                Solicitar desconto
+              </ButtonGreen>
+            </Link>
+          </Grid>
+        </Grid>
+
+        <Grid container item sm={12} justifyContent='center' style={{padding: isDesktop? '80px 0' : '56px 0'}}>
+          <Grid item sm={8} className='container'>
+            <h3 style={{...h2Style, margin: '0 0 56px', color: darkBlue}}>Perguntas frequentes</h3>
+            <div>
+              <FAQItem title='Como funciona a assinatura profissional do Diário do Clima?'>
+                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
+              </FAQItem>
+              <FAQItem title='Quais formas de pagamento vocês aceitam?'>
+                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
+              </FAQItem>
+              <FAQItem title='Quão seguro é o Diário do Clima?'>
+                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
+              </FAQItem>
+              <FAQItem title='Como eu cancelo minha assinatura do Diário do Clima?'>
+                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
+              </FAQItem>
+              <FAQItem title='O diário do clima oferece desconto?'>
+                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
+              </FAQItem>
+            </div>
+          </Grid>
+        </Grid>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 export const green = 'rgba(82, 206, 95, 1)';
 export const red = '#d32f2f';
+export const pink = 'rgba(247, 132, 173, 1)';
 export const lightGreen = 'rgba(127, 227, 137, 1)';
 export const darkBlue = 'rgba(23, 32, 48, 1)';
 export const blue = 'rgba(62, 109, 194, 1)';

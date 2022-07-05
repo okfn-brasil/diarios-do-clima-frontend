@@ -1,14 +1,16 @@
 import { blue } from "./colors";
 
 export interface UrlsModel {
-  registration: urlModel;
   home: urlModel;
+  registration: urlModel;
   becomePro: urlModel;
-  about: urlModel;
   startSearch: urlModel;
-  purchase: urlModel;
-  reports: urlModel;
+  about: urlModel;
   terms: urlModel;
+  reports: urlModel;
+  purchase: urlModel;
+  plans: urlModel;
+  search: urlModel;
   [key: string]: urlModel;
 }
 

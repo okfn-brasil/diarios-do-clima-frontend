@@ -38,7 +38,7 @@ const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
         alignItems: 'center',
       }}
     >
-      <Link to=''>
+      <Link to={urls.plans.url}>
         <span className='hover-animation' style={linkStyle}>Diario do Clima PRO</span>
       </Link>
       <Link to={urls.reports.url}>

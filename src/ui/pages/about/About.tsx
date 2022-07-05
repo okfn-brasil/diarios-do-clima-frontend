@@ -6,6 +6,7 @@ import mobileBanner from '/src/assets/images/about/about-mobile.png';
 import desktopBanner from '/src/assets/images/about/about-desktop.png';
 import { Link } from 'react-router-dom';
 import ButtonSolidGreen from '/src/ui/components/button/ButtonGreen';
+import { urls } from '../../utils/urls';
 
 interface PropsAboutPage {
   isDesktop: boolean;
@@ -79,7 +80,7 @@ const AboutPage = ({isDesktop}: PropsAboutPage) => {
           <Grid item sm={8} className='container'>
             <h3 style={{...h3Style, margin: '0',}}>Contamos com seu apoio!</h3>
             <p style={{...paragraphStyle, marginTop: '8px'}}>Você pode se tornar um assinante. Assim, você recebe os benefícios de ser PRO e ainda ajuda o Diário do Clima a abrir os dados de novas cidades e desenvolver novas ferramentas!</p>
-            <Link to=''>
+            <Link to={urls.purchase.url}>
               <ButtonSolidGreen  >
                 Quero assinar
               </ButtonSolidGreen>
