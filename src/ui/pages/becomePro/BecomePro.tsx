@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import { fontTitle3Black, fontSora, fontRoboto } from "/src/ui/utils/fonts";
 import './BecomePro.scss';
-import { green, darkBlue, gray5, lightGray } from "/src/ui/utils/colors";
+import { green, darkBlue, gray5, gray2 } from "/src/ui/utils/colors";
 import CheckIcon from '@mui/icons-material/Check';
 import ButtonGreen from "/src/ui/components/button/ButtonGreen";
 import { Link } from "react-router-dom";
@@ -32,7 +32,7 @@ const BecomePro = ({isDesktop}: PropsBecomePro) => {
             <span style={checkItemStyle}><CheckIcon color='disabled'/></span> Acesso limitado ao conteúdo
           </div>
         </div>
-        <hr style={{...itemGroupStyle, borderColor: lightGray, borderTop: 'none'}}/>
+        <hr style={{...itemGroupStyle, borderColor: gray2, borderTop: 'none'}}/>
         <div style={itemGroupStyle}>
           <p style={{...subtitleFont, marginBottom: '0'}}>A assinatura PRO inclui:</p>
           <div style={itemsStyle}>
@@ -46,7 +46,7 @@ const BecomePro = ({isDesktop}: PropsBecomePro) => {
           </div>
         </div>
         <div style={{ marginTop: '34px', marginBottom: isDesktop ? '141px' : '50px'}}>
-          <Link to=''><ButtonGreen sx={buttonStyle}>Quero assinar</ButtonGreen></Link>
+          <Link to={urls.purchase.url}><ButtonGreen sx={buttonStyle}>Quero assinar</ButtonGreen></Link>
           <Link to={urls.startSearch.url}><ButtonOutlined sx={{...buttonStyle, color: gray5}}>Continuar sem assinatura</ButtonOutlined></Link>
         </div>
       </Grid>

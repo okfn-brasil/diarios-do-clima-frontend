@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import { fontRoboto, fontSora } from '/src/ui/utils/fonts';
-import { blue, gray5, green, lightGray, lightGray3 } from '../../utils/colors';
+import { blue, gray2, gray5, green, lightGray3 } from '../../utils/colors';
 import { h2Style, h3Style, paragraphStyle } from '../../utils/generalStyles';
 import mobileBanner from '/src/assets/images/about/about-mobile.png';
 import desktopBanner from '/src/assets/images/about/about-desktop.png';
@@ -98,7 +98,7 @@ const AboutPage = ({isDesktop}: PropsAboutPage) => {
                     key={partner.logo}
                     style={{
                       ...(isDesktop ? partnerStyleDesktop : partnerStyleMobile), 
-                      borderBottom: partner !== partners[partners.length - 1] && !isDesktop ? '1px solid ' + lightGray : ''
+                      borderBottom: partner !== partners[partners.length - 1] && !isDesktop ? '1px solid ' + gray2 : ''
                     }}
                   >
                     <div style={{marginBottom: '16px'}}>{partner.logo}</div>

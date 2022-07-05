@@ -1,6 +1,6 @@
 import { fontButtonDarkBlue, fontRoboto } from '/src/ui/utils/fonts';
 import { lightGreen } from '/src/ui/utils/colors';
-import { Link } from 'react-router-dom';
+import LinkManager from '../linkManager/LinkManager';
 
 interface PropsHyperLink {
   children: JSX.Element | string;
@@ -11,7 +11,7 @@ interface PropsHyperLink {
 const HyperLink = ({ children, link, sx = {}}: PropsHyperLink) => {
   const urlLink = link || '';
   return (
-    <Link to={urlLink}>
+    <LinkManager to={urlLink}>
       <span 
         className='hover-animation'
         style={{
@@ -27,7 +27,7 @@ const HyperLink = ({ children, link, sx = {}}: PropsHyperLink) => {
       }}>
           {children}
       </span>
-    </Link>
+    </LinkManager>
   );
 }
 

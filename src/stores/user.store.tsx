@@ -7,7 +7,7 @@ export interface UserState {
   refresh?: string | null;
   full_name?: string | null;
   id?: string | null;
-  plan_pro?: boolean | null;
+  plan_pro?: string | null;
 }
 
 const initialState: UserState = {
@@ -31,7 +31,8 @@ export const userSlice = createSlice({
     },
     userReset: (state) => {
       deleteTokens();
-      state = Object.assign(state, initialState);;
+      state = initialState;
+      location.reload();
     },
   },
 });

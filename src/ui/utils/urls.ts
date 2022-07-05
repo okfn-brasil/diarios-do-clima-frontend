@@ -27,5 +27,7 @@ export const urls: UrlsModel = {
   terms: { url: '/termos', isWhiteMenu: true },
   about: { url: '/sobre', customColor: blue },
   reports: { url: '/relatorios' },
-  purchase: { url: '/assine', isWhiteMenu: true }
+  purchase: { url: '/assine', isWhiteMenu: true },
+  plans: { url: '/planos' },
+  search: { url: '/busca' }
 }

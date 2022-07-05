@@ -14,6 +14,8 @@ import HistoryLead from '/src/assets/images/home/weoffer.history.svg';
 import AlertsLead from '/src/assets/images/home/weoffer.alerts.svg';
 import ThemeLead from '/src/assets/images/home/weoffer.theme.svg';
 import { lightGray3, lightGreen } from '/src/ui/utils/colors';
+import LinkManager from '/src/ui/components/linkManager/LinkManager';
+import { urls } from '/src/ui/utils/urls';
 
 interface PropsUnderlinText {
   children?: JSX.Element | string;
@@ -183,13 +185,16 @@ const WeOffer = () => {
             paddingTop: 0,
             paddingBottom: 18,
           }}>
-            <ButtonGreen sx={{
-              minWidth: isDesktop ? '' : '100%',
-            }}>
-              Teste grátis por 7 dias
-            </ButtonGreen>
+            
+            <LinkManager to={urls.purchase.url}>
+              <ButtonGreen sx={{
+                minWidth: isDesktop ? '' : '100%',
+              }}>
+                Teste grátis por 7 dias
+              </ButtonGreen>
+            </LinkManager>
           </div>
-          <HyperLink link='' sx={{
+          <HyperLink link={urls.purchase.url} sx={{
             ...fontRoboto,
             padding: 0,
           }}>

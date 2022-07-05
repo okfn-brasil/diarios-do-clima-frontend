@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import { fontSora } from '/src/ui/utils/fonts';
-import { gray5, lightGray } from '../../utils/colors';
+import { gray5, gray2 } from '../../utils/colors';
 import './Terms.scss';
 import { h3Style, h4Style, paragraphStyle } from '../../utils/generalStyles';
 
@@ -47,5 +47,5 @@ const TermsPage = ({isDesktop}: PropsTermsPage) => {
 export default TermsPage;
 
 const sessionStyle: React.CSSProperties = {
-  borderTop: '1px solid ' + lightGray,
+  borderTop: '1px solid ' + gray2,
 }

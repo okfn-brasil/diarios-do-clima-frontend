@@ -1,7 +1,7 @@
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Grid } from "@mui/material";
-import { Link } from 'react-router-dom';
+import HyperLink from '/src/ui/components/hyperLink/HyperLink';
 import {
     fontTitle3Black,
     fontNormal2Black,
@@ -40,9 +40,9 @@ const MoreData = () => {
         }}>
           Informações curadas por profissionais e baseadas nos diários oficiais para ajudar pesquisadores, consultores e organizações a estarem a par dos últimos acontecimentos.
         </p>
-        <Link to={urls.reports.url}>
-            Saiba mais sobre os relatórios
-        </Link>
+        <HyperLink link={urls.reports.url}>
+          Saiba mais sobre os relatórios
+        </HyperLink>
       </Grid>
     </Grid>
   );

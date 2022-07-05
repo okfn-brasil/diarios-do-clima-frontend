@@ -1,5 +1,6 @@
 import { RegistrationModel, RegistrationResponse } from '/src/models/registration.model';
-import { config } from './api-config';
+import { config, request, TokensModel } from './service-utils';
+import { UserResponseModel } from '../models/user.model';
 
 export default class AccountService {
   currentUrl = '/accounts/users/';
@@ -14,25 +15,26 @@ export default class AccountService {
       state: form.state.value,
       sector: form.sector.value,
     };
-    return fetch(config.apiUrl + this.currentUrl, {
+
+    return request({
+      url: this.currentUrl, 
       method: 'POST',
-      headers: config.headers,
-      body: JSON.stringify(newForm)
-    })
-    .then(response => config.handleResponse(response));
+      body: newForm,
+      notUseToken: true,
+      customResponseHandler: (response: any) => config.handleResponse(response, true)
+    });
   }
 
-  getUserData(token: string) {
-    return fetch(config.apiUrl + this.currentUrl + 'me/', {
+  getUserData(token?: string) {
+    return request({
+      url: this.currentUrl + 'me/', 
       method: 'GET',
-      headers: config.tokenHeaders({access: token}),
-    })
-    .then(response => config.handleResponse(response));
+      customHeaders: config.tokenHeaders((token ? {access: token} : null) as TokensModel)
+    });
   }
+}
 
-  checkPlan(userData: RegistrationResponse) {
-    return !!(userData.plan_subscription && 
-    userData.plan_subscription.plan && 
-    userData.plan_subscription.plan.pagseguro_plan_id);
-  }
+export const checkPlan = (userData: UserResponseModel | RegistrationResponse) => {
+  return !!(userData.plan_subscription && userData.plan_subscription.plan) ?
+    userData.plan_subscription.plan.pagseguro_plan_id : null;
 }

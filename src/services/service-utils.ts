@@ -3,9 +3,18 @@ import { tokenKeys } from "../ui/utils/storage-utils";
 
 const contentType = { 'Content-Type': 'application/json' };
 
-interface TokensModel {
+export interface TokensModel {
   access?: string;
   refresh?:string;
+}
+
+interface ReqData {
+  url: string;
+  method: string;
+  notUseToken?: boolean;
+  customHeaders?: HeadersInit;
+  body?: any;
+  customResponseHandler?: any;
 }
 
 export const config = {
@@ -41,4 +50,13 @@ export const config = {
       }
     })
   },
+}
+
+export const request = (reqData: ReqData) => {
+  return fetch(config.apiUrl + reqData.url, {
+    method: reqData.method,
+    headers: reqData.notUseToken ? config.headers : (reqData.customHeaders || config.tokenHeaders()),
+    body: reqData.body ? JSON.stringify(reqData.body) : null
+  })
+  .then(response => config.handleResponse(response));
 }

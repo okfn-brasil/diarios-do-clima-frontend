@@ -1,8 +1,8 @@
-import { darkBlue, gray1, red } from '/src/ui/utils/colors';
-import { fontRoboto, fontSora } from '/src/ui/utils/fonts';
+import { darkBlue, gray1 } from '/src/ui/utils/colors';
+import { fontSora } from '/src/ui/utils/fonts';
 import { FormControl, Grid, Input, InputLabel, MenuItem, Select } from '@mui/material';
 import InputError from '/src/ui/components/inputError/inputError';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { inputStyle } from '/src/ui/utils/generalStyles';
 import { InputModel } from '/src/models/forms.model';
 import { FormPurchaseModel } from '/src/models/purchase.model';
@@ -10,10 +10,13 @@ import { selectIcon } from '/src/ui/utils/forms.utils';
 import './PurchaseForm.scss';
 import PurchaseDetails from '../purchaseDetails/PurchaseDetails';
 import InputMask from 'react-input-mask';
-import BillingService from '/src/services/billing';
+import Loading from '/src/ui/components/loading/Loading';
+import PurchaseSubmit from '../purchaseSubmit/PurchaseSubmit';
+import BillingService, { getCardType } from '/src/services/billing';
+import { useDispatch } from 'react-redux';
+import { userUpdate } from '/src/stores/user.store';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { urls } from '/src/ui/utils/urls';
-import Loading from '/src/ui/components/loading/Loading';
 
 const emptyError = <></>;
 const inputsDefaultValue: FormPurchaseModel = {
@@ -40,6 +43,10 @@ const validateDate = (value: string, minMaxValidation: Function) => {
   return newDate.toString() === 'Invalid Date' || minMaxValidation(newDate) ? 'A data inserida é inválida' : false;
 }
 
+const getCardValue = (value: string) => {
+  return getInputWithoutMask(value.replace(/ /g,''))
+}
+
 const getInputWithoutMask = (value: string) => {
   const newValue = value.replace(/[&\/\\#,+()$~%!.„'":*‚^_¤?<>|@ª{«»§}©®™]/g, '').replace('-', '');
   return newValue;
@@ -49,8 +56,12 @@ const inputValidation = (value: string, minSize: number, text: string) => {
   return value && getInputWithoutMask(value).length < minSize ? text : false;
 }
 
+const cardValidation = (value: string, text: string) => {
+  return !getCardType(getCardValue(value)) ? text : false;
+}
+
 const fieldValidations: any = {
-  card: (s: InputModel) => { return inputValidation(s.value, 16, 'O campo deve possuir no mínimo 16 caracteres')},
+  card: (s: InputModel) => { return cardValidation(s.value, 'O cartão inserido é inválido')},
   fullName: (s: InputModel) => { return inputValidation(s.value, 8, 'O campo deve possuir no mínimo 8 caracteres')},
   cvv: (s: InputModel) => { return inputValidation(s.value, 3, 'O CVV inserido é inválido')},
   address: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres')},
@@ -65,12 +76,30 @@ const homePhoneMask = '(99) 9999-99999';
 const mobilePhoneMask = '(99) 99999-9999';
 
 const PurchaseForm = () => {
+  const dispatch = useDispatch();
   const navigate: NavigateFunction = useNavigate();
   const billingService = new BillingService();
   const [inputs, setInputs] : [FormPurchaseModel, Dispatch<SetStateAction<FormPurchaseModel>>] = useState(inputsDefaultValue);
+  const [submitForm, setSubmitForm] : [FormPurchaseModel, Dispatch<SetStateAction<FormPurchaseModel>>] = useState(inputsDefaultValue);
   const [phoneMask, setPhoneMask] : [string, Dispatch<SetStateAction<string>>] = useState(homePhoneMask);
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [submitError, setSubmitError] : [JSX.Element, Dispatch<JSX.Element>] = useState(emptyError);
+  const [phoneMethod, setPhoneMethod] : [string, Dispatch<string>] = useState('POST');
+  const [addressMethod, setAddressMethod] : [string, Dispatch<string>] = useState('POST');
+
+  useEffect(() => {
+    billingService.getPhone().then(() => {
+      setPhoneMethod('PUT');
+    }).catch(() => {
+      setPhoneMethod('POST');
+    });
+
+    billingService.getAddress().then(() => {
+      setAddressMethod('PUT');
+    }).catch(() => {
+      setAddressMethod('POST');
+    });
+  }, []);
 
   const getPhoneMask = (name: string, value: string) => {
     if(name === 'phone') {
@@ -100,31 +129,25 @@ const PurchaseForm = () => {
       }
     });
     if(!errors.length) {
-      submit();
+      const newInputs: FormPurchaseModel = {} as FormPurchaseModel;
+      Object.keys(inputs).forEach((key: string) => {
+        newInputs[key] = { value: key === 'card' ? getCardValue(inputs[key].value): getInputWithoutMask(inputs[key].value)}
+      });
+      setSubmitForm(newInputs);
+      setLoading(true);
     }
   }
 
-  const submit = () => {
-    const newInputs: FormPurchaseModel = {} as FormPurchaseModel;
-    Object.keys(inputs).forEach((key: string) => {
-      newInputs[key] = { value: getInputWithoutMask(inputs[key].value) }
-    })
-    setLoading(true);
-    // TO DO
-    /*console.log(newInputs) 
-    billingService.subscribe(inputs).then(
-      () => {
-        navigate(urls.startSearch.url);
-      },
-      ).catch(e => {
-        const errorKey = e ? Object.keys(e)[0] : '';
-        setSubmitError(
-          <span>
-            Ocorreu um erro ao tentar criar a sua conta, por favor, verifique os dados inseridos e tente novamente.
-            { e? <><br/>Motivo do erro: {e[errorKey]}</> : <></> }
-          </span>)
-        setLoading(false);
-    });*/
+  const onError = (errorMessage: JSX.Element) => {
+    setLoading(false);
+    setSubmitError(errorMessage);
+  }
+
+  const onSuccess = (response: string) => {
+    dispatch(userUpdate({
+      plan_pro: response,
+    }));
+    navigate(urls.startSearch.url)
   }
 
   return (
@@ -133,6 +156,7 @@ const PurchaseForm = () => {
       style={{display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap'}}
       onSubmit={handleSubmit}
     >
+      <PurchaseSubmit phoneMethod={phoneMethod as any} addressMethod={addressMethod as any} isSubmitting={isLoading} onSuccess={onSuccess} onError={onError} form={submitForm} />
       <Loading isLoading={isLoading}></Loading>
       <Grid item sm={7} xs={12}>
         <div>

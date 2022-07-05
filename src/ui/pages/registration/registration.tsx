@@ -13,7 +13,7 @@ import { useTheme } from '@material-ui/core/styles';
 import { FormControl, Grid, Input, InputLabel, MenuItem, Select } from '@mui/material';
 import { RegistrationModel, RegistrationResponse } from '/src/models/registration.model';
 import { InputModel } from '/src/models/forms.model';
-import AccountService from '/src/services/accounts';
+import AccountService, { checkPlan } from '/src/services/accounts';
 import './registration.scss';
 import { useDispatch } from 'react-redux';
 import { userUpdate } from '/src/stores/user.store';
@@ -80,21 +80,23 @@ const Registration = () => {
     setSubmitError(emptyError);
     accountsService.createNewAcount(inputs).then(
       (response: RegistrationResponse) => {
-        dispatch(userUpdate({
-          access: response.jwt.access,
-          refresh: response.jwt.refresh,
-          id: response.id,
-          full_name: response.full_name,
-          plan_pro: accountsService.checkPlan(response),
-        }));
         navigate(urls.becomePro.url);
+        setTimeout(() => {
+          dispatch(userUpdate({
+            access: response.jwt.access,
+            refresh: response.jwt.refresh,
+            id: response.id,
+            full_name: response.full_name,
+            plan_pro: checkPlan(response),
+          }));
+        }, 100);
       },
       ).catch(e => {
         const errorKey = e ? Object.keys(e)[0] : '';
         setSubmitError(
           <span>
             Ocorreu um erro ao tentar criar a sua conta, por favor, tente novamente.
-            { e? <><br/>Motivo do erro: {e[errorKey]}</> : <></> }
+            { e? <><br/><br/>Motivo do erro: {e[errorKey]}</> : <></> }
             <br/><a className='hover-animation' style={{color: red, textDecoration: 'underline'}} onClick={resetForm}>Clique aqui para voltar ao inicio do cadastro</a>
           </span>)
         setLoading(false);

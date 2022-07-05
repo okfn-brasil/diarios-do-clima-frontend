@@ -15,8 +15,8 @@ import LoginService from '/src/services/login';
 import Loading from '/src/ui/components/loading/Loading';
 import { userUpdate } from '/src/stores/user.store';
 import { useDispatch } from 'react-redux';
-import AccountService from '/src/services/accounts';
-import { RegistrationResponse } from '/src/models/registration.model';
+import AccountService, { checkPlan } from '/src/services/accounts';
+import { UserResponseModel } from '/src/models/user.model';
 
 interface PropsLoginForm{
   isDesktop: boolean;
@@ -68,11 +68,11 @@ const LoginForm = ({isDesktop, showLoginForm}: PropsLoginForm) => {
 
   const getUserData = (token: string) => {
     accountService.getUserData(token).then(
-      (response: RegistrationResponse) => {
+      (response: UserResponseModel) => {
         dispatch(userUpdate({
           id: response.id,
           full_name: response.full_name,
-          plan_pro: accountService.checkPlan(response),
+          plan_pro: checkPlan(response),
         }));
         setLoading(false);
         closeModal();

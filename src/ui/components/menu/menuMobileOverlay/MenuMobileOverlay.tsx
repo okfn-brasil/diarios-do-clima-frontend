@@ -15,7 +15,6 @@ interface PropsMenuMobileOverlay {
   onClose: MouseEventHandler<SVGSVGElement>;
   showLoginForm: any;
   isLoggedIn: boolean;
-  history: any;
 }
 
 const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobileOverlay)  => {

@@ -4,10 +4,10 @@ import { Grid } from "@mui/material";
 import ButtonSolidGreen from "/src/ui/components/button/ButtonGreen";
 import ButtonSolidDarkBlue from "/src/ui/components/button/ButtonDarkBlue";
 import { fontSora, fontRoboto, fontTitle3White, fontNormal2White } from "/src/ui/utils/fonts";
-import { Link } from 'react-router-dom';
 import { urls } from '/src/ui/utils/urls';
 
 import './HelpUs.scss';
+import LinkManager from '/src/ui/components/linkManager/LinkManager';
 
 const HelpUs = () => {
   const theme = useTheme();
@@ -49,7 +49,7 @@ const HelpUs = () => {
       </Grid>
 
       <Grid item xs={10} md={8}>
-        <Link to={urls.purchase.url}>
+        <LinkManager to={urls.purchase.url}>
           <ButtonSolidGreen sx={{
             marginRight: isDesktop ? '16px' : '',
             marginBottom: isDesktop ? '' : '16px',
@@ -58,15 +58,15 @@ const HelpUs = () => {
           }}>
             Quero apoiar assinando
           </ButtonSolidGreen>
-        </Link>
+        </LinkManager>
 
-        <Link to={urls.registration.url}>
+        <LinkManager to={urls.registration.url}>
           <ButtonSolidDarkBlue sx={{
             minWidth: isDesktop ? '' : '100%',
           }}>
             Começar a buscar grátis
           </ButtonSolidDarkBlue>
-        </Link>
+        </LinkManager>
       </Grid>
     </Grid>
   );

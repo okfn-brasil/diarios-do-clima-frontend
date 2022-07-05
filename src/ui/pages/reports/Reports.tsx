@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import { fontRoboto, fontSora } from '/src/ui/utils/fonts';
-import { black, blue, darkBlue, gray5, green, lightGray, lightGray3 } from '../../utils/colors';
-import { h2Style, h3Style, paragraphStyle } from '../../utils/generalStyles';
+import { blue, darkBlue, lightGray3 } from '../../utils/colors';
+import { h3Style, paragraphStyle } from '../../utils/generalStyles';
 import badge from '/src/assets/images/icons/badge.svg';
 import homeWork from '/src/assets/images/icons/home_work.svg';
 import { Link } from 'react-router-dom';

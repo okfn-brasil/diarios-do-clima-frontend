@@ -8,12 +8,16 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { urls } from "../../utils/urls";
 import LoginForm from "./loginForm/LoginForm";
+import { useSelector } from "react-redux";
+import { UserState } from "/src/stores/user.store";
+import { RootState } from "/src/stores/store";
 
 interface PropsMenu {
   isDesktop: boolean;
 }
 
 const Menu = ({ isDesktop }: PropsMenu) => {
+  const userData: UserState = useSelector((state: RootState) => state.user);
   const [searchParams] = useSearchParams();
   const [hasScrolled, setScrolled]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
   const [showLogin, setLoginVisibility]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
@@ -22,7 +26,7 @@ const Menu = ({ isDesktop }: PropsMenu) => {
   useEffect(() => {
     window.removeEventListener('scroll', getScroll);
     window.addEventListener('scroll', getScroll);
-    if(searchParams.get('login')) {
+    if(searchParams.get('login') && !userData.access) {
       showLoginForm(true);
     }
   }, []);
