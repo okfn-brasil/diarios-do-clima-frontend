@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '/src/stores/store';
 import LoggedMenu from '../loggedMenu/LoggedMenu';
 import { UserState } from '/src/stores/user.store';
+import { urls } from '/src/ui/utils/urls';
 
 interface PropsMenuDesktop {
   isWhite: boolean;
@@ -40,10 +41,10 @@ const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
       <Link to=''>
         <span className='hover-animation' style={linkStyle}>Diario do Clima PRO</span>
       </Link>
-      <Link to=''>
-        <span className='hover-animation' style={linkStyle}>Relatorios</span>
+      <Link to={urls.reports.url}>
+        <span className='hover-animation' style={linkStyle}>Relatórios</span>
       </Link>
-      <Link to=''>
+      <Link to={urls.about.url}>
         <span className='hover-animation' style={linkStyle}>Sobre o Diário do Clima</span>
       </Link>
       { userData.access ? 

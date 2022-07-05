@@ -1,19 +1,20 @@
 import { CalendarPickerView } from "@mui/x-date-pickers";
 
-export  const datePickerTranslation: any = {
+export const datePickerTranslation: any = {
   previousMonth: 'Mês seguinte',
   nextMonth: 'Próximo mês',
-  openPreviousView: 'Letzte Ansicht öffnen',
-  openNextView: 'Nächste Ansicht öffnen',
-  calendarViewSwitchingButtonAriaLabel: (view: CalendarPickerView) => view === 'year' ? 'year view is open, switch to calendar view' : 'calendar view is open, switch to year view',
-  start: 'Beginn',
-  end: 'Ende',
-  cancelButtonLabel: 'Abbrechen',
-  clearButtonLabel: 'Löschen',
+  openPreviousView: 'Abrir última visualização',
+  openNextView: 'Abrir próxima visualização',
+  calendarViewSwitchingButtonAriaLabel: (view: CalendarPickerView) => view === 'year' ? 
+    'A visualização de anos está aberta, mude para a visualização do calendário' : 
+    'A visualização do calendário está aberta, mude para a visualização de anos',
+  start: 'Inicio',
+  end: 'Fim',
+  cancelButtonLabel: 'Cancelar',
+  clearButtonLabel: 'Limpar',
   okButtonLabel: 'OK',
-  todayButtonLabel: 'Heute',
-  openDatePickerDialogue: (rawValue: any, utils: any) => rawValue && utils.isValid(utils.date(rawValue)) ? `Choose date, selected date is ${utils.format(utils.date(rawValue)!, 'fullDate')}` : 'Choose date',
-  openTimePickerDialogue: (rawValue: any, utils: any) => rawValue && utils.isValid(utils.date(rawValue)) ? `Choose time, selected time is ${utils.format(utils.date(rawValue)!, 'fullTime')}` : 'Choose time',
-  timeTableLabel: 'pick time',
-  dateTableLabel: 'pick date',
+  todayButtonLabel: 'Hoje',
+  openDatePickerDialogue: (rawValue: any, utils: any) => rawValue && utils.isValid(utils.date(rawValue)) ? 
+  `Escolha a data, a data selecionada é: ${utils.format(utils.date(rawValue)!, 'fullDate')}` : 'Escolha a data',
+  dateTableLabel: 'Selecione uma data',
 }

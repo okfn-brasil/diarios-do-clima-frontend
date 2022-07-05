@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { deleteTokens } from '../services/api-config';
-import { tokenKeys } from '../ui/utils/storage-utils';
+import { tokenKeys, deleteTokens } from '../ui/utils/storage-utils';
 
 export interface UserState {
   access?: string | null;

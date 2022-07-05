@@ -42,9 +42,3 @@ export const config = {
     })
   },
 }
-
-export const deleteTokens = () => {
-  localStorage.removeItem(tokenKeys.access);
-  localStorage.removeItem(tokenKeys.refresh);
-}
-

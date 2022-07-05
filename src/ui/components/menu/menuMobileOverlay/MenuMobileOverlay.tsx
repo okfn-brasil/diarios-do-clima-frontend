@@ -15,9 +15,16 @@ interface PropsMenuMobileOverlay {
   onClose: MouseEventHandler<SVGSVGElement>;
   showLoginForm: any;
   isLoggedIn: boolean;
+  history: any;
 }
 
 const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobileOverlay)  => {
+  const closeMenu = () => {
+    setTimeout(() => {
+      onClose({} as any);
+    }, 100);
+  }
+  
   const onShowLoginForm = () => {
     showLoginForm(true);
     onClose({} as any);
@@ -38,7 +45,7 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobi
       justifyContent: 'flex-start',
       ...fontSora,
     }}>
-      <Grid item container>
+      <Grid item container onClick={closeMenu}>
         <Grid item xs={12}
           sx={{
             paddingTop: '34px',
@@ -55,8 +62,8 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobi
         </Grid>
         { isLoggedIn ? <div className='menu-item'><Link to=''>Buscar</Link></div> : <></>}
         <div className='menu-item'><Link to=''>Diário do clima PRO</Link></div>
-        <div className='menu-item'><Link to=''>Relatórios</Link></div>
-        <div className='menu-item'><Link to=''>Sobre o Diário do Clima</Link></div>
+        <div className='menu-item'><Link to={urls.reports.url}>Relatórios</Link></div>
+        <div className='menu-item'><Link to={urls.about.url}>Sobre o Diário do Clima</Link></div>
         { isLoggedIn ? <></> :
           <>
             <Grid item xs={12} sx={{
@@ -109,11 +116,15 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobi
             borderRightWidth: '1px',
             borderRightColor: green,
           }}>Fale conosco</span>
-          <span
-            style={{
-              width: '50%',
-              height: '100%',
-          }}>Termos e condições</span>
+        
+            <span
+              style={{
+                width: '50%',
+                height: '100%',
+            }}>
+              <Link to={urls.terms.url} style={{color: green}}>Termos e condições</Link>
+              
+            </span>
         </div>
       </div>
     </div>

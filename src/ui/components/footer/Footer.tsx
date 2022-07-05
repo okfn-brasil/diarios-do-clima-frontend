@@ -5,6 +5,8 @@ import { Fragment } from 'react';
 import DiarioLogo from '/src/assets/images/logo.svg';
 import { fontNormal1WhiteBold, fontSora } from '/src/ui/utils/fonts';
 import { gray, darkBlue } from '/src/ui/utils/colors';
+import { Link } from 'react-router-dom';
+import { urls } from '../../utils/urls';
 
 const FooterXS = () => {
   const baseSx = {
@@ -16,10 +18,10 @@ const FooterXS = () => {
   };
   return (
     <Fragment>
-      <Grid item xs={12} sx={{ ...baseSx, paddingTop: '56px', }} >Sobre o diário do clima</Grid>
-      <Grid item xs={12} sx={{ ...baseSx, }} >Relatórios de análises aprofundadas</Grid>
+      <Grid item xs={12} sx={{ ...baseSx, paddingTop: '56px', }} ><Link to={urls.about.url}>Sobre o diário do clima</Link></Grid>
+      <Grid item xs={12} sx={{ ...baseSx, }} ><Link to={urls.reports.url}>Relatórios de análises aprofundadas</Link></Grid>
       <Grid item xs={12} sx={{ ...baseSx, }} >Assinatura PRO</Grid>
-      <Grid item xs={12} sx={{ ...baseSx, }} >Termos e condições</Grid>
+      <Grid item xs={12} sx={{ ...baseSx, }} ><Link to={urls.terms.url}>Termos e condições</Link></Grid>
     </Fragment>
   );
 }
@@ -32,13 +34,13 @@ const FooterMD = () => {
       xs={12}
       justifyContent='space-between'
       sx={{
-          paddingRight: '128px',
+        paddingRight: '128px',
       }}
     >
-      <span >Assinatura PRO</span>
-      <span >Relatórios de análises aprofundadas</span>
-      <span >Sobre o diário do clima</span>
-      <span >Termos e condições</span>
+      <Link to=''><span style={{color: gray}}>Assinatura PRO</span></Link>
+      <Link to={urls.reports.url}><span style={{color: gray}}>Relatórios de análises aprofundadas</span></Link>
+      <Link to={urls.about.url}><span style={{color: gray}}>Sobre o diário do clima</span></Link>
+      <Link to={urls.terms.url}><span style={{color: gray}}>Termos e condições</span></Link>
     </Grid>
   );
 }

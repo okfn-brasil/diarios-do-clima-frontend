@@ -268,7 +268,7 @@ const Registration = () => {
                         Fale conosco
                       </span>
                     </Link>
-                    <Link to='' className='hover-animation'>
+                    <Link to={urls.terms.url} className='hover-animation'>
                       <span
                         style={{
                           ...linkStyle,

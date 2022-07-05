@@ -1,4 +1,5 @@
 import { ButtonBase } from "@mui/material";
+import { lightGreen } from "../../utils/colors";
 import { buttonBaseStyle } from './styles';
 import { fontButtonDarkBlue } from '/src/ui/utils/fonts';
 
@@ -13,7 +14,7 @@ const ButtonGreen = ({ children, sx }: PropsButtonGreen) => {
       ...buttonBaseStyle,
       ...fontButtonDarkBlue,
       fontWeight: 600,
-      backgroundColor: 'rgba(127, 227, 137, 1)',
+      backgroundColor: lightGreen,
       ...sx,
     }}>
       {children}

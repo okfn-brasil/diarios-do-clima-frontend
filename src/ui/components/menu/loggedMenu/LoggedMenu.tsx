@@ -1,5 +1,5 @@
 import { Dispatch, useState } from 'react';
-import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
+import { Link, NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
 import userWhiteIcon from '/src/assets/images/icons/person-white.svg';
 import userBlackIcon from '/src/assets/images/icons/person.svg';
 import { darkBlue } from '/src/ui/utils/colors';
@@ -16,6 +16,7 @@ interface PropsLoggedMenu {
 
 const LoggedMenu = ({isWhite, sx}: PropsLoggedMenu) => {
   const navigate: NavigateFunction = useNavigate();
+  const routerLocation = useLocation();
   const dispatch = useDispatch();
   const [isShowingDropdown, setDropDownVisibility] : [boolean, Dispatch<boolean>] = useState(false);
 
@@ -31,7 +32,9 @@ const LoggedMenu = ({isWhite, sx}: PropsLoggedMenu) => {
 
   const signOut = () => {
     dispatch(userReset())
-    navigate(urls.home.url);
+    if(routerLocation.pathname !== '/'){
+      navigate(urls.home.url);
+    }
   }
 
   return (

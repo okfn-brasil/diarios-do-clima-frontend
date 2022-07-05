@@ -1,13 +1,14 @@
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Grid } from "@mui/material";
-import HyperLink from '/src/ui/components/hyperLink/HyperLink';
+import { Link } from 'react-router-dom';
 import {
     fontTitle3Black,
     fontNormal2Black,
     fontRoboto,
     fontSora,
 } from '/src/ui/utils/fonts';
+import { urls } from '/src/ui/utils/urls';
 
 const MoreData = () => {
   const theme = useTheme();
@@ -39,9 +40,9 @@ const MoreData = () => {
         }}>
           Informações curadas por profissionais e baseadas nos diários oficiais para ajudar pesquisadores, consultores e organizações a estarem a par dos últimos acontecimentos.
         </p>
-        <HyperLink link='/'>
-          Saiba mais sobre os relatórios
-        </HyperLink>
+        <Link to={urls.reports.url}>
+            Saiba mais sobre os relatórios
+        </Link>
       </Grid>
     </Grid>
   );

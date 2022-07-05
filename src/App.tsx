@@ -21,6 +21,9 @@ import { useDispatch } from "react-redux";
 import { userUpdate } from "./stores/user.store";
 import { tokenKeys } from "./ui/utils/storage-utils";
 import RouteChangeManager from "./ui/components/routeChangeManager/RouteChangeManager";
+import TermsPage from "./ui/pages/terms/Terms";
+import AboutPage from "./ui/pages/about/About";
+import ReportsPage from "./ui/pages/reports/Reports";
 import Purchase from "./ui/pages/purchase/Purchase";
 
 const App = () => {
@@ -60,6 +63,9 @@ const App = () => {
             <Route path={urls.registration.url} element={<Registration />} />
             <Route path={urls.becomePro.url} element={<BecomePro isDesktop={isDesktop} />} />
             <Route path={urls.startSearch.url} element={<StartSearch isDesktop={isDesktop} />} />
+            <Route path={urls.terms.url} element={<TermsPage isDesktop={isDesktop} />} />
+            <Route path={urls.about.url} element={<AboutPage isDesktop={isDesktop} />} />
+            <Route path={urls.reports.url} element={<ReportsPage isDesktop={isDesktop} />} />
             <Route path={urls.purchase.url} element={<Purchase isDesktop={isDesktop} />} />
           </Routes>
           <Footer />

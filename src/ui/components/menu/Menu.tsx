@@ -3,7 +3,7 @@ import MenuMobile from './menuMobile/MenuMobile';
 import MenuDesktop from './menuDesktop/MenuDesktop';
 import DiarioLogo from '/src/assets/images/logo.svg';
 import DiarioLogoBlack from '/src/assets/images/logo-black.svg';
-import { darkBlue } from '/src/ui/utils/colors';
+import { darkBlue, lightGray2 } from '/src/ui/utils/colors';
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { urls } from "../../utils/urls";
@@ -27,11 +27,11 @@ const Menu = ({ isDesktop }: PropsMenu) => {
     }
   }, []);
 
-  const {isWhiteMenu, hideLinks} = Object.keys(urls).map(key => {
-    let item = urls[key] as any;
-    if(item.url === location.pathname) {
-      return item
-    }
+  const {isWhiteMenu, hideLinks, customColor} = Object.keys(urls).map(key => {
+      let item = urls[key] as any;
+      if(item.url === location.pathname) {
+        return item
+      }
   }).filter(item => !!item)[0];
 
   const getScroll = () => {
@@ -56,12 +56,13 @@ const Menu = ({ isDesktop }: PropsMenu) => {
     height: '80px',
     top: 0,
     paddingTop: 0,
-    backgroundColor: hasScrolled ? darkBlue : '',
+    backgroundColor: hasScrolled ? (customColor || darkBlue) : '',
     zIndex: 999,
   };
 
   const invertedHeaderStyle: React.CSSProperties = {
     ...defaultHeaderStyle,
+    borderBottom: '1px solid ' + lightGray2,
     backgroundColor: 'white',
   };
 

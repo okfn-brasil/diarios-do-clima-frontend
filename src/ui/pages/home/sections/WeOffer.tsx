@@ -13,6 +13,7 @@ import ThemeLogo from '/src/assets/images/home/icons/theme.svg';
 import HistoryLead from '/src/assets/images/home/weoffer.history.svg';
 import AlertsLead from '/src/assets/images/home/weoffer.alerts.svg';
 import ThemeLead from '/src/assets/images/home/weoffer.theme.svg';
+import { lightGray3, lightGreen } from '/src/ui/utils/colors';
 
 interface PropsUnderlinText {
   children?: JSX.Element | string;
@@ -25,7 +26,7 @@ interface PropsUnderlinText {
 const UnderlinText =({
   children,
   padding = '2px',
-  color = 'rgba(127, 227, 137, 1)',
+  color = lightGreen,
   width = '4px',
   style,
 }: PropsUnderlinText) => {
@@ -150,6 +151,12 @@ const WeOffer = () => {
         }}>
           <img src={getLeadImage(selectedId)} alt='visual representation of option'
             style={{
+              backgroundColor: lightGray3,
+              paddingTop: '80px',
+              paddingLeft: isDesktop ? '125px' : '24px',
+              paddingRight: isDesktop ? '125px' : '24px',
+              marginTop: 0,
+              paddingBottom: '80px',
               maxWidth: '100%',
               maxHeight: isDesktop ? '320px' : '196px',
               marginBottom: isDesktop ? '' : '14px',
