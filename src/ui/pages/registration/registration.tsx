@@ -290,7 +290,7 @@ const Registration = () => {
                       marginBottom: '30px'
                     }}>
                       Já possui uma conta?
-                      <Link to='' className='hover-animation'>
+                      <a href='/?login=open' className='hover-animation'>
                         <span
                           style={{
                             color: blue,
@@ -300,7 +300,7 @@ const Registration = () => {
                         >
                           Faça o login
                           </span>
-                        </Link>
+                        </a>
                     </div> : <></>
                   }
                 </div>

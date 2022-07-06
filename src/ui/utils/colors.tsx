@@ -11,6 +11,7 @@ export const gray4 = 'rgba(106, 119, 132, 1)';
 export const gray5 = 'rgba(73, 80, 87, 1)';
 export const lightGray2 = 'rgba(235, 239, 245, 1)';
 export const lightGray3 = 'rgba(246, 248, 251, 1)';
+export const lightGray4 = 'rgba(244, 246, 248, 1)';
 export const darkGray = 'rgba(73, 80, 87, 1)';
 export const darkGray1 = 'rgba(33, 36, 41, 1)';
 export const black = '#000';

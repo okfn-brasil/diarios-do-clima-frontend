@@ -6,11 +6,12 @@ import { fontButtonDarkBlue } from '/src/ui/utils/fonts';
 interface PropsButtonGreen {
   children: JSX.Element | string;
   sx?: React.CSSProperties;
+  onClick?: any;
 }
 
-const ButtonGreen = ({ children, sx }: PropsButtonGreen) => {
+const ButtonGreen = ({ children, sx, onClick }: PropsButtonGreen) => {
   return (
-    <ButtonBase style={{
+    <ButtonBase onClick={onClick} style={{
       ...buttonBaseStyle,
       ...fontButtonDarkBlue,
       fontWeight: 600,

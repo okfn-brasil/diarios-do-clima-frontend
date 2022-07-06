@@ -99,7 +99,6 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
 
   const postPlanId = () => {
     billingService.postSubscription('f8f443a6-677a-49bf-8430-9dbc8fda87bc').then((response)  => {
-      console.log(response)
       onSuccess('f8f443a6-677a-49bf-8430-9dbc8fda87bc'); // TO DO REMOVER MOCK
     }).catch(error => {
       onError(errorMessage(error))

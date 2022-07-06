@@ -1,6 +1,7 @@
 import { fontButtonDarkBlue, fontRoboto } from '/src/ui/utils/fonts';
 import { lightGreen } from '/src/ui/utils/colors';
 import LinkManager from '../linkManager/LinkManager';
+import { hyperLinkStyle } from './hyperLinkStyle';
 
 interface PropsHyperLink {
   children: JSX.Element | string;
@@ -17,12 +18,7 @@ const HyperLink = ({ children, link, sx = {}}: PropsHyperLink) => {
         style={{
           ...fontButtonDarkBlue,
           ...fontRoboto,
-          fontWeight: 700,            
-          borderBottomColor: lightGreen,
-          borderBottomWidth: '4px',
-          borderBottomStyle: 'solid',
-          paddingTop: 0,
-          paddingBottom: '2px',
+          ...hyperLinkStyle,
           ...sx,
       }}>
           {children}

@@ -5,11 +5,12 @@ import { fontButtonWhite } from '/src/ui/utils/fonts';
 interface PropsButtonOutlined {
   children: JSX.Element | string;
   sx?: React.CSSProperties;
+  onClick?: any;
 }
 
-const ButtonOutlined = ({ children, sx }: PropsButtonOutlined) => {
+const ButtonOutlined = ({ children, sx, onClick }: PropsButtonOutlined) => {
   return (
-    <ButtonBase style={{
+    <ButtonBase onClick={onClick} style={{
       ...buttonBaseStyle,
       ...fontButtonWhite,
       backgroundColor: 'rgba(0, 0, 0, 0)',

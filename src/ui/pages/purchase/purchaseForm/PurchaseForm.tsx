@@ -31,6 +31,9 @@ const inputsDefaultValue: FormPurchaseModel = {
   birthday: { value: '' },
   cpf: { value: '' },
   phone: { value: '' },
+  district: { value: '' },
+  complement: { value: '' },
+  number: { value: '' },
 };
 
 const validateDate = (value: string, minMaxValidation: Function) => {
@@ -66,6 +69,7 @@ const fieldValidations: any = {
   cvv: (s: InputModel) => { return inputValidation(s.value, 3, 'O CVV inserido é inválido')},
   address: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres')},
   city: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres')},
+  district: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres')},
   cep: (s: InputModel) => { return inputValidation(s.value, 8, 'O CEP inserido é inválido')},
   cpf: (s: InputModel) => { return inputValidation(s.value, 11, 'O CPF inserido é inválido')},
   phone: (s: InputModel) => { return inputValidation(s.value, 11, 'O número de telefone inserido é inválido')},
@@ -88,6 +92,10 @@ const PurchaseForm = () => {
   const [addressMethod, setAddressMethod] : [string, Dispatch<string>] = useState('POST');
 
   useEffect(() => {
+    getMethodsType();
+  }, []);
+
+  const getMethodsType = () => {
     billingService.getPhone().then(() => {
       setPhoneMethod('PUT');
     }).catch(() => {
@@ -99,7 +107,7 @@ const PurchaseForm = () => {
     }).catch(() => {
       setAddressMethod('POST');
     });
-  }, []);
+  }
 
   const getPhoneMask = (name: string, value: string) => {
     if(name === 'phone') {
@@ -141,6 +149,7 @@ const PurchaseForm = () => {
   const onError = (errorMessage: JSX.Element) => {
     setLoading(false);
     setSubmitError(errorMessage);
+    getMethodsType();
   }
 
   const onSuccess = (response: string) => {
@@ -234,50 +243,95 @@ const PurchaseForm = () => {
               <InputError>{inputs.cvv.errorMessage}</InputError>
             </FormControl>
 
-            <FormControl className='form-input' fullWidth>
-              <InputLabel id='address'>Endereço</InputLabel>
-              <Input 
-                required
-                error={!!inputs.address.errorMessage} 
-                type='text' 
-                value={inputs.address.value}
-                name='address'
-                onChange={inputChange}
-                sx={purchaseInputStyle}/>
-              <InputError>{inputs.address.errorMessage}</InputError>
-            </FormControl>
+            <Grid container justifyContent='space-between'>
+              <FormControl className='form-input half-width full-width-mobile'>
+                <InputLabel id='address'>Endereço</InputLabel>
+                <Input 
+                  required
+                  error={!!inputs.address.errorMessage} 
+                  type='text' 
+                  value={inputs.address.value}
+                  name='address'
+                  onChange={inputChange}
+                  sx={purchaseInputStyle}/>
+                <InputError>{inputs.address.errorMessage}</InputError>
+              </FormControl>
 
-            <FormControl className='form-input' fullWidth>
-              <InputLabel id='city'>Cidade</InputLabel>
-              <Input 
-                required
-                error={!!inputs.city.errorMessage} 
-                type='text' 
-                value={inputs.city.value}
-                name='city'
-                onChange={inputChange}
-                sx={purchaseInputStyle}/>
-              <InputError>{inputs.city.errorMessage}</InputError>
-            </FormControl>
+              <FormControl className='form-input half-width full-width-mobile'>
+                <InputLabel id='number'>Número</InputLabel>
+                <Input 
+                  required
+                  error={!!inputs.number.errorMessage} 
+                  type='text' 
+                  value={inputs.number.value}
+                  name='number'
+                  onChange={inputChange}
+                  sx={purchaseInputStyle}/>
+                <InputError>{inputs.number.errorMessage}</InputError>
+              </FormControl>
+            </Grid>
 
-            <FormControl className='form-select' fullWidth sx={{marginTop: '10px'}}>
-              <InputLabel id='state'>Estado</InputLabel>
-              <Select 
-                required
-                variant='standard' 
-                IconComponent={selectIcon} 
-                labelId='state' 
-                value={inputs.state.value} 
-                name='state' 
-                onChange={inputChange} 
-                label='Estado'
-              >
-                <MenuItem value={0} disabled>Selecione um estado</MenuItem>
-                <MenuItem value={'SP'}>SP</MenuItem>
-                <MenuItem value={'RJ'}>RJ</MenuItem>
-                <MenuItem value={'MG'}>MG</MenuItem>
-            </Select>
-            </FormControl>
+            <Grid container justifyContent='space-between'>
+              <FormControl className='form-input half-width full-width-mobile'>
+                <InputLabel id='district'>Bairro</InputLabel>
+                <Input 
+                  required
+                  error={!!inputs.district.errorMessage} 
+                  type='text' 
+                  value={inputs.district.value}
+                  name='district'
+                  onChange={inputChange}
+                  sx={purchaseInputStyle}/>
+                <InputError>{inputs.district.errorMessage}</InputError>
+              </FormControl>
+
+              <FormControl className='form-input half-width full-width-mobile'>
+                <InputLabel id='complement'>Complemento (opcional)</InputLabel>
+                <Input 
+                  required
+                  error={!!inputs.complement.errorMessage} 
+                  type='text' 
+                  value={inputs.complement.value}
+                  name='complement'
+                  onChange={inputChange}
+                  sx={purchaseInputStyle}/>
+                <InputError>{inputs.complement.errorMessage}</InputError>
+              </FormControl>
+            </Grid>
+
+            <Grid container justifyContent='space-between'>
+              <FormControl className='form-input half-width'>
+                <InputLabel id='city'>Cidade</InputLabel>
+                <Input 
+                  required
+                  error={!!inputs.city.errorMessage} 
+                  type='text' 
+                  value={inputs.city.value}
+                  name='city'
+                  onChange={inputChange}
+                  sx={purchaseInputStyle}/>
+                <InputError>{inputs.city.errorMessage}</InputError>
+              </FormControl>
+
+              <FormControl className='form-select half-width' sx={{marginTop: '10px'}}>
+                <InputLabel id='state'>Estado</InputLabel>
+                <Select 
+                  required
+                  variant='standard' 
+                  IconComponent={selectIcon} 
+                  labelId='state' 
+                  value={inputs.state.value} 
+                  name='state' 
+                  onChange={inputChange} 
+                  label='Estado'
+                >
+                  <MenuItem value={0} disabled>Selecione um estado</MenuItem>
+                  <MenuItem value={'SP'}>SP</MenuItem>
+                  <MenuItem value={'RJ'}>RJ</MenuItem>
+                  <MenuItem value={'MG'}>MG</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
 
             <FormControl className='form-input' fullWidth>
               <InputLabel id='cep'>CEP</InputLabel>

@@ -28,10 +28,10 @@ export default class BillingService {
   addAddress(form: FormPurchaseModel, method: 'PUT' | 'POST' = 'POST') {
     const address = {
       street: form.address.value,
-      number: '2',//form.number.value,
-      complement: 'testee',//form.complement.value,
-      district: 'testee',//form.district.value,
-      country: 'BRA',//form.country.value,
+      number: form.number.value,
+      complement: form.complement.value,
+      district: form.district.value,
+      country: 'BRA',
       city: form.city.value,
       state: form.state.value,
       postal_code: form.cep.value,

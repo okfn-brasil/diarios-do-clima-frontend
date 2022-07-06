@@ -12,5 +12,8 @@ export interface FormPurchaseModel {
   cpf: InputModel;
   birthday: InputModel;
   phone: InputModel;
+  district: InputModel;
+  complement: InputModel;
+  number: InputModel;
   [key: string]: InputModel;
 }

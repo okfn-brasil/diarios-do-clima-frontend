@@ -26,6 +26,7 @@ import ReportsPage from "./ui/pages/reports/Reports";
 import Purchase from "./ui/pages/purchase/Purchase";
 import Plans from "./ui/pages/plans/Plans";
 import { UserResponseModel } from "./models/user.model";
+import Search from "./ui/pages/search/Search";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ const App = () => {
             <Route path={urls.reports.url} element={<ReportsPage isDesktop={isDesktop} />} />
             <Route path={urls.purchase.url} element={<Purchase isDesktop={isDesktop} />} />
             <Route path={urls.plans.url} element={<Plans isDesktop={isDesktop} />} />
+            <Route path={urls.search.url} element={<Search isDesktop={isDesktop} />} />
           </Routes>
           <Footer />
         </Fragment>

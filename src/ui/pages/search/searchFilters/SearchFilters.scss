@@ -1,0 +1,17 @@
+.search-filter {
+  overflow-x: hidden;
+  animation: slideIn 0.4s;
+}
+
+
+@keyframes slideIn {
+  0% {
+    max-width: 0;
+    transform: translateX(-100px);
+  }
+
+  100% {
+    transform: translateX(0);
+    max-width: 100vw;
+  }
+}

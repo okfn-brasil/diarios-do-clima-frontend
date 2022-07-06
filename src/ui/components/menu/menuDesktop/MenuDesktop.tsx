@@ -59,14 +59,14 @@ const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
             </ButtonGreen>
           </Link>
 
-          <Link to='' onClick={onShowLoginForm}>
-            <ButtonOutlined sx={{
+          <div onClick={onShowLoginForm}>
+            <ButtonOutlined  sx={{
               fontSize: 14,
               color: isWhite ? darkBlue : 'white'
             }}>
               Iniciar Sessão
             </ButtonOutlined>
-          </Link>
+          </div>
         </>
       }
     </div>
