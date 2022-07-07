@@ -9,6 +9,8 @@ module.exports = {
   transform: {
     "\\.[jt]sx?$": "babel-jest",
   },
-  testURL: "http://localhost/",
+  testEnvironmentOptions: {
+    urls: "http://localhost/",
+  },
   testEnvironment: "jsdom",
 }
