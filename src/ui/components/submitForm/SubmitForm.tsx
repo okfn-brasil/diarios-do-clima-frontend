@@ -1,7 +1,7 @@
-import { buttonBaseStyle } from '/src/ui/components/button/styles';
-import { fontButtonDarkBlue } from '/src/ui/utils/fonts';
+import { buttonBaseStyle } from '@app/ui/components/button/styles';
+import { fontButtonDarkBlue } from '@app/ui/utils/fonts';
+import { lightGreen } from '@app/ui/utils/colors';
 import './SubmitForm.scss';
-import { lightGreen } from '../../utils/colors';
 
 interface PropsSubmitForm{
   sx?: React.CSSProperties;

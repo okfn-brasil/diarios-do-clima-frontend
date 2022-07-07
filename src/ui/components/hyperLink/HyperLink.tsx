@@ -1,5 +1,5 @@
-import { fontButtonDarkBlue, fontRoboto } from '/src/ui/utils/fonts';
-import { lightGreen } from '/src/ui/utils/colors';
+import { fontButtonDarkBlue, fontRoboto } from '@app/ui/utils/fonts';
+import { lightGreen } from '@app/ui/utils/colors';
 import LinkManager from '../linkManager/LinkManager';
 import { hyperLinkStyle } from './hyperLinkStyle';
 

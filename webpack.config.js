@@ -29,7 +29,10 @@ module.exports = {
   ],
   devtool: 'inline-source-map',
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.jsx', '.png'],
+    alias: {
+      '@app': path.resolve(__dirname, 'src'),
+    },
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.png', '.svg'],
   },
   devServer: {
     compress: true,

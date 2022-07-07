@@ -1,14 +1,14 @@
 import { Grid } from '@mui/material';
-import ButtonGreen from '/src/ui/components/button/ButtonGreen';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen';
 import { Link } from 'react-router-dom';
-import { fontRoboto, fontSora } from '/src/ui/utils/fonts';
-import { darkBlue, darkGray1, gray2, gray5, green, lightGray3, pink } from '../../utils/colors';
-import { h2Style, h3Style, paragraphStyle } from '../../utils/generalStyles';
-import LinkManager from '../../components/linkManager/LinkManager';
-import { urls } from '../../utils/urls';
-import ButtonOutlined from '../../components/button/ButtonOutlined';
+import { fontRoboto, fontSora } from '@app/ui/utils/fonts';
+import { darkBlue, darkGray1, gray2, gray5, green, lightGray3, pink } from '@app/ui/utils/colors';
+import { h2Style, h3Style, paragraphStyle } from '@app/ui/utils/generalStyles';
+import LinkManager from '@app/ui/components/linkManager/LinkManager';
+import { urls } from '@app/ui/utils/urls';
+import ButtonOutlined from '@app/ui/components/button/ButtonOutlined';
 import CheckIcon from '@mui/icons-material/Check';
-import HyperLink from '../../components/hyperLink/HyperLink';
+import HyperLink from '@app/ui/components/hyperLink/HyperLink';
 import FAQItem from './FaqItem/FaqItem';
 
 interface PropsPlans {

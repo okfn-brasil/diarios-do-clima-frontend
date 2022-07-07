@@ -1,4 +1,4 @@
-import { red } from '/src/ui/utils/colors';
+import { red } from '@app/ui/utils/colors';
 
 interface PropsInputError {
   children?: JSX.Element | string | boolean;

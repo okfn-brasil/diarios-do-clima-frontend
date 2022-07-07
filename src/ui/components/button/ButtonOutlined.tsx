@@ -1,6 +1,6 @@
 import { ButtonBase } from "@mui/material";
 import { buttonBaseStyle } from './styles';
-import { fontButtonWhite } from '/src/ui/utils/fonts';
+import { fontButtonWhite } from '@app/ui/utils/fonts';
 
 interface PropsButtonOutlined {
   children: JSX.Element | string;

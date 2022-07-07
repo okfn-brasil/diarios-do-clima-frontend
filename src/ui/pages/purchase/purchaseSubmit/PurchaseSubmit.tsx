@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { FormPurchaseModel } from "/src/models/purchase.model";
-import BillingService, { getCardType } from "/src/services/billing";
+import { FormPurchaseModel } from "@app/models/purchase.model";
+import BillingService, { getCardType } from "@app/services/billing";
 declare const PagSeguroDirectPayment: any;
 
 interface PagSeguroResponse {

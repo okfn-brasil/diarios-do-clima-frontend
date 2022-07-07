@@ -2,8 +2,8 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Grid from '@mui/material/Grid';
 import CloseIcon from '@mui/icons-material/Close';
-import { fontRoboto, fontNormal1White } from '/src/ui/utils/fonts';
-import { darkBlue } from '/src/ui/utils/colors';
+import { fontRoboto, fontNormal1White } from '@app/ui/utils/fonts';
+import { darkBlue } from '@app/ui/utils/colors';
 import { MouseEventHandler } from 'react';
 
 interface PropsCookieAlert {

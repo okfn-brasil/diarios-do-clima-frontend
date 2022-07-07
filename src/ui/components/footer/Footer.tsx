@@ -2,11 +2,11 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Grid } from "@mui/material";
 import { Fragment } from 'react';
-import DiarioLogo from '/src/assets/images/logo.svg';
-import { fontNormal1WhiteBold, fontSora } from '/src/ui/utils/fonts';
-import { gray, darkBlue } from '/src/ui/utils/colors';
+import DiarioLogo from '@app/assets/images/logo.svg';
+import { fontNormal1WhiteBold, fontSora } from '@app/ui/utils/fonts';
+import { gray, darkBlue } from '@app/ui/utils/colors';
 import { Link } from 'react-router-dom';
-import { urls } from '../../utils/urls';
+import { urls } from '@app/ui/utils/urls';
 
 const FooterXS = () => {
   const baseSx = {

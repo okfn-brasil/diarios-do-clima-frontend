@@ -1,12 +1,12 @@
 import { Grid } from '@mui/material';
-import { fontRoboto, fontSora } from '/src/ui/utils/fonts';
-import { blue, gray2, gray5, green, lightGray3 } from '../../utils/colors';
-import { h2Style, h3Style, paragraphStyle } from '../../utils/generalStyles';
-import mobileBanner from '/src/assets/images/about/about-mobile.png';
-import desktopBanner from '/src/assets/images/about/about-desktop.png';
+import { fontRoboto, fontSora } from '@app/ui/utils/fonts';
+import { blue, gray2, gray5, green, lightGray3 } from '@app/ui/utils/colors';
+import { h2Style, h3Style, paragraphStyle } from '@app/ui/utils/generalStyles';
+import mobileBanner from '@app/assets/images/about/about-mobile.png';
+import desktopBanner from '@app/assets/images/about/about-desktop.png';
 import { Link } from 'react-router-dom';
-import ButtonSolidGreen from '/src/ui/components/button/ButtonGreen';
-import { urls } from '../../utils/urls';
+import ButtonSolidGreen from '@app/ui/components/button/ButtonGreen';
+import { urls } from '@app/ui/utils/urls';
 
 interface PropsAboutPage {
   isDesktop: boolean;

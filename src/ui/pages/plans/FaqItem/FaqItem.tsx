@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { gray2, gray5 } from "/src/ui/utils/colors";
+import { gray2, gray5 } from "@app/ui/utils/colors";
 
 interface FAQItemProps {
   title: string;

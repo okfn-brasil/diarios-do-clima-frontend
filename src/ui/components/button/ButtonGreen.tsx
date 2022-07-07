@@ -1,7 +1,7 @@
 import { ButtonBase } from "@mui/material";
-import { lightGreen } from "../../utils/colors";
+import { lightGreen } from "@app/ui/utils/colors";
 import { buttonBaseStyle } from './styles';
-import { fontButtonDarkBlue } from '/src/ui/utils/fonts';
+import { fontButtonDarkBlue } from '@app/ui/utils/fonts';
 
 interface PropsButtonGreen {
   children: JSX.Element | string;

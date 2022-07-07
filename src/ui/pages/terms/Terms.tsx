@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
-import { fontSora } from '/src/ui/utils/fonts';
-import { gray2 } from '../../utils/colors';
-import { h3Style, h4Style, paragraphStyle } from '../../utils/generalStyles';
+import { fontSora } from '@app/ui/utils/fonts';
+import { gray2 } from '@app/ui/utils/colors';
+import { h3Style, h4Style, paragraphStyle } from '@app/ui/utils/generalStyles';
 import './Terms.scss';
 
 interface PropsTermsPage {

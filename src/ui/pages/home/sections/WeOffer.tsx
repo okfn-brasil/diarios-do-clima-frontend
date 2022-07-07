@@ -2,20 +2,20 @@ import { MouseEventHandler, useState } from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Grid, Box } from "@mui/material";
-import { fontTitle3Black, fontNormal2Black, fontNormal2BlackBold, fontSora, fontRoboto } from '/src/ui/utils/fonts';
-import HyperLink from '/src/ui/components/hyperLink/HyperLink';
-import ButtonGreen from '/src/ui/components/button/ButtonGreen';
+import { fontTitle3Black, fontNormal2Black, fontNormal2BlackBold, fontSora, fontRoboto } from '@app/ui/utils/fonts';
+import HyperLink from '@app/ui/components/hyperLink/HyperLink';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen';
 
-import HistoryLogo from '/src/assets/images/home/icons/history.svg';
-import AlertsLogo from '/src/assets/images/home/icons/alerts.svg';
-import ThemeLogo from '/src/assets/images/home/icons/theme.svg';
+import HistoryLogo from '@app/assets/images/home/icons/history.svg';
+import AlertsLogo from '@app/assets/images/home/icons/alerts.svg';
+import ThemeLogo from '@app/assets/images/home/icons/theme.svg';
 
-import HistoryLead from '/src/assets/images/home/weoffer.history.svg';
-import AlertsLead from '/src/assets/images/home/weoffer.alerts.svg';
-import ThemeLead from '/src/assets/images/home/weoffer.theme.svg';
-import { lightGray3, lightGreen } from '/src/ui/utils/colors';
-import LinkManager from '/src/ui/components/linkManager/LinkManager';
-import { urls } from '/src/ui/utils/urls';
+import HistoryLead from '@app/assets/images/home/weoffer.history.svg';
+import AlertsLead from '@app/assets/images/home/weoffer.alerts.svg';
+import ThemeLead from '@app/assets/images/home/weoffer.theme.svg';
+import { lightGray3, lightGreen } from '@app/ui/utils/colors';
+import LinkManager from '@app/ui/components/linkManager/LinkManager';
+import { urls } from '@app/ui/utils/urls';
 
 interface PropsUnderlinText {
   children?: JSX.Element | string;

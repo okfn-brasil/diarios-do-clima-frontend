@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { urls } from '../../utils/urls';
-import { RootState } from '/src/stores/store';
-import { UserState } from '/src/stores/user.store';
+import { urls } from '@app/ui/utils/urls';
+import { RootState } from '@app/stores/store';
+import { UserState } from '@app/stores/user.store';
 
 interface PropsLinkManager {
   children: JSX.Element;

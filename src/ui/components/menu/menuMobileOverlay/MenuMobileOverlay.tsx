@@ -1,15 +1,15 @@
 import { Grid } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import DiarioLogo from '/src/assets/images/logo.svg';
-import ButtonGreen from '/src/ui/components/button/ButtonGreen';
-import ButtonOutlined from '/src/ui/components/button/ButtonOutlined';
-import { darkBlue, green } from '/src/ui/utils/colors';
-import { fontRoboto, fontSora } from '/src/ui/utils/fonts';
+import DiarioLogo from '@app/assets/images/logo.svg';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen';
+import ButtonOutlined from '@app/ui/components/button/ButtonOutlined';
+import { darkBlue, green } from '@app/ui/utils/colors';
+import { fontRoboto, fontSora } from '@app/ui/utils/fonts';
 
 import './MenuMobileOverlay.scss';
 import { Link } from 'react-router-dom';
 import { MouseEventHandler } from 'react';
-import { urls } from '/src/ui/utils/urls';
+import { urls } from '@app/ui/utils/urls';
 
 interface PropsMenuMobileOverlay {
   onClose: MouseEventHandler<SVGSVGElement>;

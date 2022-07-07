@@ -1,6 +1,6 @@
 import React from "react";
-import { lightGreen } from "../../utils/colors";
-import { fontButtonDarkBlue, fontRoboto } from "../../utils/fonts";
+import { lightGreen } from "@app/ui/utils/colors";
+import { fontButtonDarkBlue, fontRoboto } from "@app/ui/utils/fonts";
 
 export const hyperLinkStyle: React.CSSProperties = {
   ...fontButtonDarkBlue,

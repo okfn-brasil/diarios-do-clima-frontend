@@ -1,22 +1,22 @@
-import { darkBlue, gray1 } from '/src/ui/utils/colors';
-import { fontSora } from '/src/ui/utils/fonts';
+import { darkBlue, gray1 } from '@app/ui/utils/colors';
+import { fontSora } from '@app/ui/utils/fonts';
 import { FormControl, Grid, Input, InputLabel, MenuItem, Select } from '@mui/material';
-import InputError from '/src/ui/components/inputError/inputError';
+import InputError from '@app/ui/components/inputError/inputError';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { inputStyle } from '/src/ui/utils/generalStyles';
-import { InputModel } from '/src/models/forms.model';
-import { FormPurchaseModel } from '/src/models/purchase.model';
-import { selectIcon } from '/src/ui/utils/forms.utils';
-import './PurchaseForm.scss';
+import { inputStyle } from '@app/ui/utils/generalStyles';
+import { InputModel } from '@app/models/forms.model';
+import { FormPurchaseModel } from '@app/models/purchase.model';
+import { selectIcon } from '@app/ui/utils/forms.utils';
 import PurchaseDetails from '../purchaseDetails/PurchaseDetails';
 import InputMask from 'react-input-mask';
-import Loading from '/src/ui/components/loading/Loading';
+import Loading from '@app/ui/components/loading/Loading';
 import PurchaseSubmit from '../purchaseSubmit/PurchaseSubmit';
-import BillingService, { getCardType } from '/src/services/billing';
+import BillingService, { getCardType } from '@app/services/billing';
 import { useDispatch } from 'react-redux';
-import { userUpdate } from '/src/stores/user.store';
+import { userUpdate } from '@app/stores/user.store';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { urls } from '/src/ui/utils/urls';
+import { urls } from '@app/ui/utils/urls';
+import './PurchaseForm.scss';
 
 const emptyError = <></>;
 const inputsDefaultValue: FormPurchaseModel = {

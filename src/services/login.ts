@@ -1,5 +1,5 @@
 import { config, request } from './service-utils';
-import { LoginModel } from '/src/models/login.model';
+import { LoginModel } from '@app/models/login.model';
 
 export default class LoginService {
   currentUrl = '/token/';

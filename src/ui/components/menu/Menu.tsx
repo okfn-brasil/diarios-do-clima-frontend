@@ -1,16 +1,16 @@
 import { Grid } from "@mui/material";
 import MenuMobile from './menuMobile/MenuMobile';
 import MenuDesktop from './menuDesktop/MenuDesktop';
-import DiarioLogo from '/src/assets/images/logo.svg';
-import DiarioLogoBlack from '/src/assets/images/logo-black.svg';
-import { darkBlue, lightGray2 } from '/src/ui/utils/colors';
+import DiarioLogo from '@app/assets/images/logo.svg';
+import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
+import { darkBlue, lightGray2 } from '@app/ui/utils/colors';
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { urls } from "../../utils/urls";
+import { urls } from "@app/ui/utils/urls";
 import LoginForm from "./loginForm/LoginForm";
 import { useSelector } from "react-redux";
-import { UserState } from "/src/stores/user.store";
-import { RootState } from "/src/stores/store";
+import { UserState } from "@app/stores/user.store";
+import { RootState } from "@app/stores/store";
 
 interface PropsMenu {
   isDesktop: boolean;

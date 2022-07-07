@@ -1,17 +1,17 @@
 import { FormControl, Grid, MenuItem, Select } from '@mui/material';
-import { h3Style } from '/src/ui/utils/generalStyles';
-import EmptySearch from '/src/assets/images/icons/empty-search.svg';
-import { gray, gray5 } from '/src/ui/utils/colors';
-import { ReportModel } from '/src/models/reports.model';
+import { h3Style } from '@app/ui/utils/generalStyles';
+import EmptySearch from '@app/assets/images/icons/empty-search.svg';
+import { gray, gray5 } from '@app/ui/utils/colors';
+import { ReportModel } from '@app/models/reports.model';
 import SearchItem from './searchItem/SearchItem';
-import ButtonOutlined from '/src/ui/components/button/ButtonOutlined';
-import bellIcon from '/src/assets/images/icons/black-bell.svg';
+import ButtonOutlined from '@app/ui/components/button/ButtonOutlined';
+import bellIcon from '@app/assets/images/icons/black-bell.svg';
 import { mobileButtonStyle } from '../search.styles';
-import { selectIcon } from '/src/ui/utils/forms.utils';
-import { FiltersState, updateFilters } from '/src/stores/filters.store';
+import { selectIcon } from '@app/ui/utils/forms.utils';
+import { FiltersState, updateFilters } from '@app/stores/filters.store';
 import { Dispatch, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '/src/stores/store';
+import { RootState } from '@app/stores/store';
 
 interface PropsSearchList {
   list?: ReportModel[];

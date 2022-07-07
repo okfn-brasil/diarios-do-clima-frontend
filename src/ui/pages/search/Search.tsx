@@ -1,16 +1,16 @@
 import { Grid } from '@mui/material';
-import { lightGray4 } from '../../utils/colors';
+import { lightGray4 } from '@app/ui/utils/colors';
 import SearchField from './searchField/SearchField';
 import SearchList from './searchList/SearchList';
 import { Dispatch, useEffect, useState } from 'react';
-import ReportsService from '/src/services/reports';
+import ReportsService from '@app/services/reports';
 import SearchFilters from './searchFilters/SearchFilter';
-import { parseReports, ReportModel, ReportsModel } from '/src/models/reports.model';
+import { parseReports, ReportModel, ReportsModel } from '@app/models/reports.model';
 import SearchPagination from './searchPagination/SearchPagination';
-import { FiltersState } from '/src/stores/filters.store';
+import { FiltersState } from '@app/stores/filters.store';
 import { useSelector } from 'react-redux';
-import { RootState } from '/src/stores/store';
-import Loading from '../../components/loading/Loading';
+import { RootState } from '@app/stores/store';
+import Loading from '@app/ui/components/loading/Loading';
 
 interface PropsSearch {
   isDesktop: boolean;

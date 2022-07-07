@@ -1,13 +1,13 @@
 import { Grid } from "@mui/material";
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import backgroundImage from '/src/assets/images/home/lead.background.png';
-import deviceImage from '/src/assets/images/home/lead.device.png';
-import ButtonGreen from '/src/ui/components/button/ButtonGreen';
-import { fontTitle1White, fontSubTitle, fontSora, fontRoboto } from '/src/ui/utils/fonts';
-import { green } from '/src/ui/utils/colors';
-import { urls } from "/src/ui/utils/urls";
-import LinkManager from "/src/ui/components/linkManager/LinkManager";
+import backgroundImage from '@app/assets/images/home/lead.background.png';
+import deviceImage from '@app/assets/images/home/lead.device.png';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen';
+import { fontTitle1White, fontSubTitle, fontSora, fontRoboto } from '@app/ui/utils/fonts';
+import { green } from '@app/ui/utils/colors';
+import { urls } from "@app/ui/utils/urls";
+import LinkManager from "@app/ui/components/linkManager/LinkManager";
 
 const Lead = () => {
   const theme = useTheme();

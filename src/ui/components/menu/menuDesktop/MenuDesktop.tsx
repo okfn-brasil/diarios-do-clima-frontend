@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
-import ButtonGreen from '/src/ui/components/button/ButtonGreen';
-import ButtonOutlined from '/src/ui/components/button/ButtonOutlined';
-import { fontNormal1WhiteMenu, fontRoboto } from '/src/ui/utils/fonts';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen';
+import ButtonOutlined from '@app/ui/components/button/ButtonOutlined';
+import { fontNormal1WhiteMenu, fontRoboto } from '@app/ui/utils/fonts';
 
 import './MenuDesktop.scss';
-import { darkBlue } from '/src/ui/utils/colors';
+import { darkBlue } from '@app/ui/utils/colors';
 import { useSelector } from 'react-redux';
-import { RootState } from '/src/stores/store';
+import { RootState } from '@app/stores/store';
 import LoggedMenu from '../loggedMenu/LoggedMenu';
-import { UserState } from '/src/stores/user.store';
-import { urls } from '/src/ui/utils/urls';
+import { UserState } from '@app/stores/user.store';
+import { urls } from '@app/ui/utils/urls';
 
 interface PropsMenuDesktop {
   isWhite: boolean;

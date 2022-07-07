@@ -1,22 +1,22 @@
 import { Grid, Input } from '@mui/material';
-import ShowPassIcon from '/src/assets/images/icons/show-pass.svg';
-import './LoginForm.scss';
+import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
-import { fontTitle3Black, fontRoboto } from '/src/ui/utils/fonts';
-import DiarioLogoBlack from '/src/assets/images/logo-black.svg';
+import { fontTitle3Black, fontRoboto } from '@app/ui/utils/fonts';
+import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { inputStyle } from '/src/ui/utils/generalStyles';
-import SubmitForm from '/src/ui/components/submitForm/SubmitForm';
-import { blue, red } from '/src/ui/utils/colors';
-import { urls } from '/src/ui/utils/urls';
-import { LoginModel, LoginResponse } from '/src/models/login.model';
-import LoginService from '/src/services/login';
-import Loading from '/src/ui/components/loading/Loading';
-import { userUpdate } from '/src/stores/user.store';
+import { inputStyle } from '@app/ui/utils/generalStyles';
+import SubmitForm from '@app/ui/components/submitForm/SubmitForm';
+import { blue, red } from '@app/ui/utils/colors';
+import { urls } from '@app/ui/utils/urls';
+import { LoginModel, LoginResponse } from '@app/models/login.model';
+import LoginService from '@app/services/login';
+import Loading from '@app/ui/components/loading/Loading';
+import { userUpdate } from '@app/stores/user.store';
 import { useDispatch } from 'react-redux';
-import AccountService, { checkPlan } from '/src/services/accounts';
-import { UserResponseModel } from '/src/models/user.model';
+import AccountService, { checkPlan } from '@app/services/accounts';
+import { UserResponseModel } from '@app/models/user.model';
+import './LoginForm.scss';
 
 interface PropsLoginForm{
   isDesktop: boolean;

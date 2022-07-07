@@ -1,6 +1,6 @@
-import { ReportModel } from '/src/models/reports.model';
-import { hyperLinkStyle } from '/src/ui/components/hyperLink/hyperLinkStyle';
-import { black, darkBlue, gray4 } from '/src/ui/utils/colors';
+import { ReportModel } from '@app/models/reports.model';
+import { hyperLinkStyle } from '@app/ui/components/hyperLink/hyperLinkStyle';
+import { black, darkBlue, gray4 } from '@app/ui/utils/colors';
 
 interface PropsSearchItem {
   data: ReportModel;

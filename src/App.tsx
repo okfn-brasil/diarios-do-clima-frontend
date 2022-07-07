@@ -7,8 +7,8 @@ import {
   Route,
 } from "react-router-dom";
 import Registration from './ui/pages/registration/registration';
-import CookieAlert from '/src/ui/components/cookieAlert/CookieAlert';
-import Footer from '/src/ui/components/footer/Footer';
+import CookieAlert from '@app/ui/components/cookieAlert/CookieAlert';
+import Footer from '@app/ui/components/footer/Footer';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useState } from "react";

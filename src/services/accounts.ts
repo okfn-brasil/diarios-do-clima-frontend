@@ -1,4 +1,4 @@
-import { RegistrationModel, RegistrationResponse } from '/src/models/registration.model';
+import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
 import { config, request, TokensModel } from './service-utils';
 import { UserResponseModel } from '../models/user.model';
 

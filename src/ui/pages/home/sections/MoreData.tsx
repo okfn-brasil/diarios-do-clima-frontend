@@ -1,14 +1,14 @@
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Grid } from "@mui/material";
-import HyperLink from '/src/ui/components/hyperLink/HyperLink';
+import HyperLink from '@app/ui/components/hyperLink/HyperLink';
 import {
     fontTitle3Black,
     fontNormal2Black,
     fontRoboto,
     fontSora,
-} from '/src/ui/utils/fonts';
-import { urls } from '/src/ui/utils/urls';
+} from '@app/ui/utils/fonts';
+import { urls } from '@app/ui/utils/urls';
 
 const MoreData = () => {
   const theme = useTheme();

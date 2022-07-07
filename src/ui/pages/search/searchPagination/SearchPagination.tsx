@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import { darkBlue, gray, gray2, gray5, lightGreen } from "/src/ui/utils/colors";
+import { darkBlue, gray, gray2, gray5, lightGreen } from "@app/ui/utils/colors";
 
 interface Pagination {
   onChangePage: any;

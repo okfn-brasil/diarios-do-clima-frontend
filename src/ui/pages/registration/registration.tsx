@@ -1,24 +1,24 @@
 import { Dispatch, SetStateAction, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
-import computerImage from '/src/assets/images/computer-registration.svg';
+import computerImage from '@app/assets/images/computer-registration.svg';
 import PasswordField from '../../components/passwordField/passwordField';
-import SubmitForm from '/src/ui/components/submitForm/SubmitForm';
+import SubmitForm from '@app/ui/components/submitForm/SubmitForm';
 import InputError from '../../components/inputError/inputError';
-import Loading from '/src/ui/components/loading/Loading';
-import { fontRoboto, fontTitle3 } from '/src/ui/utils/fonts';
-import { black, blue, gray, gray5, red } from '/src/ui/utils/colors';
-import { urls } from '/src/ui/utils/urls';
+import Loading from '@app/ui/components/loading/Loading';
+import { fontRoboto, fontTitle3 } from '@app/ui/utils/fonts';
+import { black, blue, gray, gray5, red } from '@app/ui/utils/colors';
+import { urls } from '@app/ui/utils/urls';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { FormControl, Grid, Input, InputLabel, MenuItem, Select } from '@mui/material';
-import { RegistrationModel, RegistrationResponse } from '/src/models/registration.model';
-import { InputModel } from '/src/models/forms.model';
-import AccountService, { checkPlan } from '/src/services/accounts';
+import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
+import { InputModel } from '@app/models/forms.model';
+import AccountService, { checkPlan } from '@app/services/accounts';
+import { userUpdate } from '@app/stores/user.store';
+import { selectIcon } from '@app/ui/utils/forms.utils';
+import { inputStyle } from '@app/ui/utils/generalStyles';
 import './registration.scss';
-import { useDispatch } from 'react-redux';
-import { userUpdate } from '/src/stores/user.store';
-import { selectIcon } from '../../utils/forms.utils';
-import { inputStyle } from '../../utils/generalStyles';
 
 const emptyError = <></>;
 const inputsDefaultValue = {

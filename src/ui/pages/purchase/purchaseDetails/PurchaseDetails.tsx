@@ -1,8 +1,8 @@
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-import SubmitForm from "/src/ui/components/submitForm/SubmitForm";
-import { black, blue, gray5, red } from "/src/ui/utils/colors";
-import { fontRoboto, fontSora } from "/src/ui/utils/fonts";
+import SubmitForm from "@app/ui/components/submitForm/SubmitForm";
+import { black, blue, gray5, red } from "@app/ui/utils/colors";
+import { fontRoboto, fontSora } from "@app/ui/utils/fonts";
 
 interface PropsPurchaseDetails {
   errorMessage: JSX.Element;

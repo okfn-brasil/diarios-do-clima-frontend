@@ -1,10 +1,10 @@
 import {FormControl, Input, InputLabel } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
-import ShowPassIcon from '/src/assets/images/icons/show-pass.svg';
-import './passwordField.scss';
+import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
 import { Dispatch, SetStateAction, useState } from "react";
-import InputError from "../inputError/inputError";
+import InputError from "@app/ui/components/inputError/inputError";
+import './passwordField.scss';
 
 interface PropsPasswordField {
   sx?: React.CSSProperties;

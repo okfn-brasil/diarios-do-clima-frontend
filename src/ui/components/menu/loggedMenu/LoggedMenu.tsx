@@ -1,11 +1,11 @@
 import { Dispatch, useState } from 'react';
 import { Link, NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
-import userWhiteIcon from '/src/assets/images/icons/person-white.svg';
-import userBlackIcon from '/src/assets/images/icons/person.svg';
-import { darkBlue } from '/src/ui/utils/colors';
-import { fontSora } from '/src/ui/utils/fonts';
-import { userReset } from '/src/stores/user.store';
-import { urls } from '/src/ui/utils/urls';
+import userWhiteIcon from '@app/assets/images/icons/person-white.svg';
+import userBlackIcon from '@app/assets/images/icons/person.svg';
+import { darkBlue } from '@app/ui/utils/colors';
+import { fontSora } from '@app/ui/utils/fonts';
+import { userReset } from '@app/stores/user.store';
+import { urls } from '@app/ui/utils/urls';
 import { useDispatch } from 'react-redux';
 import './LoggedMenu.scss';
 

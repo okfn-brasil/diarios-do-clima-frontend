@@ -1,13 +1,13 @@
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Grid } from "@mui/material";
-import ButtonSolidGreen from "/src/ui/components/button/ButtonGreen";
-import ButtonSolidDarkBlue from "/src/ui/components/button/ButtonDarkBlue";
-import { fontSora, fontRoboto, fontTitle3White, fontNormal2White } from "/src/ui/utils/fonts";
-import { urls } from '/src/ui/utils/urls';
+import ButtonSolidGreen from "@app/ui/components/button/ButtonGreen";
+import ButtonSolidDarkBlue from "@app/ui/components/button/ButtonDarkBlue";
+import { fontSora, fontRoboto, fontTitle3White, fontNormal2White } from "@app/ui/utils/fonts";
+import { urls } from '@app/ui/utils/urls';
 
 import './HelpUs.scss';
-import LinkManager from '/src/ui/components/linkManager/LinkManager';
+import LinkManager from '@app/ui/components/linkManager/LinkManager';
 
 const HelpUs = () => {
   const theme = useTheme();

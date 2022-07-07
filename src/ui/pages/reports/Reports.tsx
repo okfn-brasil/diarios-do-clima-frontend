@@ -1,11 +1,11 @@
 import { Grid } from '@mui/material';
-import { fontRoboto, fontSora } from '/src/ui/utils/fonts';
-import { blue, darkBlue, lightGray3 } from '../../utils/colors';
-import { h3Style, paragraphStyle } from '../../utils/generalStyles';
-import badge from '/src/assets/images/icons/badge.svg';
-import homeWork from '/src/assets/images/icons/home_work.svg';
+import { fontRoboto, fontSora } from '@app/ui/utils/fonts';
+import { blue, darkBlue, lightGray3 } from '@app/ui/utils/colors';
+import { h3Style, paragraphStyle } from '@app/ui/utils/generalStyles';
+import badge from '@app/assets/images/icons/badge.svg';
+import homeWork from '@app/assets/images/icons/home_work.svg';
 import { Link } from 'react-router-dom';
-import ButtonSolidGreen from '/src/ui/components/button/ButtonGreen';
+import ButtonSolidGreen from '@app/ui/components/button/ButtonGreen';
 import SimulationForm from './simulation/Simulation';
 
 interface PropsReportsPage{

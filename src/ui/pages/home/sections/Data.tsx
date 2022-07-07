@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { fontSora, fontRoboto, fontTitle3Black, fontTitle1Green, fontNormal2Black } from '/src/ui/utils/fonts';
+import { fontSora, fontRoboto, fontTitle3Black, fontTitle1Green, fontNormal2Black } from '@app/ui/utils/fonts';
 
 interface PropsDataLabel {
   data: string;

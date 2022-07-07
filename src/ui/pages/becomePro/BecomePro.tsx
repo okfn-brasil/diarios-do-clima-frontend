@@ -1,12 +1,12 @@
 import { Grid } from "@mui/material";
-import { fontTitle3Black, fontSora, fontRoboto } from "/src/ui/utils/fonts";
-import './BecomePro.scss';
-import { green, darkBlue, gray5, gray2 } from "/src/ui/utils/colors";
+import { fontTitle3Black, fontSora, fontRoboto } from "@app/ui/utils/fonts";
+import { green, darkBlue, gray5, gray2 } from "@app/ui/utils/colors";
 import CheckIcon from '@mui/icons-material/Check';
-import ButtonGreen from "/src/ui/components/button/ButtonGreen";
+import ButtonGreen from "@app/ui/components/button/ButtonGreen";
 import { Link } from "react-router-dom";
-import ButtonOutlined from "/src/ui/components/button/ButtonOutlined";
-import { urls } from "/src/ui/utils/urls";
+import ButtonOutlined from "@app/ui/components/button/ButtonOutlined";
+import { urls } from "@app/ui/utils/urls";
+import './BecomePro.scss';
 
 interface PropsBecomePro {
   isDesktop: boolean;

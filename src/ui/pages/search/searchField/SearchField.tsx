@@ -1,15 +1,15 @@
 import { Grid } from '@mui/material';
-import { darkBlue, green } from '/src/ui/utils/colors';
-import searchIcon from '/src/assets/images/icons/search.svg';
-import bellIcon from '/src/assets/images/icons/bell.svg';
-import filterIcon from '/src/assets/images/icons/filter.svg';
-import ButtonGreen from '/src/ui/components/button/ButtonGreen';
-import ButtonOutlined from '/src/ui/components/button/ButtonOutlined';
-import './SearchField.scss';
+import { darkBlue, green } from '@app/ui/utils/colors';
+import searchIcon from '@app/assets/images/icons/search.svg';
+import bellIcon from '@app/assets/images/icons/bell.svg';
+import filterIcon from '@app/assets/images/icons/filter.svg';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen';
+import ButtonOutlined from '@app/ui/components/button/ButtonOutlined';
 import { Dispatch, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateFilters } from '/src/stores/filters.store';
+import { updateFilters } from '@app/stores/filters.store';
 import { mobileButtonStyle } from '../search.styles';
+import './SearchField.scss';
 
 interface PropsSearchField {
   isDesktop: boolean;

@@ -1,11 +1,11 @@
 import { useState } from "react";
-import MenuIcon from '/src/assets/images/icons/menu.svg';
-import MenuBlackIcon from '/src/assets/images/icons/menu-black.svg';
+import MenuIcon from '@app/assets/images/icons/menu.svg';
+import MenuBlackIcon from '@app/assets/images/icons/menu-black.svg';
 import MenuMobileOverlay from "../menuMobileOverlay/MenuMobileOverlay";
 import { useSelector } from "react-redux";
-import { RootState } from "/src/stores/store";
+import { RootState } from "@app/stores/store";
 import LoggedMenu from "../loggedMenu/LoggedMenu";
-import { UserState } from "/src/stores/user.store";
+import { UserState } from "@app/stores/user.store";
 
 interface PropsMenuMobile {
   isWhite: boolean;

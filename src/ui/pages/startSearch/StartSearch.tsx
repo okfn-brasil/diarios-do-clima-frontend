@@ -1,12 +1,12 @@
 import { Grid } from '@mui/material';
-import searchImage from '/src/assets/images/startSearch/start-search.jpg';
-import ButtonGreen from '/src/ui/components/button/ButtonGreen';
+import searchImage from '@app/assets/images/startSearch/start-search.jpg';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen';
 import { Link } from 'react-router-dom';
-import { fontTitle3Black, fontRoboto } from '/src/ui/utils/fonts';
-import { urls } from '../../utils/urls';
+import { fontTitle3Black, fontRoboto } from '@app/ui/utils/fonts';
+import { urls } from '@app/ui/utils/urls';
 import { useSelector } from 'react-redux';
-import { UserState } from '/src/stores/user.store';
-import { RootState } from '/src/stores/store';
+import { UserState } from '@app/stores/user.store';
+import { RootState } from '@app/stores/store';
 
 interface PropsStartSearch {
   isDesktop: boolean;
