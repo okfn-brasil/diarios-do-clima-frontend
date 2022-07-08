@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { gray2, gray5 } from "@app/ui/utils/colors";
+import './FaqItem.scss';
 
 interface FAQItemProps {
   title: string;
@@ -11,9 +11,9 @@ const FAQItem = ({title, children}: FAQItemProps) => {
 
 
   return (
-    <div style={{padding: '32px 0', borderBottom: '1px solid '+ gray2, cursor: 'pointer'}} onClick={()=> setOpen(!isOpen)}>
-      <div className='hover-animation' style={{fontSize: '16px', lineHeight: '19px', fontWeight: 600}}>{title}</div>
-      <div style={{fontSize: '18px', lineHeight: '22px', margin: isOpen ? '8px 0 0' : '0', color: gray5, transition: '0.1s', overflow: 'hidden', maxHeight: isOpen ? '100vh' : 0}}>
+    <div className='faq-item' onClick={()=> setOpen(!isOpen)}>
+      <div className='hover-animation faq-item-title'>{title}</div>
+      <div className={`faq-content ${isOpen ? 'faq-open' : ''}`}>
         {children}
       </div>
     </div>

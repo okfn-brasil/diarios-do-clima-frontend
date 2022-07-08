@@ -1,0 +1,45 @@
+@import '/src/styles/globals.scss';
+
+#root {
+  .footer-xs-item {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    padding-bottom: 16px;
+
+    &.first-xs {
+      padding-top: 56px;
+    }
+  }
+
+  .footer-md {
+    padding-right: 128px;
+  }
+
+  .footer {
+    background-color: $darkBlue;
+    padding-top: 60px;
+    padding-bottom: 80px;
+    padding-left: 24px;
+    color: $gray;
+    font-size: 14px;
+    font-weight: 600;
+    padding-left: 24px;
+
+    a, a span {
+      color: $gray;
+    }
+
+    img {
+      width: 160px;
+    }
+    
+    @media only screen and (min-width: $desktopSize) {
+      padding-left: 130px;
+      img {
+        width: 180px;
+      }
+    }
+  
+  }
+}

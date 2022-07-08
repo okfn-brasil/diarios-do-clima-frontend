@@ -3,7 +3,7 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import backgroundImage from '@app/assets/images/home/lead.background.png';
 import deviceImage from '@app/assets/images/home/lead.device.png';
-import ButtonGreen from '@app/ui/components/button/ButtonGreen';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import { fontTitle1White, fontSubTitle, fontSora, fontRoboto } from '@app/ui/utils/fonts';
 import { green } from '@app/ui/utils/colors';
 import { urls } from "@app/ui/utils/urls";

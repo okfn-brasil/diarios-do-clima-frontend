@@ -1,3 +1,32 @@
-.textContainer p {
-  margin: 0;
+@import '/src/styles/globals.scss';
+
+.help-us {
+  background-color: $blue;
+
+  .textContainer p {
+    margin: 0;
+  }
+
+  .help-us-title {
+    margin: 0 0 8px;
+    font-family: Sora;
+  }
+
+  .h3-style, .paragraph-style {
+    color: $white;
+  }
+
+  .buttons {
+    margin-top: 8px;
+  }
+
+  .button {
+    width: 100%;
+    margin-right: 16px;
+    margin-top: 16px;
+
+    @media only screen and (min-width: $desktopSize) {
+      width: unset;
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
-import { config, request, TokensModel } from './service-utils';
+import { config, HeadersModel, request, TokensModel } from './service-utils';
 import { UserResponseModel } from '../models/user.model';
 
 export default class AccountService {
@@ -21,7 +21,7 @@ export default class AccountService {
       method: 'POST',
       body: newForm,
       notUseToken: true,
-      customResponseHandler: (response: any) => config.handleResponse(response, true)
+      customResponseHandler: (response: RegistrationResponse) => config.handleResponse(response, true)
     });
   }
 
@@ -29,7 +29,7 @@ export default class AccountService {
     return request({
       url: this.currentUrl + 'me/', 
       method: 'GET',
-      customHeaders: config.tokenHeaders((token ? {access: token} : null) as TokensModel)
+      customHeaders: config.tokenHeaders((token ? {access: token} : null) as TokensModel) as HeadersModel
     });
   }
 }

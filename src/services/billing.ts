@@ -1,6 +1,21 @@
 import { request } from './service-utils';
 import { FormPurchaseModel } from '../models/purchase.model';
 
+interface CardValidateModel {
+  electron: RegExp;
+  maestro: RegExp;
+  dankort: RegExp;
+  interpayment: RegExp;
+  unionpay: RegExp;
+  visa: RegExp;
+  mastercard: RegExp;
+  amex: RegExp;
+  diners: RegExp;
+  discover: RegExp;
+  jcb: RegExp;
+  [key: string]: RegExp;
+}
+
 export default class BillingService {
   currentUrl = '/billing/';
 
@@ -25,7 +40,7 @@ export default class BillingService {
     });
   }
 
-  addAddress(form: FormPurchaseModel, method: 'PUT' | 'POST' = 'POST') {
+  addAddress(form: FormPurchaseModel, method: string) {
     const address = {
       street: form.address.value,
       number: form.number.value,
@@ -44,7 +59,7 @@ export default class BillingService {
     });
   }
 
-  addPhone(form: FormPurchaseModel, method: 'PUT' | 'POST' = 'POST') {
+  addPhone(form: FormPurchaseModel, method: string) {
     const phone = {
       area_code: form.phone.value.substring(0, 2),
       number: form.phone.value.substring(3, 12),
@@ -88,7 +103,7 @@ export default class BillingService {
 }
 
 export const getCardType = (number: string) => {
-  let re: any = {
+  let re: CardValidateModel = {
     electron: /^(4026|417500|4405|4508|4844|4913|4917)\d+$/,
     maestro: /^(5018|5020|5038|5612|5893|6304|6759|6761|6762|6763|0604|6390)\d+$/,
     dankort: /^(5019)\d+$/,

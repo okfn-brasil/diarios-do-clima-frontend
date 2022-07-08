@@ -1,5 +1,4 @@
-import Menu from "./ui/components/menu";
-import Home from "./ui/pages/home/Home";
+import Home from "@app/ui/pages/home/Home";
 import React, { Fragment, useEffect } from "react";
 import {
   BrowserRouter as Router,
@@ -27,6 +26,7 @@ import Purchase from "./ui/pages/purchase/Purchase";
 import Plans from "./ui/pages/plans/Plans";
 import { UserResponseModel } from "./models/user.model";
 import Search from "./ui/pages/search/Search";
+import Menu from "./ui/components/menu/Menu";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,17 +59,17 @@ const App = () => {
         <RouteChangeManager />
         <Fragment>
           {showCookieAlert && <CookieAlert onClick={hideCookieAlert} />}
-          <Menu isDesktop={isDesktop}/>
+          <Menu />
           <Routes>
             <Route path={urls.home.url} element={<Home />} />
             <Route path={urls.registration.url} element={<Registration />} />
-            <Route path={urls.becomePro.url} element={<BecomePro isDesktop={isDesktop} />} />
-            <Route path={urls.startSearch.url} element={<StartSearch isDesktop={isDesktop} />} />
-            <Route path={urls.terms.url} element={<TermsPage isDesktop={isDesktop} />} />
+            <Route path={urls.becomePro.url} element={<BecomePro />} />
+            <Route path={urls.startSearch.url} element={<StartSearch />} />
+            <Route path={urls.terms.url} element={<TermsPage />} />
             <Route path={urls.about.url} element={<AboutPage isDesktop={isDesktop} />} />
             <Route path={urls.reports.url} element={<ReportsPage isDesktop={isDesktop} />} />
             <Route path={urls.purchase.url} element={<Purchase isDesktop={isDesktop} />} />
-            <Route path={urls.plans.url} element={<Plans isDesktop={isDesktop} />} />
+            <Route path={urls.plans.url} element={<Plans />} />
             <Route path={urls.search.url} element={<Search isDesktop={isDesktop} />} />
           </Routes>
           <Footer />

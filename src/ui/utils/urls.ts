@@ -1,20 +1,20 @@
 import { blue } from "./colors";
 
 export interface UrlsModel {
-  home: urlModel;
-  registration: urlModel;
-  becomePro: urlModel;
-  startSearch: urlModel;
-  about: urlModel;
-  terms: urlModel;
-  reports: urlModel;
-  purchase: urlModel;
-  plans: urlModel;
-  search: urlModel;
-  [key: string]: urlModel;
+  home: UrlModel;
+  registration: UrlModel;
+  becomePro: UrlModel;
+  startSearch: UrlModel;
+  about: UrlModel;
+  terms: UrlModel;
+  reports: UrlModel;
+  purchase: UrlModel;
+  plans: UrlModel;
+  search: UrlModel;
+  [key: string]: UrlModel;
 }
 
-interface urlModel {
+export interface UrlModel {
   url: string;
   isWhiteMenu?: boolean;
   hideLinks?: boolean;

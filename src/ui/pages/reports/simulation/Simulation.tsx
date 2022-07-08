@@ -1,4 +1,4 @@
-import { FormControl, Grid, InputLabel, MenuItem, Select } from '@mui/material';
+import { FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { Dispatch, SetStateAction, useState } from 'react';
 import SubmitForm from '@app/ui/components/submitForm/SubmitForm';
 import { black } from '@app/ui/utils/colors';
@@ -18,7 +18,7 @@ const SimulationForm = () => {
     criterio3: '',
   });
 
-  const inputChange = (event: any) => {
+  const inputChange = (event: SelectChangeEvent<string>) => {
     const {name, value} = event.target;
     setInputs((values: SimulationModel) => ({...values, [name]: value}));
   }

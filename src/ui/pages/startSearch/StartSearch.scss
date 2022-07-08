@@ -1,0 +1,37 @@
+@import '/src/styles/globals.scss';
+
+.start-search-page {
+  min-height: calc(100vh - 80px - 176px);
+  display: flex;
+  align-items: center;
+
+  .img-area {
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 337px;
+
+      @media only screen and (min-width: $desktopSize) {
+        width: 377px;
+      }
+    }
+  }
+
+  .button-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+
+  .h3-style {
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
+
+  .text-area {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+}

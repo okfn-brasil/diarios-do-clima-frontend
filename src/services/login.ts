@@ -1,5 +1,5 @@
 import { config, request } from './service-utils';
-import { LoginModel } from '@app/models/login.model';
+import { LoginModel, LoginResponse } from '@app/models/login.model';
 
 export default class LoginService {
   currentUrl = '/token/';
@@ -15,7 +15,7 @@ export default class LoginService {
       method: 'POST',
       body: newForm,
       notUseToken: true,
-      customResponseHandler: (response: any) => config.handleResponse(response, true)
+      customResponseHandler: (response: LoginResponse) => config.handleResponse(response, true)
     });
   }
 

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { urls } from '@app/ui/utils/urls';
 import { RootState } from '@app/stores/store';
-import { UserState } from '@app/stores/user.store';
+import { UserState } from '@app/models/user.model';
 
 interface PropsLinkManager {
   children: JSX.Element;
@@ -12,7 +12,7 @@ interface PropsLinkManager {
 
 interface ConditionModel {
   url: string;
-  condition: (x: any) => boolean;
+  condition: (x: UserState) => boolean;
   newUrl: string;
 }
 

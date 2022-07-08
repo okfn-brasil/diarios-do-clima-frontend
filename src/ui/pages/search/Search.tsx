@@ -4,32 +4,36 @@ import SearchField from './searchField/SearchField';
 import SearchList from './searchList/SearchList';
 import { Dispatch, useEffect, useState } from 'react';
 import ReportsService from '@app/services/reports';
-import SearchFilters from './searchFilters/SearchFilter';
+import SearchFilters from './searchFilters/SearchFilters';
 import { parseReports, ReportModel, ReportsModel } from '@app/models/reports.model';
 import SearchPagination from './searchPagination/SearchPagination';
-import { FiltersState } from '@app/stores/filters.store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@app/stores/store';
 import Loading from '@app/ui/components/loading/Loading';
+import { FiltersState } from '@app/models/filters.model';
 
 interface PropsSearch {
   isDesktop: boolean;
 }
 
+let timeout: ReturnType<typeof setTimeout>;
 const pageKeys: string[] = ['itemsPerPage', 'order'];
 
 const Search = ({isDesktop}: PropsSearch) => {
   const filters: FiltersState = useSelector((state: RootState) => state.filter);
   const reportsService = new ReportsService();
-  const [showFiltersMobile, setFiltersMobileVisibility] : [boolean, Dispatch<boolean>] = useState(false);
+  const [showFiltersMobile, setFiltersMobileVisibility] : [boolean, Dispatch<boolean>] = useState(true);
   const [listItems, setListItems] : [ReportModel[], Dispatch<ReportModel[]>] = useState([] as ReportModel[]);
   const [currPage, setPage] : [number, Dispatch<number>] = useState(0);
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
 
-
   useEffect(() => {
     if  (Object.keys(filters).filter(item => !pageKeys.includes(item)).length) {
-      getItemsList();
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        console.log(filters)
+        getItemsList();
+      }, 400)
     }
   }, [filters]);
 
@@ -74,15 +78,15 @@ const Search = ({isDesktop}: PropsSearch) => {
         <SearchField onClickFilters={onClickFilters} isDesktop={isDesktop}/>
         {
           showFiltersMobile && !isDesktop ? 
-          <div style={{position: 'fixed', width: '100vw', height: '100vh', top: '0', left: '0', zIndex: 9999}}>
-            <SearchFilters onClose={onCloseFilters} />
+          <div style={{position: 'fixed', width: '100vw', height: '100vh', top: '0', left: '0', zIndex: 999}}>
+            <SearchFilters onClose={onCloseFilters} isDesktop={false}/>
           </div>
           : <></>
         }
         <Grid container>
           {isDesktop ? 
             <Grid item sm={3}>
-              <SearchFilters />
+              <SearchFilters isDesktop={true}/>
             </Grid> 
             :
             <></>

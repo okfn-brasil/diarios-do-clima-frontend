@@ -1,3 +1,5 @@
+@import '/src/styles/globals.scss';
+
 .shadow {
   position: fixed;
   width: 100vw;
@@ -9,4 +11,56 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.become-pro {
+  .h3-style {
+    font-family: Sora;
+    color: $darkBlue;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    margin: 10px 0;
+    color: $gray5;
+  }
+
+  .text-space {
+    margin: 30px 0 0;
+  }
+
+  .check-item {
+    position: relative;
+    padding-left: 36px;
+    margin-top: 20px;
+  }
+  
+  .check-icon {
+    top: 0;
+    position: absolute;
+    left: 0;
+  };
+  
+  .check-group {
+    margin-bottom: 18px;
+  }
+  
+  .card-button {
+    width: 100%;
+    margin-top: 18px;
+  }
+
+  .button-area {
+    margin-top: 34px;
+    margin-bottom: 50px;
+
+    @media only screen and (min-width: $desktopSize) {
+      margin-bottom: 141px;
+    }
+  }
+
+  .button-gray {
+    color: $gray5;
+    font-size: 16px;
+  }
 }

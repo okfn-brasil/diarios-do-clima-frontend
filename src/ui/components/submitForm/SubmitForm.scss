@@ -1,8 +1,16 @@
-@import '@app/ui/utils/colors.scss';
+@import '/src/styles/globals.scss';
 
 .submit-form {
   cursor: pointer;
+  font-size: 16px;
   transition: 0.4s;
+  background-color: $lightGreen;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 32px;
+  border: 0;
+  transition: none;
+  color: $darkBlue;
 
   &:disabled {
     opacity: 0.6;

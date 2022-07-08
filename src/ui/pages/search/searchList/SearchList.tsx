@@ -1,17 +1,18 @@
-import { FormControl, Grid, MenuItem, Select } from '@mui/material';
+import { FormControl, Grid, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { h3Style } from '@app/ui/utils/generalStyles';
 import EmptySearch from '@app/assets/images/icons/empty-search.svg';
 import { gray, gray5 } from '@app/ui/utils/colors';
 import { ReportModel } from '@app/models/reports.model';
 import SearchItem from './searchItem/SearchItem';
-import ButtonOutlined from '@app/ui/components/button/ButtonOutlined';
+import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import bellIcon from '@app/assets/images/icons/black-bell.svg';
 import { mobileButtonStyle } from '../search.styles';
 import { selectIcon } from '@app/ui/utils/forms.utils';
-import { FiltersState, updateFilters } from '@app/stores/filters.store';
+import { updateFilters } from '@app/stores/filters.store';
 import { Dispatch, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@app/stores/store';
+import { FiltersState } from '@app/models/filters.model';
 
 interface PropsSearchList {
   list?: ReportModel[];
@@ -24,7 +25,7 @@ const SearchList = ({list, listSize, isDesktop}: PropsSearchList) => {
   const dispatch = useDispatch();
   const [order, setOrder] : [string, Dispatch<string>] = useState(filters.order as string);
 
-  const updateOrder = (event: any) => {
+  const updateOrder = (event: SelectChangeEvent<string>) => {
     const value = event.target.value;
     setOrder(value);
     dispatch(updateFilters({order: value}));

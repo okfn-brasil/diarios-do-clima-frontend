@@ -1,6 +1,11 @@
 import { refreshToken } from "./refreshToken";
 import { tokenKeys } from "../ui/utils/storage-utils";
 
+export interface HeadersModel {
+  'Content-Type': string;
+  Authorization: string;
+}
+
 const contentType = { 'Content-Type': 'application/json' };
 
 export interface TokensModel {
@@ -12,7 +17,7 @@ interface ReqData {
   url: string;
   method: string;
   notUseToken?: boolean;
-  customHeaders?: HeadersInit;
+  customHeaders?: HeadersModel;
   body?: any;
   customResponseHandler?: any;
 }
@@ -21,7 +26,7 @@ export const config = {
   apiUrl: `http${location.hostname.includes('localhost') ? '' : 's'}://staging.diariodoclima.jurema.la/api`,
   headers: contentType,
   tokenHeaders: (tokens?: TokensModel) => {
-    const headers = contentType as any;
+    const headers = contentType as HeadersModel;
     if(!tokens) {
       tokens = {
         access: localStorage.getItem(tokenKeys.access) as string,
@@ -58,5 +63,5 @@ export const request = (reqData: ReqData) => {
     headers: reqData.notUseToken ? config.headers : (reqData.customHeaders || config.tokenHeaders()),
     body: reqData.body ? JSON.stringify(reqData.body) : null
   })
-  .then(response => config.handleResponse(response));
+  .then(response => reqData.customResponseHandler ? reqData.customResponseHandler(response) : config.handleResponse(response));
 }

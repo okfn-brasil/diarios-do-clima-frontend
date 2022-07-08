@@ -1,0 +1,60 @@
+@import '/src/styles/globals.scss';
+
+.about-page {
+  .top-space {
+    background-color: $blue;
+  }
+  .h2-style {
+    font-family: Sora;
+  }
+
+  .about-header {
+    .paragraph-style {
+      color: $white;
+      margin-bottom: 0;
+    }
+
+    .h2-style {
+      margin: 8px 0;
+      color: $white;
+    }
+  }
+
+  .banner {
+    height: 360px;
+    overflow: hidden;
+    margin-top: -2px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .subtitle {
+    font-size: 14px;
+    line-height: 16px;
+    margin-top: 8px;
+    color: $gray5;
+  }
+
+  .gray-area {
+    .h3-style {
+      margin: 0 0 8px;
+    }
+  }
+
+  .partners {
+    .partners-list {
+      padding-top: 10px;
+    }
+
+    .partner-logo {
+      margin-bottom: 16px;
+    }
+
+    .blue-link {
+      font-size: 14px;
+    }
+  }
+}
+

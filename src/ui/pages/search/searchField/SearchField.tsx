@@ -3,9 +3,9 @@ import { darkBlue, green } from '@app/ui/utils/colors';
 import searchIcon from '@app/assets/images/icons/search.svg';
 import bellIcon from '@app/assets/images/icons/bell.svg';
 import filterIcon from '@app/assets/images/icons/filter.svg';
-import ButtonGreen from '@app/ui/components/button/ButtonGreen';
-import ButtonOutlined from '@app/ui/components/button/ButtonOutlined';
-import { Dispatch, useState } from 'react';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
+import { ChangeEvent, Dispatch, FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateFilters } from '@app/stores/filters.store';
 import { mobileButtonStyle } from '../search.styles';
@@ -13,19 +13,19 @@ import './SearchField.scss';
 
 interface PropsSearchField {
   isDesktop: boolean;
-  onClickFilters: any;
+  onClickFilters: () => void;
 }
 
 const SearchField = ({isDesktop, onClickFilters}: PropsSearchField) => {
   const dispatch = useDispatch();
   const [query, setQuery] : [string, Dispatch<string>] = useState('');
 
-  const updateQuery = (event: any) => {
+  const updateQuery = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setQuery(value);
   }
 
-  const onSubmit = (e: any) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(updateFilters({query: query}));
   }

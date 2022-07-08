@@ -1,0 +1,7 @@
+@import '/src/styles/globals.scss';
+
+.button-outlined.MuiButtonBase-root {
+  background-color: transparent;
+  font-weight: 600;
+  border: 1px solid $gray;
+}

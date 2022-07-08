@@ -1,5 +1,5 @@
 import { ReportModel } from '@app/models/reports.model';
-import { hyperLinkStyle } from '@app/ui/components/hyperLink/hyperLinkStyle';
+import HyperLink from '@app/ui/components/hyperLink/HyperLink';
 import { black, darkBlue, gray4 } from '@app/ui/utils/colors';
 
 interface PropsSearchItem {
@@ -17,7 +17,7 @@ const SearchItem = ({data}: PropsSearchItem) => {
         {data.created_at as string} • <span style={{textDecoration: 'underline'}}>{data.location}</span>
       </div>
       <a className='hover-animation' style={{position: 'relative'}} target='_blank' href={data.file}>
-        <span style={hyperLinkStyle}>Baixar diário oficial</span>
+        <HyperLink>Baixar diário oficial</HyperLink>
         <div
           style={{
             position: 'absolute',

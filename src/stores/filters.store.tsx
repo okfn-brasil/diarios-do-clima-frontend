@@ -1,17 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-
-export interface FiltersStatePayload {
-  itemsPerPage?: number;
-  query?: string;
-  order?: string;
-}
-
-export interface FiltersState {
-  itemsPerPage: number;
-  query?: string;
-  order?: string;
-}
+import { FiltersState, FiltersStatePayload } from '@app/models/filters.model';
 
 const initialState: FiltersState = {
   itemsPerPage: 6,

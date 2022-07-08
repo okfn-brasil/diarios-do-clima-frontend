@@ -2,7 +2,7 @@ import { darkBlue, gray1 } from '@app/ui/utils/colors';
 import { fontSora } from '@app/ui/utils/fonts';
 import { FormControl, Grid, Input, InputLabel, MenuItem, Select } from '@mui/material';
 import InputError from '@app/ui/components/inputError/inputError';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react';
 import { inputStyle } from '@app/ui/utils/generalStyles';
 import { InputModel } from '@app/models/forms.model';
 import { FormPurchaseModel } from '@app/models/purchase.model';
@@ -17,6 +17,21 @@ import { userUpdate } from '@app/stores/user.store';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { urls } from '@app/ui/utils/urls';
 import './PurchaseForm.scss';
+
+interface ValidationModel {
+  card: (s: InputModel) => string | Boolean;
+  fullName: (s: InputModel) => string | Boolean;
+  cvv: (s: InputModel) => string | Boolean;
+  address: (s: InputModel) => string | Boolean;
+  city: (s: InputModel) => string | Boolean;
+  district: (s: InputModel) => string | Boolean;
+  cep: (s: InputModel) => string | Boolean;
+  cpf: (s: InputModel) => string | Boolean;
+  phone: (s: InputModel) => string | Boolean;
+  birthday: (s: InputModel) => string | Boolean | undefined;
+  validity: (s: InputModel) => string | Boolean | undefined;
+  [key: string]: (s: InputModel) => string | Boolean | undefined;
+}
 
 const emptyError = <></>;
 const inputsDefaultValue: FormPurchaseModel = {
@@ -42,7 +57,7 @@ const validateDate = (value: string, minMaxValidation: Function) => {
   const year = dateArray[dateArray.length - 1];
   const month = dateArray[dateArray.length - 2];
   const day = dateArray[dateArray.length - 3] || 1;
-  const newDate: any = new Date(`${month}/${day}/${year}`);
+  const newDate: Date = new Date(`${month}/${day}/${year}`);
   return newDate.toString() === 'Invalid Date' || minMaxValidation(newDate) ? 'A data inserida é inválida' : false;
 }
 
@@ -63,7 +78,7 @@ const cardValidation = (value: string, text: string) => {
   return !getCardType(getCardValue(value)) ? text : false;
 }
 
-const fieldValidations: any = {
+const fieldValidations: ValidationModel = {
   card: (s: InputModel) => { return cardValidation(s.value, 'O cartão inserido é inválido')},
   fullName: (s: InputModel) => { return inputValidation(s.value, 8, 'O campo deve possuir no mínimo 8 caracteres')},
   cvv: (s: InputModel) => { return inputValidation(s.value, 3, 'O CVV inserido é inválido')},
@@ -122,15 +137,15 @@ const PurchaseForm = () => {
     setInputs((values: FormPurchaseModel) => ({...values, [name]: { value: value, isValid: values[name].isValid }}));
   }
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitError(emptyError);
     let errors = [];
     Object.keys(inputs).forEach((key: string) => {
       let input: InputModel = inputs[key];
-      let validator: any = fieldValidations[key] ? fieldValidations[key](input) : false;
+      let validator = fieldValidations[key] ? fieldValidations[key](input) : false;
       if(inputs[key].value) {
-        setInputs((values: FormPurchaseModel) => ({...values, [key]: {...input, errorMessage: validator}}))
+        setInputs((values: FormPurchaseModel) => ({...values, [key]: {...input, errorMessage: validator as string}}))
         if(typeof validator === 'string' || validator instanceof String) {
           errors.push(key);
         }
@@ -165,7 +180,7 @@ const PurchaseForm = () => {
       style={{display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap'}}
       onSubmit={handleSubmit}
     >
-      <PurchaseSubmit phoneMethod={phoneMethod as any} addressMethod={addressMethod as any} isSubmitting={isLoading} onSuccess={onSuccess} onError={onError} form={submitForm} />
+      <PurchaseSubmit phoneMethod={phoneMethod} addressMethod={addressMethod} isSubmitting={isLoading} onSuccess={onSuccess} onError={onError} form={submitForm} />
       <Loading isLoading={isLoading}></Loading>
       <Grid item sm={7} xs={12}>
         <div>

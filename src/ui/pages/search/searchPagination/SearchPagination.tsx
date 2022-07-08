@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import { darkBlue, gray, gray2, gray5, lightGreen } from "@app/ui/utils/colors";
 
 interface Pagination {
-  onChangePage: any;
+  onChangePage: (e: number) => void;
   listSize: number;
   itemsPerPage: number;
   currentPage: number;

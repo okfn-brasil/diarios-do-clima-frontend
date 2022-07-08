@@ -1,0 +1,98 @@
+@import '/src/styles/globals.scss';
+
+.we-offer {
+
+  .tab-grid {
+    justify-content: center;
+    padding-bottom: 24px;
+
+    @media only screen and (min-width: $desktopSize) {
+      justify-content: left;
+    }
+  }
+
+  .tab-default {
+    cursor: pointer;
+    transition: 0.4s;
+    font-weight: 600;
+    padding-top: 0px;
+  }
+
+  .tab-selected {
+    @extend .tab-default;
+    border-bottom: 5px solid $green;
+    padding-bottom: 2px;
+  }
+
+  .tab-area {
+    width: 68px;
+    height: 68px;
+    background-color: $darkBlue;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+
+    img {
+      width: 24px;
+    }
+    
+    @media only screen and (min-width: $desktopSize) {
+      margin-right: 16px;
+      margin-bottom: 0;
+    }
+  }
+
+  .h3-style {
+    font-family: Sora;
+    margin: 0 0 8px;
+    padding-top: 0;
+    padding-bottom: 30px;
+    text-align: 'center';
+
+    @media only screen and (min-width: $desktopSize) {
+      margin-right: 16px ;
+      margin-bottom: 14px;
+      padding-bottom: 56px;
+    }
+  }
+
+  .central-img {
+    background-color: $lightGray3;
+    padding-top: 80px;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-top: 0;
+    padding-bottom: 80px;
+    max-width: 100%;
+    max-height: 196px;
+    margin-bottom: 14px;
+
+    @media only screen and (min-width: $desktopSize) {
+      max-height: 320px;
+      margin-bottom: 0;
+      padding-left: 125px;
+      padding-right: 125px;
+    }
+  }
+
+  .call-to-action {
+    .h3-style {
+      padding-bottom: 0;
+    }
+
+    .paragraph-style {
+      margin-top: 0;
+    }
+
+    .call-to-action-button {
+      margin-bottom: 18px;
+      min-width: 100%;
+        
+      @media only screen and (min-width: $desktopSize) {
+        min-width: unset;
+      }
+    }
+  }
+}

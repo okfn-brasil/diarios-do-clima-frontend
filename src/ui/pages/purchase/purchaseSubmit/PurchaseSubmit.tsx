@@ -1,7 +1,19 @@
 import { useEffect } from "react";
 import { FormPurchaseModel } from "@app/models/purchase.model";
 import BillingService, { getCardType } from "@app/services/billing";
-declare const PagSeguroDirectPayment: any;
+declare const PagSeguroDirectPayment: {
+  setSessionId: (e: string) => {};
+  createCardToken: (e: {
+    cardNumber: string;
+    brand: string | null;
+    cvv: string;
+    expirationMonth: string;
+    expirationYear: string;
+    complete: (response: PagSeguroResponse) => void;
+    success: (response: PagSeguroResponse) => void;
+    error: () => void;
+  }) => {}
+};
 
 interface PagSeguroResponse {
   error: boolean;
@@ -13,16 +25,16 @@ interface PagSeguroResponse {
 interface PropsPurchaseSubmit {
   isSubmitting: boolean;
   form: FormPurchaseModel;
-  onSuccess?: any;
-  onError?: any;
-  addressMethod: 'POST' | 'PUT';
-  phoneMethod: 'POST' | 'PUT';
+  onSuccess: (e: string) => void;
+  onError: (e: JSX.Element) => void;
+  addressMethod: string;
+  phoneMethod: string;
 }
 
 const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, addressMethod}: PropsPurchaseSubmit) => {
   const billingService = new BillingService();
 
-  const errorMessage = (e: any) => {
+  const errorMessage = (e: {[key: string] : string}) => {
     const errorKey = e ? Object.keys(e)[0] : '';
     return(
       <span>

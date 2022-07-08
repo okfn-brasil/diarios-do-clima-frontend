@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
 import { urls } from '@app/ui/utils/urls';
 import { RootState } from '@app/stores/store';
-import { UserState } from '@app/stores/user.store';
+import { UserState } from '@app/models/user.model';
 
 const loggedPaths = [urls.purchase.url];
 const notLoggedPaths = [urls.registration.url];

@@ -1,14 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { tokenKeys, deleteTokens } from '../ui/utils/storage-utils';
-
-export interface UserState {
-  access?: string | null;
-  refresh?: string | null;
-  full_name?: string | null;
-  id?: string | null;
-  plan_pro?: string | null;
-}
+import { UserState } from '@app/models/user.model';
 
 const initialState: UserState = {
   access: localStorage.getItem(tokenKeys.access) || null,

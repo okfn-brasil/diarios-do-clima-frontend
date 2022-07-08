@@ -1,3 +1,11 @@
+export interface UserState {
+  access?: string | null;
+  refresh?: string | null;
+  full_name?: string | null;
+  id?: string | null;
+  plan_pro?: string | null;
+}
+
 export interface UserResponseModel {
   address: {
     city: string;
@@ -25,7 +33,7 @@ export interface UserResponseModel {
   full_name: string;
   gender: string;
   id: string;
-  last_login: any;
+  last_login: string;
   phone: {
     area_code: string;
     number: string;

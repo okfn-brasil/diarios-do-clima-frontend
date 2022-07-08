@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import computerImage from '@app/assets/images/computer-registration.svg';
@@ -20,6 +20,21 @@ import { selectIcon } from '@app/ui/utils/forms.utils';
 import { inputStyle } from '@app/ui/utils/generalStyles';
 import './registration.scss';
 
+interface FormsSelector {
+  1: JSX.Element;
+  2: JSX.Element;
+  3: JSX.Element;
+  [key: number]: JSX.Element;
+}
+
+interface FieldValidation {
+  username: (s: InputModel) => string | boolean;
+  password: (s: InputModel) => string | boolean;
+  email: (s: InputModel) => string | boolean;
+  city: (s: InputModel) => string | boolean;
+  [key: string]: (s: InputModel) => string | Boolean | undefined;
+}
+
 const emptyError = <></>;
 const inputsDefaultValue = {
   username: { value: '' },
@@ -31,7 +46,7 @@ const inputsDefaultValue = {
   city: { value: '' },
 };
 
-const fieldValidations: any = {
+const fieldValidations: FieldValidation = {
   username: (s: InputModel) => { return s.value && s.value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false },
   password: (s: InputModel) => { return s.isValid ? false : 'A senha deve atender todos os requisitos a baixo' },
   email: (s: InputModel) => { return /\S+@\S+\.\S+/.test(s.value) ? false : 'O e-mail inserido é invalido' },
@@ -54,13 +69,13 @@ const Registration = () => {
     setInputs((values: RegistrationModel) => ({...values, [name]: {value: value, isValid: valid }}));
   }
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     let errors = [];
     ['username', 'email', 'password', 'city'].forEach((key: string) => {
       let input: InputModel = inputs[key];
-      let validator: any = fieldValidations[key] ? fieldValidations[key](input) : false;
+      let validator = fieldValidations[key] ? fieldValidations[key](input) : false;
       if(inputs[key].value) {
-        setInputs((values: RegistrationModel) => ({...values, [key]: {...input, errorMessage: validator}}))
+        setInputs((values: RegistrationModel) => ({...values, [key]: {...input, errorMessage: validator as string}}))
         if(typeof validator === 'string' || validator instanceof String) {
           errors.push(key);
         }
@@ -110,7 +125,7 @@ const Registration = () => {
   }
 
   const getFormStep = (step: number) => {
-    const forms: any = {
+    const forms: FormsSelector = {
       1: formStepOne(),
       2: formStepTwo(),
       3: formStepThree(),
@@ -240,9 +255,9 @@ const Registration = () => {
                 >
                   <div>
                     <div style={{display: 'flex', marginBottom: '38px'}}>
-                      <div style={stepStyle} className={step === 1 ? 'selected' : ''}>1</div>
-                      <div style={stepStyle} className={step === 2 ? 'selected' : ''}>2</div>
-                      <div style={stepStyle} className={step === 3 ? 'selected' : ''}>3</div>
+                      <div style={step === 1 ? stepSelectedStyle : stepStyle}>1</div>
+                      <div style={step === 2 ? stepSelectedStyle : stepStyle}>2</div>
+                      <div style={step === 3 ? stepSelectedStyle : stepStyle}>3</div>
                     </div> 
                   </div>
                   {getFormStep(step)}
@@ -342,3 +357,9 @@ const stepStyle: React.CSSProperties = {
   color: gray5,
   fontSize: '18px'
 }
+
+const stepSelectedStyle: React.CSSProperties = {
+  ...stepStyle,
+  backgroundColor: 'rgba(127, 227, 137, 0.45)',
+}
+  

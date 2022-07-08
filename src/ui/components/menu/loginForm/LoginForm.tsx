@@ -2,12 +2,10 @@ import { Grid, Input } from '@mui/material';
 import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
-import { fontTitle3Black, fontRoboto } from '@app/ui/utils/fonts';
 import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import { inputStyle } from '@app/ui/utils/generalStyles';
 import SubmitForm from '@app/ui/components/submitForm/SubmitForm';
-import { blue, red } from '@app/ui/utils/colors';
 import { urls } from '@app/ui/utils/urls';
 import { LoginModel, LoginResponse } from '@app/models/login.model';
 import LoginService from '@app/services/login';
@@ -19,11 +17,10 @@ import { UserResponseModel } from '@app/models/user.model';
 import './LoginForm.scss';
 
 interface PropsLoginForm{
-  isDesktop: boolean;
-  showLoginForm: any;
+  showLoginForm: (e: boolean) => void;
 }
 
-const LoginForm = ({isDesktop, showLoginForm}: PropsLoginForm) => {
+const LoginForm = ({showLoginForm}: PropsLoginForm) => {
   const dispatch = useDispatch();
   const loginService = new LoginService();
   const accountService = new AccountService();
@@ -35,9 +32,9 @@ const LoginForm = ({isDesktop, showLoginForm}: PropsLoginForm) => {
     password: '',
   });
 
-  const inputChange = (event: any) => {
+  const inputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target;
-    setInputs((values: any) => ({...values, [name]: value}));
+    setInputs((values: LoginModel) => ({...values, [name]: value}));
   }
 
   const changeFieldType = () => {
@@ -48,7 +45,7 @@ const LoginForm = ({isDesktop, showLoginForm}: PropsLoginForm) => {
     showLoginForm(false);
   }
   
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(false);
     setLoading(true);
@@ -86,31 +83,18 @@ const LoginForm = ({isDesktop, showLoginForm}: PropsLoginForm) => {
     <div className='login-form'>
       <Loading isLoading={isLoading}></Loading>
       <Grid container style={{justifyContent: 'center'}}>
-        <Grid 
-          item 
-          xs={12} 
-          sm={5} 
-          style={{
-            backgroundColor: 'white',
-            padding: '24px 24px',
-            height: isDesktop ? 'unset' :'100vh',
-            minWidth: '350px',
-            overflowY: 'auto',
-            overflowX: 'hidden',
-          }} 
-          className='container'
-          >
+        <Grid item xs={12} sm={5} className='container login-modal'>
           <div>
-            <CloseIcon className='hover-animation' onClick={closeModal} sx={{marginBottom: '20px'}} />
+            <CloseIcon className='hover-animation close-icon' onClick={closeModal} />
           </div>
-          <hr style={{margin: 0, borderTop: 'none', width: 'calc(100% + 46px)', marginLeft: '-24px'}}/>
+          <hr className='thin-line' />
           <div>
-            <img style={{width: '164px', margin: '32px 0'}} src={DiarioLogoBlack}/>
+            <img className='logo' src={DiarioLogoBlack}/>
           </div>
-          <p style={{...fontTitle3Black, margin: '0'}}>Acesse sua conta</p>
-          <p style={{...fontRoboto, fontSize: '18px', margin: '10px 0'}}>Lorem ipsum sit amet consectetur</p>
+          <p className='h3-style'>Acesse sua conta</p>
+          <p className='paragraph-style'>Lorem ipsum sit amet consectetur</p>
 
-          <form style={{marginTop: '8px'}} onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <Input required type='email' value={inputs.email} sx={inputStyle} name='email' onChange={inputChange} placeholder='E-mail' />
             
             <div className='password-field'>
@@ -118,37 +102,23 @@ const LoginForm = ({isDesktop, showLoginForm}: PropsLoginForm) => {
               <Input required type={passFieldType ? 'password' : 'text'} value={inputs.password} sx={inputStyle} name='password' onChange={inputChange} placeholder='Senha' />
             </div>
             
-            <SubmitForm disabled={isLoading} sx={{marginBottom: '32px'}}/>
+            <div className='submit-login'>
+              <SubmitForm  disabled={isLoading} />
+            </div>
           </form>
 
           {error ? 
-              <div
-                style={{
-                  ...fontRoboto,
-                  color: red,
-                  fontSize: '14px',
-                  margin: '15px 0'
-                }}
-              >
-                Ocorreu um erro ao tentar logar em sua conta, por favor, verifique os dados e tente novamente.
-              </div> 
-              : <></>}
+            <div className='error'>
+              Ocorreu um erro ao tentar logar em sua conta, por favor, verifique os dados e tente novamente.
+            </div> 
+            : <></>
+          }
 
           <div>
-            <div  style={{
-              ...fontRoboto,
-              fontSize: '14px',
-              marginBottom: '30px'
-            }}>
+            <div className='registration-link'>
               Não possui uma conta?
               <Link to={urls.registration.url} onClick={closeModal} className='hover-animation'>
-                <span
-                  style={{
-                    color: blue,
-                    fontWeight: 600,
-                    marginLeft: '5px',
-                  }}
-                >
+                <span className='blue-link'>
                   Faça o cadastro
                 </span>
               </Link>

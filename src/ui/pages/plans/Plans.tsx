@@ -1,30 +1,25 @@
 import { Grid } from '@mui/material';
-import ButtonGreen from '@app/ui/components/button/ButtonGreen';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import { Link } from 'react-router-dom';
-import { fontRoboto, fontSora } from '@app/ui/utils/fonts';
-import { darkBlue, darkGray1, gray2, gray5, green, lightGray3, pink } from '@app/ui/utils/colors';
-import { h2Style, h3Style, paragraphStyle } from '@app/ui/utils/generalStyles';
+import { pink } from '@app/ui/utils/colors';
 import LinkManager from '@app/ui/components/linkManager/LinkManager';
 import { urls } from '@app/ui/utils/urls';
-import ButtonOutlined from '@app/ui/components/button/ButtonOutlined';
+import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import CheckIcon from '@mui/icons-material/Check';
 import HyperLink from '@app/ui/components/hyperLink/HyperLink';
 import FAQItem from './FaqItem/FaqItem';
+import './Plans.scss';
 
-interface PropsPlans {
-  isDesktop: boolean;
-}
-
-const Plans = ({isDesktop}: PropsPlans) => {
+const Plans = () => {
   return (
     <div className='plan-page'>
-      <Grid container item className='container' sm={12} justifyContent='center' style={{backgroundColor: darkBlue, marginTop: '-80px'}}>
-        <Grid container item sm={8} style={{paddingTop: isDesktop ? '80px' : '56px'}}>
-          <div style={{margin: isDesktop ? '80px 0' : '56px 0', color: 'white'}}>
-            <div style={{...fontSora, lineHeight: '18px', fontWeight: 600, fontSize: '14px', color: green}}>
+      <Grid container item className='container top-space' sm={12} justifyContent='center'>
+        <Grid container item sm={8} >
+          <div className='vertical-spacing-container plan-header'>
+            <div className='green-title'>
               Diário do Clima PRO
             </div>
-            <h2 style={{...h2Style, color: 'white', margin: '16px 0',}}>
+            <h2 className='h2-style'>
               Acesse todos os benefícios e nos ajude a crescer
             </h2>
             <LinkManager to={urls.purchase.url}>
@@ -32,92 +27,92 @@ const Plans = ({isDesktop}: PropsPlans) => {
                 Iniciar teste grátis
               </ButtonGreen>
             </LinkManager>
-            <p style={{...paragraphStyle, color: 'white', fontSize: '20px', lineHeight: '25px', marginBottom: '8px', marginTop: '33px'}}>
+            <p className='paragraph-style sub-title'>
               Teste sem custos por 7 dias • Depois, R$00,00/mês
             </p>
-            <p style={{...paragraphStyle, color: 'white', margin: 0}}>
+            <p className='paragraph-style'>
               Enviaremos um lembrete 2 dias antes do período de teste terminar e você pode cancelar a qualquer momento
             </p>
           </div>
         </Grid>
       </Grid>
       <Grid container item className='container' sm={12} justifyContent='center'>
-        <Grid item sm={8} style={{padding: isDesktop ? '80px 0' : '56px 0'}}>
-          <h2 style={{...h2Style, margin: '0'}}>Assinatura</h2>
-          <p style={{...paragraphStyle, fontSize: '20px', lineHeight: '25px', color: gray5, margin: '8px 0 0'}}>Tenha nas mãos todas as informações que você precisa sobre políticas ambientais.</p>
+        <Grid item sm={8} className='vertical-spacing-container plans'>
+          <h2 className='h2-style'>Assinatura</h2>
+          <p className='desc-style'>Tenha nas mãos todas as informações que você precisa sobre políticas ambientais.</p>
           
           <Grid container justifyContent='space-between'>
-            <div style={isDesktop ? cardStyle : cardStyleMobile}>
-              <h4 style={cardTitle}>Básico</h4>
-              <p style={cardDesc}>Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais </p>
-              <h1 style={cardPrice}>Grátis</h1>
-              <div style={cardStatus}>Você já está utilizando esta versão.</div>
+            <div className='card-plan'>
+              <h4 className='card-title'>Básico</h4>
+              <p className='card-desc'>Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais </p>
+              <h1 className='card-price'>Grátis</h1>
+              <div className='card-status'>Você já está utilizando esta versão.</div>
               <Link to={urls.search.url} className='hover-animation'>
-                <ButtonOutlined sx={cardButton}>
+                <ButtonOutlined classess='card-button'>
                   Começar a buscar
                 </ButtonOutlined>
               </Link>
               <div>
-                <div style={cardListCheck}>
-                  <span style={checkIcon}><CheckIcon color='disabled'/></span>
+                <div className='card-list-check'>
+                  <span className='check-icon'><CheckIcon color='disabled'/></span>
                   Busca por palavra-chave ou CNPJ
                 </div>
-                <div style={cardListCheck}>
-                  <span style={checkIcon}><CheckIcon color='disabled'/></span>
+                <div className='card-list-check'>
+                  <span className='check-icon'><CheckIcon color='disabled'/></span>
                   Busca avançada e/ou
                 </div>
-                <div style={cardListCheck}>
-                  <span style={checkIcon}><CheckIcon color='disabled'/></span>
+                <div className='card-list-check'>
+                  <span className='check-icon'><CheckIcon color='disabled'/></span>
                   Filtro por município
                 </div>
-                <div style={cardListCheck}>
-                  <span style={checkIcon}><CheckIcon color='disabled'/></span>
+                <div className='card-list-check'>
+                  <span className='check-icon'><CheckIcon color='disabled'/></span>
                   Visualização de resultados publicados nos últimos 3 meses
                 </div>
               </div>
             </div>
 
-            <div style={{...isDesktop ? cardStyle : cardStyleMobile, border: '2px solid ' + pink}}>
-              <h4 style={cardTitle}>PRO</h4>
-              <p style={cardDesc}>Para organizações que precisam das informações mais quentes sobre políticas ambientais</p>
-              <h1 style={cardPrice}>R$0,00<span>/mês</span></h1>
+            <div className='card-pro'>
+              <h4 className='card-title'>PRO</h4>
+              <p className='card-desc'>Para organizações que precisam das informações mais quentes sobre políticas ambientais</p>
+              <h1 className='card-price'>R$0,00<span>/mês</span></h1>
               <Link to={urls.purchase.url} className='hover-animation'>
-                <ButtonGreen sx={{...cardButton, color: darkBlue, marginBottom: '20px'}}>
+                <ButtonGreen classess='card-button'>
                   Começar teste grátis
                 </ButtonGreen>
               </Link>
-              <Grid container justifyContent='center' sx={{marginBottom: '28px'}}>
+              <Grid container justifyContent='center' className='plan-pro-link'>
                 <HyperLink link={urls.purchase.url}>
                   ou assinar agora
                 </HyperLink>
               </Grid>
               <div>
-                <div style={cardListCheck}>
-                  <span style={checkIcon}><CheckIcon color='disabled'/></span>
+                <div className='card-list-check'>
+                  <span className='check-icon'><CheckIcon color='disabled'/></span>
                   Busca por palavra-chave ou CNPJ
                 </div>
-                <div style={cardListCheck}>
-                  <span style={checkIcon}><CheckIcon color='disabled'/></span>
+                <div className='card-list-check'>
+                  <span className='check-icon'><CheckIcon color='disabled'/></span>
                   Busca avançada e/ou
                 </div>
-                <div style={cardListCheck}>
-                  <span style={checkIcon}><CheckIcon color='disabled'/></span>
+                <div className='card-list-check'>
+                  <span className='check-icon'><CheckIcon color='disabled'/></span>
                   Filtro por município
                 </div>
-                <div style={cardListCheck}>
-                  <span style={checkIcon}><CheckIcon color='disabled'/></span>
+                <div className='card-list-check'>
+                  <span className='check-icon'><CheckIcon color='disabled'/></span>
                   Visualização de resultados publicados nos últimos 3 meses
                 </div>
-                <div style={cardListCheckPro}>
-                  <span style={checkIconPro}><CheckIcon sx={{color: pink}}/></span>
-                  Visualização de resultados de <span style={{textDecoration: 'underline'}}>todo o histórico disponível</span> no banco de dados
+                <div className='card-list-check-pro'>
+                  <span className='check-icon'><CheckIcon sx={{color: pink}}/></span>
+                  Visualização de resultados de <span className='underline'>todo o histórico disponível</span> no banco de dados
                 </div>
-                <div style={cardListCheckPro}>
-                  <span style={checkIconPro}><CheckIcon sx={{color: pink}}/></span>
+                <div className='card-list-check-pro'>
+                  <span className='check-icon'><CheckIcon sx={{color: pink}}/></span>
                   Filtro de busca por temas inteligentes
                 </div>
-                <div style={cardListCheckPro}>
-                  <span style={checkIconPro}><CheckIcon sx={{color: pink}}/></span>
+                <div className='card-list-check-pro'>
+                  <span className='check-icon'><CheckIcon sx={{color: pink}}/></span>
                   Criação de alertas com filtros e palavras-chaves personalizadas
                 </div>
               </div>
@@ -126,18 +121,18 @@ const Plans = ({isDesktop}: PropsPlans) => {
         </Grid>
       </Grid>
 
-      <Grid container item sm={12} justifyContent='center' style={{backgroundColor: lightGray3, padding: isDesktop? '80px 0' : '56px 0'}}>
+      <Grid container item sm={12} className='vertical-spacing-container gray-area' justifyContent='center' >
           <Grid item sm={8} className='container'>
-            <h3 style={{...h3Style, margin: '0',}}>Encomende seu relatório</h3>
-            <p style={{...paragraphStyle, marginTop: '8px'}}>Para organização que precisam de conteúdo centralizado e curado por especialistas sobre um determinado assunto</p>
+            <h3 className='h3-style'>Encomende seu relatório</h3>
+            <p className='paragraph-style'>Para organização que precisam de conteúdo centralizado e curado por especialistas sobre um determinado assunto</p>
             <Grid>
               <Link to=''>
-                <ButtonGreen sx={!isDesktop ? {width: '100%', marginBottom: '16px'} : {}}>
+                <ButtonGreen classess='button'>
                   Contactar vendas
                 </ButtonGreen>
               </Link>
               <Link to=''>
-                <ButtonOutlined sx={{color: gray5, marginLeft: isDesktop ? '16px' : '', width: isDesktop ? '' : '100%'}}>
+                <ButtonOutlined classess='button button-gray'>
                   Simular custo
                 </ButtonOutlined>
               </Link>
@@ -145,10 +140,10 @@ const Plans = ({isDesktop}: PropsPlans) => {
           </Grid>
         </Grid>
 
-        <Grid container item sm={12} justifyContent='center' style={{padding: isDesktop? '80px 0' : '56px 0'}}>
+        <Grid container item sm={12} justifyContent='center' className='vertical-spacing-container'>
           <Grid item sm={8} className='container'>
-            <h3 style={{...h3Style, margin: '0',}}>50% para organizações que não visam lucro</h3>
-            <p style={{...paragraphStyle, marginTop: '8px'}}>Seu impacto é importante. O Diário do Clima apoia pessoas e organizações independentes que desejam utilizar nosso conteúdo para transformar a sociedade. Para se inscrever na lista de espera, preencha o formulário.</p>
+            <h3 className='h3-style' >50% para organizações que não visam lucro</h3>
+            <p className='paragraph-style'>Seu impacto é importante. O Diário do Clima apoia pessoas e organizações independentes que desejam utilizar nosso conteúdo para transformar a sociedade. Para se inscrever na lista de espera, preencha o formulário.</p>
             <Link to=''>
               <ButtonGreen>
                 Solicitar desconto
@@ -157,9 +152,9 @@ const Plans = ({isDesktop}: PropsPlans) => {
           </Grid>
         </Grid>
 
-        <Grid container item sm={12} justifyContent='center' style={{padding: isDesktop? '80px 0' : '56px 0'}}>
+        <Grid container item sm={12} justifyContent='center' className='vertical-spacing-container'>
           <Grid item sm={8} className='container'>
-            <h3 style={{...h2Style, margin: '0 0 56px', color: darkBlue}}>Perguntas frequentes</h3>
+            <h2 className='h2-style faq-title'>Perguntas frequentes</h2>
             <div>
               <FAQItem title='Como funciona a assinatura profissional do Diário do Clima?'>
                 Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
@@ -185,68 +180,3 @@ const Plans = ({isDesktop}: PropsPlans) => {
 
 export default Plans;
 
-const cardStyle: React.CSSProperties = {
-  width: 'calc(50% - 12px - 48px)',
-  border: '1px solid ' + gray2,
-  padding: '40px 24px',
-  marginTop: '24px',
-}
-
-const cardStyleMobile: React.CSSProperties = {
-  ...cardStyle,
-  width: 'calc(100% - 48px)',
-}
-
-
-const cardTitle: React.CSSProperties = {
-  margin: '0 0 8px', fontSize: '22px', lineHeight: '28px', color: darkBlue
-}
-
-const cardDesc: React.CSSProperties = {
-  ...paragraphStyle,
-  color: darkGray1,
-  margin: '0'
-}
-
-const cardPrice: React.CSSProperties = {
-  ...h2Style,
-  ...fontRoboto,
-  color: darkGray1,
-  fontWeight: 0,
-  margin: '22px 0 14px'
-}
-
-const cardStatus: React.CSSProperties = {
-  fontSize: '14px',
-  lineHeight: '16px',
-  color: gray5
-}
-
-const cardButton: React.CSSProperties = {
-  color: gray5, width: '100%', margin: '16px 0 25px'
-}
-
-const cardListCheck: React.CSSProperties = {
-  position: 'relative',
-  ...paragraphStyle,
-  color: gray5,
-  paddingLeft: '40px'
-}
-
-const cardListCheckPro: React.CSSProperties = {
-  ...cardListCheck,
-  fontSize: '16px',
-  lineHeight: '18px',
-  fontWeight: 600,
-}
-
-const checkIcon: React.CSSProperties = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-}
-
-const checkIconPro: React.CSSProperties = {
-  ...checkIcon,
-  top: '-3px',
-}
