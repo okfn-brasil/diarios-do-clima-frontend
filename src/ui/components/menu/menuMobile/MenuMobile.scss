@@ -1,0 +1,16 @@
+@import '/src/styles/globals.scss';
+
+.menu-mobile {
+  display: flex;
+
+  .icon-area {
+    display: flex;
+    justify-content: right;
+    width: 18px;
+    padding: 0 24px;
+
+    img {
+      width: 18px;
+    }
+  }
+}

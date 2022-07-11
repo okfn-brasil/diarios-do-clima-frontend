@@ -1,3 +1,34 @@
-.menu > span {
-  padding-right: 14px;
+@import '/src/styles/globals.scss';
+
+#root {
+  .menu-desktop  {
+    display: flex;
+    align-items: center;
+    color: $white;
+    font-size: 14px;
+
+    & > span {
+      padding-right: 14px;
+    }
+
+    .font-small-button {
+      margin-right: 16px;
+    }
+
+    .menu-desktop-link {
+      cursor: pointer;
+      margin-right: 24px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+    }
+
+    .dark-blue-link {
+      color: $darkBlue;
+    }
+
+    .logged-menu {
+      margin-left: 4px;
+      margin-top: 4px;
+    }
+  }
 }

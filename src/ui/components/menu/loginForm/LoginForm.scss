@@ -1,3 +1,5 @@
+@import '/src/styles/globals.scss';
+
 .login-form {
   position: fixed;
   width: 100vw;
@@ -13,8 +15,67 @@
     animation: fadeIn 0.4s;
   }
 
+  .login-modal {
+    background-color: $white;
+    padding: 24px 24px;
+    height: 100vh;
+    min-width: 350px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    
+    @media only screen and (min-width: $desktopSize) {
+      height: unset;
+    }
+  }
+
+  .close-icon {
+    margin-bottom: 20px
+  }
+
+  .thin-line {
+    width: calc(100% + 46px);
+    margin-left: -24px;
+  }
+
   .password-field img {
     top: calc(50% + 2px);
+  }
+
+  .logo {
+    width: 164px;
+    margin: 32px 0;
+  }
+
+  .h3-style {
+    margin: 0;
+  }
+
+  .paragraph-style {
+    margin: 10px 0;
+  }
+
+  form {
+    margin-top: 8px;
+  }
+
+  .error {
+    color: $red;
+    font-size: 14px;
+    margin: 0px 0 15px;
+  }
+
+  .submit-login {
+    margin-bottom: 32px;
+  }
+
+  .registration-link {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .blue-link {
+    margin-left: 5px;
   }
 }
 

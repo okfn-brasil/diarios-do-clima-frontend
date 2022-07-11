@@ -1,13 +1,13 @@
 import { Grid } from "@mui/material";
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import backgroundImage from '/src/assets/images/home/lead.background.png';
-import deviceImage from '/src/assets/images/home/lead.device.png';
-import ButtonGreen from '/src/ui/components/button/ButtonGreen';
-import { fontTitle1White, fontSubTitle, fontSora, fontRoboto } from '/src/ui/utils/fonts';
-import { green } from '/src/ui/utils/colors';
-import { urls } from "/src/ui/utils/urls";
-import { Link } from "react-router-dom";
+import backgroundImage from '@app/assets/images/home/lead.background.png';
+import deviceImage from '@app/assets/images/home/lead.device.png';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import { fontTitle1White, fontSubTitle, fontSora, fontRoboto } from '@app/ui/utils/fonts';
+import { green } from '@app/ui/utils/colors';
+import { urls } from "@app/ui/utils/urls";
+import LinkManager from "@app/ui/components/linkManager/LinkManager";
 
 const Lead = () => {
   const theme = useTheme();
@@ -48,14 +48,14 @@ const Lead = () => {
             }}>
               O diário do Clima filtra as informações dos diários oficiais para você descobrir o que precisa mais fácil e rapidamente
             </p>
-          <Link to={urls.registration.url}>
-            <ButtonGreen sx={{
-              minWidth: '200px',
-              ...(!isDesktop && { marginBottom: '80px' }),
-            }}>
-              Começar a buscar
-            </ButtonGreen>
-          </Link>
+            <LinkManager to={urls.registration.url}>
+              <ButtonGreen sx={{
+                minWidth: '200px',
+                ...(!isDesktop && { marginBottom: '80px' }),
+              }}>
+                Começar a buscar
+              </ButtonGreen>
+            </LinkManager>
         </Grid>
         <Grid item xs={12} lg={6} sx={{
           ...(!isDesktop && { marginBottom: '-110%', paddingLeft: '0px', paddingRight: '0px', }),

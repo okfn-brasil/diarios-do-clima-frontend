@@ -1,0 +1,28 @@
+@import '/src/styles/globals.scss';
+
+.faq-item {
+  padding: 32px 0;
+  border-bottom: 1px solid $gray2;
+  cursor: pointer;
+
+  .faq-item-title {
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 600;
+  }
+
+  .faq-content {
+    font-size: 18px;
+    line-height: 22px;
+    color: $gray5;
+    transition: 0.1s; 
+    overflow: hidden;
+    max-height: 0px;
+    margin: 0;
+  }
+
+  .faq-open {
+    max-height: 100vh;
+    margin: 8px 0 0;
+  }
+}

@@ -1,9 +1,9 @@
 import { Grid } from '@mui/material';
-import Lead from './sections/Lead';
-import Data from './sections/Data';
-import WeOffer from './sections/WeOffer';
+import Lead from './sections/lead/Lead';
+import Data from './sections/data/Data';
+import WeOffer from './sections/weOffer/WeOffer';
 import HelpUs from './sections/helpus/HelpUs';
-import MoreData from './sections/MoreData';
+import MoreData from './sections/moreData/MoreData';
 
 const Home = () => {
   return (

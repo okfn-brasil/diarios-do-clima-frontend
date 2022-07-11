@@ -1,19 +1,37 @@
-import { darkBlue, gray1, red } from '/src/ui/utils/colors';
-import { fontRoboto, fontSora } from '/src/ui/utils/fonts';
+import { darkBlue, gray1 } from '@app/ui/utils/colors';
+import { fontSora } from '@app/ui/utils/fonts';
 import { FormControl, Grid, Input, InputLabel, MenuItem, Select } from '@mui/material';
-import InputError from '/src/ui/components/inputError/inputError';
-import { Dispatch, SetStateAction, useState } from 'react';
-import { inputStyle } from '/src/ui/utils/generalStyles';
-import { InputModel } from '/src/models/forms.model';
-import { FormPurchaseModel } from '/src/models/purchase.model';
-import { selectIcon } from '/src/ui/utils/forms.utils';
-import './PurchaseForm.scss';
+import InputError from '@app/ui/components/inputError/inputError';
+import { Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react';
+import { inputStyle } from '@app/ui/utils/generalStyles';
+import { InputModel } from '@app/models/forms.model';
+import { FormPurchaseModel } from '@app/models/purchase.model';
+import { selectIcon } from '@app/ui/utils/forms.utils';
 import PurchaseDetails from '../purchaseDetails/PurchaseDetails';
 import InputMask from 'react-input-mask';
-import BillingService from '/src/services/billing';
+import Loading from '@app/ui/components/loading/Loading';
+import PurchaseSubmit from '../purchaseSubmit/PurchaseSubmit';
+import BillingService, { getCardType } from '@app/services/billing';
+import { useDispatch } from 'react-redux';
+import { userUpdate } from '@app/stores/user.store';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { urls } from '/src/ui/utils/urls';
-import Loading from '/src/ui/components/loading/Loading';
+import { urls } from '@app/ui/utils/urls';
+import './PurchaseForm.scss';
+
+interface ValidationModel {
+  card: (s: InputModel) => string | Boolean;
+  fullName: (s: InputModel) => string | Boolean;
+  cvv: (s: InputModel) => string | Boolean;
+  address: (s: InputModel) => string | Boolean;
+  city: (s: InputModel) => string | Boolean;
+  district: (s: InputModel) => string | Boolean;
+  cep: (s: InputModel) => string | Boolean;
+  cpf: (s: InputModel) => string | Boolean;
+  phone: (s: InputModel) => string | Boolean;
+  birthday: (s: InputModel) => string | Boolean | undefined;
+  validity: (s: InputModel) => string | Boolean | undefined;
+  [key: string]: (s: InputModel) => string | Boolean | undefined;
+}
 
 const emptyError = <></>;
 const inputsDefaultValue: FormPurchaseModel = {
@@ -28,6 +46,9 @@ const inputsDefaultValue: FormPurchaseModel = {
   birthday: { value: '' },
   cpf: { value: '' },
   phone: { value: '' },
+  district: { value: '' },
+  complement: { value: '' },
+  number: { value: '' },
 };
 
 const validateDate = (value: string, minMaxValidation: Function) => {
@@ -36,8 +57,12 @@ const validateDate = (value: string, minMaxValidation: Function) => {
   const year = dateArray[dateArray.length - 1];
   const month = dateArray[dateArray.length - 2];
   const day = dateArray[dateArray.length - 3] || 1;
-  const newDate: any = new Date(`${month}/${day}/${year}`);
+  const newDate: Date = new Date(`${month}/${day}/${year}`);
   return newDate.toString() === 'Invalid Date' || minMaxValidation(newDate) ? 'A data inserida é inválida' : false;
+}
+
+const getCardValue = (value: string) => {
+  return getInputWithoutMask(value.replace(/ /g,''))
 }
 
 const getInputWithoutMask = (value: string) => {
@@ -49,12 +74,17 @@ const inputValidation = (value: string, minSize: number, text: string) => {
   return value && getInputWithoutMask(value).length < minSize ? text : false;
 }
 
-const fieldValidations: any = {
-  card: (s: InputModel) => { return inputValidation(s.value, 16, 'O campo deve possuir no mínimo 16 caracteres')},
+const cardValidation = (value: string, text: string) => {
+  return !getCardType(getCardValue(value)) ? text : false;
+}
+
+const fieldValidations: ValidationModel = {
+  card: (s: InputModel) => { return cardValidation(s.value, 'O cartão inserido é inválido')},
   fullName: (s: InputModel) => { return inputValidation(s.value, 8, 'O campo deve possuir no mínimo 8 caracteres')},
   cvv: (s: InputModel) => { return inputValidation(s.value, 3, 'O CVV inserido é inválido')},
   address: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres')},
   city: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres')},
+  district: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres')},
   cep: (s: InputModel) => { return inputValidation(s.value, 8, 'O CEP inserido é inválido')},
   cpf: (s: InputModel) => { return inputValidation(s.value, 11, 'O CPF inserido é inválido')},
   phone: (s: InputModel) => { return inputValidation(s.value, 11, 'O número de telefone inserido é inválido')},
@@ -65,12 +95,34 @@ const homePhoneMask = '(99) 9999-99999';
 const mobilePhoneMask = '(99) 99999-9999';
 
 const PurchaseForm = () => {
+  const dispatch = useDispatch();
   const navigate: NavigateFunction = useNavigate();
   const billingService = new BillingService();
   const [inputs, setInputs] : [FormPurchaseModel, Dispatch<SetStateAction<FormPurchaseModel>>] = useState(inputsDefaultValue);
+  const [submitForm, setSubmitForm] : [FormPurchaseModel, Dispatch<SetStateAction<FormPurchaseModel>>] = useState(inputsDefaultValue);
   const [phoneMask, setPhoneMask] : [string, Dispatch<SetStateAction<string>>] = useState(homePhoneMask);
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [submitError, setSubmitError] : [JSX.Element, Dispatch<JSX.Element>] = useState(emptyError);
+  const [phoneMethod, setPhoneMethod] : [string, Dispatch<string>] = useState('POST');
+  const [addressMethod, setAddressMethod] : [string, Dispatch<string>] = useState('POST');
+
+  useEffect(() => {
+    getMethodsType();
+  }, []);
+
+  const getMethodsType = () => {
+    billingService.getPhone().then(() => {
+      setPhoneMethod('PUT');
+    }).catch(() => {
+      setPhoneMethod('POST');
+    });
+
+    billingService.getAddress().then(() => {
+      setAddressMethod('PUT');
+    }).catch(() => {
+      setAddressMethod('POST');
+    });
+  }
 
   const getPhoneMask = (name: string, value: string) => {
     if(name === 'phone') {
@@ -85,46 +137,41 @@ const PurchaseForm = () => {
     setInputs((values: FormPurchaseModel) => ({...values, [name]: { value: value, isValid: values[name].isValid }}));
   }
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitError(emptyError);
     let errors = [];
     Object.keys(inputs).forEach((key: string) => {
       let input: InputModel = inputs[key];
-      let validator: any = fieldValidations[key] ? fieldValidations[key](input) : false;
+      let validator = fieldValidations[key] ? fieldValidations[key](input) : false;
       if(inputs[key].value) {
-        setInputs((values: FormPurchaseModel) => ({...values, [key]: {...input, errorMessage: validator}}))
+        setInputs((values: FormPurchaseModel) => ({...values, [key]: {...input, errorMessage: validator as string}}))
         if(typeof validator === 'string' || validator instanceof String) {
           errors.push(key);
         }
       }
     });
     if(!errors.length) {
-      submit();
+      const newInputs: FormPurchaseModel = {} as FormPurchaseModel;
+      Object.keys(inputs).forEach((key: string) => {
+        newInputs[key] = { value: key === 'card' ? getCardValue(inputs[key].value): getInputWithoutMask(inputs[key].value)}
+      });
+      setSubmitForm(newInputs);
+      setLoading(true);
     }
   }
 
-  const submit = () => {
-    const newInputs: FormPurchaseModel = {} as FormPurchaseModel;
-    Object.keys(inputs).forEach((key: string) => {
-      newInputs[key] = { value: getInputWithoutMask(inputs[key].value) }
-    })
-    setLoading(true);
-    // TO DO
-    /*console.log(newInputs) 
-    billingService.subscribe(inputs).then(
-      () => {
-        navigate(urls.startSearch.url);
-      },
-      ).catch(e => {
-        const errorKey = e ? Object.keys(e)[0] : '';
-        setSubmitError(
-          <span>
-            Ocorreu um erro ao tentar criar a sua conta, por favor, verifique os dados inseridos e tente novamente.
-            { e? <><br/>Motivo do erro: {e[errorKey]}</> : <></> }
-          </span>)
-        setLoading(false);
-    });*/
+  const onError = (errorMessage: JSX.Element) => {
+    setLoading(false);
+    setSubmitError(errorMessage);
+    getMethodsType();
+  }
+
+  const onSuccess = (response: string) => {
+    dispatch(userUpdate({
+      plan_pro: response,
+    }));
+    navigate(urls.startSearch.url)
   }
 
   return (
@@ -133,6 +180,7 @@ const PurchaseForm = () => {
       style={{display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap'}}
       onSubmit={handleSubmit}
     >
+      <PurchaseSubmit phoneMethod={phoneMethod} addressMethod={addressMethod} isSubmitting={isLoading} onSuccess={onSuccess} onError={onError} form={submitForm} />
       <Loading isLoading={isLoading}></Loading>
       <Grid item sm={7} xs={12}>
         <div>
@@ -210,50 +258,95 @@ const PurchaseForm = () => {
               <InputError>{inputs.cvv.errorMessage}</InputError>
             </FormControl>
 
-            <FormControl className='form-input' fullWidth>
-              <InputLabel id='address'>Endereço</InputLabel>
-              <Input 
-                required
-                error={!!inputs.address.errorMessage} 
-                type='text' 
-                value={inputs.address.value}
-                name='address'
-                onChange={inputChange}
-                sx={purchaseInputStyle}/>
-              <InputError>{inputs.address.errorMessage}</InputError>
-            </FormControl>
+            <Grid container justifyContent='space-between'>
+              <FormControl className='form-input half-width full-width-mobile'>
+                <InputLabel id='address'>Endereço</InputLabel>
+                <Input 
+                  required
+                  error={!!inputs.address.errorMessage} 
+                  type='text' 
+                  value={inputs.address.value}
+                  name='address'
+                  onChange={inputChange}
+                  sx={purchaseInputStyle}/>
+                <InputError>{inputs.address.errorMessage}</InputError>
+              </FormControl>
 
-            <FormControl className='form-input' fullWidth>
-              <InputLabel id='city'>Cidade</InputLabel>
-              <Input 
-                required
-                error={!!inputs.city.errorMessage} 
-                type='text' 
-                value={inputs.city.value}
-                name='city'
-                onChange={inputChange}
-                sx={purchaseInputStyle}/>
-              <InputError>{inputs.city.errorMessage}</InputError>
-            </FormControl>
+              <FormControl className='form-input half-width full-width-mobile'>
+                <InputLabel id='number'>Número</InputLabel>
+                <Input 
+                  required
+                  error={!!inputs.number.errorMessage} 
+                  type='text' 
+                  value={inputs.number.value}
+                  name='number'
+                  onChange={inputChange}
+                  sx={purchaseInputStyle}/>
+                <InputError>{inputs.number.errorMessage}</InputError>
+              </FormControl>
+            </Grid>
 
-            <FormControl className='form-select' fullWidth sx={{marginTop: '10px'}}>
-              <InputLabel id='state'>Estado</InputLabel>
-              <Select 
-                required
-                variant='standard' 
-                IconComponent={selectIcon} 
-                labelId='state' 
-                value={inputs.state.value} 
-                name='state' 
-                onChange={inputChange} 
-                label='Estado'
-              >
-                <MenuItem value={0} disabled>Selecione um estado</MenuItem>
-                <MenuItem value={'SP'}>SP</MenuItem>
-                <MenuItem value={'RJ'}>RJ</MenuItem>
-                <MenuItem value={'MG'}>MG</MenuItem>
-            </Select>
-            </FormControl>
+            <Grid container justifyContent='space-between'>
+              <FormControl className='form-input half-width full-width-mobile'>
+                <InputLabel id='district'>Bairro</InputLabel>
+                <Input 
+                  required
+                  error={!!inputs.district.errorMessage} 
+                  type='text' 
+                  value={inputs.district.value}
+                  name='district'
+                  onChange={inputChange}
+                  sx={purchaseInputStyle}/>
+                <InputError>{inputs.district.errorMessage}</InputError>
+              </FormControl>
+
+              <FormControl className='form-input half-width full-width-mobile'>
+                <InputLabel id='complement'>Complemento (opcional)</InputLabel>
+                <Input 
+                  required
+                  error={!!inputs.complement.errorMessage} 
+                  type='text' 
+                  value={inputs.complement.value}
+                  name='complement'
+                  onChange={inputChange}
+                  sx={purchaseInputStyle}/>
+                <InputError>{inputs.complement.errorMessage}</InputError>
+              </FormControl>
+            </Grid>
+
+            <Grid container justifyContent='space-between'>
+              <FormControl className='form-input half-width'>
+                <InputLabel id='city'>Cidade</InputLabel>
+                <Input 
+                  required
+                  error={!!inputs.city.errorMessage} 
+                  type='text' 
+                  value={inputs.city.value}
+                  name='city'
+                  onChange={inputChange}
+                  sx={purchaseInputStyle}/>
+                <InputError>{inputs.city.errorMessage}</InputError>
+              </FormControl>
+
+              <FormControl className='form-select half-width' sx={{marginTop: '10px'}}>
+                <InputLabel id='state'>Estado</InputLabel>
+                <Select 
+                  required
+                  variant='standard' 
+                  IconComponent={selectIcon} 
+                  labelId='state' 
+                  value={inputs.state.value} 
+                  name='state' 
+                  onChange={inputChange} 
+                  label='Estado'
+                >
+                  <MenuItem value={0} disabled>Selecione um estado</MenuItem>
+                  <MenuItem value={'SP'}>SP</MenuItem>
+                  <MenuItem value={'RJ'}>RJ</MenuItem>
+                  <MenuItem value={'MG'}>MG</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
 
             <FormControl className='form-input' fullWidth>
               <InputLabel id='cep'>CEP</InputLabel>

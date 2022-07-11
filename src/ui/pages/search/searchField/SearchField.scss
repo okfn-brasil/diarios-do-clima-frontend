@@ -1,0 +1,11 @@
+.search-field {
+  .search-input {
+    &:focus-visible {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: white;
+    }
+  }
+}

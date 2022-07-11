@@ -1,18 +1,20 @@
 import { blue } from "./colors";
 
 export interface UrlsModel {
-  registration: urlModel;
-  home: urlModel;
-  becomePro: urlModel;
-  about: urlModel;
-  startSearch: urlModel;
-  purchase: urlModel;
-  reports: urlModel;
-  terms: urlModel;
-  [key: string]: urlModel;
+  home: UrlModel;
+  registration: UrlModel;
+  becomePro: UrlModel;
+  startSearch: UrlModel;
+  about: UrlModel;
+  terms: UrlModel;
+  reports: UrlModel;
+  purchase: UrlModel;
+  plans: UrlModel;
+  search: UrlModel;
+  [key: string]: UrlModel;
 }
 
-interface urlModel {
+export interface UrlModel {
   url: string;
   isWhiteMenu?: boolean;
   hideLinks?: boolean;
@@ -27,5 +29,7 @@ export const urls: UrlsModel = {
   terms: { url: '/termos', isWhiteMenu: true },
   about: { url: '/sobre', customColor: blue },
   reports: { url: '/relatorios' },
-  purchase: { url: '/assine', isWhiteMenu: true }
+  purchase: { url: '/assine', isWhiteMenu: true },
+  plans: { url: '/planos' },
+  search: { url: '/busca' }
 }

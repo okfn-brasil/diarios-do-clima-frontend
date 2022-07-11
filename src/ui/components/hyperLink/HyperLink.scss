@@ -1,0 +1,13 @@
+@import '/src/styles/globals.scss';
+
+#root {
+  .hyper-link {
+    font-weight: 700;            
+    border-bottom: 4px solid $lightGreen;
+    padding-top: 0;
+    padding-bottom: 2px;
+    font-size: 16px;
+    font-weight: 600;
+    color: $darkBlue;
+  }
+}

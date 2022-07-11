@@ -1,19 +1,20 @@
 import { Grid } from "@mui/material";
 import MenuMobile from './menuMobile/MenuMobile';
 import MenuDesktop from './menuDesktop/MenuDesktop';
-import DiarioLogo from '/src/assets/images/logo.svg';
-import DiarioLogoBlack from '/src/assets/images/logo-black.svg';
-import { darkBlue, lightGray2 } from '/src/ui/utils/colors';
+import DiarioLogo from '@app/assets/images/logo.svg';
+import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
+import { darkBlue } from '@app/ui/utils/colors';
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { urls } from "../../utils/urls";
+import { UrlModel, urls } from "@app/ui/utils/urls";
 import LoginForm from "./loginForm/LoginForm";
+import { useSelector } from "react-redux";
+import { UserState } from '@app/models/user.model';
+import { RootState } from "@app/stores/store";
+import './Menu.scss';
 
-interface PropsMenu {
-  isDesktop: boolean;
-}
-
-const Menu = ({ isDesktop }: PropsMenu) => {
+const Menu = () => {
+  const userData: UserState = useSelector((state: RootState) => state.user);
   const [searchParams] = useSearchParams();
   const [hasScrolled, setScrolled]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
   const [showLogin, setLoginVisibility]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
@@ -22,17 +23,17 @@ const Menu = ({ isDesktop }: PropsMenu) => {
   useEffect(() => {
     window.removeEventListener('scroll', getScroll);
     window.addEventListener('scroll', getScroll);
-    if(searchParams.get('login')) {
+    if(searchParams.get('login') && !userData.access) {
       showLoginForm(true);
     }
   }, []);
 
   const {isWhiteMenu, hideLinks, customColor} = Object.keys(urls).map(key => {
-      let item = urls[key] as any;
+      let item = urls[key] as UrlModel;
       if(item.url === location.pathname) {
         return item
       }
-  }).filter(item => !!item)[0];
+  }).filter(item => !!item)[0] as UrlModel;
 
   const getScroll = () => {
     const position = window.pageYOffset;
@@ -43,44 +44,30 @@ const Menu = ({ isDesktop }: PropsMenu) => {
     setLoginVisibility(show);
   }
 
-  const getMenu = (isDesktop: boolean, isWhite: boolean, hideLinks: boolean) => {
-    return hideLinks ? <></> : (isDesktop ? <MenuDesktop showLoginForm={showLoginForm} isWhite={isWhite} /> : 
-    <MenuMobile showLoginForm={showLoginForm} isWhite={isWhite} />)
-  }
-
-  const defaultHeaderStyle: React.CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row',
-    position: hideLinks ? 'relative' : 'sticky',
-    height: '80px',
-    top: 0,
-    paddingTop: 0,
-    backgroundColor: hasScrolled ? (customColor || darkBlue) : '',
-    zIndex: 999,
-  };
-
-  const invertedHeaderStyle: React.CSSProperties = {
-    ...defaultHeaderStyle,
-    borderBottom: '1px solid ' + lightGray2,
-    backgroundColor: 'white',
-  };
-
   return (
     <>
       { showLogin ? 
-        <LoginForm showLoginForm={showLoginForm} isDesktop={isDesktop}></LoginForm> 
+        <LoginForm showLoginForm={showLoginForm}></LoginForm> 
         : <></>
       }
-      <Grid container className="container" sx={isWhiteMenu ? invertedHeaderStyle : defaultHeaderStyle}>
-        <Grid item xs={0} sm={1}></Grid>
+      <Grid 
+        container
+        justifyContent='center'
+        className={`container header ${isWhiteMenu ? 'inverted' : ''} ${hideLinks ? 'hide-links': ''}`} 
+        sx={{backgroundColor: hasScrolled ? (customColor || darkBlue) : ''}}
+      >
         <Grid
           item container
           justifyContent='space-between'
           alignItems='center'
-          xs={12} sm={10}>
-          <Link to="/"><img style={{width: isDesktop ? '180px' : '160px'}} src={isWhiteMenu ? DiarioLogoBlack : DiarioLogo} alt='Logo do Diario do Clima' /></Link>
-          {getMenu(isDesktop, isWhiteMenu, hideLinks)}
+          xs={12} sm={10}
+        >
+          <Link to="/"><img src={isWhiteMenu ? DiarioLogoBlack : DiarioLogo} alt='Logo do Diario do Clima' /></Link>
+          
+          <div>
+            <div className='only-desktop'><MenuDesktop showLoginForm={showLoginForm} isWhite={isWhiteMenu  as boolean} /> </div>
+            <div className='only-mobile'><MenuMobile showLoginForm={showLoginForm} isWhite={isWhiteMenu as boolean} /></div>
+          </div>
         </Grid>
       </Grid>
     </>

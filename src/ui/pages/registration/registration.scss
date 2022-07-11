@@ -1,4 +1,4 @@
-@import '/src/ui/utils/colors.scss';
+@import '@app/ui/utils/colors.scss';
 
 .registration-form {
   .MuiInput-input {
@@ -10,8 +10,4 @@
   .MuiInput-root:before {
     border-bottom: 2px solid $gray !important;
   }
-}
-
-.selected {
-  background-color: rgba(127, 227, 137, 0.45);
 }

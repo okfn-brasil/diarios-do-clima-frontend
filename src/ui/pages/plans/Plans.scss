@@ -1,0 +1,136 @@
+@import '/src/styles/globals.scss';
+
+.plan-page {
+  .top-space {
+    background-color: $darkBlue;
+  }
+
+  .faq-title {
+    margin: 0 0 56px;
+    color: $darkBlue;
+  }
+
+  .h3-style, .h2-style {
+    margin: 8px 0 0;
+  }
+
+  .plan-header {
+    .h2-style {
+      color: $white;
+      margin: 16px 0;
+    }
+
+    .paragraph-style {
+      color: $white;
+      margin: 0;
+    }
+
+    .sub-title {
+      font-size: 20px;
+      line-height: 25px;
+      margin-bottom: 8px;
+      margin-top: 33px;
+    }
+  }
+
+  .card-plan {
+    width: calc(50% - 12px - 48px);
+    border: 1px solid  $gray2;
+    padding: 40px 24px;
+    margin-top: 24px;
+  }
+
+  .card-pro {
+    @extend .card-plan;
+    border: 2px solid $pink;
+
+    .card-button {
+      margin-bottom: 20px;
+    }
+
+    .plan-pro-link {
+      margin-bottom: 28px;
+    }
+  }
+  
+  .card-plan-mobile {
+    @extend .card-plan;
+    width: calc(100% - 48px);
+  }
+  
+  
+  .card-title {
+    margin: 0 0 8px; 
+    font-size: 22px; 
+    line-height: 28px;
+    color: $darkBlue;
+  }
+  
+  .card-desc {
+    @extend .paragraph-style;
+    color: $darkGray1;
+    margin: 0;
+  }
+  
+  .card-price {
+    @extend .h2-style;
+    color: $darkGray1;
+    font-weight: 100;
+    margin: 22px 0 14px
+  }
+  
+  .card-status {
+    font-size: 14px;
+    line-height: 16px;
+    color: $gray5
+  }
+  
+  .card-button {
+    color: $gray5;
+    font-size: 16px;
+    width: 100%;
+    margin: 16px 0 25px;
+  }
+  
+  .card-list-check {
+    @extend .paragraph-style;
+    position: relative;
+    color: $gray5;
+    padding: 10px 0;
+    padding-left: 40px;
+  }
+  
+  .card-list-check-pro {
+    @extend .card-list-check;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 600;
+  }
+  
+  .check-icon {
+    position: absolute;
+    top: 6px;
+    left: 0;
+  }
+
+  .gray-area {
+    .button {
+      width: 100%;
+      margin-bottom: 16px;
+      
+      @media only screen and (min-width: $desktopSize) {
+        width: unset;
+      }
+    }
+
+    .button-gray {
+      @extend .button;
+      color: $gray5;
+      font-size: 16px;
+        
+      @media only screen and (min-width: $desktopSize) {
+        margin-left: 16px;
+      }
+    }
+  }
+}

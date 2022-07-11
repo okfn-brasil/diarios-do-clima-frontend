@@ -1,4 +1,4 @@
-@import '/src/ui/utils/colors.scss';
+@import '/src/styles/globals.scss';
 
 .list div{
   padding-left: 22px;
@@ -12,4 +12,19 @@
     top: 0px;
     position: absolute;
   }
+}
+
+.terms {
+  .terms-session {
+    border-top: 1px solid $gray2;
+  }
+
+  .font-sora {
+    font-weight: 600;
+    color: $black; 
+    font-size: 38px; 
+    line-height: 48px; 
+    margin-bottom: 34px;
+  }
+
 }

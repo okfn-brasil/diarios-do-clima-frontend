@@ -1,0 +1,31 @@
+  
+ @import '/src/styles/globals.scss';
+
+ .header { 
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 80px;
+  top: 0;
+  padding-top: 0;
+  z-index: 999;
+  position: sticky;
+
+  &.inverted {
+    border-bottom: 1px solid $lightGray2;
+    background-color: $white;
+  }
+
+  &.hide-links {
+    position: relative;
+    border-bottom: 0;
+  }
+
+  img {
+    width: 160px;
+
+    @media only screen and (min-width: $desktopSize) {
+      width: 180px;
+    }
+  }
+ }

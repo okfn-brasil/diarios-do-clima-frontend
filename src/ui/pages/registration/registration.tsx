@@ -1,24 +1,39 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
-import computerImage from '/src/assets/images/computer-registration.svg';
+import computerImage from '@app/assets/images/computer-registration.svg';
 import PasswordField from '../../components/passwordField/passwordField';
-import SubmitForm from '/src/ui/components/submitForm/SubmitForm';
+import SubmitForm from '@app/ui/components/submitForm/SubmitForm';
 import InputError from '../../components/inputError/inputError';
-import Loading from '/src/ui/components/loading/Loading';
-import { fontRoboto, fontTitle3 } from '/src/ui/utils/fonts';
-import { black, blue, gray, gray5, red } from '/src/ui/utils/colors';
-import { urls } from '/src/ui/utils/urls';
+import Loading from '@app/ui/components/loading/Loading';
+import { fontRoboto, fontTitle3 } from '@app/ui/utils/fonts';
+import { black, blue, gray, gray5, red } from '@app/ui/utils/colors';
+import { urls } from '@app/ui/utils/urls';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { FormControl, Grid, Input, InputLabel, MenuItem, Select } from '@mui/material';
-import { RegistrationModel, RegistrationResponse } from '/src/models/registration.model';
-import { InputModel } from '/src/models/forms.model';
-import AccountService from '/src/services/accounts';
+import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
+import { InputModel } from '@app/models/forms.model';
+import AccountService, { checkPlan } from '@app/services/accounts';
+import { userUpdate } from '@app/stores/user.store';
+import { selectIcon } from '@app/ui/utils/forms.utils';
+import { inputStyle } from '@app/ui/utils/generalStyles';
 import './registration.scss';
-import { useDispatch } from 'react-redux';
-import { userUpdate } from '/src/stores/user.store';
-import { selectIcon } from '../../utils/forms.utils';
-import { inputStyle } from '../../utils/generalStyles';
+
+interface FormsSelector {
+  1: JSX.Element;
+  2: JSX.Element;
+  3: JSX.Element;
+  [key: number]: JSX.Element;
+}
+
+interface FieldValidation {
+  username: (s: InputModel) => string | boolean;
+  password: (s: InputModel) => string | boolean;
+  email: (s: InputModel) => string | boolean;
+  city: (s: InputModel) => string | boolean;
+  [key: string]: (s: InputModel) => string | Boolean | undefined;
+}
 
 const emptyError = <></>;
 const inputsDefaultValue = {
@@ -31,7 +46,7 @@ const inputsDefaultValue = {
   city: { value: '' },
 };
 
-const fieldValidations: any = {
+const fieldValidations: FieldValidation = {
   username: (s: InputModel) => { return s.value && s.value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false },
   password: (s: InputModel) => { return s.isValid ? false : 'A senha deve atender todos os requisitos a baixo' },
   email: (s: InputModel) => { return /\S+@\S+\.\S+/.test(s.value) ? false : 'O e-mail inserido é invalido' },
@@ -54,13 +69,13 @@ const Registration = () => {
     setInputs((values: RegistrationModel) => ({...values, [name]: {value: value, isValid: valid }}));
   }
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     let errors = [];
     ['username', 'email', 'password', 'city'].forEach((key: string) => {
       let input: InputModel = inputs[key];
-      let validator: any = fieldValidations[key] ? fieldValidations[key](input) : false;
+      let validator = fieldValidations[key] ? fieldValidations[key](input) : false;
       if(inputs[key].value) {
-        setInputs((values: RegistrationModel) => ({...values, [key]: {...input, errorMessage: validator}}))
+        setInputs((values: RegistrationModel) => ({...values, [key]: {...input, errorMessage: validator as string}}))
         if(typeof validator === 'string' || validator instanceof String) {
           errors.push(key);
         }
@@ -80,21 +95,23 @@ const Registration = () => {
     setSubmitError(emptyError);
     accountsService.createNewAcount(inputs).then(
       (response: RegistrationResponse) => {
-        dispatch(userUpdate({
-          access: response.jwt.access,
-          refresh: response.jwt.refresh,
-          id: response.id,
-          full_name: response.full_name,
-          plan_pro: accountsService.checkPlan(response),
-        }));
         navigate(urls.becomePro.url);
+        setTimeout(() => {
+          dispatch(userUpdate({
+            access: response.jwt.access,
+            refresh: response.jwt.refresh,
+            id: response.id,
+            full_name: response.full_name,
+            plan_pro: checkPlan(response),
+          }));
+        }, 100);
       },
       ).catch(e => {
         const errorKey = e ? Object.keys(e)[0] : '';
         setSubmitError(
           <span>
             Ocorreu um erro ao tentar criar a sua conta, por favor, tente novamente.
-            { e? <><br/>Motivo do erro: {e[errorKey]}</> : <></> }
+            { e? <><br/><br/>Motivo do erro: {e[errorKey]}</> : <></> }
             <br/><a className='hover-animation' style={{color: red, textDecoration: 'underline'}} onClick={resetForm}>Clique aqui para voltar ao inicio do cadastro</a>
           </span>)
         setLoading(false);
@@ -108,7 +125,7 @@ const Registration = () => {
   }
 
   const getFormStep = (step: number) => {
-    const forms: any = {
+    const forms: FormsSelector = {
       1: formStepOne(),
       2: formStepTwo(),
       3: formStepThree(),
@@ -238,9 +255,9 @@ const Registration = () => {
                 >
                   <div>
                     <div style={{display: 'flex', marginBottom: '38px'}}>
-                      <div style={stepStyle} className={step === 1 ? 'selected' : ''}>1</div>
-                      <div style={stepStyle} className={step === 2 ? 'selected' : ''}>2</div>
-                      <div style={stepStyle} className={step === 3 ? 'selected' : ''}>3</div>
+                      <div style={step === 1 ? stepSelectedStyle : stepStyle}>1</div>
+                      <div style={step === 2 ? stepSelectedStyle : stepStyle}>2</div>
+                      <div style={step === 3 ? stepSelectedStyle : stepStyle}>3</div>
                     </div> 
                   </div>
                   {getFormStep(step)}
@@ -288,7 +305,7 @@ const Registration = () => {
                       marginBottom: '30px'
                     }}>
                       Já possui uma conta?
-                      <Link to='' className='hover-animation'>
+                      <a href='/?login=open' className='hover-animation'>
                         <span
                           style={{
                             color: blue,
@@ -298,7 +315,7 @@ const Registration = () => {
                         >
                           Faça o login
                           </span>
-                        </Link>
+                        </a>
                     </div> : <></>
                   }
                 </div>
@@ -340,3 +357,9 @@ const stepStyle: React.CSSProperties = {
   color: gray5,
   fontSize: '18px'
 }
+
+const stepSelectedStyle: React.CSSProperties = {
+  ...stepStyle,
+  backgroundColor: 'rgba(127, 227, 137, 0.45)',
+}
+  

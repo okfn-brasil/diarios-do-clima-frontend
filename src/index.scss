@@ -1,3 +1,5 @@
+@import '/src/styles/globals.scss';
+
 html {
   scroll-behavior: smooth;
 }
@@ -6,20 +8,44 @@ body {
     position: relative;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto';
+    font-family: Roboto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   
   code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New,
       monospace;
   }
 
 // general
+
+.gray-area {
+  background-color: $lightGray3;
+}
+
+.only-desktop {
+  display: none;
+  @media only screen and (min-width: $desktopSize) {
+    display: block;
+  }
+}
+
+.only-mobile {
+  display: none;
+  @media only screen and (max-width: $desktopSize) {
+    display: block;
+  }
+}
+
 a, a span, a button  {
   color: white;
   text-decoration: none;
+}
+
+.thin-line {
+  border-top: none; 
+  margin: 0;
 }
 
 .hover-animation {
@@ -32,13 +58,34 @@ a, a span, a button  {
   }
 }
 
-.top-space {
+.top-space, .MuiGrid-container.top-space {
   margin-top: -80px;
-  padding-top: 10px;
+  padding-top: 56px;
+
+  
+  @media only screen and (min-width: $desktopSize) {
+    padding-top: 80px;
+  }
+}
+
+.vertical-spacing-container {
+  padding: 56px 0;
+
+  @media only screen and (min-width: $desktopSize) {
+    padding: 80px 0;
+  }
+}
+
+.spaceing-top {
+  padding-top: 56px;
+
+  @media only screen and (min-width: $desktopSize) {
+    padding-top: 80px;
+  }
 }
 
 .container {
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: $mobileSize) {
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -58,7 +105,6 @@ a, a span, a button  {
   }
 }
 
-
 .form-input .MuiInputLabel-formControl {
   top: 28px !important;
 
@@ -73,10 +119,10 @@ a, a span, a button  {
   }
 
   .MuiInputLabel-formControl {
-    top: 10px !important;
+    top: 15px !important;
   
     &.Mui-focused, &.MuiFormLabel-filled {
-      top: 12px !important;
+      top: 15px !important;
     }
   }
 }
@@ -88,5 +134,73 @@ a, a span, a button  {
 
 .MuiSelect-select {
   padding: 15px 0 !important;
+}
+
+// buttons
+.base-button, .base-button.MuiButtonBase-root {
+  padding: 14px 40px;
+}
+
+//texts
+.h2-style {
+  font-size: 38px;
+  line-height: 48px;
+  color: $gray5;
+  margin: 22px 0;
+}
+
+.h3-style {
+  font-size: 22px;
+  line-height: 27px;
+  font-weight: 600;
+  color: $darkBlue;
+  margin: 22px 0;
+}
+
+.h4-style {
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 500;
+  color: $gray5;
+  margin: 22px 0;
+}
+
+.desc-style {
+  font-size: 20px;
+  line-height: 25px;
+  margin: 0;
+}
+
+.paragraph-style {
+  font-size: 18px;
+  line-height: 22px;
+  color: $gray5;
+  margin-bottom: 22px;
+}
+
+.green-h3 {
+  @extend .h3-style;
+  color: $green;
+}
+
+.dark-text {
+  color: $darkBlue;
+}
+
+.green-title {
+  font-family: Sora;
+  line-height: 18px;
+  font-weight: 600;
+  font-size: 14px;
+  color: $green;
+}
+
+.blue-link {
+  color: $blue;
+  font-weight: 600;
+}
+
+.underline {
+  text-decoration: underline;
 }
 

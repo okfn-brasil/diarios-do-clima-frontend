@@ -1,0 +1,37 @@
+@import '/src/styles/globals.scss';
+
+.data-section {
+  .paragraph-style, .h3-style {
+    text-align: center;
+  }
+
+  .paragraph-style, .mobile-text {
+    color: $darkBlue;
+  }
+
+  .data-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+  }
+
+  .mobile-text {
+    font-size: 16px;
+    text-align: center;
+    margin: 0;
+    width: 100%; 
+  }
+
+  .number-title {
+    color: $green;
+    font-family: Sora;
+    font-size: 50px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 0;
+    padding-top: 32px;
+    line-height: 65px;
+  }
+}

@@ -1,0 +1,29 @@
+@import '/src/styles/globals.scss';
+
+.cookie-alert {
+  flex-direction: row-reverse;
+  padding-left: 24px;
+  padding-right: 24px;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 19.5px;
+  padding-bottom: 19.5px;
+  background-color: $darkBlue;
+  display: flex;
+  font-size: 14px;
+  color: $white;
+
+  .close-icon {
+    padding-right: 24px;
+  }
+
+  @media only screen and (min-width: $desktopSize) {
+    flex-direction: row;
+    padding-left: 130px;
+    padding-right: 130px;
+
+    .close-icon {
+      padding-right: 0;
+    }
+  }
+}

@@ -1,11 +1,85 @@
-.menu-item {
-  padding-left: 24px;
-  padding-bottom: 32px;
-  width: 100%;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
+@import '/src/styles/globals.scss';
 
-.button {
-  min-width: 100%;
+#root {
+  .menu-overlay {
+    font-family: Sora;
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $darkBlue;
+    font-size: 22;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .menu-item {
+      padding-left: 24px;
+      padding-bottom: 32px;
+      width: 100%;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    
+    .button {
+      min-width: 100%;
+    }
+
+    .logo-area {
+      padding-top: 34px;
+      padding-right: 24px;
+      padding-left: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 52px;
+
+      img {
+        width: 160px;
+      }
+    }
+
+    .buttons-area {
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-bottom: 16px;
+    }
+
+    .buttons {
+      width: 100%;
+    }
+    
+    .outlined {
+      color: $white;
+      font-size: 16px;
+    }
+
+    .links-area {
+      width: calc(100% - 48px);
+      position: absolute;
+      bottom: 0;
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-bottom: 16px;
+      text-align: center;
+      font-size: 14px;
+      color: $green;
+      display: flex;
+      justify-content: space-between;
+
+      .mobile-menu-link {
+        width: 50%;
+
+        a {
+          color: $green;
+        }
+
+        &:first-of-type {
+          border-right: 1px solid $green;
+        }
+      }
+    }
+  }
 }

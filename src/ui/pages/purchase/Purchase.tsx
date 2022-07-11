@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
-import { darkBlue, gray5 } from "../../utils/colors";
-import { fontRoboto, fontSora } from "../../utils/fonts";
+import { darkBlue, gray5 } from "@app/ui/utils/colors";
+import { fontRoboto, fontSora } from "@app/ui/utils/fonts";
 import PurchaseForm from "./purchaseForm/PurchaseForm";
 
 interface PropsPurchase {

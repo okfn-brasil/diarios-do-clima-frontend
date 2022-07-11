@@ -1,0 +1,40 @@
+@import '@app/ui/utils/colors';
+
+.date-pickers {
+
+  .MuiFormControl-root {
+    width: calc(50% - 8px);
+  }
+
+  input {
+    padding-left: 4px;
+  }
+
+  .MuiInputLabel-formControl {
+    top: 0px;
+  
+    &.Mui-focused, &.MuiFormLabel-filled {
+      top: 5px;
+    }
+  }
+
+  .MuiOutlinedInput-root {
+    fieldset {
+      border: none;
+      border-radius: 0;
+      border-bottom: 2px solid $gray;
+
+      &.MuiOutlinedInput-notchedOutline {
+        border-bottom: 2px solid $gray;
+      }
+    }
+  }
+}
+
+.MuiDialogContent-root {
+  fieldset {
+    border: none !important;
+    border-radius: 0 !important;
+    border-bottom: 2px solid $gray !important;
+  }
+}

@@ -1,13 +1,13 @@
-import { red } from '/src/ui/utils/colors';
+import './InputError.scss';
 
 interface PropsInputError {
   children?: JSX.Element | string | boolean;
-  sx?: React.CSSProperties;
+  classess?: string;
 }
 
-const InputError = ({ children, sx }: PropsInputError) => {
+const InputError = ({ children, classess }: PropsInputError) => {
   return (
-    <div style={{color: red, marginTop: '5px', ...sx}}>
+    <div className={`input-error-warn ${classess}`}>
       { children }
     </div>
   );

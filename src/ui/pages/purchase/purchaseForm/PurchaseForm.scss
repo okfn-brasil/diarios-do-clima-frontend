@@ -1,4 +1,4 @@
-@import '/src/ui/utils/colors.scss';
+@import '@app/ui/utils/colors.scss';
 
 .purchase-form {
   .MuiInputLabel-formControl {
@@ -15,17 +15,26 @@
     }
   }
 
-  
+  .half-width {
+    width: calc(50% - 12px);
+  }
+
+  .full-width-mobile {
+    @media only screen and (max-width: 600px) {
+      width: 100%;
+    }
+  }
   
   .form-select{
     .MuiSelect-select {
+      margin-top: 5px;
       padding-bottom: 5px !important;
       padding-left: 2px !important;
       color: black !important;
     }
   
     .MuiInputLabel-formControl {
-      top: 15px !important;
+      top: 18px !important;
     
       &.Mui-focused, &.MuiFormLabel-filled {
         top: 16px !important;

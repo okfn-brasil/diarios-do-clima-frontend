@@ -1,5 +1,5 @@
-import { config } from './api-config';
-import { LoginModel } from '/src/models/login.model';
+import { config, request } from './service-utils';
+import { LoginModel, LoginResponse } from '@app/models/login.model';
 
 export default class LoginService {
   currentUrl = '/token/';
@@ -9,20 +9,22 @@ export default class LoginService {
       email: form.email,
       password: form.password,
     };
-    return fetch(config.apiUrl + this.currentUrl, {
+
+    return request({
+      url: this.currentUrl, 
       method: 'POST',
-      headers: config.headers,
-      body: JSON.stringify(newForm)
-    })
-    .then(response => config.handleResponse(response, true));
+      body: newForm,
+      notUseToken: true,
+      customResponseHandler: (response: LoginResponse) => config.handleResponse(response, true)
+    });
   }
 
   refreshLogin(refresh: string) {
-    return fetch(config.apiUrl + this.currentUrl + 'refresh/', {
+    return request({
+      url: this.currentUrl + 'refresh/', 
       method: 'POST',
-      headers: config.headers,
-      body: JSON.stringify({ refresh })
-    })
-    .then(response => config.handleResponse(response, true));
+      notUseToken: true,
+      body: { refresh }
+    });
   }
 }

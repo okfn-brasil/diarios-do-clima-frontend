@@ -1,10 +1,10 @@
 import {FormControl, Input, InputLabel } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
-import ShowPassIcon from '/src/assets/images/icons/show-pass.svg';
-import './passwordField.scss';
+import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
 import { Dispatch, SetStateAction, useState } from "react";
-import InputError from "../inputError/inputError";
+import InputError from "@app/ui/components/inputError/inputError";
+import './passwordField.scss';
 
 interface PropsPasswordField {
   sx?: React.CSSProperties;
@@ -13,6 +13,7 @@ interface PropsPasswordField {
   name: string;
   value: string;
   errorMessage?: string | boolean;
+  classess?: string;
 }
 
 interface PasswordValidation {
@@ -22,15 +23,15 @@ interface PasswordValidation {
   uppercase: boolean;
 }
 
-const PasswordField = ({ sx, value, name, errorMessage, onChange }: PropsPasswordField) => {
+const PasswordField = ({ sx, classess, value, name, errorMessage, onChange }: PropsPasswordField) => {
   const [fieldType, setType]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(true);
   const [inputValue, setInputValue]: [string, Dispatch<SetStateAction<string>>] = useState(value);
-  const [fieldValidation, setValidation]: [PasswordValidation, Dispatch<SetStateAction<any>>] = useState({
+  const [fieldValidation, setValidation]: [PasswordValidation, Dispatch<SetStateAction<PasswordValidation>>] = useState({
     minLength: false,
     lettersAndNumbers: false,
     specials: false,
     uppercase: false,
-  });
+  } as PasswordValidation);
 
   const changeFieldType = () => {
     setType(!fieldType);
@@ -61,7 +62,7 @@ const PasswordField = ({ sx, value, name, errorMessage, onChange }: PropsPasswor
             type={fieldType ? 'password' : 'text'} 
             name={name} 
             value={inputValue} 
-            className='password-field'
+            className={`password-field ${classess}`}
             required 
             sx={sx}
             onChange={inputChange}
@@ -71,7 +72,7 @@ const PasswordField = ({ sx, value, name, errorMessage, onChange }: PropsPasswor
       </div>
       <InputError>{errorMessage}</InputError>
 
-      <div style={{marginTop: '25px'}} className='validation'>
+      <div className='validation'>
         <div className="validator">
           <div className="icon">{fieldValidation.minLength ? <CheckIcon color='success'/> : <CloseIcon color='error'/>}</div>
           Ter 8 ou mais caracteres

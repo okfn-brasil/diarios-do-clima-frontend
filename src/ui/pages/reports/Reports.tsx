@@ -1,11 +1,11 @@
 import { Grid } from '@mui/material';
-import { fontRoboto, fontSora } from '/src/ui/utils/fonts';
-import { black, blue, darkBlue, gray5, green, lightGray, lightGray3 } from '../../utils/colors';
-import { h2Style, h3Style, paragraphStyle } from '../../utils/generalStyles';
-import badge from '/src/assets/images/icons/badge.svg';
-import homeWork from '/src/assets/images/icons/home_work.svg';
+import { fontRoboto, fontSora } from '@app/ui/utils/fonts';
+import { blue, darkBlue, lightGray3 } from '@app/ui/utils/colors';
+import { h3Style, paragraphStyle } from '@app/ui/utils/generalStyles';
+import badge from '@app/assets/images/icons/badge.svg';
+import homeWork from '@app/assets/images/icons/home_work.svg';
 import { Link } from 'react-router-dom';
-import ButtonSolidGreen from '/src/ui/components/button/ButtonGreen';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import SimulationForm from './simulation/Simulation';
 
 interface PropsReportsPage{
@@ -25,9 +25,9 @@ const ReportsPage = ({isDesktop}: PropsReportsPage) => {
                 Informações qualificadas, baseadas nos diários oficiais e curadas por profissionais. Mais resultados e insights do que a interface do Diário do Clima oferece.
               </p>
               <Link to=''>
-                <ButtonSolidGreen >
+                <ButtonGreen >
                   Simular o custo
-                </ButtonSolidGreen>
+                </ButtonGreen>
               </Link>
             </div>
           </Grid>
@@ -63,18 +63,18 @@ const ReportsPage = ({isDesktop}: PropsReportsPage) => {
                 <h3 style={h3Style}>Nome do relatório de exemplo</h3>
                 <p style={cardParagraph}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel accumsan massa, vitae bibendum turpis. Phasellus venenatis nunc in nisl lacinia, sed consequat nunc lobortis. Ut pellentesque, ligula fermentum imperdiet posuere, magna lorem sodales massa, ac posuere tortor magna vel quam. Nunc eu feugiat tellus, et luctus magna. Proin sodales tempus ultricies. Fusce tristique metus vitae enim egestas, fringilla imperdiet nulla ultrices. Nullam sed lacus ac erat ultricies hendrerit. Nulla sit amet sem dolor. Donec eros est, sagittis non metus ut, tempus facilisis sem.</p>
                 <Link to='' className='hover-animation'>
-                  <ButtonSolidGreen sx={{width: '100%'}}>
+                  <ButtonGreen sx={{width: '100%'}}>
                     Ver relatório
-                  </ButtonSolidGreen>
+                  </ButtonGreen>
                 </Link>
               </div>
               <div style={isDesktop ? reportCardStyle : reportCardMobileStyle}>
                 <h3 style={h3Style}>Nome do relatório de exemplo</h3>
                 <p style={cardParagraph}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel accumsan massa, vitae bibendum turpis. Phasellus venenatis nunc in nisl lacinia, sed consequat nunc lobortis. Ut pellentesque, ligula fermentum imperdiet posuere, magna lorem sodales massa, ac posuere tortor magna vel quam. Nunc eu feugiat tellus, et luctus magna. Proin sodales tempus ultricies. Fusce tristique metus vitae enim egestas, fringilla imperdiet nulla ultrices. Nullam sed lacus ac erat ultricies hendrerit. Nulla sit amet sem dolor. Donec eros est, sagittis non metus ut, tempus facilisis sem.</p>
                 <Link to='' className='hover-animation'>
-                  <ButtonSolidGreen sx={{width: '100%'}}>
+                  <ButtonGreen sx={{width: '100%'}}>
                     Ver relatório
-                  </ButtonSolidGreen>
+                  </ButtonGreen>
                 </Link>
               </div>
             </Grid>
