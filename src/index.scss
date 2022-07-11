@@ -1,4 +1,4 @@
-@import '/src/styles/globals.scss';
+@import '@app/styles/globals.scss';
 
 html {
   scroll-behavior: smooth;
@@ -17,3 +17,238 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New,
       monospace;
   }
+
+
+//responsivity
+.only-desktop {
+  display: none;
+  @media only screen and (min-width: $desktopSize) {
+    display: block;
+  }
+}
+
+.only-mobile {
+  display: none;
+  @media only screen and (max-width: $desktopSize) {
+    display: block;
+  }
+}
+
+
+//global
+.hyper-link {
+  font-weight: 700;            
+  border-bottom: 4px solid $lightGreen;
+  padding-top: 0;
+  padding-bottom: 2px;
+  font-size: 16px;
+  font-weight: 600;
+  color: $darkBlue;
+}
+
+a, a span, a button  {
+  color: white;
+  text-decoration: none;
+}
+
+.thin-line {
+  border-top: none; 
+  margin: 0;
+}
+
+.hover-animation {
+  opacity: 1;
+  cursor: pointer;
+  transition: 0.4s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.gray-area {
+  background-color: $lightGray3;
+}
+
+//texts
+.h2-style {
+  font-size: 38px;
+  line-height: 48px;
+  color: $gray5;
+  margin: 22px 0;
+}
+
+.h3-style {
+  font-size: 22px;
+  line-height: 27px;
+  font-weight: 600;
+  color: $darkBlue;
+  margin: 22px 0;
+}
+
+.h3-style-sx-margin {
+  @extend .h3-style;
+  margin: 0 0 8px;
+}
+
+.h4-style {
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 500;
+  color: $gray5;
+  margin: 22px 0;
+}
+
+.desc-style {
+  font-size: 20px;
+  line-height: 25px;
+  margin: 0;
+}
+
+.paragraph-style {
+  font-size: 18px;
+  line-height: 22px;
+  color: $gray5;
+  margin-bottom: 22px;
+}
+
+.green-h3 {
+  @extend .h3-style;
+  color: $green;
+}
+
+.dark-text {
+  color: $darkBlue;
+}
+
+.green-title {
+  font-family: Sora;
+  line-height: 18px;
+  font-weight: 600;
+  font-size: 14px;
+  color: $green;
+}
+
+.blue-link {
+  color: $blue;
+  font-weight: 600;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+//fonts
+#root {
+  .font-white-bold {
+    font-size: 16px;
+    font-weight: 600;
+    color: $white;
+  }
+
+  .font-dark-blue {
+    font-size: 16px;
+    font-weight: 600;
+    color: $darkBlue;
+  }
+
+  .font-small-button {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .font-sora {
+    font-family: Sora;
+  }
+}
+
+//containers
+.top-space, .MuiGrid-container.top-space {
+  margin-top: -80px;
+  padding-top: 56px;
+
+  
+  @media only screen and (min-width: $desktopSize) {
+    padding-top: 80px;
+  }
+}
+
+.vertical-spacing-container {
+  padding: 56px 0;
+
+  @media only screen and (min-width: $desktopSize) {
+    padding: 80px 0;
+  }
+}
+
+.spacing-top {
+  padding-top: 56px;
+
+  @media only screen and (min-width: $desktopSize) {
+    padding-top: 80px;
+  }
+}
+
+.container {
+  @media only screen and (max-width: $mobileSize) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+//forms 
+
+.password-field {
+  position: relative;
+
+  img {
+    z-index: 88;
+    width: 22px;
+    position: absolute;
+    right: 0;
+    top: calc(50% + 12px);
+    cursor: pointer;
+  }
+}
+
+.form-input .MuiInputLabel-formControl {
+  top: 28px !important;
+
+  &.Mui-focused, &.MuiFormLabel-filled {
+    top: 35px !important;
+  }
+}
+
+.form-select {
+  .MuiSelect-select:focus {
+    background-color: transparent !important;
+  }
+
+  .MuiInputLabel-formControl {
+    top: 15px !important;
+  
+    &.Mui-focused, &.MuiFormLabel-filled {
+      top: 15px !important;
+    }
+  }
+}
+
+.input-style {
+  width: 100%;
+  padding: 32px 0 10px 2px;
+  color: $black;
+}
+
+.MuiInputLabel-formControl {
+  left: -12px !important;
+  color: black !important;
+}
+
+.MuiSelect-select {
+  padding: 15px 0 !important;
+}
+
+//buttons
+.base-button, .base-button.MuiButtonBase-root {
+  padding: 14px 40px;
+}
