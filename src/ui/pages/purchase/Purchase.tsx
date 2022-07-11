@@ -1,15 +1,11 @@
 import { Grid } from "@mui/material";
-import { darkBlue, gray5 } from "@app/ui/utils/colors";
-import { fontRoboto, fontSora } from "@app/ui/utils/fonts";
 import PurchaseForm from "./purchaseForm/PurchaseForm";
+import './Purchase.scss';
 
-interface PropsPurchase {
-  isDesktop: boolean;
-}
 
-const Purchase = ({isDesktop}: PropsPurchase) => {
+const Purchase = () => {
   return (
-    <Grid container className='container'>
+    <Grid container className='container purchase-form-page'>
       <Grid item lg={2} sm={1} xs={0}></Grid>
       <Grid 
         item 
@@ -18,32 +14,11 @@ const Purchase = ({isDesktop}: PropsPurchase) => {
         sm={10}
         xs={12}
       >
-        <div
-          style={{
-            marginTop: isDesktop ? '56px' : '43px',
-            marginBottom: '56px',
-          }}
-        >
-          <div 
-            style={{
-              ...fontSora,
-              fontSize: '38px',
-              lineHeight: '48px',
-              fontWeight: '600',
-              color: darkBlue,
-            }}
-          >
+        <div className='form-area'>
+          <div className='title'>
             Comece seu período de 7 dias de teste.
           </div>
-          <div
-            style={{
-              ...fontRoboto,
-              fontSize: '18px',
-              lineHeight: '22px',
-              color: gray5,
-              marginTop: '8px',
-            }}
-          >
+          <div className='sub-title'>
             Usufrua dos benefícios de ser PRO sem compromisso. Cancele a qualquer momento.
           </div>
         </div>

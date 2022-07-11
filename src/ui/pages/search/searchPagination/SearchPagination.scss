@@ -1,0 +1,66 @@
+@import '/src/styles/globals.scss';
+
+.pagination {
+  position: relative;
+  margin-top: 24px;
+
+  .pagination-container {
+    width: 280px;
+  }
+
+  .arrow-area-style {
+    border: 1px solid $gray;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-color: $gray;
+  }
+  
+  .arrow-area-disabled-style {
+    @extend .arrow-area-style;
+    background-color: $gray2;
+    border-color: $gray2;
+    cursor: not-allowed;
+  }
+  
+  .arrow-style {
+    border: solid $gray5;
+    border-width: 0 3px 3px 0;
+    margin-left: -4px;
+    padding: 3px;
+    transform: rotate(-45deg)
+  }
+  
+  .arrow-disabled-style {
+    @extend .arrow-style;
+    opacity: 0.3;
+  }
+  
+  .page-number-style {
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    border: 1px solid transparent;
+    color: $gray5;
+  }
+
+  .page-number-current-style {
+    @extend .page-number-style;
+    background-color: $lightGreen;
+    border: 1px solid $lightGreen;
+    color: $darkBlue;
+  }
+
+  .left-arrow {
+    transform: rotate(135deg);
+    margin-left: 0;
+  }
+}

@@ -3,7 +3,6 @@ import MenuMobile from './menuMobile/MenuMobile';
 import MenuDesktop from './menuDesktop/MenuDesktop';
 import DiarioLogo from '@app/assets/images/logo.svg';
 import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
-import { darkBlue } from '@app/ui/utils/colors';
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { UrlModel, urls } from "@app/ui/utils/urls";
@@ -33,7 +32,7 @@ const Menu = () => {
       if(item.url === location.pathname) {
         return item
       }
-  }).filter(item => !!item)[0] as UrlModel;
+  }).filter(item => !!item)[0] || {} as UrlModel;
 
   const getScroll = () => {
     const position = window.pageYOffset;
@@ -54,7 +53,7 @@ const Menu = () => {
         container
         justifyContent='center'
         className={`container header ${isWhiteMenu ? 'inverted' : ''} ${hideLinks ? 'hide-links': ''}`} 
-        sx={{backgroundColor: hasScrolled ? (customColor || darkBlue) : ''}}
+        sx={{backgroundColor: hasScrolled ? (customColor || 'rgba(23, 32, 48, 1)') : ''}}
       >
         <Grid
           item container
@@ -63,7 +62,6 @@ const Menu = () => {
           xs={12} sm={10}
         >
           <Link to="/"><img src={isWhiteMenu ? DiarioLogoBlack : DiarioLogo} alt='Logo do Diario do Clima' /></Link>
-          
           <div>
             <div className='only-desktop'><MenuDesktop showLoginForm={showLoginForm} isWhite={isWhiteMenu  as boolean} /> </div>
             <div className='only-mobile'><MenuMobile showLoginForm={showLoginForm} isWhite={isWhiteMenu as boolean} /></div>

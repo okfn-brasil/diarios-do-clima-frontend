@@ -2,22 +2,17 @@ import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import computerImage from '@app/assets/images/computer-registration.svg';
-import PasswordField from '../../components/passwordField/passwordField';
-import SubmitForm from '@app/ui/components/submitForm/SubmitForm';
-import InputError from '../../components/inputError/inputError';
+import PasswordField from '@app/ui/components/forms/passwordField/passwordField';
+import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
 import Loading from '@app/ui/components/loading/Loading';
-import { fontRoboto, fontTitle3 } from '@app/ui/utils/fonts';
-import { black, blue, gray, gray5, red } from '@app/ui/utils/colors';
 import { urls } from '@app/ui/utils/urls';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme } from '@material-ui/core/styles';
-import { FormControl, Grid, Input, InputLabel, MenuItem, Select } from '@mui/material';
+import { Grid} from '@mui/material';
 import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
 import { InputModel } from '@app/models/forms.model';
 import AccountService, { checkPlan } from '@app/services/accounts';
 import { userUpdate } from '@app/stores/user.store';
-import { selectIcon } from '@app/ui/utils/forms.utils';
-import { inputStyle } from '@app/ui/utils/generalStyles';
+import SelectInput from '@app/ui/components/forms/select/Select';
+import TextInput from '@app/ui/components/forms/input/Input';
 import './registration.scss';
 
 interface FormsSelector {
@@ -57,8 +52,6 @@ const Registration = () => {
   const dispatch = useDispatch();
   const navigate: NavigateFunction = useNavigate();
   const accountsService = new AccountService();
-  const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [submitError, setSubmitError] : [JSX.Element, Dispatch<JSX.Element>] = useState(emptyError);
   const [step, setStep] : [number, Dispatch<SetStateAction<number>>] = useState(1);
@@ -112,7 +105,7 @@ const Registration = () => {
           <span>
             Ocorreu um erro ao tentar criar a sua conta, por favor, tente novamente.
             { e? <><br/><br/>Motivo do erro: {e[errorKey]}</> : <></> }
-            <br/><a className='hover-animation' style={{color: red, textDecoration: 'underline'}} onClick={resetForm}>Clique aqui para voltar ao inicio do cadastro</a>
+            <br/><a className='hover-animation error-link' onClick={resetForm}>Clique aqui para voltar ao inicio do cadastro</a>
           </span>)
         setLoading(false);
     });
@@ -136,25 +129,31 @@ const Registration = () => {
   const formStepOne = () => {
     return (
       <div>
-        <div 
-          style={{...fontTitle3}}
-        >
+        <h3 className='h3-style-sx-margin'>
           Crie uma conta para começar a buscar no Diário do Clima
-        </div>
+        </h3>
         <div>
-          <FormControl className='form-input' fullWidth style={{marginTop: '40px'}}>
-            <InputLabel id='username'>Nome Completo</InputLabel>
-            <Input required error={!!inputs.username.errorMessage} type='text' value={inputs.username.value} name='username'  onChange={inputChange} sx={inputStyle}/>
-            <InputError>{inputs.username.errorMessage}</InputError>
-          </FormControl>
+          <TextInput
+            label='Nome Completo'
+            classes='first-input'
+            name='username'
+            error={inputs.username.errorMessage}
+            value={inputs.username.value}
+            onChange={inputChange}
+            required={true}
+          />
 
-          <FormControl className='form-input' fullWidth>
-            <InputLabel id='email'>E-mail</InputLabel>
-            <Input required error={!!inputs.email.errorMessage} type='email' value={inputs.email.value} sx={inputStyle} name='email' onChange={inputChange} />
-            <InputError>{inputs.email.errorMessage}</InputError>
-          </FormControl>
+          <TextInput
+            label='E-mail'
+            name='email'
+            error={inputs.email.errorMessage}
+            value={inputs.email.value}
+            onChange={inputChange}
+            required={true}
+            type='email'
+          />
 
-          <PasswordField errorMessage={inputs.password.errorMessage} value={inputs.password.value} onChange={inputChange} name='password' sx={inputStyle}/>
+          <PasswordField errorMessage={inputs.password.errorMessage} value={inputs.password.value} onChange={inputChange} name='password' classess='input-style'/>
           
           <SubmitForm />
         </div>
@@ -167,25 +166,25 @@ const Registration = () => {
       <div>
         {SelectFormTitle()}
         <div>
-          <FormControl fullWidth sx={selectAreaStyle} style={{marginTop: '40px'}}>
-            <InputLabel id='gender-select'>Gênero</InputLabel>
-            <Select required variant='standard' IconComponent={selectIcon} labelId='gender-select' value={inputs.gender.value} name='gender' onChange={inputChange} label='Gênero'>
-              <MenuItem value={0} disabled>Selecione um gênero</MenuItem>
-              <MenuItem value={'f'}>Feminino</MenuItem>
-              <MenuItem value={'m'}>Masculino</MenuItem>
-              <MenuItem value={'o'}>Outro</MenuItem>
-            </Select>
-          </FormControl>
+          <SelectInput 
+            classes='select-area-style first-input' 
+            options={[{value: 'f', label: 'Feminino'},{value: 'm', label: 'Masculino'},{value: 'o', label: 'Outro'}]} 
+            label='Gênero' 
+            value={inputs.gender.value} 
+            name='gender' 
+            required={true} 
+            onChange={inputChange}
+          />
 
-          <FormControl fullWidth sx={selectAreaStyle} >
-            <InputLabel id='sector-select'>Area de Atuação</InputLabel>
-            <Select required variant='standard' IconComponent={selectIcon} labelId='sector-select' value={inputs.sector.value} name='sector' onChange={inputChange} label='Area de Atuação'>
-              <MenuItem value={0} disabled>Selecione uma área</MenuItem>
-              <MenuItem value={'Area 1'}>Area 1</MenuItem>
-              <MenuItem value={'Area 2'}>Area 2</MenuItem>
-              <MenuItem value={'Area 3'}>Area 3</MenuItem>
-            </Select>
-          </FormControl>
+          <SelectInput 
+            classes='select-area-style' 
+            options={[{value: 'Area 1', label: 'Area 1'},{value: 'Area 2', label: 'Area 2'},{value: 'Area 3', label: 'Area 3'}]} 
+            label='Area de Atuação' 
+            value={inputs.sector.value} 
+            name='sector' 
+            required={true} 
+            onChange={inputChange}
+          />
 
           <SubmitForm />
         </div>
@@ -198,22 +197,26 @@ const Registration = () => {
       <div>
           {SelectFormTitle()}
         <div>
-        <FormControl fullWidth sx={selectAreaStyle} style={{marginTop: '40px'}}>
-            <InputLabel id='state-select'>Estado</InputLabel>
-            <Select required variant='standard' IconComponent={selectIcon} labelId='state-select' value={inputs.state.value} name='state' onChange={inputChange} label='Estado'>
-              <MenuItem value={0} disabled>Selecione um estado</MenuItem>
-              <MenuItem value={'SP'}>São Paulo</MenuItem>
-              <MenuItem value={'RJ'}>Rio de Janeiro</MenuItem>
-            </Select>
-          </FormControl>
+          <SelectInput 
+            classes='select-area-style first-input' 
+            options={[{value: 'SP 1', label: 'SP'},{value: 'RJ', label: 'RJ'}]} 
+            label='Estado' 
+            value={inputs.state.value} 
+            name='state' 
+            required={true} 
+            onChange={inputChange}
+          />
 
-          <FormControl fullWidth className='form-input' sx={{marginTop: '12px'}}>
-            <InputLabel id='city'>Cidade</InputLabel>
-            <Input required type='text' value={inputs.city.value} sx={inputStyle} name='city' onChange={inputChange} />
-            <InputError>{inputs.city.errorMessage}</InputError>
-          </FormControl>
+          <TextInput
+            label='Cidade'
+            name='city'
+            error={inputs.city.errorMessage}
+            value={inputs.city.value}
+            onChange={inputChange}
+            required={true}
+          />
 
-          <SubmitForm sx={{marginTop: '26px'}} disabled={isLoading}/>
+          <SubmitForm classess='submit-registration' label='Finalizar' disabled={isLoading}/>
         </div>
       </div>
     )
@@ -222,19 +225,10 @@ const Registration = () => {
   const SelectFormTitle = () => {
     return (
       <>
-        <div 
-          style={{...fontTitle3}}
-        >
+        <div className='h3-style-sx-margin'>
           Bem-vindo ao Diário do Clima
         </div>
-        <div
-          style={{
-            ...fontRoboto,
-            color: gray5,
-            fontSize: '18px',
-            marginTop: '8px',
-          }}
-        >
+        <div className='paragraph-style'>
           Queremos te conhecer um pouco melhor! Complete seu cadastro 
         </div>
       </>
@@ -250,47 +244,28 @@ const Registration = () => {
           <Grid item sm={6}>
             <Grid container>
               <Grid item sm={10} xs={12}>
-                <div 
-                  style={{padding: isDesktop ? '56px 0 0' : '45px 0 0', overflowX: 'hidden'}}
-                >
+                <div className='steps-area'>
                   <div>
-                    <div style={{display: 'flex', marginBottom: '38px'}}>
-                      <div style={step === 1 ? stepSelectedStyle : stepStyle}>1</div>
-                      <div style={step === 2 ? stepSelectedStyle : stepStyle}>2</div>
-                      <div style={step === 3 ? stepSelectedStyle : stepStyle}>3</div>
+                    <div className='steps'>
+                      <div className={step === 1 ? 'step-selected-style' : 'step-style'}>1</div>
+                      <div className={step === 2 ? 'step-selected-style' : 'step-style'}>2</div>
+                      <div className={step === 3 ? 'step-selected-style' : 'step-style'}>3</div>
                     </div> 
                   </div>
                   {getFormStep(step)}
                 </div>
                 <div>
-                  <div  style={{
-                    ...fontRoboto,
-                    fontSize: '14px',
-                    color: gray,
-                    marginTop: '32px',
-                    marginBottom: '2px'
-                  }}>
+                  <div className='warn'>
                     Ao se cadastrar, você está aceitando os nossos
                   </div>
-                  <div style={{marginBottom: step > 1 ? '30px' : ''}}>
+                  <div className={step > 1 ? 'warn-next-step' : ''}>
                     <Link to='' className='hover-animation'>
-                      <span style={{
-                        ...linkStyle,
-                        paddingRight: '5px',
-                        borderRightStyle: 'solid',
-                        borderRightWidth: '2px',
-                        borderRightColor: gray,
-                        
-                      }}>
+                      <span className='blue-link contact'>
                         Fale conosco
                       </span>
                     </Link>
                     <Link to={urls.terms.url} className='hover-animation'>
-                      <span
-                        style={{
-                          ...linkStyle,
-                          paddingLeft: '5px',
-                        }}>
+                      <span className='blue-link terms-link'>
                         Termos e condições
                       </span>
                     </Link>
@@ -298,28 +273,17 @@ const Registration = () => {
                 </div>
                 <div>
                   {step === 1 ? 
-                    <div  style={{
-                      ...fontRoboto,
-                      fontSize: '14px',
-                      marginTop: '32px',
-                      marginBottom: '30px'
-                    }}>
+                    <div  className='has-account'>
                       Já possui uma conta?
                       <a href='/?login=open' className='hover-animation'>
-                        <span
-                          style={{
-                            color: blue,
-                            fontWeight: 600,
-                            marginLeft: '5px',
-                          }}
-                        >
+                        <span className='blue-link login-link'>
                           Faça o login
                           </span>
                         </a>
                     </div> : <></>
                   }
                 </div>
-                <div style={{color: red, fontSize: '14px', marginBottom: '30px', ...fontRoboto}}>{submitError}</div>
+                <div className='error-warn'>{submitError}</div>
               </Grid>
             </Grid>
           </Grid>
@@ -333,33 +297,3 @@ const Registration = () => {
 }
 
 export default Registration;
-
-const selectAreaStyle: React.CSSProperties = {
-  marginTop: '32px',
-  color: black
-};
-
-const linkStyle: React.CSSProperties = {
-  ...fontRoboto,
-  color: blue,
-  width: '50%',
-  height: '100%',
-  fontWeight: 600,
-  fontSize: '14px',
-}
-
-const stepStyle: React.CSSProperties = {
-  width: '24px',
-  height: '22px',
-  textAlign: 'center',
-  marginRight: '14px',
-  transition: '0.4s',
-  color: gray5,
-  fontSize: '18px'
-}
-
-const stepSelectedStyle: React.CSSProperties = {
-  ...stepStyle,
-  backgroundColor: 'rgba(127, 227, 137, 0.45)',
-}
-  

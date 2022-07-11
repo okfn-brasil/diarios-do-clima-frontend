@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import { darkBlue, gray, gray2, gray5, lightGreen } from "@app/ui/utils/colors";
+import './SearchPagination.scss';
 
 interface Pagination {
   onChangePage: (e: number) => void;
@@ -26,24 +26,18 @@ const SearchPagination = ({onChangePage, currentPage, listSize, itemsPerPage}: P
 
   const getPage = (i: number | null) => {
     const isCurrentPage = i === currentPage;
-    const pageStyle: React.CSSProperties = {
-      ...pageNumberStyle,
-      backgroundColor: isCurrentPage ? lightGreen : '',
-      border: isCurrentPage ? '1px solid ' + lightGreen : '1px solid transparent',
-      color: isCurrentPage ? darkBlue : gray5,
-    };
+    const currentClass = isCurrentPage ? 'page-number-current-style' : 'page-number-style';
     return (
       <span key={i !== null ? i : 'x'}>
       {i !== null ? 
         <span 
-          style={pageStyle}
-          className='hover-animation'
+          className={`hover-animation ${currentClass}`}
           onClick={() => onChangePage(i)}
         >
             {i + 1}
         </span>
         :
-        <span style={pageStyle}>...</span>
+        <span className={currentClass}>...</span>
       }
       </span>
     )
@@ -64,33 +58,23 @@ const SearchPagination = ({onChangePage, currentPage, listSize, itemsPerPage}: P
   return (
     <>
       {listSize ?
-        <div style={{position: 'relative', marginTop: '24px'}}>
+        <div className='pagination'>
         <Grid container justifyContent='center'>
           <Grid  sm={8} item container justifyContent='center'>
-            <Grid sx={{width: '280px'}} alignItems='center' container justifyContent='space-between'>
+            <Grid className='pagination-container' alignItems='center' container justifyContent='space-between'>
               <div 
-                style={{
-                  ...currentPage ? arrowAreaStyle : arrowAreaDisabledStyle,
-                }} 
+                className={currentPage ? 'arrow-area-style' : 'arrow-area-disabled-style'} 
                 onClick={previousPage}
               >
-                <div
-                  style={{
-                    ...currentPage ? arrowStyle : arrowDisabledStyle,
-                    transform: 'rotate(135deg)',
-                    marginLeft: '0',
-                  }}
-                >
+                <div className={'left-arrow ' + (currentPage ? 'arrow-style' : 'arrow-disabled-style')} >
                 </div>
               </div>
               {pages()}
               <div 
-                style={{
-                  ...currentPage < ((listSize / itemsPerPage) - 1) ? arrowAreaStyle : arrowAreaDisabledStyle
-                }} 
+                className={currentPage < ((listSize / itemsPerPage) - 1) ? 'arrow-area-style' : 'arrow-area-disabled-style'} 
                 onClick={nextPage}
               >
-                <div style={{...currentPage < ((listSize / itemsPerPage) - 1) ? arrowStyle : arrowDisabledStyle}}>
+                <div className={currentPage < ((listSize / itemsPerPage) - 1) ? 'arrow-style' : 'arrow-disabled-style'} >
                 </div>
               </div>
             </Grid>
@@ -106,44 +90,3 @@ const SearchPagination = ({onChangePage, currentPage, listSize, itemsPerPage}: P
 
 export default SearchPagination;
 
-const arrowAreaStyle: React.CSSProperties = {
-  border: '1px solid ' + gray,
-  width: '32px',
-  height: '32px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  cursor: 'pointer',
-  borderColor: gray,
-}
-
-const arrowAreaDisabledStyle: React.CSSProperties = {
-  ...arrowAreaStyle,
-  backgroundColor: gray2,
-  borderColor: gray2,
-  cursor: 'not-allowed',
-}
-
-const arrowStyle: React.CSSProperties = {
-  border: 'solid ' + gray5,
-  borderWidth: '0 3px 3px 0',
-  marginLeft: '-4px',
-  padding: '3px',
-  transform: 'rotate(-45deg)'
-}
-
-const arrowDisabledStyle: React.CSSProperties = {
-  ...arrowStyle,
-  opacity: 0.3,
-}
-
-const pageNumberStyle: React.CSSProperties = {
-  width: '32px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '32px',
-  fontSize: '14px',
-  fontWeight: '600',
-  lineHeight: '20px',
-}

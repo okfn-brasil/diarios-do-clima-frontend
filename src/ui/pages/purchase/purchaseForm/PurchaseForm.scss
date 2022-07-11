@@ -1,6 +1,18 @@
-@import '@app/ui/utils/colors.scss';
+@import '/src/styles/globals.scss';
 
 .purchase-form {
+  display: flex ;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  @media only screen and (min-width: $desktopSize) {
+    margin-bottom: 80px;
+  }
+
+  .input-style {
+    padding: 26px 0 0px 2px;
+  }
+
   .MuiInputLabel-formControl {
     left: -12px !important;
     color: $gray4 !important;
@@ -20,7 +32,7 @@
   }
 
   .full-width-mobile {
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: $mobileSize) {
       width: 100%;
     }
   }
@@ -40,5 +52,26 @@
         top: 16px !important;
       }
     }
+  }
+
+  .payment-section-title {
+    font-family: Sora;
+  }
+
+  .gray-box {
+    width: 32px;
+    height: 22px;
+    background-color: $gray1;
+    border-radius: 4px;
+    margin-right: 8px;
+    margin-top: 24px;
+  }
+
+  .state-select {
+    margin-top: 10px;
+  }
+
+  .fields-area {
+    margin-bottom: 80px;
   }
 }

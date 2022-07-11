@@ -31,7 +31,7 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobi
       <Grid item container onClick={closeMenu}>
         <Grid item xs={12} className='logo-area'>
           <img src={DiarioLogo} alt='Logo do Diario do Clima' />
-          <CloseIcon sx={{ color: 'white' }} onClick={onClose} />
+          <CloseIcon className='close-icon' onClick={onClose} />
         </Grid>
         { isLoggedIn ? <div className='menu-item'><Link to={urls.search.url}>Buscar</Link></div> : <></>}
         <div className='menu-item'><Link to={urls.plans.url}>Diário do clima PRO</Link></div>

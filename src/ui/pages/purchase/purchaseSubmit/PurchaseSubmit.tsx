@@ -110,8 +110,8 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
   }
 
   const postPlanId = () => {
-    billingService.postSubscription('f8f443a6-677a-49bf-8430-9dbc8fda87bc').then((response)  => {
-      onSuccess('f8f443a6-677a-49bf-8430-9dbc8fda87bc'); // TO DO REMOVER MOCK
+    billingService.postSubscription('9ea3eb5f-d2d5-4433-8714-43fa7bdb0ce3').then((response)  => {
+      onSuccess(response.plan); // TO DO REMOVER MOCK
     }).catch(error => {
       onError(errorMessage(error))
     })

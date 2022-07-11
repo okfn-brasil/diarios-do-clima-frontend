@@ -1,13 +1,11 @@
-import {FormControl, Input, InputLabel } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
 import { Dispatch, SetStateAction, useState } from "react";
-import InputError from "@app/ui/components/inputError/inputError";
+import TextInput from "../input/Input";
 import './passwordField.scss';
 
 interface PropsPasswordField {
-  sx?: React.CSSProperties;
   placeholder?: string;
   onChange: Function;
   name: string;
@@ -23,7 +21,7 @@ interface PasswordValidation {
   uppercase: boolean;
 }
 
-const PasswordField = ({ sx, classess, value, name, errorMessage, onChange }: PropsPasswordField) => {
+const PasswordField = ({ classess, value, name, errorMessage, onChange }: PropsPasswordField) => {
   const [fieldType, setType]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(true);
   const [inputValue, setInputValue]: [string, Dispatch<SetStateAction<string>>] = useState(value);
   const [fieldValidation, setValidation]: [PasswordValidation, Dispatch<SetStateAction<PasswordValidation>>] = useState({
@@ -56,21 +54,17 @@ const PasswordField = ({ sx, classess, value, name, errorMessage, onChange }: Pr
       <div className='password-field'>
         <img className={'hover-animation ' + (fieldType ? 'low-opacity' : '')} src={ShowPassIcon} onClick={changeFieldType} />
         
-        <FormControl className='form-input' fullWidth>
-            <InputLabel id='senha'>Senha</InputLabel>
-          <Input 
-            type={fieldType ? 'password' : 'text'} 
-            name={name} 
-            value={inputValue} 
-            className={`password-field ${classess}`}
-            required 
-            sx={sx}
-            onChange={inputChange}
-            error={!!errorMessage} 
-          />
-        </FormControl>
+        <TextInput
+          label='Senha'
+          name={name}
+          error={errorMessage as string}
+          value={inputValue}
+          onChange={inputChange}
+          required={true}
+          classes={`password-field ${classess}`}
+          type={fieldType ? 'password' : 'text'} 
+        />
       </div>
-      <InputError>{errorMessage}</InputError>
 
       <div className='validation'>
         <div className="validator">

@@ -7,7 +7,7 @@ const MoreData = () => {
   return (
     <Grid item container xs={12} className='vertical-spacing-container more-data' justifyContent='center'>
       <Grid item xs={10} md={8}>
-        <h3 className='h3-style'>
+        <h3 className='h3-style-sx-margin'>
           Mais dados. Mais insights
         </h3>
         <p className='paragraph-style'>

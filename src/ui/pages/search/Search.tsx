@@ -1,5 +1,4 @@
 import { Grid } from '@mui/material';
-import { lightGray4 } from '@app/ui/utils/colors';
 import SearchField from './searchField/SearchField';
 import SearchList from './searchList/SearchList';
 import { Dispatch, useEffect, useState } from 'react';
@@ -7,10 +6,11 @@ import ReportsService from '@app/services/reports';
 import SearchFilters from './searchFilters/SearchFilters';
 import { parseReports, ReportModel, ReportsModel } from '@app/models/reports.model';
 import SearchPagination from './searchPagination/SearchPagination';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '@app/stores/store';
 import Loading from '@app/ui/components/loading/Loading';
 import { FiltersState } from '@app/models/filters.model';
+import './Search.scss';
 
 interface PropsSearch {
   isDesktop: boolean;
@@ -22,17 +22,20 @@ const pageKeys: string[] = ['itemsPerPage', 'order'];
 const Search = ({isDesktop}: PropsSearch) => {
   const filters: FiltersState = useSelector((state: RootState) => state.filter);
   const reportsService = new ReportsService();
-  const [showFiltersMobile, setFiltersMobileVisibility] : [boolean, Dispatch<boolean>] = useState(true);
+  const [showFiltersMobile, setFiltersMobileVisibility] : [boolean, Dispatch<boolean>] = useState(false);
   const [listItems, setListItems] : [ReportModel[], Dispatch<ReportModel[]>] = useState([] as ReportModel[]);
   const [currPage, setPage] : [number, Dispatch<number>] = useState(0);
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
+  const [searchTimes, setSearchTimes] : [number, Dispatch<number>] = useState(0);
 
   useEffect(() => {
     if  (Object.keys(filters).filter(item => !pageKeys.includes(item)).length) {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
-        console.log(filters)
-        getItemsList();
+        setSearchTimes(searchTimes + 1);
+        if (searchTimes > 0) {
+          getItemsList();
+        }
       }, 400)
     }
   }, [filters]);
@@ -68,33 +71,29 @@ const Search = ({isDesktop}: PropsSearch) => {
 
   const onChangePage = (page: number) => {
     setPage(page);
-    //getItemsList(true);
+    //getItemsList(true); // TO DO
   }
 
   return (
     <div>
       <Loading isLoading={isLoading}></Loading>
-      <div style={{position: 'relative'}}>
-        <SearchField onClickFilters={onClickFilters} isDesktop={isDesktop}/>
+      <div className='search-page'>
+        <SearchField onClickFilters={onClickFilters}/>
         {
-          showFiltersMobile && !isDesktop ? 
-          <div style={{position: 'fixed', width: '100vw', height: '100vh', top: '0', left: '0', zIndex: 999}}>
-            <SearchFilters onClose={onCloseFilters} isDesktop={false}/>
+          showFiltersMobile ? 
+          <div className='only-mobile mobile-filters'>
+            <SearchFilters onClose={onCloseFilters}/>
           </div>
           : <></>
         }
         <Grid container>
-          {isDesktop ? 
-            <Grid item sm={3}>
-              <SearchFilters isDesktop={true}/>
-            </Grid> 
-            :
-            <></>
-          }
-          <Grid item sm={isDesktop ? 9 : 12} sx={{backgroundColor: lightGray4}}>
-            <div style={{padding: '56px 0 65px'}}>
-              <SearchList 
-                isDesktop={isDesktop}
+          <Grid item sm={3} className='only-desktop'>
+            <SearchFilters/>
+          </Grid> 
+          <Grid item sm={isDesktop ? 9 : 12} className='gray-area'>
+            <div className='search-area'>
+              <SearchList
+                searchTimes={searchTimes}
                 listSize={listItems.length} 
                 list={listItems.slice(
                   ((currPage + 1) * filters.itemsPerPage) - filters.itemsPerPage, 

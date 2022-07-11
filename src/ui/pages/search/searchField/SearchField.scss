@@ -1,5 +1,28 @@
+@import '/src/styles/globals.scss';
+
 .search-field {
+  background-color: $darkBlue;
+
+  .search-img {
+    position: absolute;
+    width: 24px;
+    left: 20px;
+    top: calc(50% - 12px);
+  }
+
   .search-input {
+    width: calc(100% - 120px);
+    padding: 17px 60px 15px;
+    font-size: 16px;
+    line-height: 18px;
+    background-color: rgb(56, 64, 78);
+    border: none;
+    color: $white;
+    
+    @media only screen and (min-width: $desktopSize) {
+      font-size: 18px;
+    }
+
     &:focus-visible {
       outline: none;
     }
@@ -7,5 +30,53 @@
     &::placeholder {
       color: white;
     }
+  }
+
+  .search-field-container {
+    padding: 28px 0;
+
+    @media only screen and (min-width: $desktopSize) {
+      padding: 56px 0;
+    }
+  }
+
+  .field-area {
+    width: 100%;
+  }
+
+  .key-words {
+    color: $gray;
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .advanced-search {
+    color: $green;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 6px;
+  }
+
+  form {
+    position: relative;
+    width: 100%;
+  }
+
+  .button-icon {
+    width: 24px;
+  }
+
+  .buttons {
+    margin-top: 17px;
+  }
+
+  .filter-button, .alert-button {
+    width: calc(100% - 24px);
+    padding-top: 4px;
+  }
+
+  .alert-button {
+    color: $white;
+    font-size: 16px;
   }
 }

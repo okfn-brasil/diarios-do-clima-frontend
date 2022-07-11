@@ -1,6 +1,11 @@
-@import '@app/ui/utils/colors';
+@import '/src/styles/globals.scss';
+
+.date-pickers-container {
+  position: relative;
+}
 
 .date-pickers {
+  margin-top: 20px;
 
   .MuiFormControl-root {
     width: calc(50% - 8px);
@@ -37,4 +42,45 @@
     border-radius: 0 !important;
     border-bottom: 2px solid $gray !important;
   }
+}
+
+.second-tab {
+  margin-left: 16px;
+}
+
+.tab-style {
+  font-size: 18px;
+  line-height: 22px;
+  padding-bottom: 10px;
+  border-bottom: 5px solid $white;
+  transition: 0.4s;
+}
+
+.curr-tab-style {
+  @extend .tab-style;
+  border-bottom: 5px solid $blue;
+}
+
+.period-box-style {
+  border: 1px solid $black;
+  padding: 12px 14px;
+  margin-right: 8px;
+  transition: 0.4s;
+}
+
+.period-box-selected-style {
+  @extend .period-box-style;
+  background-color: $black;
+  color: $white;
+}
+
+.periods {
+  margin: 20px 0 11px;
+}
+
+.error {
+  color: $red;
+  font-size: 14px;
+  bottom: -22px;
+  position: absolute;
 }

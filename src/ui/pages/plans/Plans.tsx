@@ -1,7 +1,6 @@
 import { Grid } from '@mui/material';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import { Link } from 'react-router-dom';
-import { pink } from '@app/ui/utils/colors';
 import LinkManager from '@app/ui/components/linkManager/LinkManager';
 import { urls } from '@app/ui/utils/urls';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
@@ -104,15 +103,15 @@ const Plans = () => {
                   Visualização de resultados publicados nos últimos 3 meses
                 </div>
                 <div className='card-list-check-pro'>
-                  <span className='check-icon'><CheckIcon sx={{color: pink}}/></span>
+                  <span className='check-icon'><CheckIcon className='pink-icon'/></span>
                   Visualização de resultados de <span className='underline'>todo o histórico disponível</span> no banco de dados
                 </div>
                 <div className='card-list-check-pro'>
-                  <span className='check-icon'><CheckIcon sx={{color: pink}}/></span>
+                  <span className='check-icon'><CheckIcon className='pink-icon'/></span>
                   Filtro de busca por temas inteligentes
                 </div>
                 <div className='card-list-check-pro'>
-                  <span className='check-icon'><CheckIcon sx={{color: pink}}/></span>
+                  <span className='check-icon'><CheckIcon className='pink-icon'/></span>
                   Criação de alertas com filtros e palavras-chaves personalizadas
                 </div>
               </div>

@@ -1,6 +1,11 @@
 @import '/src/styles/globals.scss';
 
-.data-section {
+.data-section.vertical-spacing-container {
+  
+  @media only screen and (max-width: $tabletSize) {
+    margin-top: 280px;
+  }
+
   .paragraph-style, .h3-style {
     text-align: center;
   }

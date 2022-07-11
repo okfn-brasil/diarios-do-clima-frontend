@@ -1,0 +1,72 @@
+@import '/src/styles/globals.scss';
+
+.lead-session {
+  font-size: 14px;
+  background-size: cover;
+  color: $white;
+
+  .banner-content {
+    margin-bottom: 100px;
+    margin-top: 92px;
+  }
+
+  .banner-container {
+    padding-left: 26px;
+    padding-right: 26px;
+  
+    @media only screen and (min-width: $desktopSize) {
+      padding-left: 230px;
+      padding-right: 0;
+    }
+  }
+
+  .title {
+    font-size: 50px;
+    font-weight: 600;
+    font-family: Sora;
+    color: $white;
+    margin: 0;
+
+    span {
+      color: $green;
+
+      @media only screen and (min-width: $desktopSize) {
+        color: $white;
+      }
+    }
+
+    @media only screen and (min-width: $desktopSize) {
+      margin-top: 45px;
+    }
+  }
+
+  .description {
+    font-size: 20px;
+
+    @media only screen and (min-width: $desktopSize) {
+      margin-top: 16px;
+    }
+  }
+
+  .start-search {
+    min-width: 200px;
+    margin-bottom: 80px;
+    
+    @media only screen and (min-width: $desktopSize) {
+      margin-bottom: 0px;
+    }
+  }
+
+  .image-area {
+    @media only screen and (max-width: $desktopSize) {
+      margin-bottom: -110%;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    img {
+      max-height: 423px;
+      max-width: 100%;
+    }
+  }
+}

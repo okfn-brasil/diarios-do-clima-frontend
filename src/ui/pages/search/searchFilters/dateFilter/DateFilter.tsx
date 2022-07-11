@@ -1,5 +1,4 @@
 
-import { blue, red } from '@app/ui/utils/colors';
 import { Grid, TextField} from '@mui/material';
 import { DatePicker, LocalizationProvider, PickersLocaleText } from '@mui/x-date-pickers';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
@@ -77,18 +76,17 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
   return (
     <Grid>
       <Grid container>
-        <div onClick={() => {changeTab(0)}} className='hover-animation' style={tab ? tabStyle : currTabStyle}>Recentes</div>
-        <div  onClick={() => {changeTab(1)}} className='hover-animation' style={{...!tab ? tabStyle : currTabStyle, marginLeft: '16px'}}>Intervalo de tempo</div>
+        <div onClick={() => {changeTab(0)}} className={`hover-animation ${tab ? 'tab-style' : 'curr-tab-style'}`}>Recentes</div>
+        <div  onClick={() => {changeTab(1)}} className={`hover-animation second-tab ${!tab ? 'tab-style' : 'curr-tab-style'}`}>Intervalo de tempo</div>
       </Grid>
 
       {!tab ?
-       <Grid container style={{margin: '20px 0 11px'}}>
+       <Grid container className='periods'>
         {periods.map(period =>{
           return (<div 
-            className='hover-animation' 
+            className={`hover-animation ${currPeriod === period ? 'period-box-selected-style' : 'period-box-style'}`}
             key={period}
             onClick={() => {changePeriod(period)}}
-            style={{...currPeriod === period ? periodBoxSelectedStyle : periodBoxStyle}}
           >
             {period < 4 ? `${period}m` : 'Tudo'}
           </div>)
@@ -97,8 +95,8 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
       }
 
       {tab ?
-        <div style={{position: 'relative'}}>
-          <Grid container style={{marginTop: '20px'}} justifyContent='space-between' className='date-pickers'>
+        <div className='date-pickers-container'>
+          <Grid container justifyContent='space-between' className='date-pickers'>
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR} localeText={datePickerTranslation as Partial<PickersLocaleText<unknown>>}>
               <DatePicker
                 label="De"
@@ -119,7 +117,7 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
             </LocalizationProvider>
           </Grid>
           {
-            invalidDate ? <div style={{color: red, fontSize: '14px', bottom: '-22px', position: 'absolute'}}>Datas inválidas.</div> : <></>
+            invalidDate ? <div className='error'>Datas inválidas.</div> : <></>
           }
           
        </div>: <></>
@@ -129,29 +127,3 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
 }
 
 export default DateFilter;
-
-const tabStyle: React.CSSProperties = {
-  fontSize: '18px',
-  lineHeight: '22px',
-  paddingBottom: '10px',
-  borderBottom: '5px solid white',
-  transition: '0.4s',
-}
-
-const currTabStyle: React.CSSProperties = {
-  ...tabStyle,
-  borderBottom: '5px solid ' + blue,
-}
-
-const periodBoxStyle: React.CSSProperties = {
-  border: '1px solid black',
-  padding: '12px 14px',
-  marginRight: '8px',
-  transition: '0.4s',
-}
-
-const periodBoxSelectedStyle: React.CSSProperties = {
-  ...periodBoxStyle,
-  backgroundColor: 'black',
-  color: 'white',
-}

@@ -1,14 +1,8 @@
-import { darkBlue, gray1 } from '@app/ui/utils/colors';
-import { fontSora } from '@app/ui/utils/fonts';
-import { FormControl, Grid, Input, InputLabel, MenuItem, Select } from '@mui/material';
-import InputError from '@app/ui/components/inputError/inputError';
+import { Grid } from '@mui/material';
 import { Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react';
-import { inputStyle } from '@app/ui/utils/generalStyles';
 import { InputModel } from '@app/models/forms.model';
 import { FormPurchaseModel } from '@app/models/purchase.model';
-import { selectIcon } from '@app/ui/utils/forms.utils';
 import PurchaseDetails from '../purchaseDetails/PurchaseDetails';
-import InputMask from 'react-input-mask';
 import Loading from '@app/ui/components/loading/Loading';
 import PurchaseSubmit from '../purchaseSubmit/PurchaseSubmit';
 import BillingService, { getCardType } from '@app/services/billing';
@@ -16,6 +10,8 @@ import { useDispatch } from 'react-redux';
 import { userUpdate } from '@app/stores/user.store';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { urls } from '@app/ui/utils/urls';
+import SelectInput from '@app/ui/components/forms/select/Select';
+import TextInput from '@app/ui/components/forms/input/Input';
 import './PurchaseForm.scss';
 
 interface ValidationModel {
@@ -175,235 +171,165 @@ const PurchaseForm = () => {
   }
 
   return (
-    <form 
-      className='purchase-form'
-      style={{display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap'}}
-      onSubmit={handleSubmit}
-    >
+    <form className='purchase-form' onSubmit={handleSubmit} >
       <PurchaseSubmit phoneMethod={phoneMethod} addressMethod={addressMethod} isSubmitting={isLoading} onSuccess={onSuccess} onError={onError} form={submitForm} />
       <Loading isLoading={isLoading}></Loading>
       <Grid item sm={7} xs={12}>
         <div>
-          <div 
-            style={{
-              ...fontSora,
-              fontSize: '22px',
-              fontWeight: '600',
-              lineHeight: '28px',
-              color: darkBlue,
-            }}
-          >
+          <div className='payment-section-title h3-style'>
             Detalhes do pagamento
           </div>
-          <Grid container style={{marginTop: '24px'}}>
-            <div style={grayBoxStyle}></div>
-            <div style={grayBoxStyle}></div>
-            <div style={grayBoxStyle}></div>
-            <div style={grayBoxStyle}></div>
+          <Grid container>
+            <div className='gray-box'></div>
+            <div className='gray-box'></div>
+            <div className='gray-box'></div>
+            <div className='gray-box'></div>
           </Grid>
-          <div style={{marginBottom: '80px'}}>
-            <FormControl className='form-input' fullWidth>
-              <InputLabel id='card'>Número do cartão de crédito</InputLabel>
-              <InputMask mask='9999 9999 9999 9999 9999' value={inputs.card.value} onChange={inputChange}>
-                {() => <Input 
-                  required
-                  error={!!inputs.card.errorMessage} 
-                  type='text'
-                  name='card'
-                  sx={purchaseInputStyle}
-                />}
-              </InputMask>
-              <InputError>{inputs.card.errorMessage}</InputError>
-            </FormControl>
+          <div className='field-are'>
+            <TextInput
+              label='Número do cartão de crédito'
+              name='card'
+              mask='9999 9999 9999 9999 9999'
+              error={inputs.card.errorMessage}
+              value={inputs.card.value}
+              onChange={inputChange}
+              required={true}
+            />
 
-            <FormControl className='form-input' fullWidth>
-              <InputLabel id='fullName'>Nome impresso no cartão</InputLabel>
-              <Input  
-                required
-                error={!!inputs.fullName.errorMessage} 
-                type='text' 
-                value={inputs.fullName.value}
-                name='fullName'
+            <TextInput
+              label='Nome impresso no cartão'
+              name='fullName'
+              error={inputs.fullName.errorMessage}
+              value={inputs.fullName.value}
+              onChange={inputChange}
+              required={true}
+            />
+
+            <TextInput
+              label='Data de validade'
+              mask='99/9999'
+              name='validity'
+              error={inputs.validity.errorMessage}
+              value={inputs.validity.value}
+              onChange={inputChange}
+              required={true}
+            />
+
+            <TextInput
+              label='CVV'
+              name='cvv'
+              error={inputs.cvv.errorMessage}
+              value={inputs.cvv.value}
+              onChange={inputChange}
+              required={true}
+              mask='999'
+            />
+
+            <Grid container justifyContent='space-between'>
+              <TextInput
+                classes='half-width full-width-mobile'
+                label='Endereço'
+                name='address'
+                error={inputs.address.errorMessage}
+                value={inputs.address.value}
                 onChange={inputChange}
-                sx={purchaseInputStyle}
+                required={true}
               />
-              <InputError>{inputs.fullName.errorMessage}</InputError>
-            </FormControl>
-
-            <FormControl className='form-input' fullWidth>
-              <InputLabel id='validity'>Data de validade</InputLabel>
-              <InputMask mask='99/9999' value={inputs.validity.value} onChange={inputChange}>
-                {() => <Input 
-                  required
-                  error={!!inputs.validity.errorMessage} 
-                  type='text' 
-                  name='validity'
-                  sx={purchaseInputStyle}
-                />}
-              </InputMask>
-              <InputError>{inputs.validity.errorMessage}</InputError>
-            </FormControl>
-
-            <FormControl className='form-input' fullWidth>
-              <InputLabel id='cvv'>CVV</InputLabel>
-              <InputMask mask='999' value={inputs.cvv.value} onChange={inputChange}>
-                {() =><Input 
-                  required
-                  error={!!inputs.cvv.errorMessage} 
-                  type='text' 
-                  name='cvv'
-                  sx={purchaseInputStyle}
-                />}
-              </InputMask>
-              <InputError>{inputs.cvv.errorMessage}</InputError>
-            </FormControl>
-
-            <Grid container justifyContent='space-between'>
-              <FormControl className='form-input half-width full-width-mobile'>
-                <InputLabel id='address'>Endereço</InputLabel>
-                <Input 
-                  required
-                  error={!!inputs.address.errorMessage} 
-                  type='text' 
-                  value={inputs.address.value}
-                  name='address'
-                  onChange={inputChange}
-                  sx={purchaseInputStyle}/>
-                <InputError>{inputs.address.errorMessage}</InputError>
-              </FormControl>
-
-              <FormControl className='form-input half-width full-width-mobile'>
-                <InputLabel id='number'>Número</InputLabel>
-                <Input 
-                  required
-                  error={!!inputs.number.errorMessage} 
-                  type='text' 
-                  value={inputs.number.value}
-                  name='number'
-                  onChange={inputChange}
-                  sx={purchaseInputStyle}/>
-                <InputError>{inputs.number.errorMessage}</InputError>
-              </FormControl>
+             
+             <TextInput
+                classes='half-width full-width-mobile'
+                label='Número'
+                name='number'
+                error={inputs.number.errorMessage}
+                value={inputs.number.value}
+                onChange={inputChange}
+                required={true}
+              />
             </Grid>
 
             <Grid container justifyContent='space-between'>
-              <FormControl className='form-input half-width full-width-mobile'>
-                <InputLabel id='district'>Bairro</InputLabel>
-                <Input 
-                  required
-                  error={!!inputs.district.errorMessage} 
-                  type='text' 
-                  value={inputs.district.value}
-                  name='district'
-                  onChange={inputChange}
-                  sx={purchaseInputStyle}/>
-                <InputError>{inputs.district.errorMessage}</InputError>
-              </FormControl>
+              <TextInput
+                classes='half-width full-width-mobile'
+                label='Bairro'
+                name='district'
+                error={inputs.district.errorMessage}
+                value={inputs.district.value}
+                onChange={inputChange}
+                required={true}
+              />
 
-              <FormControl className='form-input half-width full-width-mobile'>
-                <InputLabel id='complement'>Complemento (opcional)</InputLabel>
-                <Input 
-                  required
-                  error={!!inputs.complement.errorMessage} 
-                  type='text' 
-                  value={inputs.complement.value}
-                  name='complement'
-                  onChange={inputChange}
-                  sx={purchaseInputStyle}/>
-                <InputError>{inputs.complement.errorMessage}</InputError>
-              </FormControl>
+              <TextInput
+                classes='half-width full-width-mobile'
+                label='Complemento (opcional)'
+                name='complement'
+                error={inputs.complement.errorMessage}
+                value={inputs.complement.value}
+                onChange={inputChange}
+                required={true}
+              />
             </Grid>
 
             <Grid container justifyContent='space-between'>
-              <FormControl className='form-input half-width'>
-                <InputLabel id='city'>Cidade</InputLabel>
-                <Input 
-                  required
-                  error={!!inputs.city.errorMessage} 
-                  type='text' 
-                  value={inputs.city.value}
-                  name='city'
-                  onChange={inputChange}
-                  sx={purchaseInputStyle}/>
-                <InputError>{inputs.city.errorMessage}</InputError>
-              </FormControl>
+              <TextInput
+                classes='half-width'
+                label='Cidade'
+                name='city'
+                error={inputs.city.errorMessage}
+                value={inputs.city.value}
+                onChange={inputChange}
+                required={true}
+              />
 
-              <FormControl className='form-select half-width' sx={{marginTop: '10px'}}>
-                <InputLabel id='state'>Estado</InputLabel>
-                <Select 
-                  required
-                  variant='standard' 
-                  IconComponent={selectIcon} 
-                  labelId='state' 
-                  value={inputs.state.value} 
-                  name='state' 
-                  onChange={inputChange} 
-                  label='Estado'
-                >
-                  <MenuItem value={0} disabled>Selecione um estado</MenuItem>
-                  <MenuItem value={'SP'}>SP</MenuItem>
-                  <MenuItem value={'RJ'}>RJ</MenuItem>
-                  <MenuItem value={'MG'}>MG</MenuItem>
-                </Select>
-              </FormControl>
+              <SelectInput 
+                classes='half-width state-select' 
+                options={[{value: 'SP', label: 'SP'},{value: 'RJ', label: 'RJ'}]} 
+                label='Estado' 
+                value={inputs.state.value} 
+                name='state' 
+                required={true} 
+                onChange={inputChange}
+              />
             </Grid>
 
-            <FormControl className='form-input' fullWidth>
-              <InputLabel id='cep'>CEP</InputLabel>
-              
-              <InputMask mask='99999-999' value={inputs.cep.value} onChange={inputChange}>
-                {() => <Input 
-                  required
-                  error={!!inputs.cep.errorMessage} 
-                  type='text'
-                  name='cep'
-                  sx={purchaseInputStyle}
-                />}
-              </InputMask>
-              <InputError>{inputs.cep.errorMessage}</InputError>
-            </FormControl>
+            <TextInput
+              label='CEP'
+              name='cep'
+              error={inputs.cep.errorMessage}
+              value={inputs.cep.value}
+              onChange={inputChange}
+              required={true}
+              mask='99999-999'
+            />
 
-            <FormControl className='form-input' fullWidth>
-              <InputLabel id='cpf'>CPF</InputLabel>
-              <InputMask mask='999.999.999-99' value={inputs.cpf.value} onChange={inputChange}>
-                {() => <Input 
-                  required
-                  error={!!inputs.cpf.errorMessage} 
-                  type='text' 
-                  name='cpf'
-                  sx={purchaseInputStyle}
-                />}
-              </InputMask>
-              <InputError>{inputs.cpf.errorMessage}</InputError>
-            </FormControl>
+            <TextInput
+              label='CPF'
+              name='cpf'
+              error={inputs.cpf.errorMessage}
+              value={inputs.cpf.value}
+              onChange={inputChange}
+              required={true}
+              mask='999.999.999-99'
+            />
 
-            <FormControl className='form-input' fullWidth>
-              <InputLabel id='birthday'>Data de nascimento</InputLabel>
-              <InputMask mask='99/99/9999' value={inputs.birthday.value} onChange={inputChange}>
-                {() => <Input 
-                  required
-                  error={!!inputs.birthday.errorMessage} 
-                  type='text' 
-                  name='birthday'
-                  sx={purchaseInputStyle}
-                />}
-              </InputMask>
-              <InputError>{inputs.birthday.errorMessage}</InputError>
-            </FormControl>
+            <TextInput
+              label='Data de nascimento'
+              name='birthday'
+              error={inputs.birthday.errorMessage}
+              value={inputs.birthday.value}
+              onChange={inputChange}
+              required={true}
+              mask='99/99/9999'
+            />
 
-            <FormControl className='form-input' fullWidth>
-              <InputLabel id='phone'>Telefone</InputLabel>
-              <InputMask mask={phoneMask} value={inputs.phone.value} onChange={inputChange}>
-                {() => <Input 
-                  required
-                  error={!!inputs.phone.errorMessage} 
-                  type='text' 
-                  name='phone'
-                  sx={purchaseInputStyle}
-                />}
-              </InputMask>
-              <InputError>{inputs.phone.errorMessage}</InputError>
-            </FormControl>
+            <TextInput
+              label='Telefone'
+              name='phone'
+              error={inputs.phone.errorMessage}
+              value={inputs.phone.value}
+              onChange={inputChange}
+              required={true}
+              mask={phoneMask}
+            />
           </div>
         </div>
       </Grid>
@@ -419,16 +345,3 @@ const PurchaseForm = () => {
 }
 
 export default PurchaseForm;
-
-const grayBoxStyle: React.CSSProperties = {
-  width: '32px',
-  height: '22px',
-  backgroundColor: gray1,
-  borderRadius: '4px',
-  marginRight: '8px',
-}
-
-const purchaseInputStyle = {
-  ...inputStyle,
-  padding: '26px 0 0px 2px'
-}

@@ -66,9 +66,9 @@ const App = () => {
             <Route path={urls.becomePro.url} element={<BecomePro />} />
             <Route path={urls.startSearch.url} element={<StartSearch />} />
             <Route path={urls.terms.url} element={<TermsPage />} />
-            <Route path={urls.about.url} element={<AboutPage isDesktop={isDesktop} />} />
-            <Route path={urls.reports.url} element={<ReportsPage isDesktop={isDesktop} />} />
-            <Route path={urls.purchase.url} element={<Purchase isDesktop={isDesktop} />} />
+            <Route path={urls.about.url} element={<AboutPage />} />
+            <Route path={urls.reports.url} element={<ReportsPage />} />
+            <Route path={urls.purchase.url} element={<Purchase />} />
             <Route path={urls.plans.url} element={<Plans />} />
             <Route path={urls.search.url} element={<Search isDesktop={isDesktop} />} />
           </Routes>
