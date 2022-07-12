@@ -31,7 +31,7 @@ const SearchField = ({onClickFilters}: PropsSearchField) => {
   useEffect(() => {
     if (window.location.search) {
       const urlFilters = parseUrlToFilters();
-      setQuery(urlFilters.query as string);
+      setQuery(urlFilters.query as string || '');
     }
   }, []);
 
