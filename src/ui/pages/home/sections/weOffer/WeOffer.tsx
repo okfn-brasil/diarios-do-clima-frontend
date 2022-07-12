@@ -1,5 +1,5 @@
 import { MouseEventHandler, useState } from 'react';
-import { Grid, Box } from "@mui/material";
+import { Grid, Box } from '@mui/material';
 import HistoryLogo from '@app/assets/images/home/icons/history.svg';
 import AlertsLogo from '@app/assets/images/home/icons/alerts.svg';
 import ThemeLogo from '@app/assets/images/home/icons/theme.svg';

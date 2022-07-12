@@ -1,5 +1,5 @@
-import { refreshToken } from "./refreshToken";
-import { tokenKeys } from "../ui/utils/storage-utils";
+import { refreshToken } from './refreshToken';
+import { tokenKeys } from '../ui/utils/storage-utils';
 
 export interface HeadersModel {
   'Content-Type': string;
@@ -39,9 +39,9 @@ export const config = {
   },
   handleResponse: (response: any, preventRefresh = false): any => {
     return new Promise(async (resolve, reject) => {
-      const contentType = response.headers.get("content-type");
+      const contentType = response.headers.get('content-type');
       let newResponse;
-      if(contentType && contentType.indexOf("application/json") !== -1) {
+      if(contentType && contentType.indexOf('application/json') !== -1) {
         newResponse = await response.json();
       }
       if(response.ok && newResponse) {

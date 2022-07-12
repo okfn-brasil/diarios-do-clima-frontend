@@ -1,15 +1,15 @@
-import { Grid } from "@mui/material";
+import { Grid } from '@mui/material';
 import MenuMobile from './menuMobile/MenuMobile';
 import MenuDesktop from './menuDesktop/MenuDesktop';
 import DiarioLogo from '@app/assets/images/logo.svg';
 import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { UrlModel, urls } from "@app/ui/utils/urls";
-import LoginForm from "./loginForm/LoginForm";
-import { useSelector } from "react-redux";
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { UrlModel, urls } from '@app/ui/utils/urls';
+import LoginForm from './loginForm/LoginForm';
+import { useSelector } from 'react-redux';
 import { UserState } from '@app/models/user.model';
-import { RootState } from "@app/stores/store";
+import { RootState } from '@app/stores/store';
 import './Menu.scss';
 
 const Menu = () => {
@@ -61,7 +61,7 @@ const Menu = () => {
           alignItems='center'
           xs={12} sm={10}
         >
-          <Link to="/"><img src={isWhiteMenu ? DiarioLogoBlack : DiarioLogo} alt='Logo do Diario do Clima' /></Link>
+          <Link to='/'><img src={isWhiteMenu ? DiarioLogoBlack : DiarioLogo} alt='Logo do Diario do Clima' /></Link>
           <div>
             <div className='only-desktop'><MenuDesktop showLoginForm={showLoginForm} isWhite={isWhiteMenu  as boolean} /> </div>
             <div className='only-mobile'><MenuMobile showLoginForm={showLoginForm} isWhite={isWhiteMenu as boolean} /></div>

@@ -1,6 +1,6 @@
-import { LoginResponse } from "../models/login.model";
-import LoginService from "./login";
-import { deleteTokens, tokenKeys } from "../ui/utils/storage-utils";
+import { LoginResponse } from '../models/login.model';
+import LoginService from './login';
+import { deleteTokens, tokenKeys } from '../ui/utils/storage-utils';
 
 export const refreshToken = () => {
   const loginService = new LoginService();

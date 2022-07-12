@@ -1,4 +1,4 @@
-import { ButtonBase } from "@mui/material";
+import { ButtonBase } from '@mui/material';
 import './ButtonOutlined.scss'
 
 interface PropsButtonOutlined {

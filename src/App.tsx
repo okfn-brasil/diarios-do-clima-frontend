@@ -1,39 +1,35 @@
-import Home from "@app/ui/pages/home/Home";
-import React, { Fragment, useEffect } from "react";
+import Home from '@app/ui/pages/home/Home';
+import React, { Fragment, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-} from "react-router-dom";
+} from 'react-router-dom';
 import Registration from './ui/pages/registration/registration';
 import CookieAlert from '@app/ui/components/cookieAlert/CookieAlert';
 import Footer from '@app/ui/components/footer/Footer';
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useState } from "react";
-import { urls } from "./ui/utils/urls";
-import BecomePro from "./ui/pages/becomePro/BecomePro";
-import StartSearch from "./ui/pages/startSearch/StartSearch";
-import AccountService, { checkPlan } from "./services/accounts";
-import { useDispatch } from "react-redux";
-import { userUpdate } from "./stores/user.store";
-import { tokenKeys } from "./ui/utils/storage-utils";
-import RouteChangeManager from "./ui/components/routeChangeManager/RouteChangeManager";
-import TermsPage from "./ui/pages/terms/Terms";
-import AboutPage from "./ui/pages/about/About";
-import ReportsPage from "./ui/pages/reports/Reports";
-import Purchase from "./ui/pages/purchase/Purchase";
-import Plans from "./ui/pages/plans/Plans";
-import { UserResponseModel } from "./models/user.model";
-import Search from "./ui/pages/search/Search";
-import Menu from "./ui/components/menu/Menu";
+import { useState } from 'react';
+import { urls } from './ui/utils/urls';
+import BecomePro from './ui/pages/becomePro/BecomePro';
+import StartSearch from './ui/pages/startSearch/StartSearch';
+import AccountService, { checkPlan } from './services/accounts';
+import { useDispatch } from 'react-redux';
+import { userUpdate } from './stores/user.store';
+import { tokenKeys } from './ui/utils/storage-utils';
+import RouteChangeManager from './ui/components/routeChangeManager/RouteChangeManager';
+import TermsPage from './ui/pages/terms/Terms';
+import AboutPage from './ui/pages/about/About';
+import ReportsPage from './ui/pages/reports/Reports';
+import Purchase from './ui/pages/purchase/Purchase';
+import Plans from './ui/pages/plans/Plans';
+import { UserResponseModel } from './models/user.model';
+import Search from './ui/pages/search/Search';
+import Menu from './ui/components/menu/Menu';
 
 const App = () => {
   const dispatch = useDispatch();
   const accountService = new AccountService();
   let [showCookieAlert, setShowCookieAlert] = useState(!localStorage.getItem(tokenKeys.cookies));
-  const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
 
   useEffect(() => {
     if(localStorage.getItem(tokenKeys.access)) {
@@ -70,7 +66,7 @@ const App = () => {
             <Route path={urls.reports.url} element={<ReportsPage />} />
             <Route path={urls.purchase.url} element={<Purchase />} />
             <Route path={urls.plans.url} element={<Plans />} />
-            <Route path={urls.search.url} element={<Search isDesktop={isDesktop} />} />
+            <Route path={urls.search.url} element={<Search />} />
           </Routes>
           <Footer />
         </Fragment>

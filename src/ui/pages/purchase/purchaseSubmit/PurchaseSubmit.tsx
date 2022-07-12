@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { FormPurchaseModel } from "@app/models/purchase.model";
-import BillingService, { getCardType } from "@app/services/billing";
+import { useEffect } from 'react';
+import { FormPurchaseModel } from '@app/models/purchase.model';
+import BillingService, { getCardType } from '@app/services/billing';
 declare const PagSeguroDirectPayment: {
   setSessionId: (e: string) => {};
   createCardToken: (e: {

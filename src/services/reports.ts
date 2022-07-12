@@ -7,7 +7,7 @@ export default class ReportsService {
   getAllReports(filters: FiltersState, currPage: number) {
     const newFilters = {...filters, page: currPage};
     return request({
-      url: this.currentUrl + 'public/?', //+ convertToParams(newFilters), 
+      url: this.currentUrl + 'public/?', //+ convertToParams(newFilters),  // TO DO
       method: 'GET',
     });
   }

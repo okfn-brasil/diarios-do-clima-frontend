@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid } from '@mui/material';
 import HyperLink from '@app/ui/components/hyperLink/HyperLink';
 import { urls } from '@app/ui/utils/urls';
 import './MoreData.scss';

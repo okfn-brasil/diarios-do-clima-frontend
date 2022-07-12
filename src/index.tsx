@@ -5,8 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 
-import "@fontsource/sora";
-import "@fontsource/roboto";
+import '@fontsource/sora';
+import '@fontsource/roboto';
 import { store } from './stores/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

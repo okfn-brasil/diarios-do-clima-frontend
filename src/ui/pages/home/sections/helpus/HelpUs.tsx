@@ -1,6 +1,6 @@
-import { Grid } from "@mui/material";
-import ButtonSolidGreen from "@app/ui/components/button/ButtonGreen/ButtonGreen";
-import ButtonSolidDarkBlue from "@app/ui/components/button/buttonDarkBlue/ButtonDarkBlue";
+import { Grid } from '@mui/material';
+import ButtonSolidGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import ButtonSolidDarkBlue from '@app/ui/components/button/buttonDarkBlue/ButtonDarkBlue';
 import LinkManager from '@app/ui/components/linkManager/LinkManager';
 import { urls } from '@app/ui/utils/urls';
 import './HelpUs.scss';

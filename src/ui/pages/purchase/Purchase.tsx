@@ -1,5 +1,5 @@
-import { Grid } from "@mui/material";
-import PurchaseForm from "./purchaseForm/PurchaseForm";
+import { Grid } from '@mui/material';
+import PurchaseForm from './purchaseForm/PurchaseForm';
 import './Purchase.scss';
 
 

@@ -1,8 +1,8 @@
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
-import { Dispatch, SetStateAction, useState } from "react";
-import TextInput from "../input/Input";
+import { Dispatch, SetStateAction, useState } from 'react';
+import TextInput from '../input/Input';
 import './passwordField.scss';
 
 interface PropsPasswordField {
@@ -67,20 +67,20 @@ const PasswordField = ({ classess, value, name, errorMessage, onChange }: PropsP
       </div>
 
       <div className='validation'>
-        <div className="validator">
-          <div className="icon">{fieldValidation.minLength ? <CheckIcon color='success'/> : <CloseIcon color='error'/>}</div>
+        <div className='validator'>
+          <div className='icon'>{fieldValidation.minLength ? <CheckIcon color='success'/> : <CloseIcon color='error'/>}</div>
           Ter 8 ou mais caracteres
         </div>
-        <div className="validator">
-          <div className="icon">{fieldValidation.lettersAndNumbers ? <CheckIcon color='success'/> : <CloseIcon color='error'/>}</div>
+        <div className='validator'>
+          <div className='icon'>{fieldValidation.lettersAndNumbers ? <CheckIcon color='success'/> : <CloseIcon color='error'/>}</div>
           Conter letras e números
         </div>
-        <div className="validator">
-          <div className="icon">{fieldValidation.specials ? <CheckIcon color='success'/> : <CloseIcon color='error'/>}</div>
+        <div className='validator'>
+          <div className='icon'>{fieldValidation.specials ? <CheckIcon color='success'/> : <CloseIcon color='error'/>}</div>
           Conter caracteres especiais (*,!.&%$#@)
         </div>
-        <div className="validator">
-          <div className="icon">{fieldValidation.uppercase ? <CheckIcon color='success'/> : <CloseIcon color='error'/>}</div>
+        <div className='validator'>
+          <div className='icon'>{fieldValidation.uppercase ? <CheckIcon color='success'/> : <CloseIcon color='error'/>}</div>
           Conter uma letra maiúscula
         </div>
       </div>

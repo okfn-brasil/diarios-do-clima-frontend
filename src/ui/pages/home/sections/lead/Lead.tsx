@@ -1,9 +1,9 @@
-import { Grid } from "@mui/material";
+import { Grid } from '@mui/material';
 import backgroundImage from '@app/assets/images/home/lead.background.png';
 import deviceImage from '@app/assets/images/home/lead.device.png';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
-import LinkManager from "@app/ui/components/linkManager/LinkManager";
-import { urls } from "@app/ui/utils/urls";
+import LinkManager from '@app/ui/components/linkManager/LinkManager';
+import { urls } from '@app/ui/utils/urls';
 import './Lead.scss';
 
 const Lead = () => {

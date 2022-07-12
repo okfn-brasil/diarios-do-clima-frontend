@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import SearchField from './searchField/SearchField';
 import SearchList from './searchList/SearchList';
 import { Dispatch, useEffect, useState } from 'react';
@@ -12,14 +12,12 @@ import Loading from '@app/ui/components/loading/Loading';
 import { FiltersState } from '@app/models/filters.model';
 import './Search.scss';
 
-interface PropsSearch {
-  isDesktop: boolean;
-}
-
 let timeout: ReturnType<typeof setTimeout>;
 const pageKeys: string[] = ['itemsPerPage', 'order'];
 
-const Search = ({isDesktop}: PropsSearch) => {
+const Search = () => {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
   const filters: FiltersState = useSelector((state: RootState) => state.filter);
   const reportsService = new ReportsService();
   const [showFiltersMobile, setFiltersMobileVisibility] : [boolean, Dispatch<boolean>] = useState(false);

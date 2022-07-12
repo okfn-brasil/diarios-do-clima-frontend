@@ -99,20 +99,20 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
           <Grid container justifyContent='space-between' className='date-pickers'>
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR} localeText={datePickerTranslation as Partial<PickersLocaleText<unknown>>}>
               <DatePicker
-                label="De"
+                label='De'
                 disableFuture={true}
                 value={dates.start}
                 onChange={(value) => {dateChange(value as Date, 'start')}}
-                renderInput={(params) => <TextField autoComplete='off' {...params} inputProps={{...params.inputProps, placeholder: "dd/mm/aaaa"}} />}
+                renderInput={(params) => <TextField autoComplete='off' {...params} inputProps={{...params.inputProps, placeholder: 'dd/mm/aaaa'}} />}
               />
             </LocalizationProvider>
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR} localeText={datePickerTranslation as Partial<PickersLocaleText<unknown>>}>
               <DatePicker
-                label="Até"
+                label='Até'
                 disableFuture={true}
                 value={dates.end}
                 onChange={(value) => {dateChange(value as Date, 'end')}}
-                renderInput={(params) => <TextField autoComplete='off' {...params} inputProps={{...params.inputProps, placeholder: "dd/mm/aaaa"}} />}
+                renderInput={(params) => <TextField autoComplete='off' {...params} inputProps={{...params.inputProps, placeholder: 'dd/mm/aaaa'}} />}
               />
             </LocalizationProvider>
           </Grid>
