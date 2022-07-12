@@ -98,7 +98,9 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
     <Grid>
       <Grid container>
         <div onClick={() => {changeTab(0)}} className={`hover-animation ${tab ? 'tab-class' : 'curr-tab-class'}`}>Recentes</div>
-        <div  onClick={() => {changeTab(1)}} className={`hover-animation second-tab ${!tab ? 'tab-class' : 'curr-tab-class'}`}>Intervalo de tempo</div>
+        <div  onClick={() => {changeTab(1)}} className={`hover-animation second-tab ${!tab ? 'tab-class' : 'curr-tab-class'}`}>
+          Intervalo de tempo <ProFlag spaceBottom={2} show={!!(!userData.plan_pro && tab)}/>
+        </div>
       </Grid>
 
       {!tab ?
@@ -122,18 +124,20 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR} localeText={datePickerTranslation as Partial<PickersLocaleText<unknown>>}>
               <DatePicker
                 label='De'
+                disabled={!userData.plan_pro}
                 disableFuture={true}
                 value={dates.start}
-                onChange={(value) => {dateChange(value as Date, 'start')}}
+                onChange={(value) => {userData.plan_pro ? dateChange(value as Date, 'start') : {}}}
                 renderInput={(params) => <TextField autoComplete='off' {...params} inputProps={{...params.inputProps, placeholder: 'dd/mm/aaaa'}} />}
               />
             </LocalizationProvider>
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR} localeText={datePickerTranslation as Partial<PickersLocaleText<unknown>>}>
               <DatePicker
                 label='Até'
+                disabled={!userData.plan_pro}
                 disableFuture={true}
                 value={dates.end}
-                onChange={(value) => {dateChange(value as Date, 'end')}}
+                onChange={(value) => {userData.plan_pro ? dateChange(value as Date, 'end') : {}}}
                 renderInput={(params) => <TextField autoComplete='off' {...params} inputProps={{...params.inputProps, placeholder: 'dd/mm/aaaa'}} />}
               />
             </LocalizationProvider>
