@@ -74,13 +74,32 @@ const Registration = () => {
         }
       }
     });
-    if(!errors.length && step < 3) {
+    if(!errors.length && step === 1) {
+      checkEmail();
+    } else if(!errors.length && step === 2) {
       const nextStep = step + 1;
       setStep(nextStep);
     } else if(!errors.length && step === 3) {
       submit();
     }
     event.preventDefault();
+  }
+
+  const checkEmail = () => {
+    setLoading(true);
+    accountsService.getEmail(inputs.email.value).then(() => {
+      setLoading(false);
+      const nextStep = step + 1;
+      setStep(nextStep);
+    }).catch(() => {
+      setLoading(false);
+      setInputs((values: RegistrationModel) => ({...values, email: 
+        {
+          ...inputs.email,
+          errorMessage: 'Este endereço de e-mail ja possui uma conta cadastrada'
+        }
+      }));
+    });
   }
 
   const submit = () => {
@@ -208,6 +227,7 @@ const Registration = () => {
           />
 
           <TextInput
+            classes='city-input'
             label='Cidade'
             name='city'
             error={inputs.city.errorMessage}

@@ -4,10 +4,13 @@ import { Checkbox, FormControlLabel, FormGroup, Grid, SelectChangeEvent } from '
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import DateFilter from './dateFilter/DateFilter';
 import { Dates, FiltersStatePayload, parseUrlToFilters, SubmitDates, Theme } from '@app/models/filters.model';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateFilters } from '@app/stores/filters.store';
 import SelectInput from '@app/ui/components/forms/select/Select';
 import './SearchFilters.scss';
+import { UserState } from '@app/models/user.model';
+import { RootState } from '@app/stores/store';
+import ProFlag from '@app/ui/components/proFlag/ProFlag';
 
 interface PropsSearchFilters{
   onClose?: () => void;
@@ -31,10 +34,24 @@ const initialFilters: FiltersStatePayload = {
   period: 0,
 }
 
+const HelpIcon = () => {
+  return (
+    <span className='hover-animation'>        
+      <img 
+        className='help-icon'
+        src={helpIcon} 
+        alt='icone - ajuda'
+      />
+    </span>
+  )
+}
+
 const SearchFilters = ({onClose}: PropsSearchFilters) => {
+  const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const dispatch = useDispatch();
   const [filters, setFilters] : [FiltersStatePayload, Dispatch<SetStateAction<FiltersStatePayload>>] = useState(initialFilters);
   const [cleanDate, setCleanDate] : [number, Dispatch<number>] = useState(0);
+  const [showMoreThemes, setShowMoreThemes] : [boolean, Dispatch<boolean>] = useState(false);
 
   const inputChange = (event: SelectChangeEvent<string>) => {
     const {name, value} = event.target;
@@ -94,13 +111,7 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
         <section className='section-class'>  
           <h3 className='h3-class'>
             Município
-            <span className='hover-animation'>
-              <img 
-                className='help-icon'
-                src={helpIcon} 
-                alt='icone - ajuda'
-              />
-            </span>
+            <HelpIcon/>
           </h3>
           <SelectInput
             options={[{value: 'x', label: 'x'},{value: 'y', label: 'y'}]} 
@@ -118,18 +129,28 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
         </section>
 
         <section className='section-class theme-filter'>
-          <h3 className='h3-class'>Tema</h3>
+          <h3 className='h3-class'>
+            Tema 
+            <ProFlag spaceBottom={2} show={!userData.plan_pro}/>
+            <HelpIcon/>
+          </h3>
           <p>Aqui uma descrição breve do que são e de como funcionam os temas</p>
           <div>
             <FormGroup>
-              {Object.keys(filters.themes as Theme).map((key: string) => {
+              {Object.keys(filters.themes as Theme).splice(0, showMoreThemes ? 20 : 3).map((key: string) => {
                 return (<FormControlLabel 
                   key={key} 
-                  control={<Checkbox checked={!!(filters.themes as Theme)[key]} name={key} onChange={checkBoxChange} />} 
+                  disabled={!userData.plan_pro}
+                  control={<Checkbox 
+                    checked={!!(filters.themes as Theme)[key]} 
+                    name={key} 
+                    onChange={(e) => {userData.plan_pro ? checkBoxChange(e) : {}}} 
+                  />} 
                   label={key} 
                 />)}
               )}
             </FormGroup>
+            <button onClick={() => setShowMoreThemes(!showMoreThemes)} className='blue-link hover-animation show-more'>Mostrar {showMoreThemes ? 'menos' : 'mais'}</button>
           </div>
         </section>
 

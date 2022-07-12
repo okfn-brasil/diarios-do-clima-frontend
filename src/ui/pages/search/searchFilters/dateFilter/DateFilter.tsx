@@ -7,6 +7,10 @@ import { datePickerTranslation } from '@app/ui/utils/datepicker.utils';
 import { ptBR } from 'date-fns/locale';
 import { Dates, parseUrlToFilters, SubmitDates } from '@app/models/filters.model';
 import './DateFilter.scss';
+import ProFlag from '@app/ui/components/proFlag/ProFlag';
+import { UserState } from '@app/models/user.model';
+import { useSelector } from 'react-redux';
+import { RootState } from '@app/stores/store';
 
 interface PropsDateFilter {
   onSubmit: (e: SubmitDates) => void;
@@ -20,6 +24,7 @@ const initialDates: Dates = {
 };
 
 const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
+  const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const [tab, setTab] : [number, Dispatch<number>] = useState(0);
   const [invalidDate, setInvalidDate] : [boolean, Dispatch<boolean>] = useState(false);
   const [currPeriod, setPeriod] : [number, Dispatch<number>] = useState(0);
@@ -83,7 +88,11 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
         setTab(1);
       }
     }
-  }, [])
+  }, []);
+
+  const getIfAllowsProFilter = (period: number) => {
+    return !!(period === 4 && !userData.plan_pro);
+  }
 
   return (
     <Grid>
@@ -96,11 +105,12 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
        <Grid container className='periods'>
         {periods.map(period =>{
           return (<div 
-            className={`hover-animation ${currPeriod === period ? 'period-box-selected-class' : 'period-box-class'}`}
+            className={`hover-animation ${getIfAllowsProFilter(period) ? 'disabled-box' : ''} ${currPeriod === period ? 'period-box-selected-class' : 'period-box-class'}`}
             key={period}
-            onClick={() => {changePeriod(period)}}
+            onClick={() => {getIfAllowsProFilter(period) ? {} : changePeriod(period)}}
           >
-            {period < 4 ? `${period}m` : 'Tudo'}
+            {period < 4 ? `${period}m` : 'Tudo'} 
+            <ProFlag show={getIfAllowsProFilter(period)}/>
           </div>)
         })}
        </Grid> : <></>

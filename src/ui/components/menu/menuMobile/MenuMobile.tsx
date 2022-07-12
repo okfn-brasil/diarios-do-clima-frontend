@@ -14,7 +14,7 @@ interface PropsMenuMobile {
 }
 
 const MenuMobile = ({isWhite, showLoginForm}: PropsMenuMobile) => {
-  const userData: UserState = useSelector((state: RootState) => state.user);
+  const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const [showMenu, setShowMenu] = useState(false);
   return (
     <div className='menu-mobile'>

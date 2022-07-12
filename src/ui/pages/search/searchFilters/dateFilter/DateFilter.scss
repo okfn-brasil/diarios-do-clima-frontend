@@ -74,6 +74,17 @@
   color: $white;
 }
 
+.disabled-box {
+  background-color: $gray2;
+  border-color: $gray2;
+  color: $gray;
+  cursor: not-allowed;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 .periods {
   margin: 20px 0 11px;
 }

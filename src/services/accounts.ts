@@ -32,6 +32,17 @@ export default class AccountService {
       customHeaders: config.tokenHeaders((token ? {access: token} : null) as TokensModel) as HeadersModel
     });
   }
+
+  getEmail(email: string) {
+    return request({
+      url: this.currentUrl + `email/${email}/`, 
+      method: 'GET',
+      customResponseHandler: (response: Response) => { 
+        return new Promise(async (resolve, reject) => { 
+          response.ok ? reject(response) : resolve(response);
+        })}
+    });
+  }
 }
 
 export const checkPlan = (userData: UserResponseModel | RegistrationResponse) => {

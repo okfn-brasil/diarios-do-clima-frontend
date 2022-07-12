@@ -9,7 +9,7 @@ import { RootState } from '@app/stores/store';
 import './StartSearch.scss'
 
 const StartSearch = () => {
-  const userData: UserState = useSelector((state: RootState) => state.user);
+  const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   
   return (
     <Grid container className='container start-search-page'>

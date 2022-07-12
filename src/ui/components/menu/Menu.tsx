@@ -13,7 +13,7 @@ import { RootState } from '@app/stores/store';
 import './Menu.scss';
 
 const Menu = () => {
-  const userData: UserState = useSelector((state: RootState) => state.user);
+  const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const [searchParams] = useSearchParams();
   const [hasScrolled, setScrolled]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
   const [showLogin, setLoginVisibility]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);

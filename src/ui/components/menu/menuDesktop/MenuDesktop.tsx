@@ -14,7 +14,7 @@ interface PropsMenuDesktop {
 }
 
 const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
-  const userData: UserState = useSelector((state: RootState) => state.user);
+  const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const onShowLoginForm = () => {
     showLoginForm(true);
   }

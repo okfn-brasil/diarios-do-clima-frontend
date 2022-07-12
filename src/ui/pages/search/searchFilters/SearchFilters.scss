@@ -17,7 +17,7 @@
 
   .section-class {
     border-bottom: 1px solid $gray2;
-    padding-bottom: 26px;
+    padding-bottom: 24px;
   }
 
   .mobile-header {
@@ -35,6 +35,14 @@
 
   .blue-link {
     font-size: 14px;
+  }
+
+  .show-more {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    text-align: right;
+    margin-top: 10px;
   }
 
   .location-filter {
