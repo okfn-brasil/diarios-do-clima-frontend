@@ -10,9 +10,9 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@app/stores/store';
 import Loading from '@app/ui/components/loading/Loading';
 import { FiltersState, parseFiltersToUrl } from '@app/models/filters.model';
-import ModalCreateAlert from './searchModals/modalCreateAlert/ModalCreateAlert';
 import { UserState } from '@app/models/user.model';
-import ModalBecomePro from './searchModals/modalBecomePro/ModalBecomePro';
+import ModalCreateAlert from '@app/ui/components/createAlertModals/modalCreateAlert/ModalCreateAlert';
+import ModalBecomePro from '@app/ui/components/createAlertModals/modalBecomePro/ModalBecomePro';
 import './Search.scss';
 
 let timeout: ReturnType<typeof setTimeout>;

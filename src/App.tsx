@@ -39,7 +39,7 @@ const App = () => {
             id: response.id,
             email: response.email,
             full_name: response.full_name,
-            plan_pro: checkPlan(response), //TO DO remover mock
+            plan_pro: checkPlan(response) || true, 
           }));
       });
     }
