@@ -37,8 +37,9 @@ const App = () => {
         (response: UserResponseModel) => {
           dispatch(userUpdate({
             id: response.id,
+            email: response.email,
             full_name: response.full_name,
-            plan_pro: checkPlan(response),
+            plan_pro: checkPlan(response), //TO DO remover mock
           }));
       });
     }

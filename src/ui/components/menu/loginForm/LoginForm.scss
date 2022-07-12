@@ -79,15 +79,3 @@
     margin-left: 5px;
   }
 }
-
-@keyframes fadeIn {
-  0% {
-    transform: translate(0, 50px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-}

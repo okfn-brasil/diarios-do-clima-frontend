@@ -16,9 +16,10 @@ interface PropsSearchList {
   list?: ReportModel[];
   listSize?: number;
   searchTimes: number;
+  openCreateAlert: () => void;
 }
 
-const SearchList = ({list, listSize, searchTimes}: PropsSearchList) => {
+const SearchList = ({list, listSize, searchTimes, openCreateAlert}: PropsSearchList) => {
   const filters: FiltersState = useSelector((state: RootState) => state.filter);
   const dispatch = useDispatch();
   const [order, setOrder] : [string, Dispatch<string>] = useState(filters.order as string);
@@ -46,24 +47,26 @@ const SearchList = ({list, listSize, searchTimes}: PropsSearchList) => {
           : <></>
         }
         { listSize ? 
-          <Grid className='only-desktop' item container sm={12} justifyContent='space-between'>
-            <span className='hover-animation'>
-              <ButtonOutlined classess='mobile-button-class'>
-                <Grid container justifyContent='space-between'>
-                  <img src={bellIcon}/>
-                  <div className='alert-button'>Criar alerta</div>
-                </Grid>
-              </ButtonOutlined>
-            </span>
-            <SelectInput
-              classes='half-width'
-              options={[{value: 'recente', label: 'Mais recente'},{value: 'menor', label: 'Menor'}, {value: 'maior', label: 'Maior'}]} 
-              placeholder='Selecione um munícipio' 
-              value={order} 
-              name='order'
-              onChange={updateOrder}
-            />
-          </Grid>
+            <div className='only-desktop' >
+              <Grid item container sm={12} justifyContent='space-between'>
+                <span className='hover-animation'>
+                  <ButtonOutlined onClick={openCreateAlert} classess='mobile-button-class'>
+                    <Grid container justifyContent='space-between'>
+                      <img src={bellIcon}/>
+                      <div className='alert-button'>Criar alerta</div>
+                    </Grid>
+                  </ButtonOutlined>
+                </span>
+                <SelectInput
+                  classes='half-width'
+                  options={[{value: 'recente', label: 'Mais recente'},{value: 'menor', label: 'Menor'}, {value: 'maior', label: 'Maior'}]} 
+                  placeholder='Selecione um munícipio' 
+                  value={order} 
+                  name='order'
+                  onChange={updateOrder}
+                />
+              </Grid>
+            </div>
           : <></>
         }
         {

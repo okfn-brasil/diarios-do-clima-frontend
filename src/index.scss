@@ -71,6 +71,11 @@ a, a span, a button  {
 }
 
 //texts
+.small-text {
+  font-size: 14px;
+  color: $darkBlue;
+}
+
 .h2-class {
   font-size: 38px;
   line-height: 48px;
@@ -251,4 +256,28 @@ a, a span, a button  {
 //buttons
 .base-button, .base-button.MuiButtonBase-root {
   padding: 14px 40px;
+}
+
+// popup 
+.shadow-modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0, 0.3);
+  top: 0;
+  left: 0;
+  z-index: 99999;
+}
+
+//animations
+@keyframes fadeIn {
+  0% {
+    transform: translate(0, 50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
 }

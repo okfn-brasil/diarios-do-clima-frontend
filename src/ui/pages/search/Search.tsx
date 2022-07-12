@@ -10,21 +10,27 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@app/stores/store';
 import Loading from '@app/ui/components/loading/Loading';
 import { FiltersState, parseFiltersToUrl } from '@app/models/filters.model';
+import ModalCreateAlert from './searchModals/modalCreateAlert/ModalCreateAlert';
+import { UserState } from '@app/models/user.model';
+import ModalBecomePro from './searchModals/modalBecomePro/ModalBecomePro';
 import './Search.scss';
 
 let timeout: ReturnType<typeof setTimeout>;
 const pageKeys: string[] = ['itemsPerPage', 'order'];
 
 const Search = () => {
+  const userData: UserState = useSelector((state: RootState) => state.user as UserState);
+  const filters: FiltersState = useSelector((state: RootState) => state.filter);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
-  const filters: FiltersState = useSelector((state: RootState) => state.filter);
   const reportsService = new ReportsService();
   const [showFiltersMobile, setFiltersMobileVisibility] : [boolean, Dispatch<boolean>] = useState(false);
   const [listItems, setListItems] : [ReportModel[], Dispatch<ReportModel[]>] = useState([] as ReportModel[]);
   const [currPage, setPage] : [number, Dispatch<number>] = useState(0);
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [searchTimes, setSearchTimes] : [number, Dispatch<number>] = useState(0);
+  const [isOpenCreateAlert, setStateCreateAlert] : [boolean, Dispatch<boolean>] = useState(false);
+  const [isOpenBecomePro, setStateBecomePro] : [boolean, Dispatch<boolean>] = useState(false);
 
   useEffect(() => {
     if  (Object.keys(filters).filter(item => !pageKeys.includes(item)).length) {
@@ -80,11 +86,18 @@ const Search = () => {
     history.replaceState(null, '', `?${searchParams}`);
   }
 
+  const onOpenBecomePro = () => {
+    setStateCreateAlert(false);
+    setStateBecomePro(true);
+  }
+
   return (
     <div>
+      <ModalCreateAlert openBecomePro={onOpenBecomePro} userData={userData} onClose={() => setStateCreateAlert(false)} isOpen={isOpenCreateAlert}/>
+      <ModalBecomePro isOpen={isOpenBecomePro} onClose={() => setStateBecomePro(false)}/>
       <Loading isLoading={isLoading}></Loading>
       <div className='search-page'>
-        <SearchField onClickFilters={onClickFilters}/>
+        <SearchField openCreateAlert={() => setStateCreateAlert(true)} onClickFilters={onClickFilters}/>
         {
           showFiltersMobile ? 
           <div className='only-mobile mobile-filters'>
@@ -99,6 +112,7 @@ const Search = () => {
           <Grid item sm={isDesktop ? 9 : 12} className='gray-area'>
             <div className='search-area'>
               <SearchList
+                openCreateAlert={() => setStateCreateAlert(true)}
                 searchTimes={searchTimes}
                 listSize={listItems.length} 
                 list={listItems.slice(

@@ -14,7 +14,7 @@ const RouteChangeManager = () => {
   const location = useLocation();
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   useEffect(() => {
-    //window.scrollTo(0, 0); // TO DO
+    window.scrollTo(0, 0);
     if(userData.access && notLoggedPaths.includes(location.pathname)) {
       navigate(urls.home.url);
     }

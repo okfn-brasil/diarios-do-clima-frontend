@@ -12,9 +12,10 @@ import { parseUrlToFilters } from '@app/models/filters.model';
 
 interface PropsSearchField {
   onClickFilters: () => void;
+  openCreateAlert: () => void;
 }
 
-const SearchField = ({onClickFilters}: PropsSearchField) => {
+const SearchField = ({onClickFilters, openCreateAlert}: PropsSearchField) => {
   const dispatch = useDispatch();
   const [query, setQuery] : [string, Dispatch<string>] = useState('');
 
@@ -63,7 +64,7 @@ const SearchField = ({onClickFilters}: PropsSearchField) => {
                   <div className='filter-button'>Filtrar</div>
                 </Grid>
               </ButtonGreen>
-              <ButtonOutlined classess='mobile-button-class'>
+              <ButtonOutlined onClick={openCreateAlert} classess='mobile-button-class'>
                 <Grid container justifyContent='space-between'>
                   <img src={bellIcon} className='button-icon'/>
                   <div className='alert-button'>Criar alerta</div>
