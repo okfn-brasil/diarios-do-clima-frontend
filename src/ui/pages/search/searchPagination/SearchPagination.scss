@@ -8,7 +8,7 @@
     width: 280px;
   }
 
-  .arrow-area-style {
+  .arrow-area-class {
     border: 1px solid $gray;
     width: 32px;
     height: 32px;
@@ -19,14 +19,14 @@
     border-color: $gray;
   }
   
-  .arrow-area-disabled-style {
-    @extend .arrow-area-style;
+  .arrow-area-disabled-class {
+    @extend .arrow-area-class;
     background-color: $gray2;
     border-color: $gray2;
     cursor: not-allowed;
   }
   
-  .arrow-style {
+  .arrow-class {
     border: solid $gray5;
     border-width: 0 3px 3px 0;
     margin-left: -4px;
@@ -34,12 +34,12 @@
     transform: rotate(-45deg)
   }
   
-  .arrow-disabled-style {
-    @extend .arrow-style;
+  .arrow-disabled-class {
+    @extend .arrow-class;
     opacity: 0.3;
   }
   
-  .page-number-style {
+  .page-number-class {
     width: 32px;
     display: flex;
     justify-content: center;
@@ -52,8 +52,8 @@
     color: $gray5;
   }
 
-  .page-number-current-style {
-    @extend .page-number-style;
+  .page-number-current-class {
+    @extend .page-number-class;
     background-color: $lightGreen;
     border: 1px solid $lightGreen;
     color: $darkBlue;

@@ -3,7 +3,7 @@ import helpIcon from '@app/assets/images/icons/help.svg';
 import { Checkbox, FormControlLabel, FormGroup, Grid, SelectChangeEvent } from '@mui/material';
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import DateFilter from './dateFilter/DateFilter';
-import { Dates, FiltersStatePayload, SubmitDates } from '@app/models/filters.model';
+import { Dates, FiltersStatePayload, parseUrlToFilters, SubmitDates, Theme } from '@app/models/filters.model';
 import { useDispatch } from 'react-redux';
 import { updateFilters } from '@app/stores/filters.store';
 import SelectInput from '@app/ui/components/forms/select/Select';
@@ -14,21 +14,21 @@ interface PropsSearchFilters{
 }
 
 interface CheckBoxesModel {
-  [key: string]: boolean;
+  [key: string]: boolean | null;
 }
 
 const themesMock: CheckBoxesModel = {
-  'label1': false,
-  'label2': false,
-  'label3': false,
-  'label4': false,
+  'label1': null,
+  'label2': null,
+  'label3': null,
+  'label4': null,
 }
 
 const initialFilters: FiltersStatePayload = {
   location: '0',
   ente: '0',
   themes: themesMock,
-  period: 1,
+  period: 0,
 }
 
 const SearchFilters = ({onClose}: PropsSearchFilters) => {
@@ -63,6 +63,17 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
     dispatch(updateFilters(filters));
   }, [filters])
 
+  useEffect(() => {
+    if (window.location.search) {
+      const urlFilters = parseUrlToFilters();
+      setFilters((values: FiltersStatePayload) => ({...urlFilters, themes: {
+        ...values.themes,
+        ...urlFilters.themes
+      }}));
+      dispatch(updateFilters(urlFilters));
+    }
+  }, [])
+
   return (
     <Grid 
       item 
@@ -80,8 +91,8 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
         <hr className='thin-line'/>
       </div>
       <div className='location-filter'>
-        <section className='section-style'>  
-          <h3 className='h3-style'>
+        <section className='section-class'>  
+          <h3 className='h3-class'>
             Município
             <span className='hover-animation'>
               <img 
@@ -99,22 +110,22 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
             onChange={inputChange}
           />
         </section>
-        <section className='section-style'>
-          <h3 className='h3-style'>Período de tempo</h3>
+        <section className='section-class'>
+          <h3 className='h3-class'>Período de tempo</h3>
           <div>
             <DateFilter cleanDate={cleanDate} onSubmit={updateDateFilters} />
           </div>
         </section>
 
-        <section className='section-style theme-filter'>
-          <h3 className='h3-style'>Tema</h3>
+        <section className='section-class theme-filter'>
+          <h3 className='h3-class'>Tema</h3>
           <p>Aqui uma descrição breve do que são e de como funcionam os temas</p>
           <div>
             <FormGroup>
-              {Object.keys(filters.themes).map((key: string) => {
+              {Object.keys(filters.themes as Theme).map((key: string) => {
                 return (<FormControlLabel 
                   key={key} 
-                  control={<Checkbox checked={filters.themes[key]} name={key} onChange={checkBoxChange} />} 
+                  control={<Checkbox checked={!!(filters.themes as Theme)[key]} name={key} onChange={checkBoxChange} />} 
                   label={key} 
                 />)}
               )}
@@ -123,7 +134,7 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
         </section>
 
         <section className='entity-filter'>
-          <h3 className='h3-style'>Entes do governo</h3>
+          <h3 className='h3-class'>Entes do governo</h3>
           <SelectInput
             options={[{value: 'x', label: 'x'},{value: 'y', label: 'y'}]} 
             placeholder='Selecione um ente' 

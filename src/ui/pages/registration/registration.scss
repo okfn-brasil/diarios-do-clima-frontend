@@ -11,7 +11,7 @@
     border-bottom: 2px solid $gray !important;
   }
 
-  .select-area-style {
+  .select-area-class {
     margin-top: 40px;
   }
 
@@ -24,11 +24,11 @@
   }
 }
 
-.h3-style {
+.h3-class {
   font-family: Sora;
 }
 
-.paragraph-style {
+.paragraph-class {
   color: $gray5;
 }
 
@@ -36,18 +36,18 @@
   margin-top: 26px;
 }
 
-.select-area-style {
+.select-area-class {
   margin-top: 32px;
   color: black
 };
 
-.link-style {
+.link-class {
   width: 50%;
   height: 100%;
   font-size: 14px;
 }
 
-.step-style {
+.step-class {
   width: 24px;
   height: 22px;
   text-align: center;
@@ -57,8 +57,8 @@
   font-size: 18px;
 }
 
-.step-selected-style {
-  @extend .step-style;
+.step-selected-class {
+  @extend .step-class;
   background-color: rgba(127, 227, 137, 0.45);
 }
 

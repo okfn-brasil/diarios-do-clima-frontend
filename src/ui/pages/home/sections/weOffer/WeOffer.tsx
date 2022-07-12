@@ -68,7 +68,7 @@ const WeOffer = () => {
     <Grid container className='we-offer container gray-area' justifyContent='center'>
       <Grid item container xs={10} className='vertical-spacing-container'>
         <Grid item container xs={12} justifyContent='center'>
-          <h3 className='h3-style-sx-margin'>
+          <h3 className='h3-class-sx-margin'>
             O que oferecemos no <span className='green-h3'>Diário do Clima PRO</span>
           </h3>
         </Grid>
@@ -82,8 +82,8 @@ const WeOffer = () => {
             <img src={getLeadImage(selectedId)} className='central-img' alt='visual representation of option'/>
           </Grid>
           <Grid item xs={12} md={4} className='call-to-action'>
-            <h3 className='h3-style'>Acesse todo o histórico de resultados</h3>
-            <p className='paragraph-style'>
+            <h3 className='h3-class'>Acesse todo o histórico de resultados</h3>
+            <p className='paragraph-class'>
               Veja tudo o que já foi publicado, além dos três últimos meses, sobre políticas públicas ambientais</p>
             <div>
               

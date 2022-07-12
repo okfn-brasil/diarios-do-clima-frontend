@@ -90,15 +90,15 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
           <div>
             <img className='logo' src={DiarioLogoBlack}/>
           </div>
-          <p className='h3-style'>Acesse sua conta</p>
-          <p className='paragraph-style'>Lorem ipsum sit amet consectetur</p>
+          <p className='h3-class'>Acesse sua conta</p>
+          <p className='paragraph-class'>Lorem ipsum sit amet consectetur</p>
 
           <form onSubmit={handleSubmit}>
-            <Input required type='email' value={inputs.email} className='input-style' name='email' onChange={inputChange} placeholder='E-mail' />
+            <Input required type='email' value={inputs.email} className='input-class' name='email' onChange={inputChange} placeholder='E-mail' />
             
             <div className='password-field'>
               <img className={'hover-animation ' + (passFieldType ? 'low-opacity' : '')} src={ShowPassIcon} onClick={changeFieldType} />
-              <Input required type={passFieldType ? 'password' : 'text'} value={inputs.password} className='input-style' name='password' onChange={inputChange} placeholder='Senha' />
+              <Input required type={passFieldType ? 'password' : 'text'} value={inputs.password} className='input-class' name='password' onChange={inputChange} placeholder='Senha' />
             </div>
             
             <div className='submit-login'>

@@ -4,6 +4,8 @@ import selectArrow from '@app/assets/images/icons/arrow-down.svg';
 interface Option {
   value: string;
   label: string;
+  isSelected?: boolean;
+  isDisabled?: boolean;
 }
 
 interface PropsSelect{
@@ -11,7 +13,7 @@ interface PropsSelect{
   value: string;
   label?: string;
   name: string;
-  onChange: any;
+  onChange: (e: SelectChangeEvent<string>) => void;
   options: Option[];
   required?: boolean;
   classes?: string;
@@ -27,9 +29,19 @@ const SelectInput = ({value, required, classes, onChange, name, label, options, 
   return (
     <FormControl fullWidth className={`form-select ${classes}`}>
       {label ? <InputLabel id={`${name}-select`}>{label}</InputLabel> : <></>}
-      <Select required={required} variant='standard' IconComponent={selectIcon} labelId={`${name}-select`} value={value} name={name} onChange={onChange} >
-      {placeholder ? <MenuItem value={'0'} selected disabled>{placeholder}</MenuItem> : <></> }
-      {options.map(option => <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>)}
+      <Select 
+        required={required} 
+        variant='standard' 
+        IconComponent={selectIcon} 
+        labelId={`${name}-select`} 
+        value={value} 
+        name={name} 
+        onChange={onChange} 
+      >
+        {[(placeholder ? {value: '0', label: placeholder, isSelected: true, isDisabled: true} : null), 
+          ...options]
+          .filter(item => !!item)
+          .map(option => <MenuItem key={option?.value} value={option?.value}>{option?.label}</MenuItem>)}
       </Select>
     </FormControl>
   );

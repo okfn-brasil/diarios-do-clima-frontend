@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import { Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react';
-import { InputModel } from '@app/models/forms.model';
+import { InputModel, InputType } from '@app/models/forms.model';
 import { FormPurchaseModel } from '@app/models/purchase.model';
 import PurchaseDetails from '../purchaseDetails/PurchaseDetails';
 import Loading from '@app/ui/components/loading/Loading';
@@ -127,7 +127,7 @@ const PurchaseForm = () => {
     }
   }
 
-  const inputChange = (event: any) => {
+  const inputChange = (event: InputType) => {
     const {name, value} = event.target;
     getPhoneMask(name, value);
     setInputs((values: FormPurchaseModel) => ({...values, [name]: { value: value, isValid: values[name].isValid }}));
@@ -176,7 +176,7 @@ const PurchaseForm = () => {
       <Loading isLoading={isLoading}></Loading>
       <Grid item sm={7} xs={12}>
         <div>
-          <div className='payment-section-title h3-style'>
+          <div className='payment-section-title h3-class'>
             Detalhes do pagamento
           </div>
           <Grid container>

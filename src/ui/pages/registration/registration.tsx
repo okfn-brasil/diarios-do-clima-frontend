@@ -8,7 +8,7 @@ import Loading from '@app/ui/components/loading/Loading';
 import { urls } from '@app/ui/utils/urls';
 import { Grid} from '@mui/material';
 import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
-import { InputModel } from '@app/models/forms.model';
+import { InputModel, InputType } from '@app/models/forms.model';
 import AccountService, { checkPlan } from '@app/services/accounts';
 import { userUpdate } from '@app/stores/user.store';
 import SelectInput from '@app/ui/components/forms/select/Select';
@@ -57,8 +57,8 @@ const Registration = () => {
   const [step, setStep] : [number, Dispatch<SetStateAction<number>>] = useState(1);
   const [inputs, setInputs] : [RegistrationModel, Dispatch<SetStateAction<RegistrationModel>>] = useState(inputsDefaultValue);
 
-  const inputChange = (event: any) => {
-    const {name, valid, value} = event.target;
+  const inputChange = (event: InputType, valid?: boolean) => {
+    const {name, value} = event.target;
     setInputs((values: RegistrationModel) => ({...values, [name]: {value: value, isValid: valid }}));
   }
 
@@ -129,7 +129,7 @@ const Registration = () => {
   const formStepOne = () => {
     return (
       <div>
-        <h3 className='h3-style-sx-margin'>
+        <h3 className='h3-class-sx-margin'>
           Crie uma conta para começar a buscar no Diário do Clima
         </h3>
         <div>
@@ -153,7 +153,7 @@ const Registration = () => {
             type='email'
           />
 
-          <PasswordField errorMessage={inputs.password.errorMessage} value={inputs.password.value} onChange={inputChange} name='password' classess='input-style'/>
+          <PasswordField errorMessage={inputs.password.errorMessage} value={inputs.password.value} onChange={inputChange} name='password' classess='input-class'/>
           
           <SubmitForm />
         </div>
@@ -167,7 +167,7 @@ const Registration = () => {
         {SelectFormTitle()}
         <div>
           <SelectInput 
-            classes='select-area-style first-input' 
+            classes='select-area-class first-input' 
             options={[{value: 'f', label: 'Feminino'},{value: 'm', label: 'Masculino'},{value: 'o', label: 'Outro'}]} 
             label='Gênero' 
             value={inputs.gender.value} 
@@ -177,7 +177,7 @@ const Registration = () => {
           />
 
           <SelectInput 
-            classes='select-area-style' 
+            classes='select-area-class' 
             options={[{value: 'Area 1', label: 'Area 1'},{value: 'Area 2', label: 'Area 2'},{value: 'Area 3', label: 'Area 3'}]} 
             label='Area de Atuação' 
             value={inputs.sector.value} 
@@ -198,8 +198,8 @@ const Registration = () => {
           {SelectFormTitle()}
         <div>
           <SelectInput 
-            classes='select-area-style first-input' 
-            options={[{value: 'SP 1', label: 'SP'},{value: 'RJ', label: 'RJ'}]} 
+            classes='select-area-class first-input' 
+            options={[{value: 'SP', label: 'SP'},{value: 'RJ', label: 'RJ'}]} 
             label='Estado' 
             value={inputs.state.value} 
             name='state' 
@@ -225,10 +225,10 @@ const Registration = () => {
   const SelectFormTitle = () => {
     return (
       <>
-        <div className='h3-style-sx-margin'>
+        <div className='h3-class-sx-margin'>
           Bem-vindo ao Diário do Clima
         </div>
-        <div className='paragraph-style'>
+        <div className='paragraph-class'>
           Queremos te conhecer um pouco melhor! Complete seu cadastro 
         </div>
       </>
@@ -247,9 +247,9 @@ const Registration = () => {
                 <div className='steps-area'>
                   <div>
                     <div className='steps'>
-                      <div className={step === 1 ? 'step-selected-style' : 'step-style'}>1</div>
-                      <div className={step === 2 ? 'step-selected-style' : 'step-style'}>2</div>
-                      <div className={step === 3 ? 'step-selected-style' : 'step-style'}>3</div>
+                      <div className={step === 1 ? 'step-selected-class' : 'step-class'}>1</div>
+                      <div className={step === 2 ? 'step-selected-class' : 'step-class'}>2</div>
+                      <div className={step === 3 ? 'step-selected-class' : 'step-class'}>3</div>
                     </div> 
                   </div>
                   {getFormStep(step)}

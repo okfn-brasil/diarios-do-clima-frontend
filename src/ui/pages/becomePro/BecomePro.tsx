@@ -11,7 +11,7 @@ const BecomePro = () => {
     <Grid container className='container become-pro vertical-spacing-container'>
       <Grid item container xs={0} sm={3}></Grid>
       <Grid item xs={12} sm={6}>
-        <div className='h3-style'>
+        <div className='h3-class'>
           Torne-se assinante do <span className='green-h3'>Diário do Clima PRO</span>
         </div>
         <p className='subtitle'>Ao assinar, você nos ajuda a desenvolver esse projeto sem fins lucrativos e tem acesso aos benefícios do Diário do Clima PRO</p>

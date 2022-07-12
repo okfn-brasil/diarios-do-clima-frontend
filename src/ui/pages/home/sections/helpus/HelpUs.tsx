@@ -10,8 +10,8 @@ const HelpUs = () => {
     <Grid item container xs={12}
       justifyContent='center' className='vertical-spacing-container help-us'>
       <Grid className='textContainer' item xs={10} md={8}>
-        <h3 className='h3-style-sx-margin help-us-title'>Ajude o diário do clima a crescer e receba benefícios</h3>
-        <p className='paragraph-style'>Tenha em mãos todas as informações que você e sua equipe precisam sobre políticas públicas ambientais</p>
+        <h3 className='h3-class-sx-margin help-us-title'>Ajude o diário do clima a crescer e receba benefícios</h3>
+        <p className='paragraph-class'>Tenha em mãos todas as informações que você e sua equipe precisam sobre políticas públicas ambientais</p>
       </Grid>
 
       <Grid item xs={10} md={8} className='buttons'>

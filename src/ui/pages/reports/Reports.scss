@@ -5,12 +5,12 @@
   .header-area {
     background-color: $darkBlue;
 
-    .h2-style {
+    .h2-class {
       font-family: Sora;
       margin: 8px 0;
     }
 
-    .paragraph-style, .h2-style {
+    .paragraph-class, .h2-class {
       color: $white;
     }
   }
@@ -23,7 +23,7 @@
       width: 45%;
     }
 
-    .icon-style {
+    .icon-class {
       width: 80px;
       height: 80px;
       border-radius: 50%;
@@ -69,7 +69,7 @@
 
  
   
-  .report-card-style {
+  .report-card-class {
     background-color: $white;
     padding: 18px 24px 40px;
     width: calc(100% - 48px);
@@ -82,7 +82,7 @@
   }
   
   .reportCardMobileStyle {
-    @extend .report-card-style;
+    @extend .report-card-class;
   }
   
   .card-paragraph {
@@ -94,7 +94,7 @@
   }
 
   .doubts {
-    .paragraph-style {
+    .paragraph-class {
       margin: 0;
 
       span {

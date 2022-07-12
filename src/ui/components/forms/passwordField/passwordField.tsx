@@ -4,6 +4,7 @@ import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
 import { Dispatch, SetStateAction, useState } from 'react';
 import TextInput from '../input/Input';
 import './passwordField.scss';
+import { InputType } from '@app/models/forms.model';
 
 interface PropsPasswordField {
   placeholder?: string;
@@ -35,7 +36,7 @@ const PasswordField = ({ classess, value, name, errorMessage, onChange }: PropsP
     setType(!fieldType);
   }
 
-  const inputChange = (event: any) => {
+  const inputChange = (event: InputType) => {
     const value = event.target.value;
     const validate = {
       minLength: value.length >= 8,
@@ -43,10 +44,10 @@ const PasswordField = ({ classess, value, name, errorMessage, onChange }: PropsP
       specials: !!value.match(/[*,!.&%$#@]/),
       uppercase: !!value.match(/[A-Z]/g),
     };
-    event.target.valid = validate.minLength && validate.lettersAndNumbers && validate.specials && validate.uppercase;
+    const valid = validate.minLength && validate.lettersAndNumbers && validate.specials && validate.uppercase;
     setValidation(validate);
     setInputValue(value);
-    onChange(event);
+    onChange(event, valid);
   }
 
   return (

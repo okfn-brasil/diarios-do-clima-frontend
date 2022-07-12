@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { datePickerTranslation } from '@app/ui/utils/datepicker.utils';
 import { ptBR } from 'date-fns/locale';
-import { Dates, SubmitDates } from '@app/models/filters.model';
+import { Dates, parseUrlToFilters, SubmitDates } from '@app/models/filters.model';
 import './DateFilter.scss';
 
 interface PropsDateFilter {
@@ -22,7 +22,7 @@ const initialDates: Dates = {
 const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
   const [tab, setTab] : [number, Dispatch<number>] = useState(0);
   const [invalidDate, setInvalidDate] : [boolean, Dispatch<boolean>] = useState(false);
-  const [currPeriod, setPeriod] : [number, Dispatch<number>] = useState(1);
+  const [currPeriod, setPeriod] : [number, Dispatch<number>] = useState(0);
   const [dates, setDates]: [Dates, Dispatch<SetStateAction<Dates>>] = useState(initialDates);
 
   const submit = () => {
@@ -73,18 +73,30 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
     setPeriod(period);
   }
 
+  useEffect(() => {
+    if (window.location.search) {
+      const urlFilters = parseUrlToFilters();
+      setPeriod(urlFilters.period as number);
+      const dates = urlFilters.dates;
+      if(dates?.end || dates?.start) {
+        setDates(urlFilters.dates as Dates);
+        setTab(1);
+      }
+    }
+  }, [])
+
   return (
     <Grid>
       <Grid container>
-        <div onClick={() => {changeTab(0)}} className={`hover-animation ${tab ? 'tab-style' : 'curr-tab-style'}`}>Recentes</div>
-        <div  onClick={() => {changeTab(1)}} className={`hover-animation second-tab ${!tab ? 'tab-style' : 'curr-tab-style'}`}>Intervalo de tempo</div>
+        <div onClick={() => {changeTab(0)}} className={`hover-animation ${tab ? 'tab-class' : 'curr-tab-class'}`}>Recentes</div>
+        <div  onClick={() => {changeTab(1)}} className={`hover-animation second-tab ${!tab ? 'tab-class' : 'curr-tab-class'}`}>Intervalo de tempo</div>
       </Grid>
 
       {!tab ?
        <Grid container className='periods'>
         {periods.map(period =>{
           return (<div 
-            className={`hover-animation ${currPeriod === period ? 'period-box-selected-style' : 'period-box-style'}`}
+            className={`hover-animation ${currPeriod === period ? 'period-box-selected-class' : 'period-box-class'}`}
             key={period}
             onClick={() => {changePeriod(period)}}
           >

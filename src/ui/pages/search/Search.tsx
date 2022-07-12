@@ -9,7 +9,7 @@ import SearchPagination from './searchPagination/SearchPagination';
 import { useSelector } from 'react-redux';
 import { RootState } from '@app/stores/store';
 import Loading from '@app/ui/components/loading/Loading';
-import { FiltersState } from '@app/models/filters.model';
+import { FiltersState, parseFiltersToUrl } from '@app/models/filters.model';
 import './Search.scss';
 
 let timeout: ReturnType<typeof setTimeout>;
@@ -31,8 +31,9 @@ const Search = () => {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
         setSearchTimes(searchTimes + 1);
-        if (searchTimes > 0) {
+        if (searchTimes > 0 || window.location.search) {
           getItemsList();
+          setUrlParams(filters);
         }
       }, 400)
     }
@@ -55,7 +56,7 @@ const Search = () => {
       setLoading(false);
     }).catch(error => {
       setLoading(false);
-      console.log(error)
+      setListItems([]);
     })
   }
 
@@ -70,6 +71,13 @@ const Search = () => {
   const onChangePage = (page: number) => {
     setPage(page);
     //getItemsList(true); // TO DO
+  }
+
+  const setUrlParams = (currFilters: FiltersState) => {
+    const searchParams = new URLSearchParams();
+    const params = parseFiltersToUrl(currFilters);
+    Object.keys(params).forEach(key => searchParams.append(key, params[key] as string));
+    history.replaceState(null, '', `?${searchParams}`);
   }
 
   return (

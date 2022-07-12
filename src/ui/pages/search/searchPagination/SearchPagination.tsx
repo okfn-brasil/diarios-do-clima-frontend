@@ -26,7 +26,7 @@ const SearchPagination = ({onChangePage, currentPage, listSize, itemsPerPage}: P
 
   const getPage = (i: number | null) => {
     const isCurrentPage = i === currentPage;
-    const currentClass = isCurrentPage ? 'page-number-current-style' : 'page-number-style';
+    const currentClass = isCurrentPage ? 'page-number-current-class' : 'page-number-class';
     return (
       <span key={i !== null ? i : 'x'}>
       {i !== null ? 
@@ -63,18 +63,18 @@ const SearchPagination = ({onChangePage, currentPage, listSize, itemsPerPage}: P
           <Grid  sm={8} item container justifyContent='center'>
             <Grid className='pagination-container' alignItems='center' container justifyContent='space-between'>
               <div 
-                className={currentPage ? 'arrow-area-style' : 'arrow-area-disabled-style'} 
+                className={currentPage ? 'arrow-area-class' : 'arrow-area-disabled-class'} 
                 onClick={previousPage}
               >
-                <div className={'left-arrow ' + (currentPage ? 'arrow-style' : 'arrow-disabled-style')} >
+                <div className={'left-arrow ' + (currentPage ? 'arrow-class' : 'arrow-disabled-class')} >
                 </div>
               </div>
               {pages()}
               <div 
-                className={currentPage < ((listSize / itemsPerPage) - 1) ? 'arrow-area-style' : 'arrow-area-disabled-style'} 
+                className={currentPage < ((listSize / itemsPerPage) - 1) ? 'arrow-area-class' : 'arrow-area-disabled-class'} 
                 onClick={nextPage}
               >
-                <div className={currentPage < ((listSize / itemsPerPage) - 1) ? 'arrow-style' : 'arrow-disabled-style'} >
+                <div className={currentPage < ((listSize / itemsPerPage) - 1) ? 'arrow-class' : 'arrow-disabled-class'} >
                 </div>
               </div>
             </Grid>

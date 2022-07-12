@@ -1,12 +1,13 @@
 import { FormControl, InputLabel, Input } from '@mui/material';
 import InputError from '../inputError/inputError';
 import InputMask from 'react-input-mask';
+import { ChangeEvent } from 'react';
 
 interface PropsInput {
   value: string;
   required?: boolean;
   classes?: string;
-  onChange: any;
+  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   name: string;
   label: string;
   mask?: string;
@@ -25,7 +26,7 @@ const TextInput = ({value, required, classes, onChange, name, label, type, error
             error={!!error} 
             type={type || 'text'}
             name={name}
-            className='input-style'
+            className='input-class'
           />}
         </InputMask>
         :
@@ -34,7 +35,7 @@ const TextInput = ({value, required, classes, onChange, name, label, type, error
           error={!!error} 
           type={type || 'text'}
           name={name}
-          className='input-style'
+          className='input-class'
           value={value} 
           onChange={onChange}
         />

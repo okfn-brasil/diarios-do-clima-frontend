@@ -48,7 +48,7 @@
   margin-left: 16px;
 }
 
-.tab-style {
+.tab-class {
   font-size: 18px;
   line-height: 22px;
   padding-bottom: 10px;
@@ -56,20 +56,20 @@
   transition: 0.4s;
 }
 
-.curr-tab-style {
-  @extend .tab-style;
+.curr-tab-class {
+  @extend .tab-class;
   border-bottom: 5px solid $blue;
 }
 
-.period-box-style {
+.period-box-class {
   border: 1px solid $black;
   padding: 12px 14px;
   margin-right: 8px;
   transition: 0.4s;
 }
 
-.period-box-selected-style {
-  @extend .period-box-style;
+.period-box-selected-class {
+  @extend .period-box-class;
   background-color: $black;
   color: $white;
 }

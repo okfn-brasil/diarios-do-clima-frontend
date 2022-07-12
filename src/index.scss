@@ -71,14 +71,14 @@ a, a span, a button  {
 }
 
 //texts
-.h2-style {
+.h2-class {
   font-size: 38px;
   line-height: 48px;
   color: $gray5;
   margin: 22px 0;
 }
 
-.h3-style {
+.h3-class {
   font-size: 22px;
   line-height: 27px;
   font-weight: 600;
@@ -86,12 +86,12 @@ a, a span, a button  {
   margin: 22px 0;
 }
 
-.h3-style-sx-margin {
-  @extend .h3-style;
+.h3-class-sx-margin {
+  @extend .h3-class;
   margin: 0 0 8px;
 }
 
-.h4-style {
+.h4-class {
   font-size: 20px;
   line-height: 25px;
   font-weight: 500;
@@ -99,13 +99,13 @@ a, a span, a button  {
   margin: 22px 0;
 }
 
-.desc-style {
+.desc-class {
   font-size: 20px;
   line-height: 25px;
   margin: 0;
 }
 
-.paragraph-style {
+.paragraph-class {
   font-size: 18px;
   line-height: 22px;
   color: $gray5;
@@ -113,7 +113,7 @@ a, a span, a button  {
 }
 
 .green-h3 {
-  @extend .h3-style;
+  @extend .h3-class;
   color: $green;
 }
 
@@ -233,7 +233,7 @@ a, a span, a button  {
   }
 }
 
-.input-style {
+.input-class {
   width: 100%;
   padding: 32px 0 10px 2px;
   color: $black;

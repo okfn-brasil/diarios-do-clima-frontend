@@ -5,10 +5,10 @@ import SearchItem from './searchItem/SearchItem';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import bellIcon from '@app/assets/images/icons/black-bell.svg';
 import { updateFilters } from '@app/stores/filters.store';
-import { Dispatch, useState } from 'react';
+import { Dispatch, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@app/stores/store';
-import { FiltersState } from '@app/models/filters.model';
+import { FiltersState, parseUrlToFilters } from '@app/models/filters.model';
 import SelectInput from '@app/ui/components/forms/select/Select';
 import './SearchList.scss';
 
@@ -29,19 +29,26 @@ const SearchList = ({list, listSize, searchTimes}: PropsSearchList) => {
     dispatch(updateFilters({order: value}));
   }
 
+  useEffect(() => {
+    if (window.location.search) {
+      const urlFilters = parseUrlToFilters();
+      setOrder(urlFilters.order as string);
+    }
+  }, []);
+
   return (
     <Grid container justifyContent='center' className='container search-list'>
       <Grid item sm={10}>
         {listSize ? 
           <div>
-            <h3 className='h3-style title'>{listSize} resultados encontrados</h3>
+            <h3 className='h3-class title'>{listSize} resultados encontrados</h3>
           </div>
           : <></>
         }
         { listSize ? 
           <Grid className='only-desktop' item container sm={12} justifyContent='space-between'>
             <span className='hover-animation'>
-              <ButtonOutlined classess='mobile-button-style'>
+              <ButtonOutlined classess='mobile-button-class'>
                 <Grid container justifyContent='space-between'>
                   <img src={bellIcon}/>
                   <div className='alert-button'>Criar alerta</div>
@@ -67,7 +74,7 @@ const SearchList = ({list, listSize, searchTimes}: PropsSearchList) => {
                 <img src={EmptySearch} alt='logo - sem resultados na lista'/>
               </div>
               <div className='text-area'>
-                <h3 className='h3-style'>Busque por palavras-chave ou utilize os filtros para encontrar resultados</h3>
+                <h3 className='h3-class'>Busque por palavras-chave ou utilize os filtros para encontrar resultados</h3>
               </div>
             </div>
           </Grid>
@@ -79,7 +86,7 @@ const SearchList = ({list, listSize, searchTimes}: PropsSearchList) => {
           <Grid container justifyContent='center' className='container empty-list'>
             <div>
               <div className='text-area'>
-                <h3 className='h3-style'>Nenhum resultado foi encontrado para sua busca.</h3>
+                <h3 className='h3-class'>Nenhum resultado foi encontrado para sua busca.</h3>
               </div>
             </div>
           </Grid>

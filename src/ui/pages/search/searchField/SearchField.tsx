@@ -4,10 +4,11 @@ import bellIcon from '@app/assets/images/icons/bell.svg';
 import filterIcon from '@app/assets/images/icons/filter.svg';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
-import { ChangeEvent, Dispatch, FormEvent, useState } from 'react';
+import { ChangeEvent, Dispatch, FormEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateFilters } from '@app/stores/filters.store';
 import './SearchField.scss';
+import { parseUrlToFilters } from '@app/models/filters.model';
 
 interface PropsSearchField {
   onClickFilters: () => void;
@@ -26,6 +27,13 @@ const SearchField = ({onClickFilters}: PropsSearchField) => {
     e.preventDefault();
     dispatch(updateFilters({query: query}));
   }
+
+  useEffect(() => {
+    if (window.location.search) {
+      const urlFilters = parseUrlToFilters();
+      setQuery(urlFilters.query as string);
+    }
+  }, []);
 
   return (
     <Grid container item className='container search-field top-space' sm={12} justifyContent='center'>
@@ -49,13 +57,13 @@ const SearchField = ({onClickFilters}: PropsSearchField) => {
           </form>
           <div className='only-mobile'>
             <Grid container justifyContent='space-between' className='buttons'>
-              <ButtonGreen onClick={onClickFilters} classess='mobile-button-style'>
+              <ButtonGreen onClick={onClickFilters} classess='mobile-button-class'>
                 <Grid container  justifyContent='space-between'>
                   <img src={filterIcon} className='button-icon'/>
                   <div className='filter-button'>Filtrar</div>
                 </Grid>
               </ButtonGreen>
-              <ButtonOutlined classess='mobile-button-style'>
+              <ButtonOutlined classess='mobile-button-class'>
                 <Grid container justifyContent='space-between'>
                   <img src={bellIcon} className='button-icon'/>
                   <div className='alert-button'>Criar alerta</div>
