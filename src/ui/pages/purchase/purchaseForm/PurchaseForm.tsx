@@ -15,6 +15,7 @@ import PurchaseDetails from '../purchaseDetails/PurchaseDetails';
 import PurchaseSubmit from '../purchaseSubmit/PurchaseSubmit';
 
 import './PurchaseForm.scss';
+import { portalTexts } from '@app/ui/utils/portal-texts';
 
 interface ValidationModel {
   card: (s: InputModel) => string | boolean;
@@ -167,10 +168,12 @@ const PurchaseForm = () => {
   };
 
   const onSuccess = (response: string) => {
-    dispatch(userUpdate({
-      plan_pro: response,
-    }));
     navigate(urls.startSearch.url);
+    setTimeout(() => {
+      dispatch(userUpdate({
+        plan_pro: response,
+      }));
+    }, 200);
   };
 
   return (
@@ -268,7 +271,6 @@ const PurchaseForm = () => {
                 error={inputs.complement.errorMessage}
                 value={inputs.complement.value}
                 onChange={inputChange}
-                required={true}
               />
             </Grid>
 
@@ -285,7 +287,7 @@ const PurchaseForm = () => {
 
               <SelectInput 
                 classes='half-width state-select' 
-                options={[{value: 'SP', label: 'SP'},{value: 'RJ', label: 'RJ'}]} 
+                options={portalTexts.stateList.map(state => {return {value: state, label: state}})} 
                 label='Estado' 
                 value={inputs.state.value} 
                 name='state' 

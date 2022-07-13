@@ -49,22 +49,20 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
     event.preventDefault();
     setError(false);
     setLoading(true);
-    loginService.login(inputs).then(
-      (response: LoginResponse) => {
-        dispatch(userUpdate({
-          access: response.access,
-          refresh: response.refresh,
-        }));
-        getUserData(response.access);
-      },
-    ).catch(() => {
+    loginService.login(inputs).then((response: LoginResponse) => {
+      dispatch(userUpdate({
+        access: response.access,
+        refresh: response.refresh,
+      }));
+      getUserData();
+    }).catch(() => {
       setLoading(false);
       setError(true);
     });
   };
 
-  const getUserData = (token: string) => {
-    accountService.getUserData(token).then(
+  const getUserData = () => {
+    accountService.getUserData().then(
       (response: UserResponseModel) => {
         dispatch(userUpdate({
           id: response.id,

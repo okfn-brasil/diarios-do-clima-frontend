@@ -1,5 +1,5 @@
-import { request } from './service-utils';
 import { FormPurchaseModel } from '../models/purchase.model';
+import api from './interceptor';
 
 interface CardValidateModel {
   electron: RegExp;
@@ -20,24 +20,15 @@ export default class BillingService {
   currentUrl = '/billing/';
 
   getSessionId() {
-    return request({
-      url: this.currentUrl + 'session/', 
-      method: 'GET',
-    });
+    return api.get(this.currentUrl + `session/`).then((response) => response as any);
   }
 
   getAddress() {
-    return request({
-      url: this.currentUrl + 'address/', 
-      method: 'GET',
-    });
+    return api.get(this.currentUrl + `address/`).then((response) => response as any);
   }
 
   getPhone() {
-    return request({
-      url: this.currentUrl + 'phone/', 
-      method: 'GET',
-    });
+    return api.get(this.currentUrl + `phone/`).then((response) => response as any);
   }
 
   addAddress(form: FormPurchaseModel, method: string) {
@@ -51,12 +42,7 @@ export default class BillingService {
       state: form.state.value,
       postal_code: form.cep.value,
     };
-
-    return request({
-      url: this.currentUrl + 'address/', 
-      method: method,
-      body: address,
-    });
+    return api[method === 'POST' ? 'post' : 'put'](this.currentUrl + `address/`, address).then((response) => response as any);
   }
 
   addPhone(form: FormPurchaseModel, method: string) {
@@ -64,12 +50,7 @@ export default class BillingService {
       area_code: form.phone.value.substring(0, 2),
       number: form.phone.value.substring(3, 12),
     };
-
-    return request({
-      url: this.currentUrl + 'phone/', 
-      method: method,
-      body: phone,
-    });
+    return api[method === 'POST' ? 'post' : 'put'](this.currentUrl + `phone/`, phone).then((response) => response as any);
   }
 
   postCreditCard(form: FormPurchaseModel, token: string) {
@@ -84,21 +65,11 @@ export default class BillingService {
       holder_birth_date: `${birthday.substring(4, 8)}-${birthday.substring(2, 4)}-${birthday.substring(0, 2)}`
     };
 
-    return request({
-      url: this.currentUrl + 'credit_card/', 
-      method: 'POST',
-      body: card,
-    });
+    return api.post(this.currentUrl + `credit_card/`, card).then((response) => response as any);
   }
 
   postSubscription(planId: string) {
-    return request({
-      url: '/subscriptions/', 
-      method: 'POST',
-      body: {
-        plan: planId
-      },
-    });
+    return api.post(`/subscriptions/`, { plan: planId }).then((response) => response as any);
   }
 }
 

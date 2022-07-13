@@ -2,6 +2,15 @@
 
 .purchase-details {
   margin-bottom: 80px;
+  position: relative;
+  height: 100%;
+
+  .details-box {
+    @media only screen and (min-width: $mobileSize) {
+      position: sticky;
+      top: 100px;
+    }
+  }
 
   .submit-purchase {
     margin-top: 0;

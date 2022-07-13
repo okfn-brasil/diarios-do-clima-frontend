@@ -74,5 +74,8 @@ export const portalTexts = {
       subtitle: 'Informações curadas por profissionais e baseadas nos diários oficiais para ajudar pesquisadores, consultores e organizações a estarem a par dos últimos acontecimentos.',
       linkAboutReports: 'Saiba mais sobre os relatórios'
     },
-  }
+  },
+  stateList: [
+    'errorOption', 'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF'
+  ]
 } 

@@ -14,9 +14,10 @@ import './SearchField.scss';
 interface PropsSearchField {
   onClickFilters: () => void;
   openCreateAlert: () => void;
+  onClickAdvenced: () => void;
 }
 
-const SearchField = ({onClickFilters, openCreateAlert}: PropsSearchField) => {
+const SearchField = ({onClickFilters, openCreateAlert, onClickAdvenced}: PropsSearchField) => {
   const dispatch = useDispatch();
   const [query, setQuery] : [string, Dispatch<string>] = useState('');
 
@@ -43,7 +44,7 @@ const SearchField = ({onClickFilters, openCreateAlert}: PropsSearchField) => {
         <div className='field-area'>
           <Grid container justifyContent='space-between'>
             <div className='key-words'>Palavras-chave</div>
-            <div className='hover-animation advanced-search'>
+            <div onClick={onClickAdvenced} className='hover-animation advanced-search'>
               Busca avançada
             </div>
           </Grid>

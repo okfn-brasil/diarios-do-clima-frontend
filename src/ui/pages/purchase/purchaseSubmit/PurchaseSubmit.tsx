@@ -111,7 +111,7 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
 
   const postPlanId = () => {
     billingService.postSubscription('9ea3eb5f-d2d5-4433-8714-43fa7bdb0ce3').then((response)  => {
-      onSuccess(response.plan); // TO DO REMOVER MOCK
+      onSuccess(response.plan);
     }).catch(error => {
       onError(errorMessage(error));
     });

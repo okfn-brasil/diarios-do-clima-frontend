@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import ModalAlertFilters from './modalAlertFilters/ModalAlertFilters';
 import ModalBecomePro from './modalBecomePro/ModalBecomePro';
 import ModalSetAlertSpec from './modalSetAlertSpec/ModalSetAlertSpec';
+import './ModalsCreateAlert.scss';
 
 interface ModalCreateAlertProps {
   isOpen: boolean;

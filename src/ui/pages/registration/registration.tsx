@@ -15,6 +15,7 @@ import { urls } from '@app/ui/utils/urls';
 import { Grid} from '@mui/material';
 
 import './registration.scss';
+import { portalTexts } from '@app/ui/utils/portal-texts';
 
 interface FormsSelector {
   1: JSX.Element;
@@ -78,6 +79,7 @@ const Registration = () => {
     if(!errors.length && step === 1) {
       checkEmail();
     } else if(!errors.length && step === 2) {
+      window.scrollTo(0, 0);
       const nextStep = step + 1;
       setStep(nextStep);
     } else if(!errors.length && step === 3) {
@@ -90,16 +92,16 @@ const Registration = () => {
     setLoading(true);
     accountsService.getEmail(inputs.email.value).then(() => {
       setLoading(false);
-      const nextStep = step + 1;
-      setStep(nextStep);
-    }).catch(() => {
-      setLoading(false);
       setInputs((values: RegistrationModel) => ({...values, email: 
         {
           ...inputs.email,
           errorMessage: 'Este endereço de e-mail ja possui uma conta cadastrada'
         }
       }));
+    }).catch(() => {
+      setLoading(false);
+      const nextStep = step + 1;
+      setStep(nextStep);
     });
   };
 
@@ -118,8 +120,7 @@ const Registration = () => {
             plan_pro: checkPlan(response),
           }));
         }, 100);
-      },
-    ).catch(e => {
+      }).catch(e => {
       const errorKey = e ? Object.keys(e)[0] : '';
       setSubmitError(
         <span>
@@ -219,7 +220,7 @@ const Registration = () => {
         <div>
           <SelectInput 
             classes='select-area-class first-input' 
-            options={[{value: 'SP', label: 'SP'},{value: 'RJ', label: 'RJ'}]} 
+            options={portalTexts.stateList.map(state => {return { value: state, label: state }})}
             label='Estado' 
             value={inputs.state.value} 
             name='state' 

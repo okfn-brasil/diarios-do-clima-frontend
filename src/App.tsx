@@ -33,13 +33,13 @@ const App = () => {
 
   useEffect(() => {
     if(localStorage.getItem(tokenKeys.access)) {
-      accountService.getUserData(localStorage.getItem(tokenKeys.access) as string).then(
+      accountService.getUserData().then(
         (response: UserResponseModel) => {
           dispatch(userUpdate({
             id: response.id,
             email: response.email,
             full_name: response.full_name,
-            plan_pro: checkPlan(response) || true, // TO DO
+            plan_pro: checkPlan(response),
           }));
         });
     }

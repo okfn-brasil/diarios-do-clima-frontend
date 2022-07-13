@@ -14,6 +14,7 @@ import SearchPagination from './searchPagination/SearchPagination';
 
 import './Search.scss';
 import ModalsCreateAlert from '@app/ui/components/createAlertModals/ModalsCreateAlert';
+import AdvancedSearchModal from './advancedSearchModal/AdvancedSearchModal';
 
 let timeout: ReturnType<typeof setTimeout>;
 const pageKeys: string[] = ['itemsPerPage', 'order'];
@@ -27,6 +28,7 @@ const Search = () => {
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [searchTimes, setSearchTimes] : [number, Dispatch<number>] = useState(0);
   const [isOpenCreateAlert, setStateCreateAlert] : [boolean, Dispatch<boolean>] = useState(false);
+  const [isOpenAdvancedSearch, setStateAdvancedSearch] : [boolean, Dispatch<boolean>] = useState(false);
 
   useEffect(() => {
     if  (Object.keys(filters).filter(item => !pageKeys.includes(item)).length) {
@@ -84,10 +86,11 @@ const Search = () => {
 
   return (
     <div>
+      <AdvancedSearchModal isOpen={isOpenAdvancedSearch} onClose={() => setStateAdvancedSearch(false)}/>
       <ModalsCreateAlert filters={filters} isOpen={isOpenCreateAlert} onOpen={() => setStateCreateAlert(true)} onClose={() =>setStateCreateAlert(false)}/>
       <Loading isLoading={isLoading}></Loading>
       <div className='search-page'>
-        <SearchField openCreateAlert={() => setStateCreateAlert(true)} onClickFilters={onClickFilters}/>
+        <SearchField onClickAdvenced={() => setStateAdvancedSearch(true)} openCreateAlert={() => setStateCreateAlert(true)} onClickFilters={onClickFilters}/>
         {
           showFiltersMobile ? 
             <div className='only-mobile mobile-filters'>
