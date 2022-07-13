@@ -1,6 +1,7 @@
-import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
+import { Grid } from '@mui/material';
+
 import './PurchaseDetails.scss';
 
 interface PropsPurchaseDetails {
@@ -12,7 +13,7 @@ const PurchaseDetails = ({errorMessage, isLoading}: PropsPurchaseDetails) => {
   const mockPlan = {
     name: 'Profissional',
     value: 0,
-  }
+  };
   return (
     <Grid className='purchase-details'>
       <div className='details-title'>
@@ -44,6 +45,6 @@ const PurchaseDetails = ({errorMessage, isLoading}: PropsPurchaseDetails) => {
       <div className='error-alert'>{errorMessage}</div>
     </Grid>
   );
-}
+};
 
 export default PurchaseDetails;

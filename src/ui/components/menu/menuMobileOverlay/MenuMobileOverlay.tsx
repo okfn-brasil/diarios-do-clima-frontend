@@ -1,11 +1,12 @@
-import { Grid } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { MouseEvent, MouseEventHandler } from 'react';
+import { Link } from 'react-router-dom';
 import DiarioLogo from '@app/assets/images/logo.svg';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
-import { Link } from 'react-router-dom';
-import { MouseEvent, MouseEventHandler } from 'react';
 import { urls } from '@app/ui/utils/urls';
+import CloseIcon from '@mui/icons-material/Close';
+import { Grid } from '@mui/material';
+
 import './MenuMobileOverlay.scss';
 
 interface PropsMenuMobileOverlay {
@@ -19,12 +20,12 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobi
     setTimeout(() => {
       onClose({} as MouseEvent<SVGSVGElement>);
     }, 100);
-  }
+  };
   
   const onShowLoginForm = () => {
     showLoginForm(true);
     onClose({} as MouseEvent<SVGSVGElement>);
-  }
+  };
 
   return (
     <div className='menu-overlay'>
@@ -62,6 +63,6 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobi
       </div>
     </div>
   );
-}
+};
 
 export default MenuMobileOverlay;

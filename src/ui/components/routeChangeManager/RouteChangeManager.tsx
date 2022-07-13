@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
-import { urls } from '@app/ui/utils/urls';
-import { RootState } from '@app/stores/store';
 import { UserState } from '@app/models/user.model';
+import { RootState } from '@app/stores/store';
+import { urls } from '@app/ui/utils/urls';
 
 const loggedPaths = [urls.purchase.url];
 const notLoggedPaths = [urls.registration.url];
@@ -29,6 +29,6 @@ const RouteChangeManager = () => {
   });
 
   return (null);
-}
+};
 
 export default RouteChangeManager;

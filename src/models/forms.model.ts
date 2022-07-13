@@ -7,4 +7,8 @@ export interface InputModel {
   errorMessage?: string;
 }
 
+export interface CheckBoxesModel {
+  [key: string]: boolean | null;
+}
+
 export type InputType =  ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<string>;

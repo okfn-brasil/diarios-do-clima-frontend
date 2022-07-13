@@ -24,6 +24,11 @@
     }
   }
 
+  .back-icon {
+    width: 8px;
+    height: 16px;
+  }
+
   .modal-header {
     padding: 24px;
     border-bottom: 1px solid $lightGray2;
@@ -37,6 +42,11 @@
     @media only screen and (min-width: $desktopSize) {
       margin-left: 35px;
     }
+  }
+
+  .back-title {
+    font-size: 18px;
+    line-height: 18px;
   }
 }
 

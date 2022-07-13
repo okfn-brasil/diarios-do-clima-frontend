@@ -1,12 +1,14 @@
-import { Grid } from '@mui/material';
-import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import { Link } from 'react-router-dom';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
+import HyperLink from '@app/ui/components/hyperLink/HyperLink';
 import LinkManager from '@app/ui/components/linkManager/LinkManager';
 import { urls } from '@app/ui/utils/urls';
-import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import CheckIcon from '@mui/icons-material/Check';
-import HyperLink from '@app/ui/components/hyperLink/HyperLink';
+import { Grid } from '@mui/material';
+
 import FAQItem from './FaqItem/FaqItem';
+
 import './Plans.scss';
 
 const Plans = () => {
@@ -121,61 +123,61 @@ const Plans = () => {
       </Grid>
 
       <Grid container item sm={12} className='vertical-spacing-container gray-area' justifyContent='center' >
-          <Grid item sm={8} className='container'>
-            <h3 className='h3-class'>Encomende seu relatório</h3>
-            <p className='paragraph-class'>Para organização que precisam de conteúdo centralizado e curado por especialistas sobre um determinado assunto</p>
-            <Grid>
-              <Link to=''>
-                <ButtonGreen classess='button'>
-                  Contactar vendas
-                </ButtonGreen>
-              </Link>
-              <Link to=''>
-                <ButtonOutlined classess='button button-gray'>
-                  Simular custo
-                </ButtonOutlined>
-              </Link>
-            </Grid>
-          </Grid>
-        </Grid>
-
-        <Grid container item sm={12} justifyContent='center' className='vertical-spacing-container'>
-          <Grid item sm={8} className='container'>
-            <h3 className='h3-class' >50% para organizações que não visam lucro</h3>
-            <p className='paragraph-class'>Seu impacto é importante. O Diário do Clima apoia pessoas e organizações independentes que desejam utilizar nosso conteúdo para transformar a sociedade. Para se inscrever na lista de espera, preencha o formulário.</p>
+        <Grid item sm={8} className='container'>
+          <h3 className='h3-class'>Encomende seu relatório</h3>
+          <p className='paragraph-class'>Para organização que precisam de conteúdo centralizado e curado por especialistas sobre um determinado assunto</p>
+          <Grid>
             <Link to=''>
-              <ButtonGreen>
-                Solicitar desconto
+              <ButtonGreen classess='button'>
+                  Contactar vendas
               </ButtonGreen>
+            </Link>
+            <Link to=''>
+              <ButtonOutlined classess='button button-gray'>
+                  Simular custo
+              </ButtonOutlined>
             </Link>
           </Grid>
         </Grid>
+      </Grid>
 
-        <Grid container item sm={12} justifyContent='center' className='vertical-spacing-container'>
-          <Grid item sm={8} className='container'>
-            <h2 className='h2-class faq-title'>Perguntas frequentes</h2>
-            <div>
-              <FAQItem title='Como funciona a assinatura profissional do Diário do Clima?'>
-                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
-              </FAQItem>
-              <FAQItem title='Quais formas de pagamento vocês aceitam?'>
-                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
-              </FAQItem>
-              <FAQItem title='Quão seguro é o Diário do Clima?'>
-                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
-              </FAQItem>
-              <FAQItem title='Como eu cancelo minha assinatura do Diário do Clima?'>
-                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
-              </FAQItem>
-              <FAQItem title='O diário do clima oferece desconto?'>
-                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
-              </FAQItem>
-            </div>
-          </Grid>
+      <Grid container item sm={12} justifyContent='center' className='vertical-spacing-container'>
+        <Grid item sm={8} className='container'>
+          <h3 className='h3-class' >50% para organizações que não visam lucro</h3>
+          <p className='paragraph-class'>Seu impacto é importante. O Diário do Clima apoia pessoas e organizações independentes que desejam utilizar nosso conteúdo para transformar a sociedade. Para se inscrever na lista de espera, preencha o formulário.</p>
+          <Link to=''>
+            <ButtonGreen>
+                Solicitar desconto
+            </ButtonGreen>
+          </Link>
         </Grid>
+      </Grid>
+
+      <Grid container item sm={12} justifyContent='center' className='vertical-spacing-container'>
+        <Grid item sm={8} className='container'>
+          <h2 className='h2-class faq-title'>Perguntas frequentes</h2>
+          <div>
+            <FAQItem title='Como funciona a assinatura profissional do Diário do Clima?'>
+                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
+            </FAQItem>
+            <FAQItem title='Quais formas de pagamento vocês aceitam?'>
+                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
+            </FAQItem>
+            <FAQItem title='Quão seguro é o Diário do Clima?'>
+                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
+            </FAQItem>
+            <FAQItem title='Como eu cancelo minha assinatura do Diário do Clima?'>
+                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
+            </FAQItem>
+            <FAQItem title='O diário do clima oferece desconto?'>
+                Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 
+            </FAQItem>
+          </div>
+        </Grid>
+      </Grid>
     </div>
   );
-}
+};
 
 export default Plans;
 

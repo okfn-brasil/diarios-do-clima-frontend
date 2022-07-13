@@ -15,6 +15,6 @@ const SubmitForm = ({ label, disabled, classess }: PropsSubmitForm) => {
       type='submit'
     />
   );
-}
+};
 
 export default SubmitForm;

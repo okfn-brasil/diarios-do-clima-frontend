@@ -253,6 +253,16 @@ a, a span, a button  {
   padding: 15px 0 !important;
 }
 
+
+.section-filter-class {
+  border-bottom: 1px solid $gray2;
+  padding-bottom: 24px;
+
+  .h3-class {
+    position: relative;
+  }
+}
+
 //buttons
 .base-button, .base-button.MuiButtonBase-root {
   padding: 14px 40px;
@@ -266,7 +276,7 @@ a, a span, a button  {
   background-color: rgba(0,0,0, 0.3);
   top: 0;
   left: 0;
-  z-index: 99999;
+  z-index: 999;
 }
 
 //animations

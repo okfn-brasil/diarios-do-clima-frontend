@@ -2,17 +2,18 @@ import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import computerImage from '@app/assets/images/computer-registration.svg';
+import { InputModel, InputType } from '@app/models/forms.model';
+import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
+import AccountService, { checkPlan } from '@app/services/accounts';
+import { userUpdate } from '@app/stores/user.store';
+import TextInput from '@app/ui/components/forms/input/Input';
 import PasswordField from '@app/ui/components/forms/passwordField/passwordField';
+import SelectInput from '@app/ui/components/forms/select/Select';
 import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
 import Loading from '@app/ui/components/loading/Loading';
 import { urls } from '@app/ui/utils/urls';
 import { Grid} from '@mui/material';
-import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
-import { InputModel, InputType } from '@app/models/forms.model';
-import AccountService, { checkPlan } from '@app/services/accounts';
-import { userUpdate } from '@app/stores/user.store';
-import SelectInput from '@app/ui/components/forms/select/Select';
-import TextInput from '@app/ui/components/forms/input/Input';
+
 import './registration.scss';
 
 interface FormsSelector {
@@ -27,7 +28,7 @@ interface FieldValidation {
   password: (s: InputModel) => string | boolean;
   email: (s: InputModel) => string | boolean;
   city: (s: InputModel) => string | boolean;
-  [key: string]: (s: InputModel) => string | Boolean | undefined;
+  [key: string]: (s: InputModel) => string | boolean | undefined;
 }
 
 const emptyError = <></>;
@@ -42,10 +43,10 @@ const inputsDefaultValue = {
 };
 
 const fieldValidations: FieldValidation = {
-  username: (s: InputModel) => { return s.value && s.value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false },
-  password: (s: InputModel) => { return s.isValid ? false : 'A senha deve atender todos os requisitos a baixo' },
-  email: (s: InputModel) => { return /\S+@\S+\.\S+/.test(s.value) ? false : 'O e-mail inserido é invalido' },
-  city: (s: InputModel) => { return s.value && s.value.length < 5  ? 'O campo deve possuir no mínimo 5 caracteres' : false },
+  username: (s: InputModel) => { return s.value && s.value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false; },
+  password: (s: InputModel) => { return s.isValid ? false : 'A senha deve atender todos os requisitos a baixo'; },
+  email: (s: InputModel) => { return /\S+@\S+\.\S+/.test(s.value) ? false : 'O e-mail inserido é invalido'; },
+  city: (s: InputModel) => { return s.value && s.value.length < 5  ? 'O campo deve possuir no mínimo 5 caracteres' : false; },
 };
 
 const Registration = () => {
@@ -60,16 +61,16 @@ const Registration = () => {
   const inputChange = (event: InputType, valid?: boolean) => {
     const {name, value} = event.target;
     setInputs((values: RegistrationModel) => ({...values, [name]: {value: value, isValid: valid }}));
-  }
+  };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    let errors = [];
+    const errors = [];
     ['username', 'email', 'password', 'city'].forEach((key: string) => {
-      let input: InputModel = inputs[key];
-      let validator = fieldValidations[key] ? fieldValidations[key](input) : false;
+      const input: InputModel = inputs[key];
+      const validator = fieldValidations[key] ? fieldValidations[key](input) : false;
       if(inputs[key].value) {
-        setInputs((values: RegistrationModel) => ({...values, [key]: {...input, errorMessage: validator as string}}))
-        if(typeof validator === 'string' || validator instanceof String) {
+        setInputs((values: RegistrationModel) => ({...values, [key]: {...input, errorMessage: validator as string}}));
+        if(typeof validator === 'string') {
           errors.push(key);
         }
       }
@@ -83,7 +84,7 @@ const Registration = () => {
       submit();
     }
     event.preventDefault();
-  }
+  };
 
   const checkEmail = () => {
     setLoading(true);
@@ -100,7 +101,7 @@ const Registration = () => {
         }
       }));
     });
-  }
+  };
 
   const submit = () => {
     setLoading(true);
@@ -118,23 +119,23 @@ const Registration = () => {
           }));
         }, 100);
       },
-      ).catch(e => {
-        const errorKey = e ? Object.keys(e)[0] : '';
-        setSubmitError(
-          <span>
+    ).catch(e => {
+      const errorKey = e ? Object.keys(e)[0] : '';
+      setSubmitError(
+        <span>
             Ocorreu um erro ao tentar criar a sua conta, por favor, tente novamente.
-            { e? <><br/><br/>Motivo do erro: {e[errorKey]}</> : <></> }
-            <br/><a className='hover-animation error-link' onClick={resetForm}>Clique aqui para voltar ao inicio do cadastro</a>
-          </span>)
-        setLoading(false);
+          { e? <><br/><br/>Motivo do erro: {e[errorKey]}</> : <></> }
+          <br/><a className='hover-animation error-link' onClick={resetForm}>Clique aqui para voltar ao inicio do cadastro</a>
+        </span>);
+      setLoading(false);
     });
-  }
+  };
 
   const resetForm = () => {
     setSubmitError(emptyError);
     setInputs(inputsDefaultValue);
     setStep(1);
-  }
+  };
 
   const getFormStep = (step: number) => {
     const forms: FormsSelector = {
@@ -143,7 +144,7 @@ const Registration = () => {
       3: formStepThree(),
     };
     return forms[step];
-  }
+  };
 
   const formStepOne = () => {
     return (
@@ -177,8 +178,8 @@ const Registration = () => {
           <SubmitForm />
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const formStepTwo = () => {
     return (
@@ -208,13 +209,13 @@ const Registration = () => {
           <SubmitForm />
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const formStepThree = () => {
     return (
       <div>
-          {SelectFormTitle()}
+        {SelectFormTitle()}
         <div>
           <SelectInput 
             classes='select-area-class first-input' 
@@ -239,8 +240,8 @@ const Registration = () => {
           <SubmitForm classess='submit-registration' label='Finalizar' disabled={isLoading}/>
         </div>
       </div>
-    )
-  }
+    );
+  };
   
   const SelectFormTitle = () => {
     return (
@@ -253,7 +254,7 @@ const Registration = () => {
         </div>
       </>
     );
-  }
+  };
 
   return (
     <section>
@@ -298,8 +299,8 @@ const Registration = () => {
                       <a href='/?login=open' className='hover-animation'>
                         <span className='blue-link login-link'>
                           Faça o login
-                          </span>
-                        </a>
+                        </span>
+                      </a>
                     </div> : <></>
                   }
                 </div>
@@ -314,6 +315,6 @@ const Registration = () => {
       </form>
     </section>
   );
-}
+};
 
 export default Registration;

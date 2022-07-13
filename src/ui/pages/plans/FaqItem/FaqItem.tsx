@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
+
 import './FaqItem.scss';
 
 interface FAQItemProps {
@@ -18,6 +19,6 @@ const FAQItem = ({title, children}: FAQItemProps) => {
       </div>
     </div>
   );
-}
+};
 
 export default FAQItem;

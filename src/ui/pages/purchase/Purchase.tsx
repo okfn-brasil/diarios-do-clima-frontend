@@ -1,7 +1,8 @@
 import { Grid } from '@mui/material';
-import PurchaseForm from './purchaseForm/PurchaseForm';
-import './Purchase.scss';
 
+import PurchaseForm from './purchaseForm/PurchaseForm';
+
+import './Purchase.scss';
 
 const Purchase = () => {
   return (
@@ -28,6 +29,6 @@ const Purchase = () => {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default Purchase;

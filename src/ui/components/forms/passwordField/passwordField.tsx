@@ -1,14 +1,16 @@
-import CloseIcon from '@mui/icons-material/Close';
-import CheckIcon from '@mui/icons-material/Check';
-import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
 import { Dispatch, SetStateAction, useState } from 'react';
-import TextInput from '../input/Input';
-import './passwordField.scss';
+import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
 import { InputType } from '@app/models/forms.model';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+
+import TextInput from '../input/Input';
+
+import './passwordField.scss';
 
 interface PropsPasswordField {
   placeholder?: string;
-  onChange: Function;
+  onChange: (e: InputType, v: boolean) => void;
   name: string;
   value: string;
   errorMessage?: string | boolean;
@@ -34,7 +36,7 @@ const PasswordField = ({ classess, value, name, errorMessage, onChange }: PropsP
 
   const changeFieldType = () => {
     setType(!fieldType);
-  }
+  };
 
   const inputChange = (event: InputType) => {
     const value = event.target.value;
@@ -48,7 +50,7 @@ const PasswordField = ({ classess, value, name, errorMessage, onChange }: PropsP
     setValidation(validate);
     setInputValue(value);
     onChange(event, valid);
-  }
+  };
 
   return (
     <>
@@ -87,6 +89,6 @@ const PasswordField = ({ classess, value, name, errorMessage, onChange }: PropsP
       </div>
     </>
   );
-}
+};
 
 export default PasswordField;

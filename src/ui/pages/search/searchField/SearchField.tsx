@@ -1,14 +1,15 @@
-import { Grid } from '@mui/material';
-import searchIcon from '@app/assets/images/icons/search.svg';
-import bellIcon from '@app/assets/images/icons/bell.svg';
-import filterIcon from '@app/assets/images/icons/filter.svg';
-import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
-import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import { ChangeEvent, Dispatch, FormEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateFilters } from '@app/stores/filters.store';
-import './SearchField.scss';
+import bellIcon from '@app/assets/images/icons/bell.svg';
+import filterIcon from '@app/assets/images/icons/filter.svg';
+import searchIcon from '@app/assets/images/icons/search.svg';
 import { parseUrlToFilters } from '@app/models/filters.model';
+import { updateFilters } from '@app/stores/filters.store';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
+import { Grid } from '@mui/material';
+
+import './SearchField.scss';
 
 interface PropsSearchField {
   onClickFilters: () => void;
@@ -22,12 +23,12 @@ const SearchField = ({onClickFilters, openCreateAlert}: PropsSearchField) => {
   const updateQuery = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setQuery(value);
-  }
+  };
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(updateFilters({query: query}));
-  }
+  };
 
   useEffect(() => {
     if (window.location.search) {
@@ -71,12 +72,12 @@ const SearchField = ({onClickFilters, openCreateAlert}: PropsSearchField) => {
                 </Grid>
               </ButtonOutlined>
             </Grid>
-        </div>
+          </div>
         </div>
       </Grid>
     </Grid>
   );
-}
+};
 
 export default SearchField;
 

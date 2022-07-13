@@ -1,11 +1,13 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { UserState } from '@app/models/user.model';
+import { RootState } from '@app/stores/store';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
-import { useSelector } from 'react-redux';
-import { RootState } from '@app/stores/store';
-import LoggedMenu from '../loggedMenu/LoggedMenu';
-import { UserState } from '@app/models/user.model';
 import { urls } from '@app/ui/utils/urls';
+
+import LoggedMenu from '../loggedMenu/LoggedMenu';
+
 import './MenuDesktop.scss';
 
 interface PropsMenuDesktop {
@@ -17,7 +19,7 @@ const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const onShowLoginForm = () => {
     showLoginForm(true);
-  }
+  };
 
   return (
     <div className='menu-desktop'>
@@ -48,6 +50,6 @@ const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
       }
     </div>
   );
-}
+};
 
 export default MenuDesktop;

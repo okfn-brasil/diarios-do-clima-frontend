@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
 import { FiltersState, FiltersStatePayload, ITEMS_PER_PAGE } from '@app/models/filters.model';
+import type { PayloadAction } from '@reduxjs/toolkit';
+// eslint-disable-next-line no-duplicate-imports
+import { createSlice } from '@reduxjs/toolkit';
 
 export const initialState: FiltersState = {
   itemsPerPage: ITEMS_PER_PAGE,
@@ -15,6 +16,7 @@ export const filtersSlice = createSlice({
       Object.assign(state, action.payload);
     },
     resetFilters: (state) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       state = initialState;
       location.reload();
     },

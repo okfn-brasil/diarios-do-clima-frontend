@@ -1,10 +1,11 @@
+import { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import DiarioLogo from '@app/assets/images/logo.svg';
+import { urls } from '@app/ui/utils/urls';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Grid } from '@mui/material';
-import { Fragment } from 'react';
-import DiarioLogo from '@app/assets/images/logo.svg';
-import { Link } from 'react-router-dom';
-import { urls } from '@app/ui/utils/urls';
+
 import './Footer.scss';
 
 const FooterXS = () => {
@@ -16,7 +17,7 @@ const FooterXS = () => {
       <Grid item xs={12} className='footer-xs-item hover-animation' ><Link to={urls.terms.url}>Termos e condições</Link></Grid>
     </Fragment>
   );
-}
+};
 
 const FooterMD = () => {
   return (
@@ -33,7 +34,7 @@ const FooterMD = () => {
       <Link to={urls.terms.url}><span>Termos e condições</span></Link>
     </Grid>
   );
-}
+};
 
 const Footer = () => {
   const theme = useTheme();
@@ -50,6 +51,6 @@ const Footer = () => {
       {isDesktop ? <FooterMD /> : <FooterXS />}
     </Grid>
   );
-}
+};
 
 export default Footer;

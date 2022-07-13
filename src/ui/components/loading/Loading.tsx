@@ -17,6 +17,6 @@ const Loading = ({isLoading}: PropsLoading) => {
       }
     </>
   );
-}
+};
 
 export default Loading;

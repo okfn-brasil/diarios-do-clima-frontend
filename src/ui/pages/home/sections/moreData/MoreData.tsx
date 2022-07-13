@@ -1,6 +1,7 @@
-import { Grid } from '@mui/material';
 import HyperLink from '@app/ui/components/hyperLink/HyperLink';
 import { urls } from '@app/ui/utils/urls';
+import { Grid } from '@mui/material';
+
 import './MoreData.scss';
 
 const MoreData = () => {
@@ -19,6 +20,6 @@ const MoreData = () => {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default MoreData;

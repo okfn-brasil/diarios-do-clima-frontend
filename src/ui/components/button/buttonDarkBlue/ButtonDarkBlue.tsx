@@ -1,4 +1,5 @@
 import { ButtonBase } from '@mui/material';
+
 import './ButtonDarkBlue.scss';
 
 interface PropsButtonDarkBlue {
@@ -6,12 +7,12 @@ interface PropsButtonDarkBlue {
   classess?: string;
 }
 
-const ButtonDarkBlue = ({ children, sx, classess }: PropsButtonDarkBlue) => {
+const ButtonDarkBlue = ({ children, classess }: PropsButtonDarkBlue) => {
   return (
     <ButtonBase className={`base-button button-dark-blue font-white-bold ${classess}`}>
       {children}
     </ButtonBase>
   );
-}
+};
 
 export default ButtonDarkBlue;
