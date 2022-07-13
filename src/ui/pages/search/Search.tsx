@@ -4,17 +4,17 @@ import { FiltersState, parseFiltersToUrl } from '@app/models/filters.model';
 import { parseReports,ReportModel, ReportsModel } from '@app/models/reports.model';
 import ReportsService from '@app/services/reports';
 import { RootState } from '@app/stores/store';
+import ModalsCreateAlert from '@app/ui/components/createAlertModals/ModalsCreateAlert';
 import Loading from '@app/ui/components/loading/Loading';
 import { Grid } from '@mui/material';
 
+import AdvancedSearchModal from './advancedSearchModal/AdvancedSearchModal';
 import SearchField from './searchField/SearchField';
 import SearchFilters from './searchFilters/SearchFilters';
 import SearchList from './searchList/SearchList';
 import SearchPagination from './searchPagination/SearchPagination';
 
 import './Search.scss';
-import ModalsCreateAlert from '@app/ui/components/createAlertModals/ModalsCreateAlert';
-import AdvancedSearchModal from './advancedSearchModal/AdvancedSearchModal';
 
 let timeout: ReturnType<typeof setTimeout>;
 const pageKeys: string[] = ['itemsPerPage', 'order'];

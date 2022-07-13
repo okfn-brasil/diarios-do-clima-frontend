@@ -1,12 +1,14 @@
 
+import React, { Dispatch, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { convertFiltersToModalFilters, FiltersStatePayload, ModalFilters } from '@app/models/filters.model';
 import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
-import React, { Dispatch, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+
 import ModalAlertFilters from './modalAlertFilters/ModalAlertFilters';
 import ModalBecomePro from './modalBecomePro/ModalBecomePro';
 import ModalSetAlertSpec from './modalSetAlertSpec/ModalSetAlertSpec';
+
 import './ModalsCreateAlert.scss';
 
 interface ModalCreateAlertProps {
@@ -24,7 +26,7 @@ const ModalsCreateAlert = ({isOpen, onClose, onOpen, filters}: ModalCreateAlertP
 
   useEffect(() => {
     setdefinedFilters(convertFiltersToModalFilters(filters));
-  },[filters])
+  },[filters]);
 
   const onOpenBecomePro = () => {
     onClose();
@@ -45,7 +47,7 @@ const ModalsCreateAlert = ({isOpen, onClose, onOpen, filters}: ModalCreateAlertP
     setdefinedFilters(convertFiltersToModalFilters(filters));
     setStateFilters(false);
     onOpen();
-  }
+  };
   
 
   return (

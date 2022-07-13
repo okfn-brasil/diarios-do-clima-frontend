@@ -1,3 +1,4 @@
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { FiltersStatePayload, Theme } from '@app/models/filters.model';
 import { CheckBoxesModel } from '@app/models/forms.model';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
@@ -6,7 +7,6 @@ import EntityFilter from '@app/ui/pages/search/searchFilters/entityFilter/Entity
 import LocationFilter from '@app/ui/pages/search/searchFilters/locationFilter/LocationFilter';
 import ThemeFilter from '@app/ui/pages/search/searchFilters/themeFilter/ThemeFilter';
 import { SelectChangeEvent } from '@mui/material';
-import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import './ModalAlertFilters.scss';
 
@@ -35,7 +35,7 @@ const ModalAlertFilters = ({isOpen, onBack, onApply, filters}: ModalAlertFilters
 
   useEffect(() => {
     setFilters(filters);
-  }, [filters])
+  }, [filters]);
 
   const inputChange = (event: SelectChangeEvent<string>) => {
     const {name, value} = event.target;
@@ -53,20 +53,20 @@ const ModalAlertFilters = ({isOpen, onBack, onApply, filters}: ModalAlertFilters
 
   const apply = () => {
     onApply(currFilters);
-  }
+  };
 
   return (
     <Modal isOpen={isOpen} title={'Editar filtros do alerta'} onBack={onBack} className='create-alert'>
       
       <div>
         <div className='modal-filters'>
-        <LocationFilter onChange={inputChange} value={currFilters.location as string}/>
+          <LocationFilter onChange={inputChange} value={currFilters.location as string}/>
 
-        <ThemeFilter onChange={checkBoxChange} options={currFilters.themes as Theme} hasProPlan={true} />
+          <ThemeFilter onChange={checkBoxChange} options={currFilters.themes as Theme} hasProPlan={true} />
         
-        <EntityFilter onChange={inputChange} value={currFilters.ente as string}/>
+          <EntityFilter onChange={inputChange} value={currFilters.ente as string}/>
 
-        <ButtonGreen classess='modal-filter-apply' onClick={apply}>Aplicar Filtros</ButtonGreen>
+          <ButtonGreen classess='modal-filter-apply' onClick={apply}>Aplicar Filtros</ButtonGreen>
         </div>
       </div>
     </Modal>

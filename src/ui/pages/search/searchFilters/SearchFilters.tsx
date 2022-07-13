@@ -1,21 +1,19 @@
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dates, FiltersStatePayload, parseUrlToFilters,SubmitDates, Theme } from '@app/models/filters.model';
+import { CheckBoxesModel } from '@app/models/forms.model';
 import { UserState } from '@app/models/user.model';
 import { updateFilters } from '@app/stores/filters.store';
 import { RootState } from '@app/stores/store';
-import SelectInput from '@app/ui/components/forms/select/Select';
-import ProFlag from '@app/ui/components/proFlag/ProFlag';
 import CloseIcon from '@mui/icons-material/Close';
-import { Checkbox, FormControlLabel, FormGroup, Grid, SelectChangeEvent } from '@mui/material';
+import { Grid, SelectChangeEvent } from '@mui/material';
 
 import DateFilter from './dateFilter/DateFilter';
+import EntityFilter from './entityFilter/EntityFilter';
+import LocationFilter from './locationFilter/LocationFilter';
+import ThemeFilter from './themeFilter/ThemeFilter';
 
 import './SearchFilters.scss';
-import LocationFilter from './locationFilter/LocationFilter';
-import EntityFilter from './entityFilter/EntityFilter';
-import ThemeFilter from './themeFilter/ThemeFilter';
-import { CheckBoxesModel } from '@app/models/forms.model';
 
 interface PropsSearchFilters{
   onClose?: () => void;

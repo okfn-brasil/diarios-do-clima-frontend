@@ -1,6 +1,6 @@
-import SelectInput from "@app/ui/components/forms/select/Select";
-import HelpIcon from "@app/ui/components/helpIcon/HelpIcon";
-import { SelectChangeEvent } from "@mui/material";
+import SelectInput from '@app/ui/components/forms/select/Select';
+import HelpIcon from '@app/ui/components/helpIcon/HelpIcon';
+import { SelectChangeEvent } from '@mui/material';
 
 interface LocationFilterProps {
   value: string;

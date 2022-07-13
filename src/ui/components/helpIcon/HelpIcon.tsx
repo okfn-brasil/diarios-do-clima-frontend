@@ -1,4 +1,5 @@
 import icon from '@app/assets/images/icons/help.svg';
+
 import './HelpIcon.scss';
 
 const HelpIcon = () => {

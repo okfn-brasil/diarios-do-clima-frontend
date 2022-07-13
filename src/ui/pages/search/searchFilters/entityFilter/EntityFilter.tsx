@@ -1,5 +1,5 @@
-import SelectInput from "@app/ui/components/forms/select/Select";
-import { SelectChangeEvent } from "@mui/material";
+import SelectInput from '@app/ui/components/forms/select/Select';
+import { SelectChangeEvent } from '@mui/material';
 
 
 interface EntityFilterProps {

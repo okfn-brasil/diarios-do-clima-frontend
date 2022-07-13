@@ -8,6 +8,7 @@ import { userUpdate } from '@app/stores/user.store';
 import TextInput from '@app/ui/components/forms/input/Input';
 import SelectInput from '@app/ui/components/forms/select/Select';
 import Loading from '@app/ui/components/loading/Loading';
+import { portalTexts } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
@@ -15,7 +16,6 @@ import PurchaseDetails from '../purchaseDetails/PurchaseDetails';
 import PurchaseSubmit from '../purchaseSubmit/PurchaseSubmit';
 
 import './PurchaseForm.scss';
-import { portalTexts } from '@app/ui/utils/portal-texts';
 
 interface ValidationModel {
   card: (s: InputModel) => string | boolean;
@@ -287,7 +287,7 @@ const PurchaseForm = () => {
 
               <SelectInput 
                 classes='half-width state-select' 
-                options={portalTexts.stateList.map(state => {return {value: state, label: state}})} 
+                options={portalTexts.stateList.map(state => {return {value: state, label: state};})} 
                 label='Estado' 
                 value={inputs.state.value} 
                 name='state' 

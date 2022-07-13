@@ -1,5 +1,6 @@
-import Modal from '@app/ui/components/modal/Modal';
 import React from 'react';
+import Modal from '@app/ui/components/modal/Modal';
+
 import './AdvancedSearchModal.scss';
 
 interface AdvancedSearchModalProps {
