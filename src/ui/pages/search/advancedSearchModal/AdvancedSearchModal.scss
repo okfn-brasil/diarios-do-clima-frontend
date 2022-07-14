@@ -1,3 +1,44 @@
-.advanced-search-modal .modal-header .h3-class{
-  font-size: 18px;
+@import '/src/styles/globals.scss';
+
+.advanced-search-modal {
+
+  .modal-header .h3-class{
+    font-size: 18px;
+  }
+
+  .advanced-search-modal-content {
+    padding: 0 24px;
+    
+    @media only screen and (min-width: $desktopSize) {
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+  }
+
+  .general-info {
+    font-size: 20px;
+    padding: 24px 0;
+  }
+
+  .advanced-item-title, .advanced-item-desc, .general-info {
+    color: $darkBlue;
+  }
+
+  .advanced-item {
+    border-top: 1px solid $gray2;
+    padding: 16px 0 24px;
+
+    .advanced-item-title {
+      margin: 0 0 16px;
+    }
+
+    .advanced-item-desc {
+      margin: 0 0 8px;
+    }
+
+    .advanced-item-ex {
+      color: $gray5;
+    }
+   
+  }
 }

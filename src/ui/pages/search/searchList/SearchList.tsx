@@ -49,9 +49,9 @@ const SearchList = ({list, listSize, searchTimes, openCreateAlert}: PropsSearchL
           : <></>
         }
         { listSize ? 
-          <div className='only-desktop' >
+          <div >
             <Grid item container sm={12} justifyContent='space-between'>
-              <span className='hover-animation'>
+              <span className='hover-animation only-desktop'>
                 <ButtonOutlined onClick={openCreateAlert} classess='create-alert-button'>
                   <Grid container justifyContent='space-between'>
                     <img src={bellIcon}/>
@@ -60,9 +60,9 @@ const SearchList = ({list, listSize, searchTimes, openCreateAlert}: PropsSearchL
                 </ButtonOutlined>
               </span>
               <SelectInput
+                label='Ordenar por'
                 classes='half-width'
                 options={[{value: 'recente', label: 'Mais recente'},{value: 'menor', label: 'Menor'}, {value: 'maior', label: 'Maior'}]} 
-                placeholder='Selecione um munícipio' 
                 value={order} 
                 name='order'
                 onChange={updateOrder}

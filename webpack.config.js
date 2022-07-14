@@ -16,9 +16,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: path.resolve(__dirname, "public", "index.html"),
       title: 'Production',
-      favicon: "./public/favicon.ico",
+      favicon: "favicon.ico",
       filename: "index.html",
-      manifest: "./public/manifest.json",
+      manifest: "manifest.json",
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],

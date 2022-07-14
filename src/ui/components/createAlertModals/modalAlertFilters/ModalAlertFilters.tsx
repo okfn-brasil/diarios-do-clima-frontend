@@ -1,6 +1,5 @@
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { FiltersStatePayload, Theme } from '@app/models/filters.model';
-import { CheckBoxesModel } from '@app/models/forms.model';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import Modal from '@app/ui/components/modal/Modal';
 import EntityFilter from '@app/ui/pages/search/searchFilters/entityFilter/EntityFilter';
@@ -9,29 +8,23 @@ import ThemeFilter from '@app/ui/pages/search/searchFilters/themeFilter/ThemeFil
 import { SelectChangeEvent } from '@mui/material';
 
 import './ModalAlertFilters.scss';
+import { initialFilters } from '../utils';
+import SubmitForm from '../../forms/submitForm/SubmitForm';
 
 interface ModalAlertFiltersProps {
   isOpen: boolean;
   onBack: () => void;
   onApply: (filters: FiltersStatePayload) => void;
   filters: FiltersStatePayload;
+  emptyFields: number;
 }
 
-const themesMock: CheckBoxesModel = {
-  'label1': null,
-  'label2': null,
-  'label3': null,
-  'label4': null,
-};
-
-const initialFilters: FiltersStatePayload = {
-  location: '0',
-  ente: '0',
-  themes: themesMock,
-};
-
-const ModalAlertFilters = ({isOpen, onBack, onApply, filters}: ModalAlertFiltersProps) => {
+const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: ModalAlertFiltersProps) => {
   const [currFilters, setFilters] : [FiltersStatePayload, Dispatch<SetStateAction<FiltersStatePayload>>] = useState(initialFilters);
+
+  useEffect(() => {
+    setFilters(initialFilters);
+  }, [emptyFields])
 
   useEffect(() => {
     setFilters(filters);
@@ -58,7 +51,7 @@ const ModalAlertFilters = ({isOpen, onBack, onApply, filters}: ModalAlertFilters
   return (
     <Modal isOpen={isOpen} title={'Editar filtros do alerta'} onBack={onBack} className='create-alert'>
       
-      <div>
+      <form onSubmit={apply}>
         <div className='modal-filters'>
           <LocationFilter onChange={inputChange} value={currFilters.location as string}/>
 
@@ -66,9 +59,9 @@ const ModalAlertFilters = ({isOpen, onBack, onApply, filters}: ModalAlertFilters
         
           <EntityFilter onChange={inputChange} value={currFilters.ente as string}/>
 
-          <ButtonGreen classess='modal-filter-apply' onClick={apply}>Aplicar Filtros</ButtonGreen>
+          <SubmitForm classess='modal-filter-apply' label='Aplicar Filtros'/>
         </div>
-      </div>
+      </form>
     </Modal>
   );
 };

@@ -1,7 +1,6 @@
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dates, FiltersStatePayload, parseUrlToFilters,SubmitDates, Theme } from '@app/models/filters.model';
-import { CheckBoxesModel } from '@app/models/forms.model';
 import { UserState } from '@app/models/user.model';
 import { updateFilters } from '@app/stores/filters.store';
 import { RootState } from '@app/stores/store';
@@ -14,17 +13,11 @@ import LocationFilter from './locationFilter/LocationFilter';
 import ThemeFilter from './themeFilter/ThemeFilter';
 
 import './SearchFilters.scss';
+import { themesMock } from '@app/ui/utils/mocks';
 
 interface PropsSearchFilters{
   onClose?: () => void;
 }
-
-const themesMock: CheckBoxesModel = {
-  'label1': null,
-  'label2': null,
-  'label3': null,
-  'label4': null,
-};
 
 const initialFilters: FiltersStatePayload = {
   location: '0',

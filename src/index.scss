@@ -279,6 +279,30 @@ a, a span, a button  {
   z-index: 999;
 }
 
+.modal-key-words, .modal-email {
+  padding: 24px 24px 17px;
+  position: relative;
+
+  @media only screen and (max-width: $desktopSize) {
+    height: calc(100vh - 76px - 41px);
+  }
+
+  .paragraph-class {
+    margin-bottom: 12px;
+  }
+
+  .button-apply-key-words, .button-apply-email {
+    margin-top: 80px;
+
+    @media only screen and (max-width: $desktopSize) {
+      position: absolute;
+      bottom: 20px;
+      width: calc(100% - 48px) !important;
+      left: 24px;
+    }
+  }
+}
+
 //animations
 @keyframes fadeIn {
   0% {

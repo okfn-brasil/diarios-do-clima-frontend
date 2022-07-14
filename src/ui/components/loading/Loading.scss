@@ -1,6 +1,7 @@
 @import '/src/styles/globals.scss';
 
 .loading-area {
+  z-index: 99999;
 
   .lds div {
     display: inline-block;
