@@ -19,6 +19,10 @@
   &.hide-links {
     position: relative;
     border-bottom: 0;
+
+    .only-desktop, .only-mobile {
+      display: none;
+    }
   }
 
   img {

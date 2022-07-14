@@ -4,8 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
 import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useState } from 'react';
-import { inputStyle } from '@app/ui/utils/generalStyles';
-import SubmitForm from '@app/ui/components/submitForm/SubmitForm';
+import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
 import { urls } from '@app/ui/utils/urls';
 import { LoginModel, LoginResponse } from '@app/models/login.model';
 import LoginService from '@app/services/login';
@@ -82,7 +81,7 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
   return (
     <div className='login-form'>
       <Loading isLoading={isLoading}></Loading>
-      <Grid container style={{justifyContent: 'center'}}>
+      <Grid container justifyContent='center'>
         <Grid item xs={12} sm={5} className='container login-modal'>
           <div>
             <CloseIcon className='hover-animation close-icon' onClick={closeModal} />
@@ -91,15 +90,15 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
           <div>
             <img className='logo' src={DiarioLogoBlack}/>
           </div>
-          <p className='h3-style'>Acesse sua conta</p>
-          <p className='paragraph-style'>Lorem ipsum sit amet consectetur</p>
+          <p className='h3-class'>Acesse sua conta</p>
+          <p className='paragraph-class'>Lorem ipsum sit amet consectetur</p>
 
           <form onSubmit={handleSubmit}>
-            <Input required type='email' value={inputs.email} sx={inputStyle} name='email' onChange={inputChange} placeholder='E-mail' />
+            <Input required type='email' value={inputs.email} className='input-class' name='email' onChange={inputChange} placeholder='E-mail' />
             
             <div className='password-field'>
               <img className={'hover-animation ' + (passFieldType ? 'low-opacity' : '')} src={ShowPassIcon} onClick={changeFieldType} />
-              <Input required type={passFieldType ? 'password' : 'text'} value={inputs.password} sx={inputStyle} name='password' onChange={inputChange} placeholder='Senha' />
+              <Input required type={passFieldType ? 'password' : 'text'} value={inputs.password} className='input-class' name='password' onChange={inputChange} placeholder='Senha' />
             </div>
             
             <div className='submit-login'>

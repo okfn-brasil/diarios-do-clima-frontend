@@ -1,4 +1,4 @@
-import { CalendarPickerView } from "@mui/x-date-pickers";
+import { CalendarPickerView } from '@mui/x-date-pickers';
 
 export const datePickerTranslation: DateTranslate = {
   previousMonth: 'Mês seguinte',

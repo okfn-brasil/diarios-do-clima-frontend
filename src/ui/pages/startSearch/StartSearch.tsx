@@ -9,7 +9,7 @@ import { RootState } from '@app/stores/store';
 import './StartSearch.scss'
 
 const StartSearch = () => {
-  const userData: UserState = useSelector((state: RootState) => state.user);
+  const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   
   return (
     <Grid container className='container start-search-page'>
@@ -19,8 +19,8 @@ const StartSearch = () => {
           <img src={searchImage} alt='começe a buscar'/>
         </div>
         <div className='text-area'>
-          <p className='h3-style'>Vamos começar a buscar!</p>
-          <p className='paragraph-style'>
+          <p className='h3-class'>Vamos começar a buscar!</p>
+          <p className='paragraph-class'>
             { userData && userData.plan_pro ? 
               'Pronto, agora você pode utilizar todos as funcionalidades disponíveis no nosso plano PRO' :
               'Pronto, agora você já pode utilizar o Diário do Clima para encontrar uma política ambiental'

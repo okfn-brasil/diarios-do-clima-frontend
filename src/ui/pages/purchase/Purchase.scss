@@ -1,0 +1,27 @@
+@import '/src/styles/globals.scss';
+
+.purchase-form-page {
+  .title {
+    font-family: Sora;
+    font-size: 38px;
+    line-height: 48px;
+    font-weight: 600;
+    color: $darkBlue;
+  }
+
+  .sub-title {
+    font-size: 18px;
+    line-height: 22px;
+    color: $gray5;
+    margin-top: 8px;
+  }
+
+  .form-area {
+    margin-top: 43px;
+    margin-bottom: 56px;
+
+    @media only screen and (min-width: $desktopSize) {
+      margin-top: 56px;
+    }
+  }
+}

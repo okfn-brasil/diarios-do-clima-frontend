@@ -1,4 +1,4 @@
-@import '@app/ui/utils/colors.scss';
+@import '/src/styles/globals.scss';
 
 .registration-form {
   .MuiInput-input {
@@ -7,7 +7,116 @@
     }
   }
 
+  .h3-class {
+    font-family: Sora;
+  }
+
   .MuiInput-root:before {
     border-bottom: 2px solid $gray !important;
+  }
+
+  .select-area-class {
+    margin-top: 40px;
+  }
+
+  .first-input {
+    margin-top: 10px;
+  }
+
+  .city-input {
+    margin-top: 20px;
+  }
+
+  .paragraph-class {
+    color: $gray5;
+  }
+  
+  .submit-registration {
+    margin-top: 26px;
+  }
+  
+  .select-area-class {
+    margin-top: 32px;
+    color: black
+  };
+  
+  .link-class {
+    width: 50%;
+    height: 100%;
+    font-size: 14px;
+  }
+  
+  .step-class {
+    width: 24px;
+    height: 22px;
+    text-align: center;
+    margin-right: 14px;
+    transition: 0.4s;
+    color: $gray5;
+    font-size: 18px;
+  }
+  
+  .step-selected-class {
+    @extend .step-class;
+    background-color: rgba(127, 227, 137, 0.45);
+  }
+  
+  .steps-area {
+    padding: 45px 0;
+    overflow-x: hidden;
+                  
+    @media only screen and (min-width: $desktopSize) {
+      padding: 56px 0 0;
+    }
+  }
+  
+  .steps {
+    display: flex;
+    margin-bottom: 38px;
+  }
+  
+  .contact {
+    padding-right: 5px;
+    border-right: 2px solid $gray;
+  }
+  
+  .terms-link {
+    padding-left: 5px;
+  }
+  
+  .has-account {
+    font-size: 14px;
+    margin-top: 32px;
+    margin-bottom: 30px;
+  }
+  
+  .login-link {
+    margin-left: 5px;
+  }
+  
+  .error-warn {
+    color: $red;
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+  
+  .blue-link {
+    font-size: 14px;
+  }
+  
+  .error-link {
+    color: $red;
+    text-decoration: underline;
+  }
+  
+  .warn {
+    font-size: 14px;
+    color: $gray;
+    margin-top: 32px;
+    margin-bottom: 2px;
+  }
+  
+  .warn-next-step {
+    margin-bottom: 30px;
   }
 }

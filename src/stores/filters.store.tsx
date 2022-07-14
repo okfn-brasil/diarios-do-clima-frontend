@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { FiltersState, FiltersStatePayload } from '@app/models/filters.model';
+import { FiltersState, FiltersStatePayload, ITEMS_PER_PAGE } from '@app/models/filters.model';
 
-const initialState: FiltersState = {
-  itemsPerPage: 6,
+export const initialState: FiltersState = {
+  itemsPerPage: ITEMS_PER_PAGE,
   order: 'recente',
 };
 

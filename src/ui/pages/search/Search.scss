@@ -1,0 +1,27 @@
+@import '/src/styles/globals.scss';
+
+.search-page {
+  position: relative;
+
+  .mobile-filters {
+    position: fixed;
+    width: 100vw; 
+    height: 100vh; 
+    top: 0; 
+    left: 0; 
+    z-index: 999
+  }
+
+  .gray-area {
+    background-color: $lightGray4;
+  }
+
+  .search-area {
+    padding: 56px 0 65px;
+  }
+
+  .mobile-button-class {
+    width: calc(50% - 8px);
+    padding: 15px 16px;
+  };
+}

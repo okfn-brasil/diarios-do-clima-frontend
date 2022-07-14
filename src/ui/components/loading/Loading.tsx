@@ -8,9 +8,9 @@ const Loading = ({isLoading}: PropsLoading) => {
   return (
     <>
       {isLoading ?
-        <div className='loading-area'>
+        <div className='loading-area shadow-modal'>
           <div className='loading-box'>
-            <div className="lds"><div></div><div></div><div></div></div>
+            <div className='lds'><div></div><div></div><div></div></div>
           </div>
         </div> 
         : <></> 

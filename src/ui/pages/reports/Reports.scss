@@ -1,0 +1,105 @@
+@import '/src/styles/globals.scss';
+
+.reports-page {
+
+  .header-area {
+    background-color: $darkBlue;
+
+    .h2-class {
+      font-family: Sora;
+      margin: 8px 0;
+    }
+
+    .paragraph-class, .h2-class {
+      color: $white;
+    }
+  }
+
+  .icons-area {
+    background-color: $blue;
+    color: $white;
+
+    img {
+      width: 45%;
+    }
+
+    .icon-class {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: $darkBlue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .icon-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
+  
+      &:first-of-type {
+        margin-bottom: 24px;
+      }
+  
+      @media only screen and (min-width: $desktopSize) {
+        width: calc(50% - 12px);
+        margin-bottom: 0;
+      }
+    }
+    
+    .icon-wrapper-title {
+      font-size: 20px;
+      line-height: 25px;
+      padding-left: 24px;
+    }
+    
+    .icon-wrapper-sub-title {
+      margin-top: 8px;
+      font-size: 14px;
+      line-height: 16px;
+      padding-left: 24px;
+    }
+
+    .icon-text {
+      width: calc(100% - 80px);
+    }
+  }
+
+ 
+  
+  .report-card-class {
+    background-color: $white;
+    padding: 18px 24px 40px;
+    width: calc(100% - 48px);
+    margin-bottom: 24px;
+
+    @media only screen and (min-width: $desktopSize) {
+      width: calc(50% - 12px - 48px);
+      margin-bottom: 0;
+    }
+  }
+  
+  .reportCardMobileStyle {
+    @extend .report-card-class;
+  }
+  
+  .card-paragraph {
+    margin: 8px 0 24px;
+  }
+
+  .card-button {
+    width: 100%;
+  }
+
+  .doubts {
+    .paragraph-class {
+      margin: 0;
+
+      span {
+        color: $blue
+      }
+    }
+  }
+}

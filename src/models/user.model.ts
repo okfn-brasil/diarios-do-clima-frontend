@@ -3,7 +3,8 @@ export interface UserState {
   refresh?: string | null;
   full_name?: string | null;
   id?: string | null;
-  plan_pro?: string | null;
+  plan_pro?: boolean | string | null;
+  email?: string | null;
 }
 
 export interface UserResponseModel {

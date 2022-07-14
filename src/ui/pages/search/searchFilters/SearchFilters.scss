@@ -1,11 +1,82 @@
-@import '/src/ui/utils/colors.scss';
+@import '/src/styles/globals.scss';
 
 .search-filter {
   overflow-x: hidden;
   animation: slideIn 0.4s;
+  background-color: $white; 
+  width: 100vw; 
+  height: 100%;
+  
+  @media only screen and (min-width: $desktopSize) {
+    width: 100%; 
+  }
 
   .MuiInput-underline:before {
     border-bottom: 2px solid $gray !important;
+  }
+
+  .section-class {
+    border-bottom: 1px solid $gray2;
+    padding-bottom: 24px;
+  }
+
+  .mobile-header {
+    padding: 22px 24px 10px;
+  }
+
+  .close-icon-area {
+    width: 50%;
+  }
+
+  .mobile-title {
+    font-size: 18px;
+    margin-left: 20px;
+  }
+
+  .blue-link {
+    font-size: 14px;
+  }
+
+  .show-more {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    text-align: right;
+    margin-top: 10px;
+  }
+
+  .location-filter {
+    padding: 42px 24px;
+    
+    .h3-class {
+      position: relative;
+      margin: 24px 0;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+  }
+
+  .entity-filter {
+    padding-bottom: 50px;
+
+    .h3-class {
+      margin: 24px 0;
+    }
+  }
+
+  .theme-filter {
+    .h3-class {
+      margin: 24px 0 8px;
+    }
+  }
+
+  .help-icon {
+    width: 24px;
+    margin-left: 6px;
+    top: 2px;
+    position: absolute;
   }
 }
 

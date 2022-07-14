@@ -1,0 +1,54 @@
+@import '/src/styles/globals.scss';
+
+.purchase-details {
+  margin-bottom: 80px;
+
+  .submit-purchase {
+    margin-top: 0;
+    font-weight: 600;
+  }
+
+  .plan-details {
+    margin: 24px 0;
+  }
+
+  .details-title {
+    font-family: Sora;
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: 600;
+    
+    @media only screen and (max-width: $mobileSize) {
+      margin-top: 80px;
+    }
+  }
+
+  .plan-name {
+    font-weight: 600;
+    line-height: 18px;
+    margin-bottom: 8px;
+  }
+
+  .plan-value {
+    line-height: 18px;
+    margin-bottom: 15px;
+  }
+
+  .plan-alert {
+    line-height: 18px; 
+    color: $gray5
+  }
+
+  .purchase-terms {
+    margin-top: 24px;
+    font-size: 14px;
+    line-height: 16px;
+    color: $black;
+  }
+
+  .error-alert {
+    color: $red;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+}

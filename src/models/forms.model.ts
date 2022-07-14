@@ -1,13 +1,10 @@
+import { SelectChangeEvent } from "@mui/material";
+import { ChangeEvent } from "react";
+
 export interface InputModel {
   value: string;
   isValid?: boolean;
   errorMessage?: string;
 }
 
-export interface InputElModel {
-  target: {
-    name: string;
-    value: string;
-    checked: boolean;
-  }
-}
+export type InputType =  ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<string>;

@@ -1,20 +1,7 @@
 @import '/src/styles/globals.scss';
 
-.shadow {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0,0,0, 0.3);
-  top: 0;
-  left: 0;
-  z-index: 99999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .become-pro {
-  .h3-style {
+  .h3-class {
     font-family: Sora;
     color: $darkBlue;
   }
@@ -63,4 +50,8 @@
     color: $gray5;
     font-size: 16px;
   }
+}
+
+.green-icon {
+  color: $green;
 }

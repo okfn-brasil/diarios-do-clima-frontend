@@ -14,7 +14,7 @@ const DataLabel = ({ data, featured, label }: PropsDataLabel) => {
       <p className='number-title'>
         {data}
       </p>
-      <p className='paragraph-style only-desktop'>
+      <p className='paragraph-class only-desktop'>
         <b>{featured}</b>{label}
       </p>
 
@@ -34,7 +34,7 @@ const Data = () => {
   return (
     <Grid item container xs={12} className='vertical-spacing-container data-section'>
       <Grid item xs={12}>
-        <h3 className='h3-style'>Dados confiáveis baseados no querido diário</h3>
+        <h3 className='h3-class'>Dados confiáveis baseados no querido diário</h3>
       </Grid>
       <Grid item container xs={12} justifyContent='center'>
         <Grid item md={4} xs={12}>

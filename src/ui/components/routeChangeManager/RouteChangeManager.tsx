@@ -12,9 +12,9 @@ const notSubscribedPaths = [urls.purchase.url];
 const RouteChangeManager = () => {
   const navigate: NavigateFunction = useNavigate();
   const location = useLocation();
-  const userData: UserState = useSelector((state: RootState) => state.user);
+  const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   useEffect(() => {
-    //window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
     if(userData.access && notLoggedPaths.includes(location.pathname)) {
       navigate(urls.home.url);
     }

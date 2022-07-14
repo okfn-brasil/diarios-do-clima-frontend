@@ -1,4 +1,4 @@
-@import '/src/styles/globals.scss';
+@import '@app/styles/globals.scss';
 
 html {
   scroll-behavior: smooth;
@@ -18,12 +18,8 @@ body {
       monospace;
   }
 
-// general
 
-.gray-area {
-  background-color: $lightGray3;
-}
-
+//responsivity
 .only-desktop {
   display: none;
   @media only screen and (min-width: $desktopSize) {
@@ -36,6 +32,18 @@ body {
   @media only screen and (max-width: $desktopSize) {
     display: block;
   }
+}
+
+
+//global
+.hyper-link {
+  font-weight: 700;            
+  border-bottom: 4px solid $lightGreen;
+  padding-top: 0;
+  padding-bottom: 2px;
+  font-size: 16px;
+  font-weight: 600;
+  color: $darkBlue;
 }
 
 a, a span, a button  {
@@ -58,6 +66,108 @@ a, a span, a button  {
   }
 }
 
+.gray-area {
+  background-color: $lightGray3;
+}
+
+//texts
+.small-text {
+  font-size: 14px;
+  color: $darkBlue;
+}
+
+.h2-class {
+  font-size: 38px;
+  line-height: 48px;
+  color: $gray5;
+  margin: 22px 0;
+}
+
+.h3-class {
+  font-size: 22px;
+  line-height: 27px;
+  font-weight: 600;
+  color: $darkBlue;
+  margin: 22px 0;
+}
+
+.h3-class-sx-margin {
+  @extend .h3-class;
+  margin: 0 0 8px;
+}
+
+.h4-class {
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 500;
+  color: $gray5;
+  margin: 22px 0;
+}
+
+.desc-class {
+  font-size: 20px;
+  line-height: 25px;
+  margin: 0;
+}
+
+.paragraph-class {
+  font-size: 18px;
+  line-height: 22px;
+  color: $gray5;
+  margin-bottom: 22px;
+}
+
+.green-h3 {
+  @extend .h3-class;
+  color: $green;
+}
+
+.dark-text {
+  color: $darkBlue;
+}
+
+.green-title {
+  font-family: Sora;
+  line-height: 18px;
+  font-weight: 600;
+  font-size: 14px;
+  color: $green;
+}
+
+.blue-link {
+  color: $blue;
+  font-weight: 600;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+//fonts
+#root {
+  .font-white-bold {
+    font-size: 16px;
+    font-weight: 600;
+    color: $white;
+  }
+
+  .font-dark-blue {
+    font-size: 16px;
+    font-weight: 600;
+    color: $darkBlue;
+  }
+
+  .font-small-button {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .font-sora {
+    font-family: Sora;
+  }
+}
+
+//containers
 .top-space, .MuiGrid-container.top-space {
   margin-top: -80px;
   padding-top: 56px;
@@ -76,7 +186,7 @@ a, a span, a button  {
   }
 }
 
-.spaceing-top {
+.spacing-top {
   padding-top: 56px;
 
   @media only screen and (min-width: $desktopSize) {
@@ -91,7 +201,8 @@ a, a span, a button  {
   }
 }
 
-// forms
+//forms 
+
 .password-field {
   position: relative;
 
@@ -127,6 +238,12 @@ a, a span, a button  {
   }
 }
 
+.input-class {
+  width: 100%;
+  padding: 32px 0 10px 2px;
+  color: $black;
+}
+
 .MuiInputLabel-formControl {
   left: -12px !important;
   color: black !important;
@@ -136,71 +253,31 @@ a, a span, a button  {
   padding: 15px 0 !important;
 }
 
-// buttons
+//buttons
 .base-button, .base-button.MuiButtonBase-root {
   padding: 14px 40px;
 }
 
-//texts
-.h2-style {
-  font-size: 38px;
-  line-height: 48px;
-  color: $gray5;
-  margin: 22px 0;
+// popup 
+.shadow-modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0, 0.3);
+  top: 0;
+  left: 0;
+  z-index: 99999;
 }
 
-.h3-style {
-  font-size: 22px;
-  line-height: 27px;
-  font-weight: 600;
-  color: $darkBlue;
-  margin: 22px 0;
-}
+//animations
+@keyframes fadeIn {
+  0% {
+    transform: translate(0, 50px);
+    opacity: 0;
+  }
 
-.h4-style {
-  font-size: 20px;
-  line-height: 25px;
-  font-weight: 500;
-  color: $gray5;
-  margin: 22px 0;
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
 }
-
-.desc-style {
-  font-size: 20px;
-  line-height: 25px;
-  margin: 0;
-}
-
-.paragraph-style {
-  font-size: 18px;
-  line-height: 22px;
-  color: $gray5;
-  margin-bottom: 22px;
-}
-
-.green-h3 {
-  @extend .h3-style;
-  color: $green;
-}
-
-.dark-text {
-  color: $darkBlue;
-}
-
-.green-title {
-  font-family: Sora;
-  line-height: 18px;
-  font-weight: 600;
-  font-size: 14px;
-  color: $green;
-}
-
-.blue-link {
-  color: $blue;
-  font-weight: 600;
-}
-
-.underline {
-  text-decoration: underline;
-}
-

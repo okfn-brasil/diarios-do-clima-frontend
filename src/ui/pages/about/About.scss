@@ -4,17 +4,17 @@
   .top-space {
     background-color: $blue;
   }
-  .h2-style {
+  .h2-class {
     font-family: Sora;
   }
 
   .about-header {
-    .paragraph-style {
+    .paragraph-class {
       color: $white;
       margin-bottom: 0;
     }
 
-    .h2-style {
+    .h2-class {
       margin: 8px 0;
       color: $white;
     }
@@ -37,12 +37,6 @@
     color: $gray5;
   }
 
-  .gray-area {
-    .h3-style {
-      margin: 0 0 8px;
-    }
-  }
-
   .partners {
     .partners-list {
       padding-top: 10px;
@@ -54,6 +48,22 @@
 
     .blue-link {
       font-size: 14px;
+    }
+  }
+
+  .partner-box {
+    width: 100%;
+    padding: 32px 0;
+    border-bottom: 1px solid $gray2;
+
+    &:last-of-type {
+      border-bottom: 0;
+    }
+  
+    @media only screen and (min-width: $desktopSize) {
+      padding: 0;
+      width: calc(100% / 6);
+      border-bottom: 0;
     }
   }
 }

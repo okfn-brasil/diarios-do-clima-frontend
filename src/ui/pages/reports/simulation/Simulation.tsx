@@ -1,9 +1,8 @@
-import { FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { Grid, SelectChangeEvent } from '@mui/material';
 import { Dispatch, SetStateAction, useState } from 'react';
-import SubmitForm from '@app/ui/components/submitForm/SubmitForm';
-import { black } from '@app/ui/utils/colors';
-import { h3Style, paragraphStyle } from '@app/ui/utils/generalStyles';
-import { selectIcon } from '@app/ui/utils/forms.utils';
+import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
+import SelectInput from '@app/ui/components/forms/select/Select';
+import './Simulation.scss';
 
 interface SimulationModel {
   criterio1: string;
@@ -28,47 +27,43 @@ const SimulationForm = () => {
   }
 
   return (
-    <Grid>
-      <h3 style={{...h3Style, margin: '0'}}>Simular o valor do relatório</h3>
-      <p style={{...paragraphStyle, margin: '8px 0 0'}}>Você pode encomendar um relatório personalizado. Preencha o formulário abaixo para receber uma cotação.</p>
+    <Grid className='simulation-form'>
+      <h3 className='h3-class-sx-margin'>Simular o valor do relatório</h3>
+      <p className='paragraph-class'>Você pode encomendar um relatório personalizado. Preencha o formulário abaixo para receber uma cotação.</p>
 
       <form onSubmit={handleSubmit}>
-        <FormControl fullWidth style={{marginTop: '30px'}} className='form-select'>
-            <InputLabel id='criterio1-select'>critério 1</InputLabel>
-            <Select required variant='standard' IconComponent={selectIcon} labelId='criterio1-select' value={inputs.criterio1} name='criterio1' onChange={inputChange} >
-              <MenuItem value={0} disabled>Selecione um critério</MenuItem>
-              <MenuItem value={'x'}>x</MenuItem>
-              <MenuItem value={'y'}>y</MenuItem>
-              <MenuItem value={'z'}>z</MenuItem>
-            </Select>
-          </FormControl>
+          <SelectInput
+            options={[{value: 'x', label: 'x'},{value: 'y', label: 'y'}]} 
+            label='critério 1' 
+            value={inputs.criterio1} 
+            name='criterio1' 
+            required={true} 
+            onChange={inputChange}
+          />
 
-          <FormControl fullWidth style={{marginTop: '30px'}} className='form-select'>
-            <InputLabel id='criterio2-select'>critério 2</InputLabel>
-            <Select required variant='standard' IconComponent={selectIcon} labelId='criterio2-select' value={inputs.criterio2} name='criterio2' onChange={inputChange} >
-              <MenuItem value={0} disabled>Selecione um critério</MenuItem>
-              <MenuItem value={'x'}>x</MenuItem>
-              <MenuItem value={'y'}>y</MenuItem>
-              <MenuItem value={'z'}>z</MenuItem>
-            </Select>
-          </FormControl>
+          <SelectInput
+            options={[{value: 'x', label: 'x'},{value: 'y', label: 'y'}]} 
+            label='critério 2' 
+            value={inputs.criterio2} 
+            name='criterio2' 
+            required={true} 
+            onChange={inputChange}
+          />
 
-          <FormControl fullWidth style={{marginTop: '30px'}} className='form-select'>
-            <InputLabel id='criterio3-select'>critério 3</InputLabel>
-            <Select required variant='standard' IconComponent={selectIcon} labelId='criterio3-select' value={inputs.criterio3} name='criterio3' onChange={inputChange} >
-              <MenuItem value={0} disabled>Selecione um critério</MenuItem>
-              <MenuItem value={'x'}>x</MenuItem>
-              <MenuItem value={'y'}>y</MenuItem>
-              <MenuItem value={'z'}>z</MenuItem>
-            </Select>
-          </FormControl>
-
+          <SelectInput
+            options={[{value: 'x', label: 'x'},{value: 'y', label: 'y'}]} 
+            label='critério 3' 
+            value={inputs.criterio3} 
+            name='criterio3' 
+            required={true} 
+            onChange={inputChange}
+          />
           <div>
-            <p style={{...paragraphStyle, color: black, marginTop: '22px', marginBottom: '8px'}}>Valor estimado</p>
-            <p style={{fontSize: '38px', lineHeight: '45px', color: black, margin: '0'}}>R$ 0</p>
+            <p className='paragraph-class value-simulated'>Valor estimado</p>
+            <div className='value'>R$ 0</div>
           </div>
 
-          <SubmitForm label='Solicitar uma proposta' sx={{width: 'unset', marginTop: '22px'}}/>
+          <SubmitForm label='Solicitar uma proposta' classess='submit-simulation'/>
       </form>
     </Grid>
   );

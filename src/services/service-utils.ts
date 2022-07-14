@@ -1,5 +1,5 @@
-import { refreshToken } from "./refreshToken";
-import { tokenKeys } from "../ui/utils/storage-utils";
+import { refreshToken } from './refreshToken';
+import { tokenKeys } from '../ui/utils/storage-utils';
 
 export interface HeadersModel {
   'Content-Type': string;
@@ -13,12 +13,16 @@ export interface TokensModel {
   refresh?:string;
 }
 
+interface Body {
+  [key: string]: string | number;
+}
+
 interface ReqData {
   url: string;
   method: string;
   notUseToken?: boolean;
   customHeaders?: HeadersModel;
-  body?: any;
+  body?: Body;
   customResponseHandler?: any;
 }
 
@@ -37,11 +41,11 @@ export const config = {
     }
     return headers;
   },
-  handleResponse: (response: any, preventRefresh = false): any => {
+  handleResponse: (response: any, preventRefresh = false): Promise<Response> => {
     return new Promise(async (resolve, reject) => {
-      const contentType = response.headers.get("content-type");
+      const contentType = response.headers.get('content-type');
       let newResponse;
-      if(contentType && contentType.indexOf("application/json") !== -1) {
+      if(contentType && contentType.indexOf('application/json') !== -1) {
         newResponse = await response.json();
       }
       if(response.ok && newResponse) {

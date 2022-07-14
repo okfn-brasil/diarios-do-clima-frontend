@@ -1,7 +1,6 @@
 import { Grid } from '@mui/material';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import { Link } from 'react-router-dom';
-import { pink } from '@app/ui/utils/colors';
 import LinkManager from '@app/ui/components/linkManager/LinkManager';
 import { urls } from '@app/ui/utils/urls';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
@@ -19,7 +18,7 @@ const Plans = () => {
             <div className='green-title'>
               Diário do Clima PRO
             </div>
-            <h2 className='h2-style'>
+            <h2 className='h2-class'>
               Acesse todos os benefícios e nos ajude a crescer
             </h2>
             <LinkManager to={urls.purchase.url}>
@@ -27,10 +26,10 @@ const Plans = () => {
                 Iniciar teste grátis
               </ButtonGreen>
             </LinkManager>
-            <p className='paragraph-style sub-title'>
+            <p className='paragraph-class sub-title'>
               Teste sem custos por 7 dias • Depois, R$00,00/mês
             </p>
-            <p className='paragraph-style'>
+            <p className='paragraph-class'>
               Enviaremos um lembrete 2 dias antes do período de teste terminar e você pode cancelar a qualquer momento
             </p>
           </div>
@@ -38,8 +37,8 @@ const Plans = () => {
       </Grid>
       <Grid container item className='container' sm={12} justifyContent='center'>
         <Grid item sm={8} className='vertical-spacing-container plans'>
-          <h2 className='h2-style'>Assinatura</h2>
-          <p className='desc-style'>Tenha nas mãos todas as informações que você precisa sobre políticas ambientais.</p>
+          <h2 className='h2-class'>Assinatura</h2>
+          <p className='desc-class'>Tenha nas mãos todas as informações que você precisa sobre políticas ambientais.</p>
           
           <Grid container justifyContent='space-between'>
             <div className='card-plan'>
@@ -104,15 +103,15 @@ const Plans = () => {
                   Visualização de resultados publicados nos últimos 3 meses
                 </div>
                 <div className='card-list-check-pro'>
-                  <span className='check-icon'><CheckIcon sx={{color: pink}}/></span>
+                  <span className='check-icon'><CheckIcon className='pink-icon'/></span>
                   Visualização de resultados de <span className='underline'>todo o histórico disponível</span> no banco de dados
                 </div>
                 <div className='card-list-check-pro'>
-                  <span className='check-icon'><CheckIcon sx={{color: pink}}/></span>
+                  <span className='check-icon'><CheckIcon className='pink-icon'/></span>
                   Filtro de busca por temas inteligentes
                 </div>
                 <div className='card-list-check-pro'>
-                  <span className='check-icon'><CheckIcon sx={{color: pink}}/></span>
+                  <span className='check-icon'><CheckIcon className='pink-icon'/></span>
                   Criação de alertas com filtros e palavras-chaves personalizadas
                 </div>
               </div>
@@ -123,8 +122,8 @@ const Plans = () => {
 
       <Grid container item sm={12} className='vertical-spacing-container gray-area' justifyContent='center' >
           <Grid item sm={8} className='container'>
-            <h3 className='h3-style'>Encomende seu relatório</h3>
-            <p className='paragraph-style'>Para organização que precisam de conteúdo centralizado e curado por especialistas sobre um determinado assunto</p>
+            <h3 className='h3-class'>Encomende seu relatório</h3>
+            <p className='paragraph-class'>Para organização que precisam de conteúdo centralizado e curado por especialistas sobre um determinado assunto</p>
             <Grid>
               <Link to=''>
                 <ButtonGreen classess='button'>
@@ -142,8 +141,8 @@ const Plans = () => {
 
         <Grid container item sm={12} justifyContent='center' className='vertical-spacing-container'>
           <Grid item sm={8} className='container'>
-            <h3 className='h3-style' >50% para organizações que não visam lucro</h3>
-            <p className='paragraph-style'>Seu impacto é importante. O Diário do Clima apoia pessoas e organizações independentes que desejam utilizar nosso conteúdo para transformar a sociedade. Para se inscrever na lista de espera, preencha o formulário.</p>
+            <h3 className='h3-class' >50% para organizações que não visam lucro</h3>
+            <p className='paragraph-class'>Seu impacto é importante. O Diário do Clima apoia pessoas e organizações independentes que desejam utilizar nosso conteúdo para transformar a sociedade. Para se inscrever na lista de espera, preencha o formulário.</p>
             <Link to=''>
               <ButtonGreen>
                 Solicitar desconto
@@ -154,7 +153,7 @@ const Plans = () => {
 
         <Grid container item sm={12} justifyContent='center' className='vertical-spacing-container'>
           <Grid item sm={8} className='container'>
-            <h2 className='h2-style faq-title'>Perguntas frequentes</h2>
+            <h2 className='h2-class faq-title'>Perguntas frequentes</h2>
             <div>
               <FAQItem title='Como funciona a assinatura profissional do Diário do Clima?'>
                 Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais 

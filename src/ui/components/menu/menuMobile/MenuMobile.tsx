@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 import MenuIcon from '@app/assets/images/icons/menu.svg';
 import MenuBlackIcon from '@app/assets/images/icons/menu-black.svg';
-import MenuMobileOverlay from "../menuMobileOverlay/MenuMobileOverlay";
-import { useSelector } from "react-redux";
-import { RootState } from "@app/stores/store";
-import LoggedMenu from "../loggedMenu/LoggedMenu";
+import MenuMobileOverlay from '../menuMobileOverlay/MenuMobileOverlay';
+import { useSelector } from 'react-redux';
+import { RootState } from '@app/stores/store';
+import LoggedMenu from '../loggedMenu/LoggedMenu';
 import { UserState } from '@app/models/user.model';
 import './MenuMobile.scss';
 
@@ -14,7 +14,7 @@ interface PropsMenuMobile {
 }
 
 const MenuMobile = ({isWhite, showLoginForm}: PropsMenuMobile) => {
-  const userData: UserState = useSelector((state: RootState) => state.user);
+  const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const [showMenu, setShowMenu] = useState(false);
   return (
     <div className='menu-mobile'>

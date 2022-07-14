@@ -30,7 +30,8 @@
   }
 
   .close-icon {
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    color: $black;
   }
 
   .thin-line {
@@ -47,11 +48,11 @@
     margin: 32px 0;
   }
 
-  .h3-style {
+  .h3-class {
     margin: 0;
   }
 
-  .paragraph-style {
+  .paragraph-class {
     margin: 10px 0;
   }
 
@@ -76,17 +77,5 @@
 
   .blue-link {
     margin-left: 5px;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    transform: translate(0, 50px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translate(0, 0);
-    opacity: 1;
   }
 }

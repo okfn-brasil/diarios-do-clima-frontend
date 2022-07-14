@@ -1,0 +1,33 @@
+@import '/src/styles/globals.scss';
+
+.become-pro-modal .modal-container {
+  display: flex;
+  justify-content: center;
+
+  .become-pro-modal-content {
+    padding: 80px 24px calc(80px - 16px);
+    
+    @media only screen and (min-width: $desktopSize) {
+      padding: 80px 130px calc(80px - 16px);
+    }
+  }
+
+  .h3-class-sx-margin {
+    font-family: Sora;
+  }
+
+  .paragraph-class {
+    margin: 0 0 24px;
+    color: $gray5;
+  }
+
+  .buttons {
+    margin-top: 32px;
+
+    .base-button {
+      width: 100%;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+  }
+}

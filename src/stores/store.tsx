@@ -1,8 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './user.store';
 import filtersReducer from './filters.store';
 
 export const store = configureStore({
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+  }),
   reducer: {
     user: userReducer,
     filter: filtersReducer,

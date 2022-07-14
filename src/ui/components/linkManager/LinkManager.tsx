@@ -30,7 +30,7 @@ const conditions: ConditionModel[] = [
 ]
 
 const LinkManager = ({children, to}: PropsLinkManager) => {
-  const userData: UserState = useSelector((state: RootState) => state.user);
+  const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const [newLink, setNewLink]: [string, Dispatch<SetStateAction<string>>] = useState(to);
 
   useEffect(() => {

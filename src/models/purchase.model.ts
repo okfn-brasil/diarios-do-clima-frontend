@@ -1,4 +1,4 @@
-import { InputModel } from "./forms.model";
+import { InputModel } from './forms.model';
 
 export interface FormPurchaseModel {
   card: InputModel;

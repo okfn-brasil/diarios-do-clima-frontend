@@ -1,11 +1,16 @@
 @import '/src/styles/globals.scss';
 
-.data-section {
-  .paragraph-style, .h3-style {
+.data-section.vertical-spacing-container {
+  
+  @media only screen and (max-width: $tabletSize) {
+    margin-top: 280px;
+  }
+
+  .paragraph-class, .h3-class {
     text-align: center;
   }
 
-  .paragraph-style, .mobile-text {
+  .paragraph-class, .mobile-text {
     color: $darkBlue;
   }
 

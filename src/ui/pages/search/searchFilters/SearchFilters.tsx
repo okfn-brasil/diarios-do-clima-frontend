@@ -1,43 +1,57 @@
-import { selectIcon } from '@app/ui/utils/forms.utils';
-import { h3Style } from '@app/ui/utils/generalStyles';
 import CloseIcon from '@mui/icons-material/Close';
 import helpIcon from '@app/assets/images/icons/help.svg';
-import { Checkbox, FormControl, FormControlLabel, FormGroup, Grid, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { Checkbox, FormControlLabel, FormGroup, Grid, SelectChangeEvent } from '@mui/material';
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { blue, gray2, lightGray2 } from '@app/ui/utils/colors';
 import DateFilter from './dateFilter/DateFilter';
-import { Dates, FiltersStatePayload, SubmitDates } from '@app/models/filters.model';
-import './SearchFilters.scss';
-import { useDispatch } from 'react-redux';
+import { Dates, FiltersStatePayload, parseUrlToFilters, SubmitDates, Theme } from '@app/models/filters.model';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateFilters } from '@app/stores/filters.store';
+import SelectInput from '@app/ui/components/forms/select/Select';
+import './SearchFilters.scss';
+import { UserState } from '@app/models/user.model';
+import { RootState } from '@app/stores/store';
+import ProFlag from '@app/ui/components/proFlag/ProFlag';
 
 interface PropsSearchFilters{
   onClose?: () => void;
-  isDesktop: boolean;
 }
 
 interface CheckBoxesModel {
-  [key: string]: boolean;
+  [key: string]: boolean | null;
 }
 
 const themesMock: CheckBoxesModel = {
-  'label1': false,
-  'label2': false,
-  'label3': false,
-  'label4': false,
+  'label1': null,
+  'label2': null,
+  'label3': null,
+  'label4': null,
 }
 
 const initialFilters: FiltersStatePayload = {
-  location: '',
-  ente: '',
+  location: '0',
+  ente: '0',
   themes: themesMock,
-  period: 1,
+  period: 0,
 }
 
-const SearchFilters = ({onClose, isDesktop}: PropsSearchFilters) => {
+const HelpIcon = () => {
+  return (
+    <span className='hover-animation'>        
+      <img 
+        className='help-icon'
+        src={helpIcon} 
+        alt='icone - ajuda'
+      />
+    </span>
+  )
+}
+
+const SearchFilters = ({onClose}: PropsSearchFilters) => {
+  const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const dispatch = useDispatch();
   const [filters, setFilters] : [FiltersStatePayload, Dispatch<SetStateAction<FiltersStatePayload>>] = useState(initialFilters);
   const [cleanDate, setCleanDate] : [number, Dispatch<number>] = useState(0);
+  const [showMoreThemes, setShowMoreThemes] : [boolean, Dispatch<boolean>] = useState(false);
 
   const inputChange = (event: SelectChangeEvent<string>) => {
     const {name, value} = event.target;
@@ -66,84 +80,89 @@ const SearchFilters = ({onClose, isDesktop}: PropsSearchFilters) => {
     dispatch(updateFilters(filters));
   }, [filters])
 
+  useEffect(() => {
+    if (window.location.search) {
+      const urlFilters = parseUrlToFilters();
+      setFilters((values: FiltersStatePayload) => ({...urlFilters, themes: {
+        ...values.themes,
+        ...urlFilters.themes
+      }}));
+      dispatch(updateFilters(urlFilters));
+    }
+  }, [])
+
   return (
     <Grid 
       item 
       className='search-filter' 
       sm={12} 
-      style={{
-        backgroundColor: 'white', 
-        width: isDesktop? '100%' : '100vw', 
-        height: '100%',
-      }}
     >
-      {!isDesktop? 
-        <div>
-          <Grid container alignItems='center' justifyContent='space-between' sx={{padding: '22px 24px 10px'}}>
-            <Grid container alignItems='center' sx={{width: '50%'}}>
-              <CloseIcon className='hover-animation' onClick={onClose} />
-              <div style={{fontSize: '18px', marginLeft: '20px'}}>Filtros</div>
-            </Grid>
-            <span onClick={cleanFilters} style={{fontSize: '14px', color: blue, fontWeight: '600'}}>Limpar tudo</span>
-          </Grid> 
-          <hr style={{borderTop: '0', borderBottom: '1px solid ' + lightGray2}}/>
-        </div>
-        : <></>
-      }
-      <div style={{padding: '42px 24px'}}>
-        <section style={sectionStyle}>  
-          <h3 style={{...h3Style, position: 'relative', margin: '0 0 5px'}}>
+      <div className='only-mobile'>
+        <Grid className='mobile-header' container alignItems='center' justifyContent='space-between'>
+          <Grid container alignItems='center' className='close-icon-area'>
+            <CloseIcon className='hover-animation' onClick={onClose} />
+            <div className='mobile-title'>Filtros</div>
+          </Grid>
+          <span onClick={cleanFilters} className='blue-link'>Limpar tudo</span>
+        </Grid> 
+        <hr className='thin-line'/>
+      </div>
+      <div className='location-filter'>
+        <section className='section-class'>  
+          <h3 className='h3-class'>
             Município
-            <span className='hover-animation'>
-              <img 
-                style={{width: '24px', marginLeft: '6px', top: '2px', position: 'absolute'}} 
-                src={helpIcon} 
-                alt='icone - ajuda'
-              />
-            </span>
+            <HelpIcon/>
           </h3>
-          <FormControl fullWidth className='form-select'>
-            <InputLabel id='location-select'>Selecione um lugar</InputLabel>
-            <Select required variant='standard' IconComponent={selectIcon} labelId='location-select' value={filters.location} name='location' onChange={inputChange}>
-              <MenuItem value={'Area 1'}>Area 1</MenuItem>
-              <MenuItem value={'Area 2'}>Area 2</MenuItem>
-              <MenuItem value={'Area 3'}>Area 3</MenuItem>
-            </Select>
-          </FormControl>
+          <SelectInput
+            options={[{value: 'x', label: 'x'},{value: 'y', label: 'y'}]} 
+            placeholder='Selecione um munícipio' 
+            value={filters.location as string} 
+            name='location'
+            onChange={inputChange}
+          />
         </section>
-        <section style={sectionStyle}>
-          <h3 style={h3Style}>Período de tempo</h3>
+        <section className='section-class'>
+          <h3 className='h3-class'>Período de tempo</h3>
           <div>
             <DateFilter cleanDate={cleanDate} onSubmit={updateDateFilters} />
           </div>
         </section>
 
-        <section style={sectionStyle}>
-          <h3 style={{...h3Style, margin: '24px 0 8px'}}>Tema</h3>
-          <p style={{margin: '0 0 12px'}}>Aqui uma descrição breve do que são e de como funcionam os temas</p>
+        <section className='section-class theme-filter'>
+          <h3 className='h3-class'>
+            Tema 
+            <ProFlag spaceBottom={2} show={!userData.plan_pro}/>
+            <HelpIcon/>
+          </h3>
+          <p>Aqui uma descrição breve do que são e de como funcionam os temas</p>
           <div>
             <FormGroup>
-              {Object.keys(filters.themes).map((key: string) => {
+              {Object.keys(filters.themes as Theme).splice(0, showMoreThemes ? 20 : 3).map((key: string) => {
                 return (<FormControlLabel 
                   key={key} 
-                  control={<Checkbox checked={filters.themes[key]} name={key} onChange={checkBoxChange} />} 
+                  disabled={!userData.plan_pro}
+                  control={<Checkbox 
+                    checked={!!(filters.themes as Theme)[key]} 
+                    name={key} 
+                    onChange={(e) => {userData.plan_pro ? checkBoxChange(e) : {}}} 
+                  />} 
                   label={key} 
                 />)}
               )}
             </FormGroup>
+            <button onClick={() => setShowMoreThemes(!showMoreThemes)} className='blue-link hover-animation show-more'>Mostrar {showMoreThemes ? 'menos' : 'mais'}</button>
           </div>
         </section>
 
-        <section style={{paddingBottom: '50px'}}>
-          <h3 style={{...h3Style, position: 'relative', margin: '22px 0 5px'}}>Entes do governo</h3>
-          <FormControl fullWidth className='form-select'>
-            <InputLabel id='ente-select'>Selecione um ente</InputLabel>
-            <Select required variant='standard' IconComponent={selectIcon} labelId='ente-select' value={filters.ente} name='ente' onChange={inputChange}>
-              <MenuItem value={'ente 1'}>ente 1</MenuItem>
-              <MenuItem value={'ente 2'}>ente 2</MenuItem>
-              <MenuItem value={'ente 3'}>ente 3</MenuItem>
-            </Select>
-          </FormControl>
+        <section className='entity-filter'>
+          <h3 className='h3-class'>Entes do governo</h3>
+          <SelectInput
+            options={[{value: 'x', label: 'x'},{value: 'y', label: 'y'}]} 
+            placeholder='Selecione um ente' 
+            value={filters.ente as string} 
+            name='ente'
+            onChange={inputChange}
+          />
         </section>
       </div>
     </Grid>
@@ -152,7 +171,3 @@ const SearchFilters = ({onClose, isDesktop}: PropsSearchFilters) => {
 
 export default SearchFilters;
 
-const sectionStyle: React.CSSProperties = {
-  borderBottom: '1px solid ' + gray2,
-  paddingBottom: '26px',
-}

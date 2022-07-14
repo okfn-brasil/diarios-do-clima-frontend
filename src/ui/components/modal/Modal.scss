@@ -1,0 +1,42 @@
+@import '/src/styles/globals.scss';
+
+.shadow-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .close-icon {
+    color: $black;
+  }
+
+  .modal-container {
+    background-color: $white;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: auto;
+    animation: fadeIn 0.4s;
+  
+    @media only screen and (min-width: $desktopSize) {
+      height: unset;
+      width: 45%;
+      overflow-y: hidden;
+    }
+  }
+
+  .modal-header {
+    padding: 24px;
+    border-bottom: 1px solid $lightGray2;
+  }
+
+  .modal-title {
+    margin: 0;
+    font-weight: 500;
+    margin-left: 20px;
+    
+    @media only screen and (min-width: $desktopSize) {
+      margin-left: 35px;
+    }
+  }
+}
+

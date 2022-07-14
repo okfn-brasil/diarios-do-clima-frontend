@@ -1,8 +1,11 @@
-import { render } from '@testing-library/react';
+
+import Enzyme, {shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import Footer from './Footer';
-import React from "react";
+
+Enzyme.configure({adapter: new Adapter()});
 
 test('renders the component', () => {
-  const component = render(<Footer />);
+  const component = shallow(<Footer />);
   expect(!!component).toEqual(true);
 });

@@ -1,0 +1,64 @@
+@import '/src/styles/globals.scss';
+
+.create-alert {
+
+  .title {
+    margin: 24px;
+  }
+
+  .alert-filters {
+    position: relative;
+    padding: 10px 24px;
+    cursor: pointer;
+
+    .alert-filter-desc {
+      margin-bottom: 5px;
+    }
+
+    .alert-filter-keys {
+      color: $gray4;
+    }
+
+    .green-arrow {
+      position: absolute;
+      top: calc(50% - 4px);
+      right: 32px;
+      width: 16px;
+      height: 8px;
+      transform: rotate(-90deg);
+      transition: 0.4s;
+    }
+
+    &:hover {
+      .green-arrow {
+        right: 24px;
+      }
+    }
+  }
+
+  .email-setting {
+    padding: 24px;
+    padding-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .button-space {
+    padding: 16px 24px;
+    margin-top: 56px;
+
+    button {
+      width: calc(100% - 48px);
+      position: absolute;
+      bottom: 16px;
+      left: 24px;
+      
+      @media only screen and (min-width: $desktopSize) {
+        position: relative;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+      }
+    }
+  }
+}

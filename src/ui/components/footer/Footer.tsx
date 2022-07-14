@@ -1,6 +1,6 @@
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { Grid } from "@mui/material";
+import { Grid } from '@mui/material';
 import { Fragment } from 'react';
 import DiarioLogo from '@app/assets/images/logo.svg';
 import { Link } from 'react-router-dom';
