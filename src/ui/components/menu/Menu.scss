@@ -11,6 +11,10 @@
   z-index: 999;
   position: sticky;
 
+  &.container {
+    flex-flow: row;
+  }
+
   &.inverted {
     border-bottom: 1px solid $lightGray2;
     background-color: $white;

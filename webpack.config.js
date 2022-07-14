@@ -3,16 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require("webpack");
 
 module.exports = {
-  entry: {
-    app: './src/index',
-    hot: 'webpack/hot/dev-server.js',
-    client: 'webpack-dev-server/client/index.js?hot=true&live-reload=true',
-  },
-  mode: 'development',
   output: {
-    filename: '[name].js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
+    clean: true,
   },
   performance: {
     hints: false,
@@ -21,24 +15,18 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: path.resolve(__dirname, "public", "index.html"),
+      title: 'Production',
       favicon: "./public/favicon.ico",
       filename: "index.html",
       manifest: "./public/manifest.json",
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
-  devtool: 'inline-source-map',
   resolve: {
     alias: {
       '@app': path.resolve(__dirname, 'src'),
     },
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.png', '.svg'],
-  },
-  devServer: {
-    compress: true,
-    port: 3000,
-    hot: false,
-    historyApiFallback: true,
   },
   module: {
     rules: [
