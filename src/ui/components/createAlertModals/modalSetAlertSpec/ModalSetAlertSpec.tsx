@@ -26,7 +26,7 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClose, openBecomePro, user
   };
 
   const submit = () => {
-    //
+    // TO DO
   };
 
   const onFilters = () => {
@@ -34,7 +34,11 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClose, openBecomePro, user
   };
 
   const onKeyWords = () => {
-    //
+    // TO DO
+  };
+
+  const onEmail = () => {
+    // TO DO
   };
 
   return (

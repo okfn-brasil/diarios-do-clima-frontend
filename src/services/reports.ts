@@ -6,7 +6,7 @@ export default class ReportsService {
   currentUrl = '/reports/';
 
   getAllReports(filters: FiltersState, currPage: number) {
-    const newFilters = {}//{...filters, page: currPage};
+    const newFilters = {}//{...filters, page: currPage}; TO DO
     return api.get(this.currentUrl + 'public/?', newFilters).then((response) => response as ReportsModel);
   }
 
