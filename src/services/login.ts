@@ -10,6 +10,6 @@ export default class LoginService {
       password: form.password,
     };
 
-    return api.post(this.currentUrl, newForm).then((response) => response as any);
+    return api.post(this.currentUrl, newForm).then((response) => response as LoginResponse);
   }
 }

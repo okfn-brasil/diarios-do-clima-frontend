@@ -1,3 +1,5 @@
+import { AxiosResponse } from "axios";
+
 export interface UserState {
   access?: string | null;
   refresh?: string | null;
@@ -7,7 +9,7 @@ export interface UserState {
   email?: string | null;
 }
 
-export interface UserResponseModel {
+export interface UserResponseModel extends AxiosResponse {
   address: {
     city: string;
     complement: string;

@@ -1,5 +1,9 @@
 import { tokenKeys } from "@app/ui/utils/storage-utils";
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+
+interface RefreshResponse extends AxiosResponse {
+  access: string;
+}
 
 const api = axios.create({
   headers: {
@@ -30,14 +34,14 @@ api.interceptors.response.use(
     const refresh_token = localStorage.getItem(tokenKeys.refresh);
     const erroCode = error.response.status;
     if (erroCode === 401 && !!refresh_token && !error.config.url.includes('token')) {
-      const response = getAuthTokenRefreshed(refresh_token).then((response: any) => {
+      const response = getAuthTokenRefreshed(refresh_token).then((response: RefreshResponse) => {
         localStorage.setItem(tokenKeys.access, response.access)
         error.config.headers.Authorization = `Bearer ${localStorage.getItem(tokenKeys.access)}`;
         error.config.__isRetryRequest = true;
         return axios(error.config).then(response => response.data);
        });
       return response;
-    } else if (erroCode === 401 && !error.config.url.includes('token')) {
+    } else if (erroCode === 401 && error.config.url.includes('refresh')) {
       localStorage.setItem(tokenKeys.refresh, '');
       localStorage.setItem(tokenKeys.access, '')
       location.href = '/?login=open';
@@ -48,7 +52,7 @@ api.interceptors.response.use(
 );
 
 const getAuthTokenRefreshed = (refresh: string) => {
-  return api.post('/token/refresh/', {refresh}).then((response) => response);
+  return api.post('/token/refresh/', {refresh}).then((response) => response as RefreshResponse);
 }
 
 

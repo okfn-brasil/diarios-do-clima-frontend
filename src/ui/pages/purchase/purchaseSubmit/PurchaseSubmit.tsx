@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { FormPurchaseModel } from '@app/models/purchase.model';
+import { FormPurchaseModel, SessionModel, SubscriptionModel } from '@app/models/purchase.model';
 import BillingService, { getCardType } from '@app/services/billing';
 declare const PagSeguroDirectPayment: {
   setSessionId: (e: string) => void;
@@ -53,7 +53,7 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
 
   const submit = () => {
     billingService.getSessionId().then(
-      (response) => {
+      (response: SessionModel) => {
         PagSeguroDirectPayment.setSessionId(response.session);
         PagSeguroDirectPayment.createCardToken({
           cardNumber: form.card.value,
@@ -110,7 +110,7 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
   };
 
   const postPlanId = () => {
-    billingService.postSubscription('9ea3eb5f-d2d5-4433-8714-43fa7bdb0ce3').then((response)  => {
+    billingService.postSubscription('9ea3eb5f-d2d5-4433-8714-43fa7bdb0ce3').then((response: SubscriptionModel)  => {
       onSuccess(response.plan);
     }).catch(error => {
       onError(errorMessage(error));

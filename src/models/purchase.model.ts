@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import { InputModel } from './forms.model';
 
 export interface FormPurchaseModel {
@@ -16,4 +17,12 @@ export interface FormPurchaseModel {
   complement: InputModel;
   number: InputModel;
   [key: string]: InputModel;
+}
+
+export interface SessionModel extends AxiosResponse {
+  session: string;
+}
+
+export interface SubscriptionModel extends AxiosResponse {
+  plan: string;
 }

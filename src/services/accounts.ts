@@ -16,15 +16,15 @@ export default class AccountService {
       sector: form.sector.value,
     };
     
-    return api.post(this.currentUrl, newForm).then((response) => response as any);
+    return api.post(this.currentUrl, newForm).then((response) => response as RegistrationResponse);
   }
 
   getUserData() {
-    return api.get(this.currentUrl + 'me/').then((response) => response as any);
+    return api.get(this.currentUrl + 'me/').then((response) => response as UserResponseModel);
   }
 
   getEmail(email: string) {
-    return api.get(this.currentUrl + `email/${email}/`).then((response) => response as any);
+    return api.get(this.currentUrl + `email/${email}/`).then((response) => response);
   }
 }
 
