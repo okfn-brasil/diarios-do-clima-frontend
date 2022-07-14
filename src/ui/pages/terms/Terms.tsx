@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material';
+
 import './Terms.scss';
 
 const TermsPage = () => {
@@ -17,13 +18,13 @@ const TermsPage = () => {
         <div className='terms-session'>
           <h4 className='h4-class'>Título h4</h4>
           <p className='paragraph-class'>Quisque ac faucibus lectus, et dignissim ex. Vestibulum a auctor nibh, in bibendum mi. Fusce consequat ligula libero, eu pretium tortor interdum at. Proin eget mi quis tellus aliquam cursus. Suspendisse et quam non leo bibendum molestie in vitae nunc. Nulla quam dolor, molestie eu dui quis, dictum faucibus arcu. Vivamus suscipit gravida leo, id laoreet leo faucibus at. Donec id bibendum leo.</p>
-          <p className='list paragraph-class'>
+          <div className='list paragraph-class'>
             <div>Duis porttitor et ligula vel mollis. Fusce ac ullamcorper arcu, condimentum auctor urna. Vivamus ut euismod quam.</div> 
             <div>Ut ipsum augue, tincidunt porttitor velit non, egestas tincidunt eros. Vivamus sed urna sed nibh maximus consectetur vitae quis neque. </div> 
             <div>Quisque quis urna vel purus pretium faucibus eu a quam. Integer mauris est, auctor in maximus eget, aliquet quis massa. Integer in erat id diam vestibulum vulputate. </div> 
             <div>Ut vel ex eget dolor vestibulum volutpat. Maecenas tincidunt luctus eros, ut accumsan enim congue at.</div> 
             <div>Cras lobortis elit urna, eu vehicula sapien cursus eget. Nullam mollis, justo a consequat condimentum, mi velit facilisis metus, finibus luctus erat mi quis dolor.</div> 
-          </p>
+          </div>
         </div>
 
         <div className='terms-session'>
@@ -33,7 +34,7 @@ const TermsPage = () => {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default TermsPage;
 

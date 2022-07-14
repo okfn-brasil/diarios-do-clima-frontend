@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material';
+
 import './Data.scss';
 
 interface PropsDataLabel {
@@ -28,7 +29,7 @@ const DataLabel = ({ data, featured, label }: PropsDataLabel) => {
       </div>
     </span>
   );
-}
+};
 
 const Data = () => {
   return (
@@ -49,6 +50,6 @@ const Data = () => {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default Data;

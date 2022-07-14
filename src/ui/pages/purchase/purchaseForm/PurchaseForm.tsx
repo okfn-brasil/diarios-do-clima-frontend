@@ -1,32 +1,35 @@
-import { Grid } from '@mui/material';
 import { Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { InputModel, InputType } from '@app/models/forms.model';
 import { FormPurchaseModel } from '@app/models/purchase.model';
-import PurchaseDetails from '../purchaseDetails/PurchaseDetails';
-import Loading from '@app/ui/components/loading/Loading';
-import PurchaseSubmit from '../purchaseSubmit/PurchaseSubmit';
 import BillingService, { getCardType } from '@app/services/billing';
-import { useDispatch } from 'react-redux';
 import { userUpdate } from '@app/stores/user.store';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { urls } from '@app/ui/utils/urls';
-import SelectInput from '@app/ui/components/forms/select/Select';
 import TextInput from '@app/ui/components/forms/input/Input';
+import SelectInput from '@app/ui/components/forms/select/Select';
+import Loading from '@app/ui/components/loading/Loading';
+import { portalTexts } from '@app/ui/utils/portal-texts';
+import { urls } from '@app/ui/utils/urls';
+import { Grid } from '@mui/material';
+
+import PurchaseDetails from '../purchaseDetails/PurchaseDetails';
+import PurchaseSubmit from '../purchaseSubmit/PurchaseSubmit';
+
 import './PurchaseForm.scss';
 
 interface ValidationModel {
-  card: (s: InputModel) => string | Boolean;
-  fullName: (s: InputModel) => string | Boolean;
-  cvv: (s: InputModel) => string | Boolean;
-  address: (s: InputModel) => string | Boolean;
-  city: (s: InputModel) => string | Boolean;
-  district: (s: InputModel) => string | Boolean;
-  cep: (s: InputModel) => string | Boolean;
-  cpf: (s: InputModel) => string | Boolean;
-  phone: (s: InputModel) => string | Boolean;
-  birthday: (s: InputModel) => string | Boolean | undefined;
-  validity: (s: InputModel) => string | Boolean | undefined;
-  [key: string]: (s: InputModel) => string | Boolean | undefined;
+  card: (s: InputModel) => string | boolean;
+  fullName: (s: InputModel) => string | boolean;
+  cvv: (s: InputModel) => string | boolean;
+  address: (s: InputModel) => string | boolean;
+  city: (s: InputModel) => string | boolean;
+  district: (s: InputModel) => string | boolean;
+  cep: (s: InputModel) => string | boolean;
+  cpf: (s: InputModel) => string | boolean;
+  phone: (s: InputModel) => string | boolean;
+  birthday: (s: InputModel) => string | boolean | undefined;
+  validity: (s: InputModel) => string | boolean | undefined;
+  [key: string]: (s: InputModel) => string | boolean | undefined;
 }
 
 const emptyError = <></>;
@@ -47,46 +50,47 @@ const inputsDefaultValue: FormPurchaseModel = {
   number: { value: '' },
 };
 
-const validateDate = (value: string, minMaxValidation: Function) => {
-  if(!value) { return }
+const validateDate = (value: string, minMaxValidation: (d: Date) => boolean) => {
+  if(!value) { return; }
   const dateArray = value.split('/');
   const year = dateArray[dateArray.length - 1];
   const month = dateArray[dateArray.length - 2];
   const day = dateArray[dateArray.length - 3] || 1;
   const newDate: Date = new Date(`${month}/${day}/${year}`);
   return newDate.toString() === 'Invalid Date' || minMaxValidation(newDate) ? 'A data inserida é inválida' : false;
-}
+};
 
 const getCardValue = (value: string) => {
-  return getInputWithoutMask(value.replace(/ /g,''))
-}
+  return getInputWithoutMask(value.replace(/ /g,''));
+};
 
 const getInputWithoutMask = (value: string) => {
+  // eslint-disable-next-line no-useless-escape
   const newValue = value.replace(/[&\/\\#,+()$~%!.„'":*‚^_¤?<>|@ª{«»§}©®™]/g, '').replace('-', '');
   return newValue;
-}
+};
 
 const inputValidation = (value: string, minSize: number, text: string) => {
   return value && getInputWithoutMask(value).length < minSize ? text : false;
-}
+};
 
 const cardValidation = (value: string, text: string) => {
   return !getCardType(getCardValue(value)) ? text : false;
-}
+};
 
 const fieldValidations: ValidationModel = {
-  card: (s: InputModel) => { return cardValidation(s.value, 'O cartão inserido é inválido')},
-  fullName: (s: InputModel) => { return inputValidation(s.value, 8, 'O campo deve possuir no mínimo 8 caracteres')},
-  cvv: (s: InputModel) => { return inputValidation(s.value, 3, 'O CVV inserido é inválido')},
-  address: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres')},
-  city: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres')},
-  district: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres')},
-  cep: (s: InputModel) => { return inputValidation(s.value, 8, 'O CEP inserido é inválido')},
-  cpf: (s: InputModel) => { return inputValidation(s.value, 11, 'O CPF inserido é inválido')},
-  phone: (s: InputModel) => { return inputValidation(s.value, 11, 'O número de telefone inserido é inválido')},
-  birthday: (s: InputModel) => { return validateDate(s.value, (value: Date) => !(new Date() > value))},
-  validity: (s: InputModel) => { return validateDate(s.value, (value: Date) => !(new Date() < value))},
-}
+  card: (s: InputModel) => { return cardValidation(s.value, 'O cartão inserido é inválido');},
+  fullName: (s: InputModel) => { return inputValidation(s.value, 8, 'O campo deve possuir no mínimo 8 caracteres');},
+  cvv: (s: InputModel) => { return inputValidation(s.value, 3, 'O CVV inserido é inválido');},
+  address: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres');},
+  city: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres');},
+  district: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres');},
+  cep: (s: InputModel) => { return inputValidation(s.value, 8, 'O CEP inserido é inválido');},
+  cpf: (s: InputModel) => { return inputValidation(s.value, 11, 'O CPF inserido é inválido');},
+  phone: (s: InputModel) => { return inputValidation(s.value, 11, 'O número de telefone inserido é inválido');},
+  birthday: (s: InputModel) => { return validateDate(s.value, (value: Date) => !(new Date() > value));},
+  validity: (s: InputModel) => { return validateDate(s.value, (value: Date) => !(new Date() < value));},
+};
 const homePhoneMask = '(99) 9999-99999';
 const mobilePhoneMask = '(99) 99999-9999';
 
@@ -118,31 +122,31 @@ const PurchaseForm = () => {
     }).catch(() => {
       setAddressMethod('POST');
     });
-  }
+  };
 
   const getPhoneMask = (name: string, value: string) => {
     if(name === 'phone') {
       const phoneLength = getInputWithoutMask(value).length;
       setPhoneMask(phoneLength <= 11 ? homePhoneMask : mobilePhoneMask);
     }
-  }
+  };
 
   const inputChange = (event: InputType) => {
     const {name, value} = event.target;
     getPhoneMask(name, value);
     setInputs((values: FormPurchaseModel) => ({...values, [name]: { value: value, isValid: values[name].isValid }}));
-  }
+  };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitError(emptyError);
-    let errors = [];
+    const errors = [];
     Object.keys(inputs).forEach((key: string) => {
-      let input: InputModel = inputs[key];
-      let validator = fieldValidations[key] ? fieldValidations[key](input) : false;
+      const input: InputModel = inputs[key];
+      const validator = fieldValidations[key] ? fieldValidations[key](input) : false;
       if(inputs[key].value) {
-        setInputs((values: FormPurchaseModel) => ({...values, [key]: {...input, errorMessage: validator as string}}))
-        if(typeof validator === 'string' || validator instanceof String) {
+        setInputs((values: FormPurchaseModel) => ({...values, [key]: {...input, errorMessage: validator as string}}));
+        if(typeof validator === 'string') {
           errors.push(key);
         }
       }
@@ -150,25 +154,27 @@ const PurchaseForm = () => {
     if(!errors.length) {
       const newInputs: FormPurchaseModel = {} as FormPurchaseModel;
       Object.keys(inputs).forEach((key: string) => {
-        newInputs[key] = { value: key === 'card' ? getCardValue(inputs[key].value): getInputWithoutMask(inputs[key].value)}
+        newInputs[key] = { value: key === 'card' ? getCardValue(inputs[key].value): getInputWithoutMask(inputs[key].value)};
       });
       setSubmitForm(newInputs);
       setLoading(true);
     }
-  }
+  };
 
   const onError = (errorMessage: JSX.Element) => {
     setLoading(false);
     setSubmitError(errorMessage);
     getMethodsType();
-  }
+  };
 
   const onSuccess = (response: string) => {
-    dispatch(userUpdate({
-      plan_pro: response,
-    }));
-    navigate(urls.startSearch.url)
-  }
+    navigate(urls.startSearch.url);
+    setTimeout(() => {
+      dispatch(userUpdate({
+        plan_pro: response,
+      }));
+    }, 200);
+  };
 
   return (
     <form className='purchase-form' onSubmit={handleSubmit} >
@@ -236,7 +242,7 @@ const PurchaseForm = () => {
                 required={true}
               />
              
-             <TextInput
+              <TextInput
                 classes='half-width full-width-mobile'
                 label='Número'
                 name='number'
@@ -265,7 +271,6 @@ const PurchaseForm = () => {
                 error={inputs.complement.errorMessage}
                 value={inputs.complement.value}
                 onChange={inputChange}
-                required={true}
               />
             </Grid>
 
@@ -282,7 +287,7 @@ const PurchaseForm = () => {
 
               <SelectInput 
                 classes='half-width state-select' 
-                options={[{value: 'SP', label: 'SP'},{value: 'RJ', label: 'RJ'}]} 
+                options={portalTexts.stateList.map(state => {return {value: state, label: state};})} 
                 label='Estado' 
                 value={inputs.state.value} 
                 name='state' 
@@ -342,6 +347,6 @@ const PurchaseForm = () => {
       </Grid>
     </form>
   );
-}
+};
 
 export default PurchaseForm;

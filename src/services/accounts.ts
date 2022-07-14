@@ -1,6 +1,6 @@
 import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
-import { config, HeadersModel, request, TokensModel } from './service-utils';
 import { UserResponseModel } from '../models/user.model';
+import api from './interceptor';
 
 export default class AccountService {
   currentUrl = '/accounts/users/';
@@ -15,33 +15,16 @@ export default class AccountService {
       state: form.state.value,
       sector: form.sector.value,
     };
-
-    return request({
-      url: this.currentUrl, 
-      method: 'POST',
-      body: newForm,
-      notUseToken: true,
-      customResponseHandler: (response: RegistrationResponse) => config.handleResponse(response, true)
-    });
+    
+    return api.post(this.currentUrl, newForm).then((response) => response as RegistrationResponse);
   }
 
-  getUserData(token?: string) {
-    return request({
-      url: this.currentUrl + 'me/', 
-      method: 'GET',
-      customHeaders: config.tokenHeaders((token ? {access: token} : null) as TokensModel) as HeadersModel
-    });
+  getUserData() {
+    return api.get(this.currentUrl + 'me/').then((response) => response as UserResponseModel);
   }
 
   getEmail(email: string) {
-    return request({
-      url: this.currentUrl + `email/${email}/`, 
-      method: 'GET',
-      customResponseHandler: (response: Response) => { 
-        return new Promise(async (resolve, reject) => { 
-          response.ok ? reject(response) : resolve(response);
-        })}
-    });
+    return api.get(this.currentUrl + `email/${email}/`).then((response) => response);
   }
 }
 

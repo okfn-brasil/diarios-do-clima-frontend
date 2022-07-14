@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { FormPurchaseModel } from '@app/models/purchase.model';
+import { FormPurchaseModel, SessionModel, SubscriptionModel } from '@app/models/purchase.model';
 import BillingService, { getCardType } from '@app/services/billing';
 declare const PagSeguroDirectPayment: {
-  setSessionId: (e: string) => {};
+  setSessionId: (e: string) => void;
   createCardToken: (e: {
     cardNumber: string;
     brand: string | null;
@@ -12,7 +12,7 @@ declare const PagSeguroDirectPayment: {
     complete: (response: PagSeguroResponse) => void;
     success: (response: PagSeguroResponse) => void;
     error: () => void;
-  }) => {}
+  }) => void
 };
 
 interface PagSeguroResponse {
@@ -41,19 +41,19 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
         Ocorreu um erro ao realizar o pagamento, por favor, verifique os dados inseridos e tente novamente.
         { e && errorKey ? <><br/><br/>Motivo do erro: {e[errorKey]}</> : <></> }
       </span>
-    )
-  }
+    );
+  };
 
   useEffect(() => {
     if (isSubmitting) {
       submit();
     }
      
-  }, [isSubmitting])
+  }, [isSubmitting]);
 
   const submit = () => {
     billingService.getSessionId().then(
-      (response) => {
+      (response: SessionModel) => {
         PagSeguroDirectPayment.setSessionId(response.session);
         PagSeguroDirectPayment.createCardToken({
           cardNumber: form.card.value,
@@ -76,8 +76,8 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
       }
     ). catch(() => {
       onError(errorMessage({}));
-    })
-  }
+    });
+  };
   
   const postCard = (token: string) => {
     billingService.postCreditCard(form, token)
@@ -86,8 +86,8 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
       })
       .catch(error => {
         onError(errorMessage(error));
-    });
-  }
+      });
+  };
 
   const addAddress = () => {
     billingService.addAddress(form, addressMethod)
@@ -96,8 +96,8 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
       })
       .catch(error => {
         onError(errorMessage(error));
-    });
-  }
+      });
+  };
 
   const addPhone = () => {
     billingService.addPhone(form, phoneMethod)
@@ -106,18 +106,18 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
       })
       .catch(error => {
         onError(errorMessage(error));
-    });
-  }
+      });
+  };
 
   const postPlanId = () => {
-    billingService.postSubscription('9ea3eb5f-d2d5-4433-8714-43fa7bdb0ce3').then((response)  => {
-      onSuccess(response.plan); // TO DO REMOVER MOCK
+    billingService.postSubscription('9ea3eb5f-d2d5-4433-8714-43fa7bdb0ce3').then((response: SubscriptionModel)  => {
+      onSuccess(response.plan);
     }).catch(error => {
-      onError(errorMessage(error))
-    })
-  }
+      onError(errorMessage(error));
+    });
+  };
 
   return (null);
-}
+};
 
 export default PurchaseSubmit;

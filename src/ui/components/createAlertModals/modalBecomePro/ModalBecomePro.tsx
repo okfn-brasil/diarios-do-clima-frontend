@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import Modal from '@app/ui/components/modal/Modal';
 import { urls } from '@app/ui/utils/urls';
-import { Link } from 'react-router-dom';
+
 import './ModalBecomePro.scss';
 
 interface ModalBecomeProProps {
@@ -25,6 +26,6 @@ const ModalBecomePro = ({isOpen, onClose}: ModalBecomeProProps) => {
       </div>
     </Modal>
   );
-}
+};
 
 export default ModalBecomePro;

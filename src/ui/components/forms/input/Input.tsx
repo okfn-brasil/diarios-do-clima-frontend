@@ -1,7 +1,8 @@
-import { FormControl, InputLabel, Input } from '@mui/material';
-import InputError from '../inputError/inputError';
-import InputMask from 'react-input-mask';
 import { ChangeEvent } from 'react';
+import InputMask from 'react-input-mask';
+import { FormControl, Input, InputLabel } from '@mui/material';
+
+import InputError from '../inputError/inputError';
 
 interface PropsInput {
   value: string;
@@ -45,6 +46,6 @@ const TextInput = ({value, required, classes, onChange, name, label, type, error
 
 
   );
-}
+};
 
 export default TextInput;

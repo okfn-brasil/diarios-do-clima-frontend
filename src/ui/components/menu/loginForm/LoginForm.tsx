@@ -1,18 +1,19 @@
-import { Grid, Input } from '@mui/material';
-import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
-import CloseIcon from '@mui/icons-material/Close';
-import { Link } from 'react-router-dom';
-import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useState } from 'react';
-import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
-import { urls } from '@app/ui/utils/urls';
-import { LoginModel, LoginResponse } from '@app/models/login.model';
-import LoginService from '@app/services/login';
-import Loading from '@app/ui/components/loading/Loading';
-import { userUpdate } from '@app/stores/user.store';
 import { useDispatch } from 'react-redux';
-import AccountService, { checkPlan } from '@app/services/accounts';
+import { Link } from 'react-router-dom';
+import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
+import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
+import { LoginModel, LoginResponse } from '@app/models/login.model';
 import { UserResponseModel } from '@app/models/user.model';
+import AccountService, { checkPlan } from '@app/services/accounts';
+import LoginService from '@app/services/login';
+import { userUpdate } from '@app/stores/user.store';
+import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
+import Loading from '@app/ui/components/loading/Loading';
+import { urls } from '@app/ui/utils/urls';
+import CloseIcon from '@mui/icons-material/Close';
+import { Grid, Input } from '@mui/material';
+
 import './LoginForm.scss';
 
 interface PropsLoginForm{
@@ -34,36 +35,34 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
   const inputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target;
     setInputs((values: LoginModel) => ({...values, [name]: value}));
-  }
+  };
 
   const changeFieldType = () => {
     setPassType(!passFieldType);
-  }
+  };
 
   const closeModal = () => {
     showLoginForm(false);
-  }
+  };
   
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(false);
     setLoading(true);
-    loginService.login(inputs).then(
-      (response: LoginResponse) => {
-        dispatch(userUpdate({
-          access: response.access,
-          refresh: response.refresh,
-        }));
-        getUserData(response.access);
-      },
-      ).catch(() => {
-        setLoading(false);
-        setError(true);
+    loginService.login(inputs).then((response: LoginResponse) => {
+      dispatch(userUpdate({
+        access: response.access,
+        refresh: response.refresh,
+      }));
+      getUserData();
+    }).catch(() => {
+      setLoading(false);
+      setError(true);
     });
-  }
+  };
 
-  const getUserData = (token: string) => {
-    accountService.getUserData(token).then(
+  const getUserData = () => {
+    accountService.getUserData().then(
       (response: UserResponseModel) => {
         dispatch(userUpdate({
           id: response.id,
@@ -73,10 +72,10 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
         setLoading(false);
         closeModal();
       }).catch(() => {
-        setLoading(false);
-        setError(true);
+      setLoading(false);
+      setError(true);
     });
-  }
+  };
 
   return (
     <div className='login-form'>
@@ -127,6 +126,6 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
       </Grid>
     </div>
   );
-}
+};
 
 export default LoginForm;

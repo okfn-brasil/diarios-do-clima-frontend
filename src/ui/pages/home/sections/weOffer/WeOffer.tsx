@@ -1,15 +1,16 @@
 import { MouseEventHandler, useState } from 'react';
-import { Grid, Box } from '@mui/material';
-import HistoryLogo from '@app/assets/images/home/icons/history.svg';
 import AlertsLogo from '@app/assets/images/home/icons/alerts.svg';
+import HistoryLogo from '@app/assets/images/home/icons/history.svg';
 import ThemeLogo from '@app/assets/images/home/icons/theme.svg';
-import HistoryLead from '@app/assets/images/home/weoffer.history.svg';
 import AlertsLead from '@app/assets/images/home/weoffer.alerts.svg';
+import HistoryLead from '@app/assets/images/home/weoffer.history.svg';
 import ThemeLead from '@app/assets/images/home/weoffer.theme.svg';
-import HyperLink from '@app/ui/components/hyperLink/HyperLink';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import HyperLink from '@app/ui/components/hyperLink/HyperLink';
 import LinkManager from '@app/ui/components/linkManager/LinkManager';
 import { urls } from '@app/ui/utils/urls';
+import { Box, Grid } from '@mui/material';
+
 import './WeOffer.scss';
 
 interface PropsUnderlinText {
@@ -26,7 +27,7 @@ const UnderlinText =({
       {children}
     </span>
   );
-}
+};
 
 interface PropsOption {
   id: number;
@@ -47,7 +48,7 @@ const Option = ({ id, selectedId, label, icon, onClick }: PropsOption) => {
       <UnderlinText className={isSelected ? 'tab-selected' : 'tab-default'}>{label}</UnderlinText>
     </Grid>
   );
-}
+};
 
 const getLeadImage = (index: number) => {
   if (index === 1)
@@ -60,7 +61,7 @@ const getLeadImage = (index: number) => {
     return AlertsLead;
 
   return HistoryLead;
-}
+};
 
 const WeOffer = () => {
   const [selectedId, setSelectedId] = useState(1);
@@ -101,6 +102,6 @@ const WeOffer = () => {
       </Grid >
     </Grid>
   );
-}
+};
 
 export default WeOffer;

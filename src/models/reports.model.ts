@@ -1,4 +1,6 @@
-export interface ReportsModel {
+import { AxiosResponse } from "axios";
+
+export interface ReportsModel extends AxiosResponse {
   count: number;
   next: string;
   previous: string;

@@ -1,5 +1,6 @@
-import CloseIcon from '@mui/icons-material/Close';
 import { MouseEventHandler } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
+
 import './CookieAlert.scss';
 
 interface PropsCookieAlert {
@@ -16,6 +17,6 @@ const CookieAlert = ({ onClick }: PropsCookieAlert) => {
       <CloseIcon onClick={onClick} className='hover-animation close-icon'/>
     </div>
   );
-}
+};
 
 export default CookieAlert;

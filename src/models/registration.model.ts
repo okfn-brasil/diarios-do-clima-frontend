@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import { InputModel } from './forms.model';
 
 export interface RegistrationModel {
@@ -11,7 +12,7 @@ export interface RegistrationModel {
   [key: string]: InputModel;
 }
 
-export interface RegistrationResponse {
+export interface RegistrationResponse extends AxiosResponse {
   city: string;
   email: string;
   full_name: string;

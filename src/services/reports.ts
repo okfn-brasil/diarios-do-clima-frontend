@@ -1,29 +1,21 @@
 import { FiltersState } from '@app/models/filters.model';
-import { request } from './service-utils';
+import { ReportsModel } from '@app/models/reports.model';
+import api from './interceptor';
 
 export default class ReportsService {
   currentUrl = '/reports/';
 
   getAllReports(filters: FiltersState, currPage: number) {
-    const newFilters = {...filters, page: currPage};
-    return request({
-      url: this.currentUrl + 'public/?', //+ convertToParams(newFilters),  // TO DO
-      method: 'GET',
-    });
+    const newFilters = {}//{...filters, page: currPage}; TO DO
+    return api.get(this.currentUrl + 'public/?', newFilters).then((response) => response as ReportsModel);
   }
 
   getUserReports() {
-    return request({
-      url: this.currentUrl + 'private/', 
-      method: 'GET',
-    });
+    return api.get(this.currentUrl + 'private/').then((response) => response);
   }
 
   getReport(id: string) {
-    return request({
-      url: this.currentUrl + id + '/', 
-      method: 'GET',
-    });
+    return api.get(this.currentUrl + `${id}/`).then((response) => response);
   }
 
 }

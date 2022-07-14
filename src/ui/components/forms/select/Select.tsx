@@ -1,5 +1,5 @@
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import selectArrow from '@app/assets/images/icons/arrow-down.svg';
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 interface Option {
   value: string;
@@ -22,8 +22,8 @@ interface PropsSelect{
 const selectIcon = () => {
   return (
     <img style={{width: '16px'}} src={selectArrow} />
-  )
-}
+  );
+};
 
 const SelectInput = ({value, required, classes, onChange, name, label, options, placeholder}: PropsSelect) => {
   return (
@@ -45,6 +45,6 @@ const SelectInput = ({value, required, classes, onChange, name, label, options, 
       </Select>
     </FormControl>
   );
-}
+};
 
 export default SelectInput;

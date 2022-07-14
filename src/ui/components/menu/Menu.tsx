@@ -1,15 +1,17 @@
-import { Grid } from '@mui/material';
-import MenuMobile from './menuMobile/MenuMobile';
-import MenuDesktop from './menuDesktop/MenuDesktop';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import DiarioLogo from '@app/assets/images/logo.svg';
 import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import { UrlModel, urls } from '@app/ui/utils/urls';
-import LoginForm from './loginForm/LoginForm';
-import { useSelector } from 'react-redux';
 import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
+import { UrlModel, urls } from '@app/ui/utils/urls';
+import { Grid } from '@mui/material';
+
+import LoginForm from './loginForm/LoginForm';
+import MenuDesktop from './menuDesktop/MenuDesktop';
+import MenuMobile from './menuMobile/MenuMobile';
+
 import './Menu.scss';
 
 const Menu = () => {
@@ -28,20 +30,20 @@ const Menu = () => {
   }, []);
 
   const {isWhiteMenu, hideLinks, customColor} = Object.keys(urls).map(key => {
-      let item = urls[key] as UrlModel;
-      if(item.url === location.pathname) {
-        return item
-      }
+    const item = urls[key] as UrlModel;
+    if(item.url === location.pathname) {
+      return item;
+    }
   }).filter(item => !!item)[0] || {} as UrlModel;
 
   const getScroll = () => {
     const position = window.pageYOffset;
     setScrolled(position > 50);
-  }
+  };
   
   const showLoginForm = (show: boolean) => {
     setLoginVisibility(show);
-  }
+  };
 
   return (
     <>
@@ -70,6 +72,6 @@ const Menu = () => {
       </Grid>
     </>
   );
-}
+};
 
 export default Menu;

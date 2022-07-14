@@ -24,11 +24,15 @@
   }
 
   .city-input {
-    margin-top: 20px;
+    margin-top: 12px;
   }
 
   .paragraph-class {
     color: $gray5;
+  }
+
+  .base-button.hover-animation {
+    transition: 0s;
   }
   
   .submit-registration {

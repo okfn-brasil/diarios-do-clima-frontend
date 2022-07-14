@@ -11,6 +11,6 @@ const InputError = ({ children, classess }: PropsInputError) => {
       { children }
     </div>
   );
-}
+};
 
 export default InputError;

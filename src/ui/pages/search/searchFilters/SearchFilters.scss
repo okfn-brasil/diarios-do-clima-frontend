@@ -15,11 +15,6 @@
     border-bottom: 2px solid $gray !important;
   }
 
-  .section-class {
-    border-bottom: 1px solid $gray2;
-    padding-bottom: 24px;
-  }
-
   .mobile-header {
     padding: 22px 24px 10px;
   }
@@ -37,15 +32,7 @@
     font-size: 14px;
   }
 
-  .show-more {
-    border: none;
-    background-color: transparent;
-    width: 100%;
-    text-align: right;
-    margin-top: 10px;
-  }
-
-  .location-filter {
+  .filters {
     padding: 42px 24px;
     
     .h3-class {
@@ -64,19 +51,6 @@
     .h3-class {
       margin: 24px 0;
     }
-  }
-
-  .theme-filter {
-    .h3-class {
-      margin: 24px 0 8px;
-    }
-  }
-
-  .help-icon {
-    width: 24px;
-    margin-left: 6px;
-    top: 2px;
-    position: absolute;
   }
 }
 

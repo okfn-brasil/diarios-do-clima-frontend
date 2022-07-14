@@ -1,4 +1,5 @@
 import { ReportModel } from '@app/models/reports.model';
+
 import './SearchItem.scss';
 
 interface PropsSearchItem {
@@ -13,12 +14,12 @@ const SearchItem = ({data}: PropsSearchItem) => {
       <div className='search-item-date'>
         {data.created_at as string} • <span>{data.location}</span>
       </div>
-      <a className='hover-animation' target='_blank' href={data.file}>
+      <a className='hover-animation' target='_blank' href={data.file} rel="noreferrer">
         <span className='hyper-link'>Baixar diário oficial</span>
         <div className='arrow-link' ></div>
       </a>
     </div>
-    );
-}
+  );
+};
 
 export default SearchItem;

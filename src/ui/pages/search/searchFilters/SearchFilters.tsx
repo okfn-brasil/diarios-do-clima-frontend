@@ -1,23 +1,22 @@
-import CloseIcon from '@mui/icons-material/Close';
-import helpIcon from '@app/assets/images/icons/help.svg';
-import { Checkbox, FormControlLabel, FormGroup, Grid, SelectChangeEvent } from '@mui/material';
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
-import DateFilter from './dateFilter/DateFilter';
-import { Dates, FiltersStatePayload, parseUrlToFilters, SubmitDates, Theme } from '@app/models/filters.model';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateFilters } from '@app/stores/filters.store';
-import SelectInput from '@app/ui/components/forms/select/Select';
-import './SearchFilters.scss';
+import { Dates, FiltersStatePayload, parseUrlToFilters,SubmitDates, Theme } from '@app/models/filters.model';
+import { CheckBoxesModel } from '@app/models/forms.model';
 import { UserState } from '@app/models/user.model';
+import { updateFilters } from '@app/stores/filters.store';
 import { RootState } from '@app/stores/store';
-import ProFlag from '@app/ui/components/proFlag/ProFlag';
+import CloseIcon from '@mui/icons-material/Close';
+import { Grid, SelectChangeEvent } from '@mui/material';
+
+import DateFilter from './dateFilter/DateFilter';
+import EntityFilter from './entityFilter/EntityFilter';
+import LocationFilter from './locationFilter/LocationFilter';
+import ThemeFilter from './themeFilter/ThemeFilter';
+
+import './SearchFilters.scss';
 
 interface PropsSearchFilters{
   onClose?: () => void;
-}
-
-interface CheckBoxesModel {
-  [key: string]: boolean | null;
 }
 
 const themesMock: CheckBoxesModel = {
@@ -25,38 +24,25 @@ const themesMock: CheckBoxesModel = {
   'label2': null,
   'label3': null,
   'label4': null,
-}
+};
 
 const initialFilters: FiltersStatePayload = {
   location: '0',
   ente: '0',
   themes: themesMock,
   period: 0,
-}
-
-const HelpIcon = () => {
-  return (
-    <span className='hover-animation'>        
-      <img 
-        className='help-icon'
-        src={helpIcon} 
-        alt='icone - ajuda'
-      />
-    </span>
-  )
-}
+};
 
 const SearchFilters = ({onClose}: PropsSearchFilters) => {
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const dispatch = useDispatch();
   const [filters, setFilters] : [FiltersStatePayload, Dispatch<SetStateAction<FiltersStatePayload>>] = useState(initialFilters);
   const [cleanDate, setCleanDate] : [number, Dispatch<number>] = useState(0);
-  const [showMoreThemes, setShowMoreThemes] : [boolean, Dispatch<boolean>] = useState(false);
 
   const inputChange = (event: SelectChangeEvent<string>) => {
     const {name, value} = event.target;
     setFilters((values: FiltersStatePayload) => ({...values, [name]: value}));
-  }
+  };
 
   const checkBoxChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {name, checked} = event.target;
@@ -65,20 +51,20 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
       ...values.themes,
       [name]: checked
     }}));
-  }
+  };
 
   const updateDateFilters = (dateFilters: SubmitDates) => {
     setFilters((values: FiltersStatePayload) => ({...values, period: dateFilters.period as number, dates: dateFilters.dates as Dates}));
-  }
+  };
 
   const cleanFilters = () => {
     setFilters(initialFilters);
     setCleanDate(Math.random());
-  }
+  };
 
   useEffect(() => {
     dispatch(updateFilters(filters));
-  }, [filters])
+  }, [filters]);
 
   useEffect(() => {
     if (window.location.search) {
@@ -89,7 +75,7 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
       }}));
       dispatch(updateFilters(urlFilters));
     }
-  }, [])
+  }, []);
 
   return (
     <Grid 
@@ -107,67 +93,22 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
         </Grid> 
         <hr className='thin-line'/>
       </div>
-      <div className='location-filter'>
-        <section className='section-class'>  
-          <h3 className='h3-class'>
-            Município
-            <HelpIcon/>
-          </h3>
-          <SelectInput
-            options={[{value: 'x', label: 'x'},{value: 'y', label: 'y'}]} 
-            placeholder='Selecione um munícipio' 
-            value={filters.location as string} 
-            name='location'
-            onChange={inputChange}
-          />
-        </section>
-        <section className='section-class'>
+      <div className='filters'>
+        <LocationFilter onChange={inputChange} value={filters.location as string}/>
+        <section className='section-filter-class'>
           <h3 className='h3-class'>Período de tempo</h3>
           <div>
             <DateFilter cleanDate={cleanDate} onSubmit={updateDateFilters} />
           </div>
         </section>
-
-        <section className='section-class theme-filter'>
-          <h3 className='h3-class'>
-            Tema 
-            <ProFlag spaceBottom={2} show={!userData.plan_pro}/>
-            <HelpIcon/>
-          </h3>
-          <p>Aqui uma descrição breve do que são e de como funcionam os temas</p>
-          <div>
-            <FormGroup>
-              {Object.keys(filters.themes as Theme).splice(0, showMoreThemes ? 20 : 3).map((key: string) => {
-                return (<FormControlLabel 
-                  key={key} 
-                  disabled={!userData.plan_pro}
-                  control={<Checkbox 
-                    checked={!!(filters.themes as Theme)[key]} 
-                    name={key} 
-                    onChange={(e) => {userData.plan_pro ? checkBoxChange(e) : {}}} 
-                  />} 
-                  label={key} 
-                />)}
-              )}
-            </FormGroup>
-            <button onClick={() => setShowMoreThemes(!showMoreThemes)} className='blue-link hover-animation show-more'>Mostrar {showMoreThemes ? 'menos' : 'mais'}</button>
-          </div>
-        </section>
-
-        <section className='entity-filter'>
-          <h3 className='h3-class'>Entes do governo</h3>
-          <SelectInput
-            options={[{value: 'x', label: 'x'},{value: 'y', label: 'y'}]} 
-            placeholder='Selecione um ente' 
-            value={filters.ente as string} 
-            name='ente'
-            onChange={inputChange}
-          />
-        </section>
+        <ThemeFilter onChange={checkBoxChange} options={filters.themes as Theme} hasProPlan={!!userData.plan_pro} />
+        
+        <EntityFilter onChange={inputChange} value={filters.ente as string}/>
+        
       </div>
     </Grid>
   );
-}
+};
 
 export default SearchFilters;
 

@@ -1,10 +1,11 @@
 import { Dispatch, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
-import userWhiteIcon from '@app/assets/images/icons/person-white.svg';
 import userBlackIcon from '@app/assets/images/icons/person.svg';
+import userWhiteIcon from '@app/assets/images/icons/person-white.svg';
 import { userReset } from '@app/stores/user.store';
 import { urls } from '@app/ui/utils/urls';
-import { useDispatch } from 'react-redux';
+
 import './LoggedMenu.scss';
 
 interface PropsLoggedMenu {
@@ -22,18 +23,18 @@ const LoggedMenu = ({isWhite, classess}: PropsLoggedMenu) => {
     setTimeout(() => {
       setDropDownVisibility(false);
     }, 100);
-  }
+  };
 
   const showMenu = () => {
-    setDropDownVisibility(true)
-  }
+    setDropDownVisibility(true);
+  };
 
   const signOut = () => {
-    dispatch(userReset())
+    dispatch(userReset());
     if(routerLocation.pathname !== '/'){
       navigate(urls.home.url);
     }
-  }
+  };
 
   return (
     <div className={`user-menu ${classess}`}>
@@ -57,6 +58,6 @@ const LoggedMenu = ({isWhite, classess}: PropsLoggedMenu) => {
       </div> : <></> }
     </div>
   );
-}
+};
 
 export default LoggedMenu;

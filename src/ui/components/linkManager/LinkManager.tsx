@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { urls } from '@app/ui/utils/urls';
-import { RootState } from '@app/stores/store';
 import { UserState } from '@app/models/user.model';
+import { RootState } from '@app/stores/store';
+import { urls } from '@app/ui/utils/urls';
 
 interface PropsLinkManager {
   children: JSX.Element;
@@ -27,7 +27,7 @@ const conditions: ConditionModel[] = [
     condition: (user: UserState) => !user.access,
     newUrl: urls.registration.url,
   }
-]
+];
 
 const LinkManager = ({children, to}: PropsLinkManager) => {
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
@@ -41,13 +41,13 @@ const LinkManager = ({children, to}: PropsLinkManager) => {
         setNewLink(to);
       }
     });
-  }, [userData])
+  }, [userData]);
 
   return (
     <Link to={newLink}>
       { children }
     </Link>
   );
-}
+};
 
 export default LinkManager;

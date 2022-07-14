@@ -1,12 +1,13 @@
-import { Grid } from '@mui/material';
-import searchImage from '@app/assets/images/startSearch/start-search.jpg';
-import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
-import { Link } from 'react-router-dom';
-import { urls } from '@app/ui/utils/urls';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import searchImage from '@app/assets/images/startSearch/start-search.jpg';
 import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
-import './StartSearch.scss'
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import { urls } from '@app/ui/utils/urls';
+import { Grid } from '@mui/material';
+
+import './StartSearch.scss';
 
 const StartSearch = () => {
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
@@ -33,6 +34,6 @@ const StartSearch = () => {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default StartSearch;

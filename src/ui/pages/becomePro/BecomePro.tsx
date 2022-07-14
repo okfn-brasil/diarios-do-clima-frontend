@@ -1,9 +1,10 @@
-import { Grid } from '@mui/material';
-import CheckIcon from '@mui/icons-material/Check';
-import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import { Link } from 'react-router-dom';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import { urls } from '@app/ui/utils/urls';
+import CheckIcon from '@mui/icons-material/Check';
+import { Grid } from '@mui/material';
+
 import './BecomePro.scss';
 
 const BecomePro = () => {
@@ -41,6 +42,6 @@ const BecomePro = () => {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default BecomePro;

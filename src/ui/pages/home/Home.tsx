@@ -1,9 +1,10 @@
 import { Grid } from '@mui/material';
-import Lead from './sections/lead/Lead';
+
 import Data from './sections/data/Data';
-import WeOffer from './sections/weOffer/WeOffer';
 import HelpUs from './sections/helpus/HelpUs';
+import Lead from './sections/lead/Lead';
 import MoreData from './sections/moreData/MoreData';
+import WeOffer from './sections/weOffer/WeOffer';
 
 const Home = () => {
   return (
@@ -15,7 +16,7 @@ const Home = () => {
       <MoreData />
     </Grid>
   );
-}
+};
 
 export default Home;
 

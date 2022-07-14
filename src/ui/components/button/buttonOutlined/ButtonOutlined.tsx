@@ -1,5 +1,6 @@
 import { ButtonBase } from '@mui/material';
-import './ButtonOutlined.scss'
+
+import './ButtonOutlined.scss';
 
 interface PropsButtonOutlined {
   children: JSX.Element | string;
@@ -7,12 +8,12 @@ interface PropsButtonOutlined {
   classess?: string;
 }
 
-const ButtonOutlined = ({ children, sx, onClick, classess }: PropsButtonOutlined) => {
+const ButtonOutlined = ({ children, onClick, classess }: PropsButtonOutlined) => {
   return (
     <ButtonBase className={`base-button button-outlined hover-animation ${classess}`} onClick={onClick}>
       {children}
     </ButtonBase>
   );
-}
+};
 
 export default ButtonOutlined;

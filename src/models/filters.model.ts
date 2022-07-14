@@ -1,5 +1,29 @@
 export const ITEMS_PER_PAGE = 6;
 
+export interface ModalFilters {
+  location?: string;
+  ente?: string;
+  themes?: (string | null)[];
+  [key: string]: string | (string | null)[] | undefined;
+}
+
+export const convertFiltersToModalFilters = (filters: FiltersStatePayload) => {
+  const newFilters: ModalFilters = {
+    location: filters.location,
+    ente: filters.ente,
+    themes: filters.themes ? Object.keys(filters.themes as Theme).map(theme => {
+      return !!filters.themes && filters.themes[theme] ? theme : null;
+    }).filter(theme => !!theme) : []
+  };
+
+  Object.keys(newFilters).forEach((key: string) => {
+    if(!newFilters[key] || newFilters[key] === '0') {
+      delete newFilters[key];
+    }
+  });
+  return newFilters;
+}
+
 export interface FiltersStatePayload {
   itemsPerPage?: number;
   query?: string;
@@ -9,6 +33,7 @@ export interface FiltersStatePayload {
   dates?: Dates;
   themes?: Theme;
   period?: number;
+  [key: string]: FiltersKeys;
 }
 
 export interface SubmitDates {
@@ -50,7 +75,7 @@ export interface Theme {
   [key: string]: boolean | null;
 }
 
-type FiltersKeys = (string | Dates | Theme | number | Date | (string | null)[] | null | undefined);
+type FiltersKeys = (string | [] | Dates | Theme | number | Date | (string | null)[] | null | undefined);
 
 export const parseUrlToFilters = () => {
   const urlParams = new URLSearchParams(window.location.search);

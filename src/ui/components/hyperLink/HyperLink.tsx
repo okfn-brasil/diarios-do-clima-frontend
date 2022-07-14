@@ -12,10 +12,10 @@ const HyperLink = ({ children, link, classess}: PropsHyperLink) => {
     <LinkManager to={urlLink}>
       <span 
         className={`hover-animation hyper-link ${classess}`}>
-          {children}
+        {children}
       </span>
     </LinkManager>
   );
-}
+};
 
 export default HyperLink;

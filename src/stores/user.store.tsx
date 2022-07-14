@@ -1,7 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-import { tokenKeys, deleteTokens } from '../ui/utils/storage-utils';
 import { UserState } from '@app/models/user.model';
+import type { PayloadAction } from '@reduxjs/toolkit';
+// eslint-disable-next-line no-duplicate-imports
+import { createSlice } from '@reduxjs/toolkit';
+
+import { deleteTokens, tokenKeys } from '../ui/utils/storage-utils';
 
 const initialState: UserState = {
   access: localStorage.getItem(tokenKeys.access) || null,
@@ -24,6 +26,7 @@ export const userSlice = createSlice({
     },
     userReset: (state) => {
       deleteTokens();
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       state = initialState;
       location.reload();
     },

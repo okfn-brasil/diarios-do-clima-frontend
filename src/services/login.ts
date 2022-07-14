@@ -1,5 +1,5 @@
-import { config, request } from './service-utils';
 import { LoginModel, LoginResponse } from '@app/models/login.model';
+import api from './interceptor';
 
 export default class LoginService {
   currentUrl = '/token/';
@@ -10,21 +10,6 @@ export default class LoginService {
       password: form.password,
     };
 
-    return request({
-      url: this.currentUrl, 
-      method: 'POST',
-      body: newForm,
-      notUseToken: true,
-      customResponseHandler: (response: LoginResponse) => config.handleResponse(response, true)
-    });
-  }
-
-  refreshLogin(refresh: string) {
-    return request({
-      url: this.currentUrl + 'refresh/', 
-      method: 'POST',
-      notUseToken: true,
-      body: { refresh }
-    });
+    return api.post(this.currentUrl, newForm).then((response) => response as LoginResponse);
   }
 }
