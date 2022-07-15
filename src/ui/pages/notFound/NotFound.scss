@@ -1,0 +1,30 @@
+@import '@app/styles/globals.scss';
+
+.not-found-page {
+  background-color: $lightGray3;
+  .top-space {
+    background-color: $darkBlue;
+    
+    .h2-class, .paragraph-class {
+      color: $white;
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .links-utils div {
+    padding: 20px;
+    border-bottom: 1px solid $gray2;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    a {
+      font-size: 18px;
+      color: $gray5;
+    }
+  }
+}

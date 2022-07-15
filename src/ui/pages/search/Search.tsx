@@ -1,8 +1,9 @@
 import { Dispatch, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { FiltersState, parseFiltersToUrl } from '@app/models/filters.model';
-import { parseReports,ReportModel, ReportsModel } from '@app/models/reports.model';
-import ReportsService from '@app/services/reports';
+import { GazetteModel, GazetteResponse, parseGazettes } from '@app/models/gazettes.model';
+import { } from '@app/models/reports.model';
+import GazettesService from '@app/services/gazettes';
 import { RootState } from '@app/stores/store';
 import ModalsCreateAlert from '@app/ui/components/createAlertModals/ModalsCreateAlert';
 import Loading from '@app/ui/components/loading/Loading';
@@ -21,9 +22,9 @@ const pageKeys: string[] = ['itemsPerPage', 'order'];
 
 const Search = () => {
   const filters: FiltersState = useSelector((state: RootState) => state.filter);
-  const reportsService = new ReportsService();
+  const gazettesService = new GazettesService();
   const [showFiltersMobile, setFiltersMobileVisibility] : [boolean, Dispatch<boolean>] = useState(false);
-  const [listItems, setListItems] : [ReportModel[], Dispatch<ReportModel[]>] = useState([] as ReportModel[]);
+  const [listItems, setListItems] : [GazetteModel[], Dispatch<GazetteModel[]>] = useState([] as GazetteModel[]);
   const [currPage, setPage] : [number, Dispatch<number>] = useState(0);
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [searchTimes, setSearchTimes] : [number, Dispatch<number>] = useState(0);
@@ -46,15 +47,15 @@ const Search = () => {
   const getItemsList = (isPagination = false) => {
     setLoading(true);
 
-    reportsService.getAllReports(filters, currPage)
-      .then((response: ReportsModel) => {
+    gazettesService.getAllGazettes(filters, currPage)
+      .then((response: GazetteResponse) => {
         if(isPagination) {
           window.scrollTo(0,0);
-          const newList = [...listItems, ...parseReports(response.results)];
+          const newList = [...listItems, ...parseGazettes(response.gazettes)];
           setListItems(newList);
         } else {
           setPage(0);
-          setListItems(parseReports(response.results));
+          setListItems(parseGazettes(response.gazettes));
         }
         setLoading(false);
       }).catch(() => {

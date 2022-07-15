@@ -1,9 +1,10 @@
-import Modal from '@app/ui/components/modal/Modal';
 import successImage from '@app/assets/images/alert_modals/alert-created.svg';
+import Modal from '@app/ui/components/modal/Modal';
+
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 
 import './ModalCreated.scss';
-import ButtonGreen from '../../button/ButtonGreen/ButtonGreen';
-import ButtonOutlined from '../../button/buttonOutlined/ButtonOutlined';
 
 interface ModalCreatedProps {
   isOpen: boolean;

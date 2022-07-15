@@ -1,4 +1,4 @@
-@import '/src/styles/globals.scss';
+@import '@app/styles/globals.scss';
 
 .date-pickers-container {
   position: relative;
@@ -63,9 +63,9 @@
 
 .period-box-class {
   border: 1px solid $black;
-  padding: 12px 14px 8px;
+  padding: 12px 14px 10px;
   margin-right: 8px;
-  margin-top: 14px;
+  margin-top: 12px;
   transition: 0.4s;
 }
 

@@ -6,14 +6,6 @@ export const checkKeyWords = (value: string) => {
   return !(keywordsSplited.length > 5);
 }
 
-export const parseQuery = (value: string) => {
-  let newQuery = value;
-  if(newQuery && !checkKeyWords(newQuery)) {
-    newQuery = newQuery.split(';').slice(0, 5).join(';');
-  }
-  return newQuery || '';
-}
-
 export const checkFiltersValidity = (filters: ModalFilters) => {
   return !!(filters && (filters.ente || filters.location || (filters.themes && filters.themes.length)))
 }

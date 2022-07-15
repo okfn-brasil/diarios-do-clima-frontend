@@ -6,7 +6,7 @@ import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import { urls } from '@app/ui/utils/urls';
 
-import LoggedMenu from '../loggedMenu/LoggedMenu';
+import LoggedMenu from '@app/ui/components/menu/loggedMenu/LoggedMenu';
 
 import './MenuDesktop.scss';
 

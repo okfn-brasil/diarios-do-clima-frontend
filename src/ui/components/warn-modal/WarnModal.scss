@@ -1,0 +1,30 @@
+@import '@app/styles/globals.scss';
+
+.warn-modal {
+  .modal-container {
+    max-width: 80%;
+    height: unset;
+    padding: 36px 24px;
+    
+    @media only screen and (min-width: $desktopSize) {
+      max-width: 30%;
+      padding: 60px 124px;
+    }
+
+    img {
+      width: 40px;
+    }
+
+    .paragraph-class {
+      color: $gray5;
+      margin: 12px 0 16px;
+      white-space: break-spaces;
+      word-break: break-word;
+    }
+
+    .base-button {
+      margin-top: 16px;
+      font-size: 16px;
+    }
+  }
+}

@@ -5,11 +5,10 @@ import { Grid } from '@mui/material';
 import './PurchaseDetails.scss';
 
 interface PropsPurchaseDetails {
-  errorMessage: JSX.Element;
   isLoading: boolean;
 }
 
-const PurchaseDetails = ({errorMessage, isLoading}: PropsPurchaseDetails) => {
+const PurchaseDetails = ({isLoading}: PropsPurchaseDetails) => {
   const mockPlan = {
     name: 'Profissional',
     value: 0,
@@ -43,7 +42,6 @@ const PurchaseDetails = ({errorMessage, isLoading}: PropsPurchaseDetails) => {
           Você pode cancelar a qualquer 
           momento antes do próximo ciclo de pagamento.
         </div>
-        <div className='error-alert'>{errorMessage}</div>
       </div>
     </Grid>
   );

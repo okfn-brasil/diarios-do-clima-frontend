@@ -49,7 +49,7 @@ const items = [
     desc: '',
     ex: '',
   },
-]
+];
 
 const AdvancedSearchModal = ({isOpen, onClose}: AdvancedSearchModalProps) => {
 

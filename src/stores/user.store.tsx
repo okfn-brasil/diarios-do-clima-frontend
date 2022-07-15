@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 // eslint-disable-next-line no-duplicate-imports
 import { createSlice } from '@reduxjs/toolkit';
 
-import { deleteTokens, tokenKeys } from '../ui/utils/storage-utils';
+import { deleteTokens, tokenKeys } from '@app/ui/utils/storage-utils';
 
 const initialState: UserState = {
   access: localStorage.getItem(tokenKeys.access) || null,

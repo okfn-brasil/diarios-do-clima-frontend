@@ -58,7 +58,7 @@ const SearchPagination = ({onChangePage, currentPage, listSize, itemsPerPage}: P
 
   return (
     <>
-      {listSize ?
+      {listSize  && listSize > 6?
         <div className='pagination'>
           <Grid container justifyContent='center'>
             <Grid  sm={8} item container justifyContent='center'>

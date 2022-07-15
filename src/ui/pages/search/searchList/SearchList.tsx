@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import bellIcon from '@app/assets/images/icons/black-bell.svg';
 import EmptySearch from '@app/assets/images/icons/empty-search.svg';
 import { FiltersState, parseUrlToFilters } from '@app/models/filters.model';
-import { ReportModel } from '@app/models/reports.model';
+import { GazetteModel } from '@app/models/gazettes.model';
 import { updateFilters } from '@app/stores/filters.store';
 import { RootState } from '@app/stores/store';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
@@ -15,7 +15,7 @@ import SearchItem from './searchItem/SearchItem';
 import './SearchList.scss';
 
 interface PropsSearchList {
-  list?: ReportModel[];
+  list?: GazetteModel[];
   listSize?: number;
   searchTimes: number;
   openCreateAlert: () => void;
@@ -98,7 +98,7 @@ const SearchList = ({list, listSize, searchTimes, openCreateAlert}: PropsSearchL
             : <></>
         }
         <div>
-          {list?.map((item: ReportModel) => <SearchItem key={item.id} data={item}/>)}
+          {list?.map((item: GazetteModel) => <SearchItem key={item.edition + item.date} data={item}/>)}
         </div>
         
       </Grid>

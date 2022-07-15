@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
-import { FormPurchaseModel, SessionModel, SubscriptionModel } from '../models/purchase.model';
-import api from './interceptor';
+import { FormPurchaseModel, SessionModel, SubscriptionModel } from '@app/models/purchase.model';
+import api from '@app/services/interceptor';
 
 interface CardValidateModel {
   electron: RegExp;

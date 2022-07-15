@@ -9,22 +9,24 @@ import CookieAlert from '@app/ui/components/cookieAlert/CookieAlert';
 import Footer from '@app/ui/components/footer/Footer';
 import Home from '@app/ui/pages/home/Home';
 
-import { UserResponseModel } from './models/user.model';
-import AccountService, { checkPlan } from './services/accounts';
-import { userUpdate } from './stores/user.store';
-import Menu from './ui/components/menu/Menu';
-import RouteChangeManager from './ui/components/routeChangeManager/RouteChangeManager';
-import AboutPage from './ui/pages/about/About';
-import BecomePro from './ui/pages/becomePro/BecomePro';
-import Plans from './ui/pages/plans/Plans';
-import Purchase from './ui/pages/purchase/Purchase';
-import Registration from './ui/pages/registration/registration';
-import ReportsPage from './ui/pages/reports/Reports';
-import Search from './ui/pages/search/Search';
-import StartSearch from './ui/pages/startSearch/StartSearch';
-import TermsPage from './ui/pages/terms/Terms';
-import { tokenKeys } from './ui/utils/storage-utils';
-import { urls } from './ui/utils/urls';
+import { UserResponseModel } from '@app/models/user.model';
+import AccountService, { checkPlan } from '@app/services/accounts';
+import { userUpdate } from '@app/stores/user.store';
+import Menu from '@app/ui/components/menu/Menu';
+import RouteChangeManager from '@app/ui/components/routeChangeManager/RouteChangeManager';
+import AboutPage from '@app/ui/pages/about/About';
+import BecomePro from '@app/ui/pages/becomePro/BecomePro';
+import CnpjPage from '@app/ui/pages/cnpjPage/CnpjPage';
+import NotFound from '@app/ui/pages/notFound/NotFound';
+import Plans from '@app/ui/pages/plans/Plans';
+import Purchase from '@app/ui/pages/purchase/Purchase';
+import Registration from '@app/ui/pages/registration/registration';
+import ReportsPage from '@app/ui/pages/reports/Reports';
+import Search from '@app/ui/pages/search/Search';
+import StartSearch from '@app/ui/pages/startSearch/StartSearch';
+import TermsPage from '@app/ui/pages/terms/Terms';
+import { tokenKeys } from '@app/ui/utils/storage-utils';
+import { urls } from '@app/ui/utils/urls';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -68,6 +70,8 @@ const App = () => {
             <Route path={urls.purchase.url} element={<Purchase />} />
             <Route path={urls.plans.url} element={<Plans />} />
             <Route path={urls.search.url} element={<Search />} />
+            <Route path={urls.cnpjs.url} element={<CnpjPage />} />
+            <Route path={urls.notFound.url} element={<NotFound />} />
           </Routes>
           <Footer />
         </Fragment>
