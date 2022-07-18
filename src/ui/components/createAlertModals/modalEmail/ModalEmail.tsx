@@ -1,9 +1,8 @@
 import { ChangeEvent, Dispatch, useEffect, useState } from 'react';
-import Modal from '@app/ui/components/modal/Modal';
-
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import TextInput from '@app/ui/components/forms/input/Input';
 import InputError from '@app/ui/components/forms/inputError/inputError';
+import Modal from '@app/ui/components/modal/Modal';
 
 import './ModalEmail.scss';
 

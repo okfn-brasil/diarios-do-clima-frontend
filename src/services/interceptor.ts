@@ -1,5 +1,5 @@
-import { tokenKeys } from "@app/ui/utils/storage-utils";
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { tokenKeys } from '@app/ui/utils/storage-utils';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 interface RefreshResponse extends AxiosResponse {
   access: string;
@@ -17,7 +17,7 @@ api.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     const token = localStorage.getItem(tokenKeys.access);
     if (token && config.headers) {
-      config.headers["Authorization"] = 'Bearer ' + token;
+      config.headers['Authorization'] = 'Bearer ' + token;
     }
     return config;
   },

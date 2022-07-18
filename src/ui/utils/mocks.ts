@@ -1,4 +1,4 @@
-import { CheckBoxesModel } from "@app/models/forms.model";
+import { CheckBoxesModel } from '@app/models/forms.model';
 
 export const themesMock: CheckBoxesModel = {
   'label1': null,

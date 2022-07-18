@@ -2,8 +2,12 @@
 
 .lead-session {
   font-size: 14px;
-  background-size: cover;
   color: $white;
+
+  &.top-space {
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 
   .banner-content {
     margin-bottom: 100px;

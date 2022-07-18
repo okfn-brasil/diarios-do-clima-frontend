@@ -4,7 +4,6 @@ import MenuIcon from '@app/assets/images/icons/menu.svg';
 import MenuBlackIcon from '@app/assets/images/icons/menu-black.svg';
 import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
-
 import LoggedMenu from '@app/ui/components/menu/loggedMenu/LoggedMenu';
 import MenuMobileOverlay from '@app/ui/components/menu/menuMobileOverlay/MenuMobileOverlay';
 

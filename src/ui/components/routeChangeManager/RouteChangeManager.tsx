@@ -5,7 +5,7 @@ import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
 import { urls } from '@app/ui/utils/urls';
 
-const loggedPaths = [urls.purchase.url, urls.search.url];
+const loggedPaths = [urls.purchase.url, urls.search.url, urls.myAlerts.url, urls.myReports.url];
 const notLoggedPaths = [urls.registration.url];
 const notSubscribedPaths = [urls.purchase.url];
 

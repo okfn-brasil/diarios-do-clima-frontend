@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 
-import './SearchPagination.scss';
+import './Pagination.scss';
 
 interface Pagination {
   onChangePage: (e: number) => void;
@@ -9,7 +9,7 @@ interface Pagination {
   currentPage: number;
 }
 
-const SearchPagination = ({onChangePage, currentPage, listSize, itemsPerPage}: Pagination) => {
+const Pagination = ({onChangePage, currentPage, listSize, itemsPerPage}: Pagination) => {
 
   const pages = () => {
     const pageNumbers = [];
@@ -89,5 +89,5 @@ const SearchPagination = ({onChangePage, currentPage, listSize, itemsPerPage}: P
   );
 };
 
-export default SearchPagination;
+export default Pagination;
 

@@ -1,5 +1,4 @@
 import AlertIcon from '@app/assets/images/icons/alert.svg';
-
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import Modal from '@app/ui/components/modal/Modal';
