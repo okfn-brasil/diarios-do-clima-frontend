@@ -1,6 +1,10 @@
-@import '/src/styles/globals.scss';
+@import '@app/styles/globals.scss';
 
 .create-alert {
+
+  .input-error-warn {
+    margin-bottom: 10px;
+  }
 
   .title {
     margin: 24px;

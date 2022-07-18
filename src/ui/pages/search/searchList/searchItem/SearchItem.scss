@@ -1,4 +1,4 @@
-@import '/src/styles/globals.scss';
+@import '@app/styles/globals.scss';
 
 .search-item {
   margin-top: 24px;
@@ -10,6 +10,11 @@
     line-height: 16.5px;
     color: $black;
     white-space: pre-wrap;
+
+    a {
+      color: $black;
+      text-decoration: underline;
+    }
   }
 
   .search-item-date {

@@ -2,7 +2,7 @@ import BackIcon from '@app/assets/images/icons/back-arrow.svg';
 import CloseIcon from '@mui/icons-material/Close';
 import { Grid } from '@mui/material';
 
-import ProFlag from '../proFlag/ProFlag';
+import ProFlag from '@app/ui/components/proFlag/ProFlag';
 
 import './Modal.scss';
 

@@ -7,13 +7,12 @@ import { RootState } from '@app/stores/store';
 
 import ModalAlertFilters from './modalAlertFilters/ModalAlertFilters';
 import ModalBecomePro from './modalBecomePro/ModalBecomePro';
+import ModalCreated from './modalCreated/ModalCreated';
+import ModalEmail from './modalEmail/ModalEmail';
+import ModalKeyWords from './modalKeyWords/ModalKeyWords';
 import ModalSetAlertSpec from './modalSetAlertSpec/ModalSetAlertSpec';
 
 import './ModalsCreateAlert.scss';
-import ModalKeyWords from './modalKeyWords/ModalKeyWords';
-import { parseQuery } from './utils';
-import ModalEmail from './modalEmail/ModalEmail';
-import ModalCreated from './modalCreated/ModalCreated';
 
 interface ModalCreateAlertProps {
   isOpen: boolean;
@@ -36,7 +35,7 @@ const ModalsCreateAlert = ({isOpen, onClose, onOpen, filters}: ModalCreateAlertP
 
   useEffect(() => {
     setdefinedFilters(convertFiltersToModalFilters(filters));
-    setQuery(parseQuery(filters.query as string));
+    setQuery(filters.query as string);
   },[filters]);
 
   const onOpenBecomePro = () => {
@@ -73,7 +72,7 @@ const ModalsCreateAlert = ({isOpen, onClose, onOpen, filters}: ModalCreateAlertP
   };
 
   const onApplyKeyWords = (queryApply: string) => {
-    setQuery(queryApply)
+    setQuery(queryApply);
     setStateKeyWords(false);
     onOpen();
   };
@@ -99,7 +98,7 @@ const ModalsCreateAlert = ({isOpen, onClose, onOpen, filters}: ModalCreateAlertP
   const onSubmit = () => {
     onClose();
     setStateSuccess(true);
-  }
+  };
 
   const restart = () => {
     setStateSuccess(false);
@@ -107,7 +106,7 @@ const ModalsCreateAlert = ({isOpen, onClose, onOpen, filters}: ModalCreateAlertP
     setQuery('');
     setdefinedFilters({});
     setEmptyFields(Math.random());
-  }
+  };
   return (
     <>
       <ModalSetAlertSpec 

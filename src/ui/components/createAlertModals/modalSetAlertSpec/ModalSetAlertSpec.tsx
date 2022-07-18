@@ -1,11 +1,13 @@
+import { Dispatch, useState } from 'react';
 import Arrow from '@app/assets/images/icons/arrow-down.svg';
 import { ModalFilters } from '@app/models/filters.model';
 import { UserState } from '@app/models/user.model';
+import AlertsService from '@app/services/alerts';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import Modal from '@app/ui/components/modal/Modal';
-import { Dispatch, useState } from 'react';
-import Loading from '../../loading/Loading';
-import { checkFiltersValidity } from '../utils';
+
+import InputError from '@app/ui/components/forms/inputError/inputError';
+import Loading from '@app/ui/components/loading/Loading';
 
 import './ModalSetAlertSpec.scss';
 
@@ -24,7 +26,9 @@ interface ModalSetAlertSpecProps {
 }
 
 const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmail, onClose, openBecomePro, onSubmit, userData, email, filters, query}: ModalSetAlertSpecProps) => {
+  const alertsService = new AlertsService();
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
+  const [hasError, setError] : [boolean, Dispatch<boolean>] = useState(false);
   const checkPlan = (result: () => void) => {
     if(!userData.plan_pro) {
       openBecomePro();
@@ -47,12 +51,15 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmai
 
   
   const submit = () => {
+    setError(false);
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    alertsService.postAlert(filters, (email || userData.email) as string, query).then(() => {
       onSubmit();
-      // TO DO
-    }, 1000);
+      setLoading(false);
+    }).catch(() => {
+      setLoading(false);
+      setError(true);
+    });
   };
 
   return (
@@ -74,7 +81,7 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmai
           <div className='alert-filters' onClick={() => {checkPlan(onKeyWords);}}>
             <div className='green-arrow'><img src={Arrow} alt='seta para a direita'/></div>
             <div className='small-text alert-filter-desc'>Adicione palavras-chave</div>
-            <div className='small-text alert-filter-keys'>{query ? query : 'Adicionar até 5'}</div>
+            <div className='small-text alert-filter-keys'>{query ? query : 'Cadastre palavras chaves na sua busca (Obrigatório)'}</div>
           </div>
           <hr className='thin-line'/>
           {
@@ -86,7 +93,8 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmai
               <></>
           }
           <div className='button-space'>
-            <ButtonGreen disabled={!query && !checkFiltersValidity(filters)} onClick={() => {checkPlan(submit);}}>Criar Alerta</ButtonGreen>
+            <InputError>{hasError ? 'Ocorreu um erro ao cadastrar o alerta, por favor, tente novamente' : ''}</InputError>
+            <ButtonGreen disabled={!query} onClick={() => {checkPlan(submit);}}>Criar Alerta</ButtonGreen>
           </div>
         </div>
       </Modal>

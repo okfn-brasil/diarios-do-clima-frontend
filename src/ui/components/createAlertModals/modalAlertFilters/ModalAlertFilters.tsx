@@ -7,9 +7,9 @@ import LocationFilter from '@app/ui/pages/search/searchFilters/locationFilter/Lo
 import ThemeFilter from '@app/ui/pages/search/searchFilters/themeFilter/ThemeFilter';
 import { SelectChangeEvent } from '@mui/material';
 
-import './ModalAlertFilters.scss';
 import { initialFilters } from '../utils';
-import SubmitForm from '../../forms/submitForm/SubmitForm';
+
+import './ModalAlertFilters.scss';
 
 interface ModalAlertFiltersProps {
   isOpen: boolean;
@@ -24,7 +24,7 @@ const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: Moda
 
   useEffect(() => {
     setFilters(initialFilters);
-  }, [emptyFields])
+  }, [emptyFields]);
 
   useEffect(() => {
     setFilters(filters);
@@ -48,10 +48,12 @@ const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: Moda
     onApply(currFilters);
   };
 
+  const keyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    e.key === 'Enter' ? apply() : null;
+  };
   return (
     <Modal isOpen={isOpen} title={'Editar filtros do alerta'} onBack={onBack} className='create-alert'>
-      
-      <form onSubmit={apply}>
+      <div onKeyUp={keyUp}>
         <div className='modal-filters'>
           <LocationFilter onChange={inputChange} value={currFilters.location as string}/>
 
@@ -59,9 +61,9 @@ const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: Moda
         
           <EntityFilter onChange={inputChange} value={currFilters.ente as string}/>
 
-          <SubmitForm classess='modal-filter-apply' label='Aplicar Filtros'/>
+          <ButtonGreen classess='modal-filter-apply' fullWidth onClick={apply}>Aplicar Filtro</ButtonGreen>
         </div>
-      </form>
+      </div>
     </Modal>
   );
 };

@@ -4,6 +4,7 @@ import { Dates, FiltersStatePayload, parseUrlToFilters,SubmitDates, Theme } from
 import { UserState } from '@app/models/user.model';
 import { updateFilters } from '@app/stores/filters.store';
 import { RootState } from '@app/stores/store';
+import { themesMock } from '@app/ui/utils/mocks';
 import CloseIcon from '@mui/icons-material/Close';
 import { Grid, SelectChangeEvent } from '@mui/material';
 
@@ -13,7 +14,6 @@ import LocationFilter from './locationFilter/LocationFilter';
 import ThemeFilter from './themeFilter/ThemeFilter';
 
 import './SearchFilters.scss';
-import { themesMock } from '@app/ui/utils/mocks';
 
 interface PropsSearchFilters{
   onClose?: () => void;

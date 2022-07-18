@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import filtersReducer from './filters.store';
-import userReducer from './user.store';
+import filtersReducer from '@app/stores/filters.store';
+import userReducer from '@app/stores/user.store';
 
 export const store = configureStore({
   middleware: getDefaultMiddleware =>

@@ -1,4 +1,4 @@
-import LinkManager from '../linkManager/LinkManager';
+import LinkManager from '@app/ui/components/linkManager/LinkManager';
 
 interface PropsHyperLink {
   children: JSX.Element | string;

@@ -2,11 +2,8 @@ import { ChangeEvent, Dispatch, useEffect, useState } from 'react';
 import { FiltersStatePayload } from '@app/models/filters.model';
 import Modal from '@app/ui/components/modal/Modal';
 
-import TextInput from '../../forms/input/Input';
-import ButtonGreen from '../../button/ButtonGreen/ButtonGreen';
-import InputError from '../../forms/inputError/inputError';
-import { checkKeyWords, parseQuery } from '../utils';
-import SubmitForm from '../../forms/submitForm/SubmitForm';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import TextInput from '@app/ui/components/forms/input/Input';
 
 interface ModalKeyWordsProps {
   isOpen: boolean;
@@ -18,51 +15,39 @@ interface ModalKeyWordsProps {
 
 const ModalKeyWords = ({isOpen, onBack, onApply, filters, emptyFields}: ModalKeyWordsProps) => {
   const [keyWords, setKeyWords] : [string, Dispatch<string>] = useState('');
-  const [hasError, setError] : [boolean, Dispatch<boolean>] = useState(false);
 
   useEffect(() => {
     setKeyWords('');
-  }, [emptyFields])
+  }, [emptyFields]);
 
   useEffect(() => {
-    setKeyWords(parseQuery(filters.query as string));
+    setKeyWords((filters.query || '') as string);
   }, [filters]);
 
   const inputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setKeyWords(event.target.value);
-    convertKeyWords(event.target.value);
   };
 
   const apply = () => {
-    if(convertKeyWords(keyWords)) {
-      onApply(keyWords);
-    }
+    onApply(keyWords);
   };
 
-  const convertKeyWords = (value: string) => {
-    if(checkKeyWords(value)) {
-      setError(false);
-      return true;
-    } else {
-      setError(true);
-    }
-  }
-
+  const keyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    e.key === 'Enter' ? apply() : null;
+  };
   return (
     <Modal isOpen={isOpen} title={'Editar filtros do alerta'} onBack={onBack} className='create-alert'>
-      <form className='modal-key-words' onSubmit={apply}>
+      <div className='modal-key-words' onKeyUp={keyUp}>
         <div className='paragraph-class'>Cadastre as palavras-chave do seu alerta e enviaremos as novidades que tiverem os termos buscados.
         </div>
         <TextInput 
           value={keyWords}
           onChange={inputChange}
           name='keywords'
-          label='Ex: Gastos; Diário;'
+          label='Ex: Consulta teste'
         /> 
-        <span className='small-text'> *Separe até 5 palavras-chave com <b>;</b></span>
-        <InputError >{ hasError ? 'Utilize no máximo 5 palavras-chave.' : ''}</InputError>
-        <SubmitForm disabled={hasError} classess='button-apply-key-words' label='Aplicar'/>
-      </form>
+        <ButtonGreen disabled={!keyWords} classess='button-apply-key-words' fullWidth onClick={apply}>Aplicar</ButtonGreen>
+      </div>
     </Modal>
   );
 };

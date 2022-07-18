@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { InputModel } from './forms.model';
+import { InputModel } from '@app/models/forms.model';
 
 export interface FormPurchaseModel {
   card: InputModel;

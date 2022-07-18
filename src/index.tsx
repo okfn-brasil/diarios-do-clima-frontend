@@ -5,11 +5,11 @@ import { Provider } from 'react-redux';
 import '@fontsource/sora';
 import '@fontsource/roboto';
 
-import { store } from './stores/store';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { store } from '@app/stores/store';
+import App from '@app/App';
+import reportWebVitals from '@app/reportWebVitals';
 
-import './index.scss';
+import '@app/index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

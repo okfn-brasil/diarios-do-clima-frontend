@@ -26,7 +26,7 @@ interface PropsPurchaseSubmit {
   isSubmitting: boolean;
   form: FormPurchaseModel;
   onSuccess: (e: string) => void;
-  onError: (e: JSX.Element) => void;
+  onError: (e: string) => void;
   addressMethod: string;
   phoneMethod: string;
 }
@@ -34,14 +34,8 @@ interface PropsPurchaseSubmit {
 const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, addressMethod}: PropsPurchaseSubmit) => {
   const billingService = new BillingService();
 
-  const errorMessage = (e: {[key: string] : string}) => {
-    const errorKey = e ? Object.keys(e)[0] : '';
-    return(
-      <span>
-        Ocorreu um erro ao realizar o pagamento, por favor, verifique os dados inseridos e tente novamente.
-        { e && errorKey ? <><br/><br/>Motivo do erro: {e[errorKey]}</> : <></> }
-      </span>
-    );
+  const errorMessage = (text: string) => {
+    return `Ocorreu um erro ao tentar ${text}. \n\nPor favor, verifique se os dados foram inseridos corretamente e tente novamente.`;
   };
 
   useEffect(() => {
@@ -52,6 +46,7 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
   }, [isSubmitting]);
 
   const submit = () => {
+    const paymentErrorMessage = 'realizar o pagamento';
     billingService.getSessionId().then(
       (response: SessionModel) => {
         PagSeguroDirectPayment.setSessionId(response.session);
@@ -63,19 +58,19 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
           expirationYear: form.validity.value.substring(2, 6),
           complete: (response: PagSeguroResponse) => {
             if(response.error) {
-              onError(errorMessage({}));
+              onError(errorMessage(paymentErrorMessage));
             }
           },
           success: (response: PagSeguroResponse) => {
             postCard(response.card.token);
           },
           error: () => {
-            onError(errorMessage({}));
+            onError(errorMessage(paymentErrorMessage));
           },
         });
       }
     ). catch(() => {
-      onError(errorMessage({}));
+      onError(errorMessage(paymentErrorMessage));
     });
   };
   
@@ -84,8 +79,8 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
       .then(() => {
         addAddress();
       })
-      .catch(error => {
-        onError(errorMessage(error));
+      .catch(() => {
+        onError(errorMessage('cadastrar seu cartão'));
       });
   };
 
@@ -94,8 +89,8 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
       .then(() => {
         addPhone();
       })
-      .catch(error => {
-        onError(errorMessage(error));
+      .catch(() => {
+        onError(errorMessage('cadastrar o endereço'));
       });
   };
 
@@ -104,16 +99,16 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
       .then(() => {
         postPlanId();
       })
-      .catch(error => {
-        onError(errorMessage(error));
+      .catch(() => {
+        onError(errorMessage('cadastrar o telefone'));
       });
   };
 
   const postPlanId = () => {
     billingService.postSubscription('9ea3eb5f-d2d5-4433-8714-43fa7bdb0ce3').then((response: SubscriptionModel)  => {
       onSuccess(response.plan);
-    }).catch(error => {
-      onError(errorMessage(error));
+    }).catch(() => {
+      onError(errorMessage('cadastrar seu novo plano'));
     });
   };
 

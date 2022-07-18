@@ -4,7 +4,7 @@ import { InputType } from '@app/models/forms.model';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 
-import TextInput from '../input/Input';
+import TextInput from '@app/ui/components/forms/input/Input';
 
 import './passwordField.scss';
 

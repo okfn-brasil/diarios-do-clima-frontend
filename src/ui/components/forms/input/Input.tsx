@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react';
 import InputMask from 'react-input-mask';
 import { FormControl, Input, InputLabel } from '@mui/material';
 
-import InputError from '../inputError/inputError';
+import InputError from '@app/ui/components/forms/inputError/inputError';
 
 interface PropsInput {
   value: string;

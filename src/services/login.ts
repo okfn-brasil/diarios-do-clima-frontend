@@ -1,5 +1,5 @@
 import { LoginModel, LoginResponse } from '@app/models/login.model';
-import api from './interceptor';
+import api from '@app/services/interceptor';
 
 export default class LoginService {
   currentUrl = '/token/';

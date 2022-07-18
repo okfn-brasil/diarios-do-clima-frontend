@@ -1,6 +1,6 @@
 import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
-import { UserResponseModel } from '../models/user.model';
-import api from './interceptor';
+import { UserResponseModel } from '@app/models/user.model';
+import api from '@app/services/interceptor';
 
 export default class AccountService {
   currentUrl = '/accounts/users/';
