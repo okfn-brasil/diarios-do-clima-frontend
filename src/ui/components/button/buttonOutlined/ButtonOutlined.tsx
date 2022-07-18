@@ -6,11 +6,12 @@ interface PropsButtonOutlined {
   children: JSX.Element | string;
   onClick?: () => void;
   classess?: string;
+  fullWidth?: boolean;
 }
 
-const ButtonOutlined = ({ children, onClick, classess }: PropsButtonOutlined) => {
+const ButtonOutlined = ({ children, onClick, classess, fullWidth }: PropsButtonOutlined) => {
   return (
-    <ButtonBase className={`base-button button-outlined hover-animation ${classess}`} onClick={onClick}>
+    <ButtonBase className={`base-button button-outlined hover-animation ${classess}`} style={{width: fullWidth ? '100%' : ''}} onClick={onClick}>
       {children}
     </ButtonBase>
   );

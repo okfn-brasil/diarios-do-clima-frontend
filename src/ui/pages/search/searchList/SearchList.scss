@@ -52,7 +52,11 @@
   }
 
   .form-select {
-    margin-top: 10px;
-    width: 200px;
+    width: 100%;
+
+    @media only screen and (min-width: $desktopSize) {
+      width: 200px;
+      margin-top: -20px;
+    }
   }
 }

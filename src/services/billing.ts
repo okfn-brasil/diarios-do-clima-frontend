@@ -36,7 +36,7 @@ export default class BillingService {
     const address = {
       street: form.address.value,
       number: form.number.value,
-      complement: form.complement.value,
+      complement: form.complement.value || 'vazio',
       district: form.district.value,
       country: 'BRA',
       city: form.city.value,

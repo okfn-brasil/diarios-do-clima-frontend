@@ -6,11 +6,13 @@ interface PropsButtonGreen {
   children: JSX.Element | string;
   onClick?: () => void;
   classess?: string;
+  fullWidth?: boolean;
+  disabled?: boolean;
 }
 
-const ButtonGreen = ({ children, onClick, classess }: PropsButtonGreen) => {
+const ButtonGreen = ({ children, disabled, fullWidth, onClick, classess }: PropsButtonGreen) => {
   return (
-    <ButtonBase className={`base-button button-green font-dark-blue ${classess}`} onClick={onClick}>
+    <ButtonBase disabled={disabled} className={`base-button button-green font-dark-blue ${classess}`} style={{width: fullWidth ? '100%' : ''}} onClick={onClick}>
       {children}
     </ButtonBase>
   );
