@@ -6,10 +6,9 @@ import ReportsService from '@app/services/reports';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import Loading from '@app/ui/components/loading/Loading';
+import Pagination from '@app/ui/components/pagination/Pagination';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
-
-import Pagination from '@app/ui/components/pagination/Pagination';
 
 import ReportItem from './reportItem/ReportItem';
 

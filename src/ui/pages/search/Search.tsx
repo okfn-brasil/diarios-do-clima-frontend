@@ -7,10 +7,9 @@ import GazettesService from '@app/services/gazettes';
 import { RootState } from '@app/stores/store';
 import ModalsCreateAlert from '@app/ui/components/createAlertModals/ModalsCreateAlert';
 import Loading from '@app/ui/components/loading/Loading';
+import Pagination from '@app/ui/components/pagination/Pagination';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
-
-import Pagination from '@app/ui/components/pagination/Pagination';
 
 import AdvancedSearchModal from './advancedSearchModal/AdvancedSearchModal';
 import SearchField from './searchField/SearchField';

@@ -1,23 +1,24 @@
-import { UserState } from '@app/models/user.model';
-import { RootState } from '@app/stores/store';
-import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
-import { urls } from '@app/ui/utils/urls';
-import { Grid } from '@mui/material';
+import { Dispatch, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Arrow from '@app/assets/images/icons/arrow-down.svg';
-import './UserInfo.scss';
-import { Dispatch, useEffect, useState } from 'react';
-import Loading from '@app/ui/components/loading/Loading';
+import { UserState } from '@app/models/user.model';
+import { RootState } from '@app/stores/store';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
+import Loading from '@app/ui/components/loading/Loading';
+import { urls } from '@app/ui/utils/urls';
+import { Grid } from '@mui/material';
 
-const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+import './UserInfo.scss';
+
+const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
 const ArrowRight = () => {
   return (
     <img src={Arrow} className='right-arrow' alt='avançar'/>
-  )
-}
+  );
+};
 
 const UserInfo = () => {
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
@@ -27,28 +28,28 @@ const UserInfo = () => {
     if(userData.date_joined) {
       setLoading(false);
     }
-  }, [userData])
+  }, [userData]);
 
   const getDate = () => {
     const date = new Date(userData.date_joined || '');
     const month = date.getMonth()? months[date.getMonth()] : '';
     const year = date.getFullYear()? date.getFullYear(): '';
     return `${month} ${year}`;
-  }
+  };
 
   const getNextPayment = () => {
     const created = userData.plan_subscription?.created_at;
     if(created) {
       const today = new Date();
-      const date = new Date(created)
+      const date = new Date(created);
       const day = date.getDate();
       const nextMonth = new Date(today);
       nextMonth.setMonth(today.getMonth() + 1);
-      return `${day} de ${months[nextMonth.getMonth()]} de ${nextMonth.getFullYear()}`
+      return `${day} de ${months[nextMonth.getMonth()]} de ${nextMonth.getFullYear()}`;
     } else {
       return '';
     }
-  }
+  };
 
   return (
     <Grid container justifyContent='center' className='user-info-page'>

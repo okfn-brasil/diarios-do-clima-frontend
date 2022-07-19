@@ -16,6 +16,9 @@ import AboutPage from '@app/ui/pages/about/About';
 import BecomePro from '@app/ui/pages/becomePro/BecomePro';
 import CnpjPage from '@app/ui/pages/cnpjPage/CnpjPage';
 import Home from '@app/ui/pages/home/Home';
+import MyAlerts from '@app/ui/pages/loggedArea/myAlerts/MyAlerts';
+import MyReports from '@app/ui/pages/loggedArea/myReports/MyReports';
+import UserInfo from '@app/ui/pages/loggedArea/userInfo/UserInfo';
 import NotFound from '@app/ui/pages/notFound/NotFound';
 import Plans from '@app/ui/pages/plans/Plans';
 import Purchase from '@app/ui/pages/purchase/Purchase';
@@ -26,10 +29,6 @@ import StartSearch from '@app/ui/pages/startSearch/StartSearch';
 import TermsPage from '@app/ui/pages/terms/Terms';
 import { tokenKeys } from '@app/ui/utils/storage-utils';
 import { urls } from '@app/ui/utils/urls';
-
-import MyAlerts from '@app/ui/pages/loggedArea/myAlerts/MyAlerts';
-import MyReports from '@app/ui/pages/loggedArea/myReports/MyReports';
-import UserInfo from '@app/ui/pages/loggedArea/userInfo/UserInfo';
 
 const App = () => {
   const dispatch = useDispatch();
