@@ -114,6 +114,8 @@ const UserInfo = () => {
               }
             </Grid>
           </Grid>
+
+          <div className='need-help'>Precisa de ajuda? <Link to='' className='blue-link hover-animation'>Entre em contato</Link></div>
         </div>
       </Grid>
     </Grid>
