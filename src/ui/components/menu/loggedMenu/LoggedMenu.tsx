@@ -48,8 +48,8 @@ const LoggedMenu = ({isWhite, classess}: PropsLoggedMenu) => {
       {isShowingDropdown ? <div className='dropdown-menu' onMouseLeave={closeMenu}>
         <div className='links'>
           <Link to='' className='hover-animation'><div>Minha conta</div></Link>
-          <Link to='' className='hover-animation'><div>Meus relatórios</div></Link>
-          <Link to='' className='hover-animation'><div>Alertas salvos</div></Link>
+          <Link to={urls.myReports.url} className='hover-animation'><div>Meus relatórios</div></Link>
+          <Link to={urls.myAlerts.url} className='hover-animation'><div>Alertas salvos</div></Link>
         </div>
         <hr className='thin-line'/>
         <div onClick={signOut} className='links hover-animation'>

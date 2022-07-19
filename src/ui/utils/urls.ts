@@ -9,6 +9,8 @@ export interface UrlsModel {
   purchase: UrlModel;
   plans: UrlModel;
   search: UrlModel;
+  myReports: UrlModel;
+  myAlerts: UrlModel;
   cnpjs: UrlModel;
   notFound: UrlModel;
   [key: string]: UrlModel;
@@ -32,6 +34,8 @@ export const urls: UrlsModel = {
   purchase: { url: '/assine', isWhiteMenu: true },
   plans: { url: '/planos' },
   search: { url: '/busca' },
-  cnpjs: { url: '/cnpjs', isWhiteMenu: true },
+  myReports: { url: '/meus-relatorios', isWhiteMenu: true },
+  myAlerts: { url: '/meus-alertas', isWhiteMenu: true },
+  cnpjs: { url: '/cnpjs/:id', isWhiteMenu: true },
   notFound: { url: '/not-found' },
 }

@@ -1,5 +1,6 @@
 import { Dispatch, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import emptyListImage from '@app/assets/images/empty-list.svg';
 import bellIcon from '@app/assets/images/icons/black-bell.svg';
 import EmptySearch from '@app/assets/images/icons/empty-search.svg';
 import { FiltersState, parseUrlToFilters } from '@app/models/filters.model';
@@ -18,10 +19,11 @@ interface PropsSearchList {
   list?: GazetteModel[];
   listSize?: number;
   searchTimes: number;
+  isLoading: boolean;
   openCreateAlert: () => void;
 }
 
-const SearchList = ({list, listSize, searchTimes, openCreateAlert}: PropsSearchList) => {
+const SearchList = ({list, listSize, searchTimes, isLoading, openCreateAlert}: PropsSearchList) => {
   const filters: FiltersState = useSelector((state: RootState) => state.filter);
   const dispatch = useDispatch();
   const [order, setOrder] : [string, Dispatch<string>] = useState(filters.order as string);
@@ -54,7 +56,7 @@ const SearchList = ({list, listSize, searchTimes, openCreateAlert}: PropsSearchL
               <span className='hover-animation only-desktop'>
                 <ButtonOutlined onClick={openCreateAlert} classess='create-alert-button'>
                   <Grid container justifyContent='space-between'>
-                    <img src={bellIcon}/>
+                    <img src={bellIcon} alt='criar alerta'/>
                     <div className='alert-button'>Criar alerta</div>
                   </Grid>
                 </ButtonOutlined>
@@ -72,7 +74,7 @@ const SearchList = ({list, listSize, searchTimes, openCreateAlert}: PropsSearchL
           : <></>
         }
         {
-          !listSize && searchTimes <= 1 ? 
+          !listSize && (searchTimes <= 1 || isLoading)  ? 
             <Grid container justifyContent='center' className='container empty-list'>
               <div>
                 <div className='image-area' >
@@ -87,10 +89,11 @@ const SearchList = ({list, listSize, searchTimes, openCreateAlert}: PropsSearchL
         }
 
         {
-          !listSize && searchTimes > 1 ? 
+          !listSize && searchTimes > 1 && !isLoading ? 
             <Grid container justifyContent='center' className='container empty-list'>
               <div>
                 <div className='text-area'>
+                  <img src={emptyListImage} alt='busca vazia'/>
                   <h3 className='h3-class'>Nenhum resultado foi encontrado para sua busca.</h3>
                 </div>
               </div>

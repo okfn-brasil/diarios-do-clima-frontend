@@ -310,7 +310,7 @@ const Registration = () => {
             </Grid>
           </Grid>
           <Grid item sm={5} xs={0}>
-            <img src={computerImage}/>
+            <img src={computerImage} alt='imagem - pagina de cadastro'/>
           </Grid>
         </Grid>
       </form>

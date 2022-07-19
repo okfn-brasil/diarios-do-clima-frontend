@@ -7,13 +7,15 @@ import GazettesService from '@app/services/gazettes';
 import { RootState } from '@app/stores/store';
 import ModalsCreateAlert from '@app/ui/components/createAlertModals/ModalsCreateAlert';
 import Loading from '@app/ui/components/loading/Loading';
+import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
+
+import Pagination from '@app/ui/components/pagination/Pagination';
 
 import AdvancedSearchModal from './advancedSearchModal/AdvancedSearchModal';
 import SearchField from './searchField/SearchField';
 import SearchFilters from './searchFilters/SearchFilters';
 import SearchList from './searchList/SearchList';
-import SearchPagination from './searchPagination/SearchPagination';
 
 import './Search.scss';
 
@@ -46,7 +48,6 @@ const Search = () => {
 
   const getItemsList = (isPagination = false) => {
     setLoading(true);
-
     gazettesService.getAllGazettes(filters, currPage)
       .then((response: GazetteResponse) => {
         if(isPagination) {
@@ -81,7 +82,7 @@ const Search = () => {
     const searchParams = new URLSearchParams();
     const params = parseFiltersToUrl(currFilters);
     Object.keys(params).forEach(key => searchParams.append(key, params[key] as string));
-    history.replaceState(null, '', `?${searchParams}`);
+    history.replaceState(null, '', `${urls.search.url}?${searchParams}`);
   };
 
 
@@ -106,6 +107,7 @@ const Search = () => {
           <Grid item sm={9} className='gray-area list-area'>
             <div className='search-area'>
               <SearchList
+                isLoading={isLoading}
                 openCreateAlert={() => setStateCreateAlert(true)}
                 searchTimes={searchTimes}
                 listSize={listItems.length} 
@@ -114,7 +116,7 @@ const Search = () => {
                   filters.itemsPerPage * (currPage + 1))
                 }
               />
-              <SearchPagination
+              <Pagination
                 currentPage={currPage}
                 onChangePage={onChangePage} 
                 listSize={listItems.length} 

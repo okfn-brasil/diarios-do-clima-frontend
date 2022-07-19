@@ -1,10 +1,9 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
 import { InputType } from '@app/models/forms.model';
+import TextInput from '@app/ui/components/forms/input/Input';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
-
-import TextInput from '@app/ui/components/forms/input/Input';
 
 import './passwordField.scss';
 

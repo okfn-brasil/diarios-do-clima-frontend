@@ -1,0 +1,53 @@
+@import '@app/styles/globals.scss';
+
+.my-alerts-page {
+  background-color: $lightGray3;
+
+  .h2-class {
+    color: $black;
+  }
+
+  .alerts-list {
+    padding: 56px 0;
+    min-height: calc(100vh - 200px);
+
+    .list-items {
+      padding-top: 56px;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .alerts-header {
+      padding-bottom: 56px;
+      .h3-class {
+        margin: 0 0 16px;
+      }
+
+      .paragraph-class {
+        margin: 0 0 12px;
+      }
+
+      .buttons {
+        margin-top: 16px;
+
+        button {
+          padding: 14px 20px;
+          margin-top: 16px;
+        }
+
+        .button-outlined {
+          font-size: 16px;
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+
+  .empty-list {
+    padding: 34px 0 56px;
+    img {
+      width: 100%;
+    }
+  }
+}

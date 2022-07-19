@@ -7,6 +7,7 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+    publicPath: '/',
   },
   performance: {
     hints: false,
@@ -31,7 +32,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx|ts|tsx)$/,               // USE THE babel-loader FOR THESE FILE EXTENSIONS
+        test: /\.(js|jsx|ts|tsx)$/,
         include: path.resolve(__dirname, "src"),
         use: [{
           loader: 'babel-loader',
@@ -49,11 +50,8 @@ module.exports = {
       {
         test: /\.(css|scss)$/i,
         use: [
-          // Creates `style` nodes from JS strings
           "style-loader",
-          // Translates CSS into CommonJS
           "css-loader",
-          // Compiles Sass to CSS
           "sass-loader",
         ],
       },

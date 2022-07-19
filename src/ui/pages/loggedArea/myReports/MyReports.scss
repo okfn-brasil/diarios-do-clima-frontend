@@ -1,0 +1,26 @@
+@import '@app/styles/globals.scss';
+
+.my-reports-page {
+  background-color: $lightGray3;
+  padding: 34px 0 56px;
+
+  .h2-class {
+    color: $black;
+    margin: 22px 0 40px;
+  }
+
+  .empty-list {
+    img {
+      width: 100%;
+    }
+
+    button {
+      font-size: 16px;
+      margin-top: 20px;
+
+      &.button-outlined {
+        color: $gray5;
+      }
+    }
+  }
+}

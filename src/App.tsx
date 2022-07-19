@@ -5,18 +5,17 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
-import CookieAlert from '@app/ui/components/cookieAlert/CookieAlert';
-import Footer from '@app/ui/components/footer/Footer';
-import Home from '@app/ui/pages/home/Home';
-
 import { UserResponseModel } from '@app/models/user.model';
 import AccountService, { checkPlan } from '@app/services/accounts';
 import { userUpdate } from '@app/stores/user.store';
+import CookieAlert from '@app/ui/components/cookieAlert/CookieAlert';
+import Footer from '@app/ui/components/footer/Footer';
 import Menu from '@app/ui/components/menu/Menu';
 import RouteChangeManager from '@app/ui/components/routeChangeManager/RouteChangeManager';
 import AboutPage from '@app/ui/pages/about/About';
 import BecomePro from '@app/ui/pages/becomePro/BecomePro';
 import CnpjPage from '@app/ui/pages/cnpjPage/CnpjPage';
+import Home from '@app/ui/pages/home/Home';
 import NotFound from '@app/ui/pages/notFound/NotFound';
 import Plans from '@app/ui/pages/plans/Plans';
 import Purchase from '@app/ui/pages/purchase/Purchase';
@@ -27,6 +26,9 @@ import StartSearch from '@app/ui/pages/startSearch/StartSearch';
 import TermsPage from '@app/ui/pages/terms/Terms';
 import { tokenKeys } from '@app/ui/utils/storage-utils';
 import { urls } from '@app/ui/utils/urls';
+
+import MyAlerts from './ui/pages/loggedArea/myAlerts/MyAlerts';
+import MyReports from './ui/pages/loggedArea/myReports/MyReports';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -70,8 +72,10 @@ const App = () => {
             <Route path={urls.purchase.url} element={<Purchase />} />
             <Route path={urls.plans.url} element={<Plans />} />
             <Route path={urls.search.url} element={<Search />} />
+            <Route path={urls.myReports.url} element={<MyReports />} />
+            <Route path={urls.myAlerts.url} element={<MyAlerts />} />
             <Route path={urls.cnpjs.url} element={<CnpjPage />} />
-            <Route path={urls.notFound.url} element={<NotFound />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
           <Footer />
         </Fragment>

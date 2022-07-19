@@ -1,9 +1,8 @@
 import { ChangeEvent, Dispatch, useEffect, useState } from 'react';
 import { FiltersStatePayload } from '@app/models/filters.model';
-import Modal from '@app/ui/components/modal/Modal';
-
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import TextInput from '@app/ui/components/forms/input/Input';
+import Modal from '@app/ui/components/modal/Modal';
 
 interface ModalKeyWordsProps {
   isOpen: boolean;

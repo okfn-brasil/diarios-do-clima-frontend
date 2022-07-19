@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export interface SubmitAlertForm extends AxiosRequestConfig {
   query_string: string;
@@ -8,7 +8,7 @@ export interface SubmitAlertForm extends AxiosRequestConfig {
   gov_entities?: string[];
 }
 
-export interface AlertCreatedResponse extends AxiosResponse  {
+export interface AlertModel extends AxiosResponse  {
   created_at: string;
   edited_at: string;
   email?: string;
@@ -24,5 +24,5 @@ export interface AlertsList extends AxiosResponse {
   count: number;
   next: number;
   previous: number;
-  results: []
+  results: AlertModel[];
 }

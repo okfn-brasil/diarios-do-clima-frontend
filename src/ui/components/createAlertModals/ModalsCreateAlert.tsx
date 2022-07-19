@@ -11,6 +11,7 @@ import ModalCreated from './modalCreated/ModalCreated';
 import ModalEmail from './modalEmail/ModalEmail';
 import ModalKeyWords from './modalKeyWords/ModalKeyWords';
 import ModalSetAlertSpec from './modalSetAlertSpec/ModalSetAlertSpec';
+import { initialFilters } from './utils';
 
 import './ModalsCreateAlert.scss';
 
@@ -18,10 +19,12 @@ interface ModalCreateAlertProps {
   isOpen: boolean;
   onClose: () => void;
   onOpen: () => void;
-  filters: FiltersStatePayload;
+  onCreated?: () => void;
+  filters?: FiltersStatePayload;
+  clean?: number;
 }
 
-const ModalsCreateAlert = ({isOpen, onClose, onOpen, filters}: ModalCreateAlertProps) => {
+const ModalsCreateAlert = ({isOpen, onClose, onCreated, clean, onOpen, filters = initialFilters}: ModalCreateAlertProps) => {
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const [isOpenBecomePro, setStateBecomePro] : [boolean, Dispatch<boolean>] = useState(false);
   const [isOpenFilters, setStateFilters] : [boolean, Dispatch<boolean>] = useState(false);
@@ -32,6 +35,12 @@ const ModalsCreateAlert = ({isOpen, onClose, onOpen, filters}: ModalCreateAlertP
   const [query, setQuery] : [string, Dispatch<string>] = useState('');
   const [email, setEmail] : [string, Dispatch<string>] = useState('');
   const [emptyFields, setEmptyFields] : [number, Dispatch<number>] = useState(0);
+
+  useEffect(() => {
+    setQuery('');
+    setdefinedFilters({});
+    setEmptyFields(Math.random());
+  },[clean]);
 
   useEffect(() => {
     setdefinedFilters(convertFiltersToModalFilters(filters));
@@ -107,6 +116,13 @@ const ModalsCreateAlert = ({isOpen, onClose, onOpen, filters}: ModalCreateAlertP
     setdefinedFilters({});
     setEmptyFields(Math.random());
   };
+
+  const onHasCreated = () => {
+    setStateSuccess(false);
+    if(onCreated) {
+      onCreated();
+    }
+  };
   return (
     <>
       <ModalSetAlertSpec 
@@ -126,7 +142,7 @@ const ModalsCreateAlert = ({isOpen, onClose, onOpen, filters}: ModalCreateAlertP
       <ModalKeyWords filters={filters} emptyFields={emptyFields}  isOpen={isOpenKeyWords} onBack={onBackKeyWords} onApply={onApplyKeyWords}/>
       <ModalAlertFilters filters={filters} emptyFields={emptyFields}  isOpen={isOpenFilters} onApply={onApplyFilters} onBack={onBackFilters}/>
       <ModalBecomePro isOpen={isOpenBecomePro} onClose={() => setStateBecomePro(false)}/>
-      <ModalCreated isOpen={isOpenSuccess} onCreateAnother={restart} onClose={() => setStateSuccess(false)}/>
+      <ModalCreated onCreated={onHasCreated} isOpen={isOpenSuccess} onCreateAnother={restart} onClose={() => setStateSuccess(false)}/>
     </>
   );
 };

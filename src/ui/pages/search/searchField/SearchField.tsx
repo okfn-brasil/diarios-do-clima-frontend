@@ -62,13 +62,13 @@ const SearchField = ({onClickFilters, openCreateAlert, onClickAdvenced}: PropsSe
             <Grid container justifyContent='space-between' className='buttons'>
               <ButtonGreen onClick={onClickFilters} classess='mobile-button-class'>
                 <Grid container  justifyContent='space-between'>
-                  <img src={filterIcon} className='button-icon'/>
+                  <img src={filterIcon} className='button-icon' alt='filtrar'/>
                   <div className='filter-button'>Filtrar</div>
                 </Grid>
               </ButtonGreen>
               <ButtonOutlined onClick={openCreateAlert} classess='mobile-button-class'>
                 <Grid container justifyContent='space-between'>
-                  <img src={bellIcon} className='button-icon'/>
+                  <img src={bellIcon} className='button-icon' alt='criar alerta'/>
                   <div className='alert-button'>Criar alerta</div>
                 </Grid>
               </ButtonOutlined>

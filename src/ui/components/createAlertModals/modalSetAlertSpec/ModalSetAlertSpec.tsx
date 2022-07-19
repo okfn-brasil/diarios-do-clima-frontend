@@ -4,10 +4,9 @@ import { ModalFilters } from '@app/models/filters.model';
 import { UserState } from '@app/models/user.model';
 import AlertsService from '@app/services/alerts';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
-import Modal from '@app/ui/components/modal/Modal';
-
 import InputError from '@app/ui/components/forms/inputError/inputError';
 import Loading from '@app/ui/components/loading/Loading';
+import Modal from '@app/ui/components/modal/Modal';
 
 import './ModalSetAlertSpec.scss';
 
