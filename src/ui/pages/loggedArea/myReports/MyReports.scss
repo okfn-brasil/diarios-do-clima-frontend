@@ -3,6 +3,7 @@
 .my-reports-page {
   background-color: $lightGray3;
   padding: 34px 0 56px;
+  min-height: calc(100vh - 80px - 100px);
 
   .h2-class {
     color: $black;
