@@ -88,7 +88,7 @@ const Registration = () => {
     event.preventDefault();
   };
 
-  const checkEmail = () => {
+  const checkEmail = (nextStep = true) => {
     setLoading(true);
     accountsService.getEmail(inputs.email.value).then(() => {
       setLoading(false);
@@ -100,8 +100,10 @@ const Registration = () => {
       }));
     }).catch(() => {
       setLoading(false);
-      const nextStep = step + 1;
-      setStep(nextStep);
+      if(nextStep) {
+        const nextStep = step + 1;
+        setStep(nextStep);
+      }
     });
   };
 
@@ -169,6 +171,7 @@ const Registration = () => {
             error={inputs.email.errorMessage}
             value={inputs.email.value}
             onChange={inputChange}
+            onBlur={() => checkEmail(false)}
             required={true}
             type='email'
           />

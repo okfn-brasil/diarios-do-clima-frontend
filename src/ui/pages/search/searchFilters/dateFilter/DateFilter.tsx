@@ -1,11 +1,13 @@
 
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Dates, parseUrlToFilters,SubmitDates } from '@app/models/filters.model';
 import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
 import ProFlag from '@app/ui/components/proFlag/ProFlag';
 import { datePickerTranslation } from '@app/ui/utils/datepicker.utils';
+import { urls } from '@app/ui/utils/urls';
 import { Grid, TextField} from '@mui/material';
 import { DatePicker, LocalizationProvider, PickersLocaleText } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -25,6 +27,7 @@ const initialDates: Dates = {
 };
 
 const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
+  const navigate: NavigateFunction = useNavigate();
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const [tab, setTab] : [number, Dispatch<number>] = useState(0);
   const [invalidDate, setInvalidDate] : [boolean, Dispatch<boolean>] = useState(false);
@@ -110,7 +113,7 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
             return (<div 
               className={`hover-animation ${getIfAllowsProFilter(period) ? 'disabled-box' : ''} ${currPeriod === period ? 'period-box-selected-class' : 'period-box-class'}`}
               key={period}
-              onClick={() => {getIfAllowsProFilter(period) ? {} : changePeriod(period);}}
+              onClick={() => {getIfAllowsProFilter(period) ? navigate(urls.becomePro.url) : changePeriod(period);}}
             >
               {period < 4 ? `${period}m` : 'Tudo'} 
               <ProFlag show={getIfAllowsProFilter(period)}/>
@@ -120,7 +123,7 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
       }
 
       {tab ?
-        <div className='date-pickers-container'>
+        <div className='date-pickers-container' onClick={() => !userData.plan_pro ? navigate(urls.becomePro.url) : null}>
           <Grid container justifyContent='space-between' className='date-pickers'>
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR} localeText={datePickerTranslation as Partial<PickersLocaleText<unknown>>}>
               <DatePicker

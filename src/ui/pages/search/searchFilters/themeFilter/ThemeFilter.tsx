@@ -1,7 +1,9 @@
 import { ChangeEvent, Dispatch, useState } from 'react';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Theme } from '@app/models/filters.model';
 import HelpIcon from '@app/ui/components/helpIcon/HelpIcon';
 import ProFlag from '@app/ui/components/proFlag/ProFlag';
+import { urls } from '@app/ui/utils/urls';
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 
 import './ThemeFilter.scss';
@@ -13,6 +15,7 @@ interface ThemeFilterProps {
 }
 
 const ThemeFilter = ({onChange, options, hasProPlan}: ThemeFilterProps) => {
+  const navigate: NavigateFunction = useNavigate();
   const [showMoreThemes, setShowMoreThemes] : [boolean, Dispatch<boolean>] = useState(false);
 
   const checkIfShowMore = () => {
@@ -27,7 +30,7 @@ const ThemeFilter = ({onChange, options, hasProPlan}: ThemeFilterProps) => {
 
   return (
     <>
-      <section className='section-filter-class theme-filter'>
+      <section className='section-filter-class theme-filter' onClick={() => !hasProPlan ? navigate(urls.becomePro.url) : null}>
         <h3 className='h3-class'>
             Tema <HelpIcon />
           <ProFlag spaceBottom={2} show={!hasProPlan}/>
