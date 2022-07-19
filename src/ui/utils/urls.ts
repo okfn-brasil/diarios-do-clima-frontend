@@ -11,6 +11,7 @@ export interface UrlsModel {
   search: UrlModel;
   myReports: UrlModel;
   myAlerts: UrlModel;
+  userInfo: UrlModel;
   cnpjs: UrlModel;
   notFound: UrlModel;
   [key: string]: UrlModel;
@@ -36,6 +37,7 @@ export const urls: UrlsModel = {
   search: { url: '/busca' },
   myReports: { url: '/meus-relatorios', isWhiteMenu: true },
   myAlerts: { url: '/meus-alertas', isWhiteMenu: true },
+  userInfo: { url: '/meus-dados', isWhiteMenu: true },
   cnpjs: { url: '/cnpjs/:id', isWhiteMenu: true },
   notFound: { url: '/not-found' },
 }

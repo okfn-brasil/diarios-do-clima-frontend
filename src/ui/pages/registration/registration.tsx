@@ -115,9 +115,8 @@ const Registration = () => {
           dispatch(userUpdate({
             access: response.jwt.access,
             refresh: response.jwt.refresh,
-            id: response.id,
-            full_name: response.full_name,
             plan_pro: checkPlan(response),
+            ...response
           }));
         }, 100);
       }).catch(e => {

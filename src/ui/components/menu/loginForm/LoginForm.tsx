@@ -65,9 +65,8 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
     accountService.getUserData().then(
       (response: UserResponseModel) => {
         dispatch(userUpdate({
-          id: response.id,
-          full_name: response.full_name,
           plan_pro: checkPlan(response),
+          ...response
         }));
         setLoading(false);
         closeModal();
