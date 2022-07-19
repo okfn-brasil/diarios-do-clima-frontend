@@ -1,6 +1,32 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require("webpack");
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const options = {
+  "short_name": "Diário do clima",
+  "name": "Diário do clima",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+};
 
 module.exports = {
   output: {
@@ -21,6 +47,7 @@ module.exports = {
       filename: "index.html",
       manifest: "./public/manifest.json",
     }),
+    new WebpackManifestPlugin(options),
     new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {

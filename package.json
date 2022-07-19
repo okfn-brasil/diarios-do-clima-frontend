@@ -54,7 +54,9 @@
     "typescript": "4.5.4",
     "webpack": "5.72.1",
     "webpack-cli": "4.10.0",
-    "webpack-merge": "5.8.0"
+    "webpack-manifest-plugin": "^5.0.0",
+    "webpack-merge": "5.8.0",
+    "webpack-nano": "^1.1.1"
   },
   "scripts": {
     "start": "webpack serve --open --config webpack.dev.js",
