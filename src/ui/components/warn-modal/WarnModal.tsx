@@ -2,6 +2,7 @@ import AlertIcon from '@app/assets/images/icons/alert.svg';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import Modal from '@app/ui/components/modal/Modal';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 import './WarnModal.scss';
 
@@ -19,8 +20,8 @@ const WanrModal = ({isOpen, message, onClose, onCancel}: WanrModalProps) => {
       <div>
         <img src={AlertIcon} alt='icone de alerta'/>
         <div className='paragraph-class'>{message}</div>
-        <ButtonGreen fullWidth onClick={onClose}>Ok, entendi</ButtonGreen>
-        <ButtonOutlined fullWidth onClick={onCancel}>Cancelar</ButtonOutlined>
+        <ButtonGreen fullWidth onClick={onClose}>{TEXTS.warnModal.ok}</ButtonGreen>
+        <ButtonOutlined fullWidth onClick={onCancel}>{TEXTS.warnModal.cancel}</ButtonOutlined>
       </div>
     </Modal>
   );

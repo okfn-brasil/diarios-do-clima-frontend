@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import CheckIcon from '@mui/icons-material/Check';
 import { Grid } from '@mui/material';
@@ -13,31 +14,31 @@ const BecomePro = () => {
       <Grid item container xs={0} sm={3}></Grid>
       <Grid item xs={12} sm={6}>
         <div className='h3-class'>
-          Torne-se assinante do <span className='green-h3'>Diário do Clima PRO</span>
+          {TEXTS.becomeProPage.title} <span className='green-h3'>{TEXTS.becomeProPage.titleSpan}</span>
         </div>
-        <p className='subtitle'>Ao assinar, você nos ajuda a desenvolver esse projeto sem fins lucrativos e tem acesso aos benefícios do Diário do Clima PRO</p>
-        <p className='subtitle text-space'>O seu cadastro básico inclui:</p>
+        <p className='subtitle'>{TEXTS.becomeProPage.signDescription}</p>
+        <p className='subtitle text-space'>{TEXTS.becomeProPage.basicPlanTitle}</p>
         <div className='check-group'>
           <div className='check-item'>
-            <span className='check-icon'><CheckIcon color='disabled'/></span> Acesso limitado ao conteúdo
+            <span className='check-icon'><CheckIcon color='disabled'/></span> {TEXTS.becomeProPage.basicItem}
           </div>
         </div>
         <hr className='check-group thin-line'/>
         <div className='check-group'>
-          <p className='subtitle'>A assinatura PRO inclui:</p>
+          <p className='subtitle'>{TEXTS.becomeProPage.proPlanTitle}</p>
           <div className='check-item'>
-            <span className='check-icon'><CheckIcon className='green-icon'/></span> Visualização de resultados de todo o histórico disponível no banco de dados
+            <span className='check-icon'><CheckIcon className='green-icon'/></span> {TEXTS.becomeProPage.proItem1}
           </div>
           <div className='check-item'>
-            <span className='check-icon'><CheckIcon className='green-icon'/></span> Filtro de busca por temas inteligentes
+            <span className='check-icon'><CheckIcon className='green-icon'/></span> {TEXTS.becomeProPage.proItem2}
           </div>
           <div className='check-item'>
-            <span className='check-icon'><CheckIcon className='green-icon'/></span> Criação de alertas com filtros e palavras-chaves personalizadas
+            <span className='check-icon'><CheckIcon className='green-icon'/></span> {TEXTS.becomeProPage.proItem3}
           </div>
         </div>
         <div className='button-area'>
-          <Link to={urls.purchase.url}><ButtonGreen classess='card-button'>Quero assinar</ButtonGreen></Link>
-          <Link to={urls.startSearch.url}><ButtonOutlined classess='card-button button-gray'>Continuar sem assinatura</ButtonOutlined></Link>
+          <Link to={urls.purchase.url}><ButtonGreen classess='card-button'>{TEXTS.becomeProPage.signUp}</ButtonGreen></Link>
+          <Link to={urls.startSearch.url}><ButtonOutlined classess='card-button button-gray'>{TEXTS.becomeProPage.continue}</ButtonOutlined></Link>
         </div>
       </Grid>
     </Grid>

@@ -8,6 +8,7 @@ import ThemeLead from '@app/assets/images/home/weoffer.theme.svg';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import HyperLink from '@app/ui/components/hyperLink/HyperLink';
 import LinkManager from '@app/ui/components/linkManager/LinkManager';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Box, Grid } from '@mui/material';
 
@@ -70,32 +71,30 @@ const WeOffer = () => {
       <Grid item container xs={10} className='vertical-spacing-container'>
         <Grid item container xs={12} justifyContent='center'>
           <h3 className='h3-class-sx-margin'>
-            O que oferecemos no <span className='green-h3'>Diário do Clima PRO</span>
+            {TEXTS.home.weOffer.titleA} <span className='green-h3'>{TEXTS.home.weOffer.titleB}</span>
           </h3>
         </Grid>
         <Grid item container xs={12}>
           <Grid item container xs={12} md={3} justifyContent='space-between'>
-            <Option id={1} onClick={() => setSelectedId(1)} icon={HistoryLogo} label='HISTÓRICO' selectedId={selectedId} />
-            <Option id={2} onClick={() => setSelectedId(2)} icon={ThemeLogo} label='TEMAS' selectedId={selectedId} />
-            <Option id={3} onClick={() => setSelectedId(3)} icon={AlertsLogo} label='ALERTAS' selectedId={selectedId} />
+            <Option id={1} onClick={() => setSelectedId(1)} icon={HistoryLogo} label={TEXTS.home.weOffer.option.history} selectedId={selectedId} />
+            <Option id={2} onClick={() => setSelectedId(2)} icon={ThemeLogo} label={TEXTS.home.weOffer.option.theme} selectedId={selectedId} />
+            <Option id={3} onClick={() => setSelectedId(3)} icon={AlertsLogo} label={TEXTS.home.weOffer.option.alerts} selectedId={selectedId} />
           </Grid>
           <Grid item container justifyContent='center' xs={12} md={5}>
             <img src={getLeadImage(selectedId)} className='central-img' alt='visual representation of option'/>
           </Grid>
           <Grid item xs={12} md={4} className='call-to-action'>
-            <h3 className='h3-class'>Acesse todo o histórico de resultados</h3>
-            <p className='paragraph-class'>
-              Veja tudo o que já foi publicado, além dos três últimos meses, sobre políticas públicas ambientais</p>
+            <h3 className='h3-class'>{TEXTS.home.weOffer.subtitle}</h3>
+            <p className='paragraph-class'>{TEXTS.home.weOffer.text}</p>
             <div>
-              
               <LinkManager to={urls.purchase.url}>
                 <ButtonGreen classess='call-to-action-button'>
-                  Teste grátis por 7 dias
+                  {TEXTS.home.weOffer.buttonTrial}
                 </ButtonGreen>
               </LinkManager>
             </div>
             <HyperLink link={urls.purchase.url}>
-              Saiba mais sobre a assinatura
+              {TEXTS.home.weOffer.linkAboutSubscription}
             </HyperLink>
           </Grid>
         </Grid>

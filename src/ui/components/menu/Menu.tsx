@@ -5,6 +5,7 @@ import DiarioLogo from '@app/assets/images/logo.svg';
 import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
 import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { UrlModel, urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
@@ -31,7 +32,7 @@ const Menu = () => {
 
   const {isWhiteMenu, hideLinks, customColor} = Object.keys(urls).map(key => {
     const item = urls[key] as UrlModel;
-    if(item.url === location.pathname) {
+    if(item.url === location.pathname || (item.url.includes('cnpjs') && location.pathname.includes('cnpjs') )) {
       return item;
     }
   }).filter(item => !!item)[0] || {} as UrlModel;
@@ -63,7 +64,7 @@ const Menu = () => {
           alignItems='center'
           xs={12} sm={10}
         >
-          <Link to='/'><img src={isWhiteMenu ? DiarioLogoBlack : DiarioLogo} alt='Logo do Diario do Clima' /></Link>
+          <Link to='/'><img src={isWhiteMenu ? DiarioLogoBlack : DiarioLogo} alt={TEXTS.menu.logoImageAlt} /></Link>
           <div>
             <div className='only-desktop'><MenuDesktop showLoginForm={showLoginForm} isWhite={isWhiteMenu  as boolean} /> </div>
             <div className='only-mobile'><MenuMobile showLoginForm={showLoginForm} isWhite={isWhiteMenu as boolean} /></div>

@@ -1,3 +1,5 @@
+import { TEXTS } from '@app/ui/utils/portal-texts';
+
 import './SubmitForm.scss';
 
 interface PropsSubmitForm{
@@ -11,7 +13,7 @@ const SubmitForm = ({ label, disabled, classess }: PropsSubmitForm) => {
     <input 
       className={`submit-form base-button hover-animation ${classess}`}
       disabled={disabled} 
-      value={label || 'Continuar'} 
+      value={label || TEXTS.defaultSubmitText} 
       type='submit'
     />
   );

@@ -7,6 +7,7 @@ import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutli
 import ModalsCreateAlert from '@app/ui/components/createAlertModals/ModalsCreateAlert';
 import Loading from '@app/ui/components/loading/Loading';
 import Pagination from '@app/ui/components/pagination/Pagination';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { Grid } from '@mui/material';
 
 import AlertItem from './alertItem/AlertItem';
@@ -113,7 +114,7 @@ const MyAlerts = () => {
       getAlerts(page, {isDeletion : true});
     }).catch(() => {
       setLoading(false);
-      setDeleteError('Ocorreu um erro ao tentar deletar este alerta, por favor, tente novamente.');
+      setDeleteError(TEXTS.myAlerts.errorMessage);
     });
   };
 
@@ -136,12 +137,12 @@ const MyAlerts = () => {
       {alerts && Object.keys(alerts).filter(index => !!alerts[parseInt(index)].length).length ?
         <Grid sm={8} xs={12} item container className='alerts-list' justifyContent='center'>
           <Grid item lg={7} sm={12} className='alerts-header'>
-            <h3 className='h3-class'>Esses são seus alertas para encontrar novas políticas ambientais</h3>
-            <p className='paragraph-class'>Atualize ou adicione novas preferências de imóveis em <b>Criar novo alerta</b>.</p>
-            <p className='paragraph-class'>Defina onde prefere receber notificações em <b>Editar e-mail</b>.</p>
+            <h3 className='h3-class'>{TEXTS.myAlerts.title}</h3>
+            <p className='paragraph-class'>{TEXTS.myAlerts.text1A} <b>{TEXTS.myAlerts.text1B}a</b>.</p>
+            <p className='paragraph-class'>{TEXTS.myAlerts.text2A} <b>{TEXTS.myAlerts.text2B}</b>.</p>
             <div className='buttons'>
-              <ButtonGreen onClick={openCreateAlert}>Criar novo alerta</ButtonGreen>
-              <ButtonOutlined>Editar e-mail</ButtonOutlined>
+              <ButtonGreen onClick={openCreateAlert}>{TEXTS.myAlerts.createAlert}</ButtonGreen>
+              <ButtonOutlined>{TEXTS.myAlerts.editEmail}</ButtonOutlined>
             </div>
           </Grid>
           <div className='list-items'>
@@ -151,10 +152,10 @@ const MyAlerts = () => {
         </Grid>
         :
         <Grid className='empty-list' item sm={4} xs={12}>
-          <h2 className='h2-class font-sora'>Alertas salvos</h2>
+          <h2 className='h2-class font-sora'>{TEXTS.myAlerts.alerts}</h2>
           <img src={emptyListImage} alt='Lista vazia' />
-          { !isLoading ? <div className='paragraph-class'>Você ainda não possui nenhum alerta</div> : <></> }
-          <ButtonGreen onClick={openCreateAlert} fullWidth>Criar alerta</ButtonGreen>
+          { !isLoading ? <div className='paragraph-class'>{TEXTS.myAlerts.emptyList}</div> : <></> }
+          <ButtonGreen onClick={openCreateAlert} fullWidth>{TEXTS.myAlerts.emptyButtonCreate}</ButtonGreen>
         </Grid>
       }
     </Grid>

@@ -11,7 +11,7 @@ import PasswordField from '@app/ui/components/forms/passwordField/passwordField'
 import SelectInput from '@app/ui/components/forms/select/Select';
 import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
 import Loading from '@app/ui/components/loading/Loading';
-import { portalTexts } from '@app/ui/utils/portal-texts';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid} from '@mui/material';
 
@@ -222,7 +222,7 @@ const Registration = () => {
         <div>
           <SelectInput 
             classes='select-area-class first-input' 
-            options={portalTexts.stateList.map(state => {return { value: state, label: state };})}
+            options={TEXTS.stateList.map(state => {return { value: state, label: state };})}
             label='Estado' 
             value={inputs.state.value} 
             name='state' 

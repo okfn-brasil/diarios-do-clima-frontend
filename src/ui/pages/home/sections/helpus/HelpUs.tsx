@@ -1,6 +1,7 @@
 import ButtonSolidDarkBlue from '@app/ui/components/button/buttonDarkBlue/ButtonDarkBlue';
 import ButtonSolidGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import LinkManager from '@app/ui/components/linkManager/LinkManager';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
@@ -11,20 +12,20 @@ const HelpUs = () => {
     <Grid item container xs={12}
       justifyContent='center' className='vertical-spacing-container help-us'>
       <Grid className='textContainer' item xs={10} md={8}>
-        <h3 className='h3-class-sx-margin help-us-title'>Ajude o diário do clima a crescer e receba benefícios</h3>
-        <p className='paragraph-class'>Tenha em mãos todas as informações que você e sua equipe precisam sobre políticas públicas ambientais</p>
+        <h3 className='h3-class-sx-margin help-us-title'>{TEXTS.home.helpUs.title}</h3>
+        <p className='paragraph-class'>{TEXTS.home.helpUs.subtitle}</p>
       </Grid>
 
       <Grid item xs={10} md={8} className='buttons'>
         <LinkManager to={urls.purchase.url}>
           <ButtonSolidGreen classess='button'>
-            Quero apoiar assinando
+            {TEXTS.home.helpUs.buttonSubscribe}
           </ButtonSolidGreen>
         </LinkManager>
 
         <LinkManager to={urls.registration.url}>
           <ButtonSolidDarkBlue classess='button'>
-            Começar a buscar grátis
+            {TEXTS.home.helpUs.buttonStart}
           </ButtonSolidDarkBlue>
         </LinkManager>
       </Grid>

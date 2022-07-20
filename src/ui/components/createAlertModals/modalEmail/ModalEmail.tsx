@@ -3,6 +3,7 @@ import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import TextInput from '@app/ui/components/forms/input/Input';
 import InputError from '@app/ui/components/forms/inputError/inputError';
 import Modal from '@app/ui/components/modal/Modal';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 import './ModalEmail.scss';
 
@@ -43,18 +44,18 @@ const ModalEmail = ({isOpen, userEmail, onBack, onApply}: ModalEmailProps) => {
     <>
       <Modal isOpen={isOpen} title={'Editar filtros do alerta'} onBack={onBack} className='create-alert'>
         <div className='modal-email' onKeyUp={keyUp}>
-          <div className='paragraph-class'>Edite o e-mail para recebimento dos novos alertas.</div>
-          <div className='paragraph-class'>O seu e-mail de cadastro continuará sendo <b>{userEmail}</b></div>
+          <div className='paragraph-class'>{TEXTS.editEmail.title}</div>
+          <div className='paragraph-class'>{TEXTS.editEmail.subtitle} <b>{userEmail}</b></div>
           <TextInput 
             value={email}
             required
             type='email'
             onChange={inputChange}
             name='email'
-            label='E-mail'
+            label={TEXTS.editEmail.inputLabel}
           />
           <InputError >{ hasError ? 'O e-mail inserido é invalido' : ''}</InputError>
-          <ButtonGreen disabled={hasError || !email} classess='button-apply-email' fullWidth onClick={apply}>Salvar e-mail de alerta</ButtonGreen>
+          <ButtonGreen disabled={hasError || !email} classess='button-apply-email' fullWidth onClick={apply}>{TEXTS.editEmail.subtitle}</ButtonGreen>
         </div>
       </Modal>
     </>

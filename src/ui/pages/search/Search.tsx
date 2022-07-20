@@ -74,7 +74,7 @@ const Search = () => {
 
   const onChangePage = (page: number) => {
     setPage(page);
-    //getItemsList(true); // TO DO
+    //getItemsList(true); // TO DO PAGINAÇÃO
   };
 
   const setUrlParams = (currFilters: FiltersState) => {

@@ -5,6 +5,7 @@ import Modal from '@app/ui/components/modal/Modal';
 import EntityFilter from '@app/ui/pages/search/searchFilters/entityFilter/EntityFilter';
 import LocationFilter from '@app/ui/pages/search/searchFilters/locationFilter/LocationFilter';
 import ThemeFilter from '@app/ui/pages/search/searchFilters/themeFilter/ThemeFilter';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { SelectChangeEvent } from '@mui/material';
 
 import { initialFilters } from '../utils';
@@ -61,7 +62,7 @@ const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: Moda
         
           <EntityFilter onChange={inputChange} value={currFilters.ente as string}/>
 
-          <ButtonGreen classess='modal-filter-apply' fullWidth onClick={apply}>Aplicar Filtro</ButtonGreen>
+          <ButtonGreen classess='modal-filter-apply' fullWidth onClick={apply}>{TEXTS.filters.applyFilters}</ButtonGreen>
         </div>
       </div>
     </Modal>

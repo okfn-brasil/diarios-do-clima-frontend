@@ -4,6 +4,7 @@ import searchImage from '@app/assets/images/startSearch/start-search.jpg';
 import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
@@ -20,16 +21,13 @@ const StartSearch = () => {
           <img src={searchImage} alt='começe a buscar'/>
         </div>
         <div className='text-area'>
-          <p className='h3-class'>Vamos começar a buscar!</p>
+          <p className='h3-class'>{TEXTS.startSearchPage.title}</p>
           <p className='paragraph-class'>
-            { userData && userData.plan_pro ? 
-              'Pronto, agora você pode utilizar todos as funcionalidades disponíveis no nosso plano PRO' :
-              'Pronto, agora você já pode utilizar o Diário do Clima para encontrar uma política ambiental'
-            }
+            {userData && userData.plan_pro ? TEXTS.startSearchPage.proText : TEXTS.startSearchPage.basicText}
           </p>
         </div>
         <div className='button-area'>
-          <Link to={urls.search.url}><ButtonGreen>Começar a buscar</ButtonGreen></Link>
+          <Link to={urls.search.url}><ButtonGreen>{TEXTS.startSearchPage.start}</ButtonGreen></Link>
         </div>
       </Grid>
     </Grid>

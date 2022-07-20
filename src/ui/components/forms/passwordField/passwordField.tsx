@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
 import { InputType } from '@app/models/forms.model';
 import TextInput from '@app/ui/components/forms/input/Input';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -71,19 +72,19 @@ const PasswordField = ({ classess, value, name, errorMessage, onChange }: PropsP
       <div className='validation'>
         <div className='validator'>
           <div className='icon'>{fieldValidation.minLength ? <CheckIcon color='success'/> : <CloseIcon color='error'/>}</div>
-          Ter 8 ou mais caracteres
+          {TEXTS.passwordValidation.eightChars}
         </div>
         <div className='validator'>
           <div className='icon'>{fieldValidation.lettersAndNumbers ? <CheckIcon color='success'/> : <CloseIcon color='error'/>}</div>
-          Conter letras e números
+          {TEXTS.passwordValidation.lettersAndNumbers}
         </div>
         <div className='validator'>
           <div className='icon'>{fieldValidation.specials ? <CheckIcon color='success'/> : <CloseIcon color='error'/>}</div>
-          Conter caracteres especiais (*,!.&%$#@)
+          {TEXTS.passwordValidation.specialChars}
         </div>
         <div className='validator'>
           <div className='icon'>{fieldValidation.uppercase ? <CheckIcon color='success'/> : <CloseIcon color='error'/>}</div>
-          Conter uma letra maiúscula
+          {TEXTS.passwordValidation.uppercaseChar}
         </div>
       </div>
     </>

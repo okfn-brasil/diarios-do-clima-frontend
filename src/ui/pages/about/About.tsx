@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import desktopBanner from '@app/assets/images/about/about-desktop.png';
 import mobileBanner from '@app/assets/images/about/about-mobile.png';
 import ButtonSolidGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
@@ -41,13 +42,13 @@ const AboutPage = () => {
         <Grid container item sm={8}>
           <div className='vertical-spacing-container about-header'>
             <div className='green-title'>
-                SOBRE O DIÁRIO DO CLIMA
+              {TEXTS.aboutPage.title}
             </div>
             <div className='h2-class'>
-                Nós estamos aqui para promover transparência
+              {TEXTS.aboutPage.subTitle}
             </div>
             <p className='paragraph-class '>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.
+              {TEXTS.aboutPage.description}
             </p>
           </div>
         </Grid>
@@ -58,15 +59,15 @@ const AboutPage = () => {
       </Grid>
       <Grid container item sm={12} className='container were-started' justifyContent='center'>
         <Grid item sm={8}>
-          <div className='subtitle'>Foto por USGS no Unsplash</div>
+          <div className='subtitle'>{TEXTS.aboutPage.photoLegend}</div>
           <div className='spacing-top'>
-            <h3 className='h3-class'>Onde tudo começou</h3>
-            <p className='paragraph-class'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.</p>
-            <p className='paragraph-class'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.</p>
+            <h3 className='h3-class'>{TEXTS.aboutPage.whereStarted}</h3>
+            <p className='paragraph-class'>{TEXTS.aboutPage.p1}</p>
+            <p className='paragraph-class'>{TEXTS.aboutPage.p2}</p>
           </div>
 
           <div className='vertical-spacing-container'>
-            <h2 className='h2-class dark-text'>Nosso propósito é facilitar o acesso a dados sobre o clima para proteger o meio ambiente</h2>
+            <h2 className='h2-class dark-text'>{TEXTS.aboutPage.objective}</h2>
           </div>
         </Grid>
       </Grid>
@@ -74,11 +75,11 @@ const AboutPage = () => {
         
       <Grid container item sm={12} className='vertical-spacing-container gray-area' justifyContent='center'>
         <Grid item sm={8} className='container'>
-          <h3 className='h3-class-sx-margin'>Contamos com seu apoio!</h3>
-          <p className='paragraph-class'>Você pode se tornar um assinante. Assim, você recebe os benefícios de ser PRO e ainda ajuda o Diário do Clima a abrir os dados de novas cidades e desenvolver novas ferramentas!</p>
+          <h3 className='h3-class-sx-margin'>{TEXTS.aboutPage.support}</h3>
+          <p className='paragraph-class'>{TEXTS.aboutPage.becomePro}</p>
           <Link to={urls.purchase.url}>
             <ButtonSolidGreen  >
-                Quero assinar
+              {TEXTS.aboutPage.signUp}
             </ButtonSolidGreen>
           </Link>
         </Grid>
@@ -87,13 +88,13 @@ const AboutPage = () => {
         
       <Grid container item sm={12} justifyContent='center' className='vertical-spacing-container'>
         <Grid className='container partners' item sm={10}>
-          <h3 className='h3-class'>Quem está por trás disso</h3>
+          <h3 className='h3-class'>{TEXTS.aboutPage.partnersTitle}</h3>
           <Grid container className='partners-list'>
             {partners.map(partner => {
               return (
                 <div key={partner.logo} className='partner-box'>
                   <div className='partner-logo'>{partner.logo}</div>
-                  <a className='blue-link' href={partner.link}>Acessar o site</a>
+                  <a className='blue-link' href={partner.link}>{TEXTS.aboutPage.accessSite}</a>
                 </div>
               );
             })}

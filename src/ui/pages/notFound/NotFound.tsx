@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import ImageNotFound from '@app/assets/images/computer-registration.svg';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
@@ -13,13 +14,13 @@ const NotFound = () => {
         <Grid container item sm={8}>
           <div className='vertical-spacing-container'>
             <div className='green-title'>
-              404 - Página não encontrada
+              {TEXTS.notFound.title}
             </div>
             <div className='h2-class'>
-              A página que você tentou acessar não existe.
+              {TEXTS.notFound.subTitle}
             </div>
             <p className='paragraph-class'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.
+              {TEXTS.notFound.text}
             </p>
           </div>
         </Grid>
@@ -30,7 +31,7 @@ const NotFound = () => {
             <img src={ImageNotFound} alt='imagem - pagina não encontrada'/>
           </Grid>
           <Grid item sm={7}>
-            <div className='h3-class'>Links úteis:</div>
+            <div className='h3-class'>{TEXTS.notFound.links}</div>
             <div className='links-utils'>
               <div className='hover-animation'><Link to={urls.search.url}>Busque diários </Link></div>
               <div className='hover-animation'><Link to={urls.registration.url}>Criar uma conta</Link></div>

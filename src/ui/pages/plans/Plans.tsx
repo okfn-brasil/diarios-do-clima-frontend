@@ -3,6 +3,7 @@ import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import HyperLink from '@app/ui/components/hyperLink/HyperLink';
 import LinkManager from '@app/ui/components/linkManager/LinkManager';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import CheckIcon from '@mui/icons-material/Check';
 import { Grid } from '@mui/material';
@@ -18,21 +19,21 @@ const Plans = () => {
         <Grid container item sm={8} >
           <div className='vertical-spacing-container plan-header'>
             <div className='green-title'>
-              Diário do Clima PRO
+              {TEXTS.plansPage.title}
             </div>
             <h2 className='h2-class'>
-              Acesse todos os benefícios e nos ajude a crescer
+              {TEXTS.plansPage.subtitle}
             </h2>
             <LinkManager to={urls.purchase.url}>
               <ButtonGreen>
-                Iniciar teste grátis
+                {TEXTS.plansPage.startTest}
               </ButtonGreen>
             </LinkManager>
             <p className='paragraph-class sub-title'>
-              Teste sem custos por 7 dias • Depois, R$00,00/mês
+              {TEXTS.plansPage.testCost}
             </p>
             <p className='paragraph-class'>
-              Enviaremos um lembrete 2 dias antes do período de teste terminar e você pode cancelar a qualquer momento
+              {TEXTS.plansPage.testWarn}
             </p>
           </div>
         </Grid>

@@ -6,7 +6,7 @@ export default class GazettesService {
   currentUrl = '/querido_diario/'
 
   getAllGazettes(filters: FiltersState, currPage: number) {
-    const newFilters = {}//{...filters, page: currPage}; TO DO
+    const newFilters = {}//{...filters, page: currPage}; TO DO FILTROS
     return api.get(this.currentUrl + 'gazettes/', newFilters).then((response) => response as GazetteResponse);
   }
 

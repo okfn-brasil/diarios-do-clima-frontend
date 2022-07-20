@@ -10,7 +10,7 @@ import SelectInput from '@app/ui/components/forms/select/Select';
 import Loading from '@app/ui/components/loading/Loading';
 import WarnModal from '@app/ui/components/warn-modal/WarnModal';
 import { removeSpecialChars } from '@app/ui/utils/functions.utils';
-import { portalTexts } from '@app/ui/utils/portal-texts';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
@@ -290,7 +290,7 @@ const PurchaseForm = () => {
 
                 <SelectInput 
                   classes='half-width state-select' 
-                  options={portalTexts.stateList.map(state => {return {value: state, label: state};})} 
+                  options={TEXTS.stateList.map(state => {return {value: state, label: state};})} 
                   label='Estado' 
                   value={inputs.state.value} 
                   name='state' 

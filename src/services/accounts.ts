@@ -26,6 +26,8 @@ export default class AccountService {
   getEmail(email: string) {
     return api.get(this.currentUrl + `email/${email}/`).then((response) => response);
   }
+
+  // TO DO GET E PUT email de alerts
 }
 
 export const checkPlan = (userData: UserResponseModel | RegistrationResponse) => {

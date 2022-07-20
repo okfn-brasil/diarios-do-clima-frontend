@@ -10,6 +10,7 @@ import LoginService from '@app/services/login';
 import { userUpdate } from '@app/stores/user.store';
 import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
 import Loading from '@app/ui/components/loading/Loading';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import CloseIcon from '@mui/icons-material/Close';
 import { Grid, Input } from '@mui/material';
@@ -88,35 +89,35 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
           <div>
             <img className='logo' src={DiarioLogoBlack}/>
           </div>
-          <p className='h3-class'>Acesse sua conta</p>
-          <p className='paragraph-class'>Lorem ipsum sit amet consectetur</p>
+          <p className='h3-class'>{TEXTS.loginForm.title}</p>
+          <p className='paragraph-class'>{TEXTS.loginForm.subTitle}</p>
 
           <form onSubmit={handleSubmit}>
-            <Input required type='email' value={inputs.email} className='input-class' name='email' onChange={inputChange} placeholder='E-mail' />
+            <Input required type='email' value={inputs.email} className='input-class' name='email' onChange={inputChange} placeholder={TEXTS.loginForm.inputEmail} />
             
             <div className='password-field'>
               <img className={'hover-animation ' + (passFieldType ? 'low-opacity' : '')} src={ShowPassIcon} onClick={changeFieldType} />
-              <Input required type={passFieldType ? 'password' : 'text'} value={inputs.password} className='input-class' name='password' onChange={inputChange} placeholder='Senha' />
+              <Input required type={passFieldType ? 'password' : 'text'} value={inputs.password} className='input-class' name='password' onChange={inputChange} placeholder={TEXTS.loginForm.inputPassword} />
             </div>
             
             <div className='submit-login'>
-              <SubmitForm  disabled={isLoading} />
+              <SubmitForm  disabled={isLoading} label={TEXTS.loginForm.submit} />
             </div>
           </form>
 
           {error ? 
             <div className='error'>
-              Ocorreu um erro ao tentar logar em sua conta, por favor, verifique os dados e tente novamente.
+              {TEXTS.loginForm.errorMessage}
             </div> 
             : <></>
           }
 
           <div>
             <div className='registration-link'>
-              Não possui uma conta?
+              {TEXTS.loginForm.doesntHaveAccount}
               <Link to={urls.registration.url} onClick={closeModal} className='hover-animation'>
                 <span className='blue-link'>
-                  Faça o cadastro
+                  {TEXTS.loginForm.register}
                 </span>
               </Link>
             </div> 
