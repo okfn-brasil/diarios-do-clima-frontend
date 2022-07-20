@@ -9,12 +9,12 @@ import { updateFilters } from '@app/stores/filters.store';
 import { RootState } from '@app/stores/store';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import SelectInput from '@app/ui/components/forms/select/Select';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { Grid, SelectChangeEvent } from '@mui/material';
 
 import SearchItem from './searchItem/SearchItem';
 
 import './SearchList.scss';
-import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface PropsSearchList {
   list?: GazetteModel[];

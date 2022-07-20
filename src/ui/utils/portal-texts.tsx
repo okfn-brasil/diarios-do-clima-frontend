@@ -1,4 +1,4 @@
-import { urls } from "./urls";
+import { urls } from './urls';
 
 export const TEXTS = {
   defaultSubmitText: 'Continuar',

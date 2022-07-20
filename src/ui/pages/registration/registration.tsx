@@ -125,7 +125,7 @@ const Registration = () => {
       const errorKey = e ? Object.keys(e)[0] : '';
       setSubmitError(
         <span>
-            {TEXTS.registration.error.errorMessage}
+          {TEXTS.registration.error.errorMessage}
           { e? <><br/><br/>{TEXTS.registration.error.reason} {e[errorKey]}</> : <></> }
           <br/><a className='hover-animation error-link' onClick={resetForm}>{TEXTS.registration.error.tryAgain}</a>
         </span>);
@@ -298,7 +298,7 @@ const Registration = () => {
                 <div>
                   {step === 1 ? 
                     <div  className='has-account'>
-                        {TEXTS.registration.haveAccount}
+                      {TEXTS.registration.haveAccount}
                       <a href='/?login=open' className='hover-animation'>
                         <span className='blue-link login-link'>
                           {TEXTS.registration.login}

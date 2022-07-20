@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import SelectInput from '@app/ui/components/forms/select/Select';
 import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { Grid, SelectChangeEvent } from '@mui/material';
 
 import './Simulation.scss';
-import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface SimulationModel {
   criterio1: string;

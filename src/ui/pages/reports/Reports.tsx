@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import badge from '@app/assets/images/icons/badge.svg';
 import homeWork from '@app/assets/images/icons/home_work.svg';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { Grid } from '@mui/material';
 
 import SimulationForm from './simulation/Simulation';
 
 import './Reports.scss';
-import { TEXTS } from '@app/ui/utils/portal-texts';
 
 const ReportsPage = () => {
   return (

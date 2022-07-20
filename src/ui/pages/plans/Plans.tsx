@@ -1,4 +1,7 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { UserState } from '@app/models/user.model';
+import { RootState } from '@app/stores/store';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import HyperLink from '@app/ui/components/hyperLink/HyperLink';
@@ -11,9 +14,6 @@ import { Grid } from '@mui/material';
 import FAQItem from './FaqItem/FaqItem';
 
 import './Plans.scss';
-import { UserState } from '@app/models/user.model';
-import { useSelector } from 'react-redux';
-import { RootState } from '@app/stores/store';
 
 const Plans = () => {
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
@@ -163,11 +163,11 @@ const Plans = () => {
         <Grid item sm={8} className='container'>
           <h2 className='h2-class faq-title'>{TEXTS.plansPage.faq}</h2>
           <div>
-          {TEXTS.plansPage.faqItems.map(faqItem => 
-            <FAQItem title={faqItem.title}>
+            {TEXTS.plansPage.faqItems.map(faqItem => 
+              <FAQItem title={faqItem.title}>
                 {faqItem.text}
-            </FAQItem>
-          )}
+              </FAQItem>
+            )}
           </div>
         </Grid>
       </Grid>

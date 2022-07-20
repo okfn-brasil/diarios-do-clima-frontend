@@ -7,10 +7,10 @@ import { parseUrlToFilters } from '@app/models/filters.model';
 import { updateFilters } from '@app/stores/filters.store';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { Grid } from '@mui/material';
 
 import './SearchField.scss';
-import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface PropsSearchField {
   onClickFilters: () => void;

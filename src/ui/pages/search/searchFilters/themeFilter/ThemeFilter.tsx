@@ -3,11 +3,11 @@ import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Theme } from '@app/models/filters.model';
 import HelpIcon from '@app/ui/components/helpIcon/HelpIcon';
 import ProFlag from '@app/ui/components/proFlag/ProFlag';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 
 import './ThemeFilter.scss';
-import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface ThemeFilterProps {
   options: Theme;
@@ -33,7 +33,7 @@ const ThemeFilter = ({onChange, options, hasProPlan}: ThemeFilterProps) => {
     <>
       <section className='section-filter-class theme-filter' onClick={() => !hasProPlan ? navigate(urls.becomePro.url) : null}>
         <h3 className='h3-class'>
-            {TEXTS.searchPage.filters.themeTitle} <HelpIcon />
+          {TEXTS.searchPage.filters.themeTitle} <HelpIcon />
           <ProFlag spaceBottom={2} show={!hasProPlan}/>
         </h3>
         <p>{TEXTS.searchPage.filters.themeSubtitle}</p>

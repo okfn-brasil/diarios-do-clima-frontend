@@ -7,6 +7,7 @@ import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
 import ProFlag from '@app/ui/components/proFlag/ProFlag';
 import { datePickerTranslation } from '@app/ui/utils/datepicker.utils';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid, TextField} from '@mui/material';
 import { DatePicker, LocalizationProvider, PickersLocaleText } from '@mui/x-date-pickers';
@@ -14,7 +15,6 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { ptBR } from 'date-fns/locale';
 
 import './DateFilter.scss';
-import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface PropsDateFilter {
   onSubmit: (e: SubmitDates) => void;

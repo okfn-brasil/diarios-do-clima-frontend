@@ -1,8 +1,8 @@
 import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { Grid } from '@mui/material';
 
 import './PurchaseDetails.scss';
-import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface PropsPurchaseDetails {
   isLoading: boolean;

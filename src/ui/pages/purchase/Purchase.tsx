@@ -1,9 +1,9 @@
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { Grid } from '@mui/material';
 
 import PurchaseForm from './purchaseForm/PurchaseForm';
 
 import './Purchase.scss';
-import { TEXTS } from '@app/ui/utils/portal-texts';
 
 const Purchase = () => {
   return (

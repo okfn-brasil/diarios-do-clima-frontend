@@ -1,8 +1,8 @@
 import React from 'react';
 import Modal from '@app/ui/components/modal/Modal';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 import './AdvancedSearchModal.scss';
-import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface AdvancedSearchModalProps {
   isOpen: boolean;
