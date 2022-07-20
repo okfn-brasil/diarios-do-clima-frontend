@@ -1,6 +1,20 @@
 export const TEXTS = {
+  defaultSubmitText: 'Continuar',
+  stateList: [
+    'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF'
+  ],
   cookieAlert: {
     text: 'Nós utilizamos cookies essenciais para o site funcionar e alguns adicionais para entender como você utiliza o Diário do Clima. Mais detalhes nos Termos.'
+  },
+  passwordValidation: {
+    eightChars: 'Ter 8 ou mais caracteres',
+    lettersAndNumbers: 'Conter letras e números',
+    specialChars: 'Conter caracteres especiais (*,!.&%$#@)',
+    uppercaseChar: 'Conter uma letra maiúscula',
+  },
+  warnModal: {
+    cancel: 'Cancelar',
+    ok: 'Ok, entendi',
   },
   menu: {
     logoImageAlt: 'Logo do Diario do Clima',
@@ -34,6 +48,48 @@ export const TEXTS = {
     inputEmail: 'E-mail',
     inputPassword: 'Senha',
     submit: 'Continuar',
+  },
+  filters: {
+    applyFilters: 'Aplicar Filtro',
+  },
+  becomeProModal: {
+    title: 'Faça upgrade para Profissional',
+    subtitle: 'Para acessar todas as funcionalidades disponíveis no Diário do Clima, faça um teste grátis por 7 dias.',
+    cancel: 'Cancelar',
+    startTest: 'Começar período grátis',
+    knowMore: 'Saiba mais sobre a assinatura',
+  },
+  alertCreatedModal: {
+    title: 'Pronto! Agora é só aguardar',
+    subtitle: 'Já estamos de olho nos diários oficiais  e enviaremos qualquer novidade baseado nos seus filtros',
+    createAnother: 'Criar outro alerta',
+    continue: 'Continuar',
+    cotinueSearch: 'Continuar buscando'
+  },
+  editEmail: {
+    title: 'Edite o e-mail para recebimento dos novos alertas.',
+    subtitle: 'O seu e-mail de cadastro continuará sendo',
+    submit: 'Salvar e-mail de alerta',
+    inputLabel: 'E-mail',
+  },
+  modalQuery: {
+    title: 'Cadastre as palavras-chave do seu alerta e enviaremos as novidades que tiverem os termos buscados.',
+    inputLabel: 'Ex: Consulta teste',
+    apply: 'Aplicar'
+  },
+  createAlertModal: {
+    title: 'Crie um alerta com aspectos da política ambiental que deseja monitorar',
+    filters: 'Edite os filtros para receber alertas com o tema que você quer',
+    localFilter: 'Município:',
+    themesFilter: 'Temas:',
+    enteFilter: 'Ente do governo:',
+    keyWords: 'Adicione palavras-chave',
+    keyWordsPlaceHolder: 'Cadastre palavras chaves na sua busca (Obrigatório)',
+    alertDestination: 'Seus alertas serão encaminhados para',
+    edit: 'Editar',
+    create: 'Criar Alerta',
+    error: 'Ocorreu um erro ao cadastrar o alerta, por favor, tente novamente'
+
   },
   home: {
     lead: {
@@ -89,62 +145,6 @@ export const TEXTS = {
       linkAboutReports: 'Saiba mais sobre os relatórios'
     },
   },
-  filters: {
-    applyFilters: 'Aplicar Filtro',
-  },
-  becomeProModal: {
-    title: 'Faça upgrade para Profissional',
-    subtitle: 'Para acessar todas as funcionalidades disponíveis no Diário do Clima, faça um teste grátis por 7 dias.',
-    cancel: 'Cancelar',
-    startTest: 'Começar período grátis',
-    knowMore: 'Saiba mais sobre a assinatura',
-  },
-  alertCreatedModal: {
-    title: 'Pronto! Agora é só aguardar',
-    subtitle: 'Já estamos de olho nos diários oficiais  e enviaremos qualquer novidade baseado nos seus filtros',
-    createAnother: 'Criar outro alerta',
-    continue: 'Continuar',
-    cotinueSearch: 'Continuar buscando'
-  },
-  editEmail: {
-    title: 'Edite o e-mail para recebimento dos novos alertas.',
-    subtitle: 'O seu e-mail de cadastro continuará sendo',
-    submit: 'Salvar e-mail de alerta',
-    inputLabel: 'E-mail',
-  },
-  modalQuery: {
-    title: 'Cadastre as palavras-chave do seu alerta e enviaremos as novidades que tiverem os termos buscados.',
-    inputLabel: 'Ex: Consulta teste',
-    apply: 'Aplicar'
-  },
-  createAlertModal: {
-    title: 'Crie um alerta com aspectos da política ambiental que deseja monitorar',
-    filters: 'Edite os filtros para receber alertas com o tema que você quer',
-    localFilter: 'Município:',
-    themesFilter: 'Temas:',
-    enteFilter: 'Ente do governo:',
-    keyWords: 'Adicione palavras-chave',
-    keyWordsPlaceHolder: 'Cadastre palavras chaves na sua busca (Obrigatório)',
-    alertDestination: 'Seus alertas serão encaminhados para',
-    edit: 'Editar',
-    create: 'Criar Alerta',
-    error: 'Ocorreu um erro ao cadastrar o alerta, por favor, tente novamente'
-
-  },
-  passwordValidation: {
-    eightChars: 'Ter 8 ou mais caracteres',
-    lettersAndNumbers: 'Conter letras e números',
-    specialChars: 'Conter caracteres especiais (*,!.&%$#@)',
-    uppercaseChar: 'Conter uma letra maiúscula',
-  },
-  warnModal: {
-    cancel: 'Cancelar',
-    ok: 'Ok, entendi',
-  },
-  defaultSubmitText: 'Continuar',
-  stateList: [
-    'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF'
-  ],
   aboutPage: {
     title: 'SOBRE O DIÁRIO DO CLIMA',
     subTitle: 'Nós estamos aqui para promover transparência',
@@ -238,14 +238,6 @@ export const TEXTS = {
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.',
     links: 'Links úteis:'
   },
-  plansPage: {
-    title: 'Diário do Clima PRO',
-    subtitle: 'Acesse todos os benefícios e nos ajude a crescer',
-    startTest: 'Iniciar teste grátis',
-    testCost: 'Teste sem custos por 7 dias • Depois, R$00,00/mês',
-    testWarn: 'Enviaremos um lembrete 2 dias antes do período de teste terminar e você pode cancelar a qualquer momento',
-    
-  },
   startSearchPage: {
     title: 'Vamos começar a buscar!',
     proText: 'Pronto, agora você pode utilizar todos as funcionalidades disponíveis no nosso plano PRO',
@@ -285,5 +277,25 @@ export const TEXTS = {
         ],
       },
     ]
-  }
+  },
+  plansPage: {
+    title: 'Diário do Clima PRO',
+    subtitle: 'Acesse todos os benefícios e nos ajude a crescer',
+    startTest: 'Iniciar teste grátis',
+    testCost: 'Teste sem custos por 7 dias • Depois, R$00,00/mês',
+    testWarn: 'Enviaremos um lembrete 2 dias antes do período de teste terminar e você pode cancelar a qualquer momento',
+    
+  },
+  searchPage: {
+
+  },
+  reportsPage: {
+
+  },
+  registration: {
+
+  },
+  purchasePage: {
+
+  },
 }; 
