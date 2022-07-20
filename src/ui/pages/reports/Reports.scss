@@ -45,7 +45,10 @@
   
       @media only screen and (min-width: $desktopSize) {
         width: calc(50% - 12px);
-        margin-bottom: 0;
+
+        &:first-of-type {
+          margin-bottom: 0;
+        }
       }
     }
     

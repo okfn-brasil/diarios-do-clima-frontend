@@ -14,6 +14,7 @@ import LocationFilter from './locationFilter/LocationFilter';
 import ThemeFilter from './themeFilter/ThemeFilter';
 
 import './SearchFilters.scss';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface PropsSearchFilters{
   onClose?: () => void;
@@ -80,16 +81,16 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
         <Grid className='mobile-header' container alignItems='center' justifyContent='space-between'>
           <Grid container alignItems='center' className='close-icon-area'>
             <CloseIcon className='hover-animation' onClick={onClose} />
-            <div className='mobile-title'>Filtros</div>
+            <div className='mobile-title'>{TEXTS.searchPage.filters.title}</div>
           </Grid>
-          <span onClick={cleanFilters} className='blue-link'>Limpar tudo</span>
+          <span onClick={cleanFilters} className='blue-link'>{TEXTS.searchPage.filters.clean}</span>
         </Grid> 
         <hr className='thin-line'/>
       </div>
       <div className='filters'>
         <LocationFilter onChange={inputChange} value={filters.location as string}/>
         <section className='section-filter-class'>
-          <h3 className='h3-class'>Período de tempo</h3>
+          <h3 className='h3-class'>{TEXTS.searchPage.filters.period}</h3>
           <div>
             <DateFilter cleanDate={cleanDate} onSubmit={updateDateFilters} />
           </div>

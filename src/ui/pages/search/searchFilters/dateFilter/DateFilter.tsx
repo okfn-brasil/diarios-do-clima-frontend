@@ -14,6 +14,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { ptBR } from 'date-fns/locale';
 
 import './DateFilter.scss';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface PropsDateFilter {
   onSubmit: (e: SubmitDates) => void;
@@ -101,9 +102,9 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
   return (
     <Grid>
       <Grid container>
-        <div onClick={() => {changeTab(0);}} className={`hover-animation ${tab ? 'tab-class' : 'curr-tab-class'}`}>Recentes</div>
+        <div onClick={() => {changeTab(0);}} className={`hover-animation ${tab ? 'tab-class' : 'curr-tab-class'}`}>{TEXTS.searchPage.filters.tab1}</div>
         <div  onClick={() => {changeTab(1);}} className={`hover-animation second-tab ${!tab ? 'tab-class' : 'curr-tab-class'}`}>
-          Intervalo de tempo <ProFlag spaceBottom={2} show={!!(!userData.plan_pro && tab)}/>
+          {TEXTS.searchPage.filters.tab2} <ProFlag spaceBottom={2} show={!!(!userData.plan_pro && tab)}/>
         </div>
       </Grid>
 
@@ -127,7 +128,7 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
           <Grid container justifyContent='space-between' className='date-pickers'>
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR} localeText={datePickerTranslation as Partial<PickersLocaleText<unknown>>}>
               <DatePicker
-                label='De'
+                label={TEXTS.searchPage.filters.from}
                 disabled={!userData.plan_pro}
                 disableFuture={true}
                 value={dates.start}
@@ -137,7 +138,7 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
             </LocalizationProvider>
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR} localeText={datePickerTranslation as Partial<PickersLocaleText<unknown>>}>
               <DatePicker
-                label='Até'
+                label={TEXTS.searchPage.filters.to}
                 disabled={!userData.plan_pro}
                 disableFuture={true}
                 value={dates.end}

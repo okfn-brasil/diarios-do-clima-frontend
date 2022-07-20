@@ -7,6 +7,7 @@ import { urls } from '@app/ui/utils/urls';
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 
 import './ThemeFilter.scss';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface ThemeFilterProps {
   options: Theme;
@@ -32,10 +33,10 @@ const ThemeFilter = ({onChange, options, hasProPlan}: ThemeFilterProps) => {
     <>
       <section className='section-filter-class theme-filter' onClick={() => !hasProPlan ? navigate(urls.becomePro.url) : null}>
         <h3 className='h3-class'>
-            Tema <HelpIcon />
+            {TEXTS.searchPage.filters.themeTitle} <HelpIcon />
           <ProFlag spaceBottom={2} show={!hasProPlan}/>
         </h3>
-        <p>Aqui uma descrição breve do que são e de como funcionam os temas</p>
+        <p>{TEXTS.searchPage.filters.themeSubtitle}</p>
         <div>
           <FormGroup>
             {Object.keys(options as Theme).splice(0, checkIfShowMore()).map((key: string) => {

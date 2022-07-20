@@ -4,6 +4,7 @@ import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
 import { Grid, SelectChangeEvent } from '@mui/material';
 
 import './Simulation.scss';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface SimulationModel {
   criterio1: string;
@@ -29,8 +30,8 @@ const SimulationForm = () => {
 
   return (
     <Grid className='simulation-form'>
-      <h3 className='h3-class-sx-margin'>Simular o valor do relatório</h3>
-      <p className='paragraph-class'>Você pode encomendar um relatório personalizado. Preencha o formulário abaixo para receber uma cotação.</p>
+      <h3 className='h3-class-sx-margin'>{TEXTS.reportsPage.simulation.title}</h3>
+      <p className='paragraph-class'>{TEXTS.reportsPage.simulation.subTitle}</p>
 
       <form onSubmit={handleSubmit}>
         <SelectInput
@@ -60,7 +61,7 @@ const SimulationForm = () => {
           onChange={inputChange}
         />
         <div>
-          <p className='paragraph-class value-simulated'>Valor estimado</p>
+          <p className='paragraph-class value-simulated'>{TEXTS.reportsPage.simulation.value}</p>
           <div className='value'>R$ 0</div>
         </div>
 

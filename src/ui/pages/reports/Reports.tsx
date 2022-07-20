@@ -7,6 +7,7 @@ import { Grid } from '@mui/material';
 import SimulationForm from './simulation/Simulation';
 
 import './Reports.scss';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 const ReportsPage = () => {
   return (
@@ -15,14 +16,14 @@ const ReportsPage = () => {
         <Grid container item sm={8}>
           <div className='vertical-spacing-container'>
             <div className='h2-class'>
-                Relatórios de análises aprofundadas do Diário do Clima
+              {TEXTS.reportsPage.title}
             </div>
             <p className='paragraph-class'>
-                Informações qualificadas, baseadas nos diários oficiais e curadas por profissionais. Mais resultados e insights do que a interface do Diário do Clima oferece.
+              {TEXTS.reportsPage.subtitle}
             </p>
             <Link to=''>
               <ButtonGreen >
-                  Simular o custo
+                {TEXTS.reportsPage.simulateButton}
               </ButtonGreen>
             </Link>
           </div>
@@ -35,8 +36,8 @@ const ReportsPage = () => {
               <img src={badge} alt='icone de crachá'/>
             </div>
             <div className='icon-text'>
-              <div className='icon-wrapper-title'>Para profissionais de pesquisa e consultores</div>
-              <div className='icon-wrapper-sub-title'>Obtenha uma visão geral e abrangente sobre um tema</div>
+              <div className='icon-wrapper-title'>{TEXTS.reportsPage.professionals}</div>
+              <div className='icon-wrapper-sub-title'>{TEXTS.reportsPage.professionalsDesc}</div>
             </div>
           </div>
           <div className='icon-wrapper'>
@@ -44,8 +45,8 @@ const ReportsPage = () => {
               <img src={homeWork} alt='icone de prédios'/>
             </div>
             <div className='icon-text'>
-              <div className='icon-wrapper-title'>Para organizações</div>
-              <div className='icon-wrapper-sub-title'>Obtenha dados e insights para tomar melhores decisões</div>
+              <div className='icon-wrapper-title'>{TEXTS.reportsPage.organizations}</div>
+              <div className='icon-wrapper-sub-title'>{TEXTS.reportsPage.organizationsDesc}</div>
             </div>
           </div>
         </Grid>
@@ -56,20 +57,20 @@ const ReportsPage = () => {
         <Grid container item sm={8} className='vertical-spacing-container'>
           <Grid container justifyContent='space-between'>
             <div className='report-card-class'>
-              <h3 className='h3-class'>Nome do relatório de exemplo</h3>
-              <p className='card-paragraph'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel accumsan massa, vitae bibendum turpis. Phasellus venenatis nunc in nisl lacinia, sed consequat nunc lobortis. Ut pellentesque, ligula fermentum imperdiet posuere, magna lorem sodales massa, ac posuere tortor magna vel quam. Nunc eu feugiat tellus, et luctus magna. Proin sodales tempus ultricies. Fusce tristique metus vitae enim egestas, fringilla imperdiet nulla ultrices. Nullam sed lacus ac erat ultricies hendrerit. Nulla sit amet sem dolor. Donec eros est, sagittis non metus ut, tempus facilisis sem.</p>
+              <h3 className='h3-class'>{TEXTS.reportsPage.reportTitle}</h3>
+              <p className='card-paragraph'>{TEXTS.reportsPage.report1Desc}</p>
               <Link to='' className='hover-animation'>
                 <ButtonGreen classess='card-button'>
-                    Ver relatório
+                  {TEXTS.reportsPage.reportButton}
                 </ButtonGreen>
               </Link>
             </div>
             <div className='report-card-class'>
-              <h3 className='h3-class'>Nome do relatório de exemplo</h3>
-              <p className='card-paragraph'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel accumsan massa, vitae bibendum turpis. Phasellus venenatis nunc in nisl lacinia, sed consequat nunc lobortis. Ut pellentesque, ligula fermentum imperdiet posuere, magna lorem sodales massa, ac posuere tortor magna vel quam. Nunc eu feugiat tellus, et luctus magna. Proin sodales tempus ultricies. Fusce tristique metus vitae enim egestas, fringilla imperdiet nulla ultrices. Nullam sed lacus ac erat ultricies hendrerit. Nulla sit amet sem dolor. Donec eros est, sagittis non metus ut, tempus facilisis sem.</p>
+              <h3 className='h3-class'>{TEXTS.reportsPage.reportTitle}</h3>
+              <p className='card-paragraph'>{TEXTS.reportsPage.report2Desc}</p>
               <Link to='' className='hover-animation'>
                 <ButtonGreen classess='card-button'>
-                    Ver relatório
+                  {TEXTS.reportsPage.reportButton}
                 </ButtonGreen>
               </Link>
             </div>
@@ -85,10 +86,10 @@ const ReportsPage = () => {
 
       <Grid container item className='container doubts' sm={12} justifyContent='center'>
         <Grid item sm={8} className='vertical-spacing-container'>
-          <h3 className='h3-class-sx-margin'>Dúvidas?</h3>
-          <p className='paragraph-class'>Quer saber mais sobre os dados em seu relatório? 
-            <Link to=''><span className='hover-animation'> Entre em contato </span></Link> 
-              para receber dicas para melhor interpretar e compreender as suas principais descobertas. Nossos especialistas estão prontos para ajudá-lo com insights profundos para melhor apresentar e revelar as conclusões de seu relatório personalizado.
+          <h3 className='h3-class-sx-margin'>{TEXTS.reportsPage.doubts}</h3>
+          <p className='paragraph-class'>{TEXTS.reportsPage.knowMore}
+            <Link to=''><span className='hover-animation'> {TEXTS.reportsPage.contact} </span></Link> 
+            {TEXTS.reportsPage.contactDesc}
           </p>
         </Grid>
       </Grid>

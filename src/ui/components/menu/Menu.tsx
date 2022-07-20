@@ -32,7 +32,7 @@ const Menu = () => {
 
   const {isWhiteMenu, hideLinks, customColor} = Object.keys(urls).map(key => {
     const item = urls[key] as UrlModel;
-    if(item.url === location.pathname || (item.url.includes('cnpjs') && location.pathname.includes('cnpjs') )) {
+    if(item.url === location.pathname || (item.urlWithoutParam && location.pathname.includes(item.urlWithoutParam))) {
       return item;
     }
   }).filter(item => !!item)[0] || {} as UrlModel;

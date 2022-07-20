@@ -10,6 +10,7 @@ import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutli
 import { Grid } from '@mui/material';
 
 import './SearchField.scss';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface PropsSearchField {
   onClickFilters: () => void;
@@ -43,9 +44,9 @@ const SearchField = ({onClickFilters, openCreateAlert, onClickAdvenced}: PropsSe
       <Grid container item sm={6} xs={12} className='search-field-container' justifyContent='center'>
         <div className='field-area'>
           <Grid container justifyContent='space-between'>
-            <div className='key-words'>Palavras-chave</div>
+            <div className='key-words'>{TEXTS.searchPage.searchfield.title}</div>
             <div onClick={onClickAdvenced} className='hover-animation advanced-search'>
-              Busca avançada
+              {TEXTS.searchPage.searchfield.advanced}
             </div>
           </Grid>
           <form onSubmit={onSubmit}>
@@ -55,7 +56,7 @@ const SearchField = ({onClickFilters, openCreateAlert, onClickAdvenced}: PropsSe
               onChange={updateQuery}
               className='search-input'
               type='text'
-              placeholder='Encontre um ato ambiental' 
+              placeholder={TEXTS.searchPage.searchfield.label}
             />
           </form>
           <div className='only-mobile'>
@@ -63,13 +64,13 @@ const SearchField = ({onClickFilters, openCreateAlert, onClickAdvenced}: PropsSe
               <ButtonGreen onClick={onClickFilters} classess='mobile-button-class'>
                 <Grid container  justifyContent='space-between'>
                   <img src={filterIcon} className='button-icon' alt='filtrar'/>
-                  <div className='filter-button'>Filtrar</div>
+                  <div className='filter-button'>{TEXTS.searchPage.searchfield.filter}</div>
                 </Grid>
               </ButtonGreen>
               <ButtonOutlined onClick={openCreateAlert} classess='mobile-button-class'>
                 <Grid container justifyContent='space-between'>
                   <img src={bellIcon} className='button-icon' alt='criar alerta'/>
-                  <div className='alert-button'>Criar alerta</div>
+                  <div className='alert-button'>{TEXTS.searchPage.searchfield.createAlert}</div>
                 </Grid>
               </ButtonOutlined>
             </Grid>

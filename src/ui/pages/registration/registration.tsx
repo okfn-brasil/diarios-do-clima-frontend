@@ -95,7 +95,7 @@ const Registration = () => {
       setInputs((values: RegistrationModel) => ({...values, email: 
         {
           ...inputs.email,
-          errorMessage: 'Este endereço de e-mail ja possui uma conta cadastrada'
+          errorMessage: TEXTS.registration.usedEmail
         }
       }));
     }).catch(() => {
@@ -125,9 +125,9 @@ const Registration = () => {
       const errorKey = e ? Object.keys(e)[0] : '';
       setSubmitError(
         <span>
-            Ocorreu um erro ao tentar criar a sua conta, por favor, tente novamente.
-          { e? <><br/><br/>Motivo do erro: {e[errorKey]}</> : <></> }
-          <br/><a className='hover-animation error-link' onClick={resetForm}>Clique aqui para voltar ao inicio do cadastro</a>
+            {TEXTS.registration.error.errorMessage}
+          { e? <><br/><br/>{TEXTS.registration.error.reason} {e[errorKey]}</> : <></> }
+          <br/><a className='hover-animation error-link' onClick={resetForm}>{TEXTS.registration.error.tryAgain}</a>
         </span>);
       setLoading(false);
     });
@@ -152,11 +152,11 @@ const Registration = () => {
     return (
       <div>
         <h3 className='h3-class-sx-margin'>
-          Crie uma conta para começar a buscar no Diário do Clima
+          {TEXTS.registration.titlePageA}
         </h3>
         <div>
           <TextInput
-            label='Nome Completo'
+            label={TEXTS.registration.labels.name}
             classes='first-input'
             name='username'
             error={inputs.username.errorMessage}
@@ -166,7 +166,7 @@ const Registration = () => {
           />
 
           <TextInput
-            label='E-mail'
+            label={TEXTS.registration.labels.email}
             name='email'
             error={inputs.email.errorMessage}
             value={inputs.email.value}
@@ -192,7 +192,7 @@ const Registration = () => {
           <SelectInput 
             classes='select-area-class first-input' 
             options={[{value: 'f', label: 'Feminino'},{value: 'm', label: 'Masculino'},{value: 'o', label: 'Outro'}]} 
-            label='Gênero' 
+            label={TEXTS.registration.labels.gender}
             value={inputs.gender.value} 
             name='gender' 
             required={true} 
@@ -202,7 +202,7 @@ const Registration = () => {
           <SelectInput 
             classes='select-area-class' 
             options={[{value: 'Area 1', label: 'Area 1'},{value: 'Area 2', label: 'Area 2'},{value: 'Area 3', label: 'Area 3'}]} 
-            label='Area de Atuação' 
+            label={TEXTS.registration.labels.area}
             value={inputs.sector.value} 
             name='sector' 
             required={true} 
@@ -223,7 +223,7 @@ const Registration = () => {
           <SelectInput 
             classes='select-area-class first-input' 
             options={TEXTS.stateList.map(state => {return { value: state, label: state };})}
-            label='Estado' 
+            label={TEXTS.registration.labels.state}
             value={inputs.state.value} 
             name='state' 
             required={true} 
@@ -232,7 +232,7 @@ const Registration = () => {
 
           <TextInput
             classes='city-input'
-            label='Cidade'
+            label={TEXTS.registration.labels.city}
             name='city'
             error={inputs.city.errorMessage}
             value={inputs.city.value}
@@ -240,7 +240,7 @@ const Registration = () => {
             required={true}
           />
 
-          <SubmitForm classess='submit-registration' label='Finalizar' disabled={isLoading}/>
+          <SubmitForm classess='submit-registration' label={TEXTS.registration.labels.lastSubmit} disabled={isLoading}/>
         </div>
       </div>
     );
@@ -250,10 +250,10 @@ const Registration = () => {
     return (
       <>
         <div className='h3-class-sx-margin'>
-          Bem-vindo ao Diário do Clima
+          {TEXTS.registration.titlePageB}
         </div>
         <div className='paragraph-class'>
-          Queremos te conhecer um pouco melhor! Complete seu cadastro 
+          {TEXTS.registration.subtitle}
         </div>
       </>
     );
@@ -280,17 +280,17 @@ const Registration = () => {
                 </div>
                 <div>
                   <div className='warn'>
-                    Ao se cadastrar, você está aceitando os nossos
+                    {TEXTS.registration.agree}
                   </div>
                   <div className={step > 1 ? 'warn-next-step' : ''}>
-                    <Link to='' className='hover-animation'>
+                    <Link to={urls.terms.url} className='hover-animation'>
                       <span className='blue-link contact'>
-                        Fale conosco
+                        {TEXTS.registration.terms}
                       </span>
                     </Link>
-                    <Link to={urls.terms.url} className='hover-animation'>
+                    <Link to='' className='hover-animation'>
                       <span className='blue-link terms-link'>
-                        Termos e condições
+                        {TEXTS.registration.contact}
                       </span>
                     </Link>
                   </div>
@@ -298,10 +298,10 @@ const Registration = () => {
                 <div>
                   {step === 1 ? 
                     <div  className='has-account'>
-                      Já possui uma conta?
+                        {TEXTS.registration.haveAccount}
                       <a href='/?login=open' className='hover-animation'>
                         <span className='blue-link login-link'>
-                          Faça o login
+                          {TEXTS.registration.login}
                         </span>
                       </a>
                     </div> : <></>

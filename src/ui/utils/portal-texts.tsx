@@ -1,3 +1,5 @@
+import { urls } from "./urls";
+
 export const TEXTS = {
   defaultSubmitText: 'Continuar',
   stateList: [
@@ -284,18 +286,222 @@ export const TEXTS = {
     startTest: 'Iniciar teste grátis',
     testCost: 'Teste sem custos por 7 dias • Depois, R$00,00/mês',
     testWarn: 'Enviaremos um lembrete 2 dias antes do período de teste terminar e você pode cancelar a qualquer momento',
-    
-  },
-  searchPage: {
-
-  },
-  reportsPage: {
-
-  },
-  registration: {
-
+    cardsTitle: 'Assinatura',
+    cardsSubTitle: 'Tenha nas mãos todas as informações que você precisa sobre políticas ambientais.',
+    basic: 'Básico',
+    basicDesc: 'Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais',
+    basicPrice: 'Grátis',
+    state: 'Você já está utilizando esta versão.',
+    startSearch: 'Começar a buscar',
+    basicItem1: 'Busca por palavra-chave ou CNPJ',
+    basicItem2: 'Busca avançada e/ou',
+    basicItem3: 'Filtro por município',
+    basicItem4: 'Visualização de resultados publicados nos últimos 3 meses',
+    pro: 'PRO',
+    proDesc: 'Para organizações que precisam das informações mais quentes sobre políticas ambientais',
+    proPrice: 'R$0,00',
+    perMonth: '/mês',
+    startTestLink: 'Começar teste grátis',
+    signUp: 'ou assinar agora',
+    proItem1: <span>Visualização de resultados de <span className='underline'>todo o histórico disponível</span> no banco de dados</span>,
+    proItem2: 'Filtro de busca por temas inteligentes',
+    proItem3: 'Criação de alertas com filtros e palavras-chaves personalizadas',
+    preOrder: 'Encomende seu relatório',
+    preOrderDesc: 'Para organização que precisam de conteúdo centralizado e curado por especialistas sobre um determinado assunto',
+    contact: 'Contactar vendas',
+    simulate: 'Simular custo',
+    discount: '50% para organizações que não visam lucro',
+    discountDesc: 'Seu impacto é importante. O Diário do Clima apoia pessoas e organizações independentes que desejam utilizar nosso conteúdo para transformar a sociedade. Para se inscrever na lista de espera, preencha o formulário.',
+    getDiscount: 'Solicitar desconto',
+    faq: 'Perguntas frequentes',
+    faqItems: [
+      {
+        title:'Como funciona a assinatura profissional do Diário do Clima?',
+        text: 'Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais'
+      },
+      {
+        title:'Quais formas de pagamento vocês aceitam?',
+        text: 'Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais'
+      },
+      {
+        title:'Quão seguro é o Diário do Clima?',
+        text: 'Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais'
+      },
+      {
+        title:'Como eu cancelo minha assinatura do Diário do Clima?',
+        text: 'Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais'
+      },
+      {
+        title:'O diário do clima oferece desconto?',
+        text: 'Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais'
+      },
+    ]
   },
   purchasePage: {
+    title: 'Comece seu período de 7 dias de teste.',
+    subTitle: 'Usufrua dos benefícios de ser PRO sem compromisso. Cancele a qualquer momento.',
+    detailsTitle: 'Detalhes da assinatura',
+    perMonth: '/mês*',
+    detailAlert: '* cobrado mensalmente após o período de 15 dias testes',
+    purchaseTerms: <span>
+      Ao clicar em assinar você está concordando com nossos
+      <a href={urls.terms.url} className='hover-animation blue-link'> termos de assinantes. </a>
+      Sua assinatura será <b>renovada automaticamente</b> todo mês ao realizar a cobrança no seu cartão 
+      de crédito cadastrado até que você realize o cancelamento. <br/>
+      Você pode cancelar a qualquer momento antes do próximo ciclo de pagamento.
+    </span>,
+    submitLabel: 'Assinar',
+    planCode: '9ea3eb5f-d2d5-4433-8714-43fa7bdb0ce3',
+    errors: {
+      errorPartA: 'Ocorreu um erro ao tentar',
+      errorPartB: 'Por favor, verifique se os dados foram inseridos corretamente e tente novamente.',
+      onPayment: 'realizar o pagamento',
+      onCard: 'cadastrar seu cartão',
+      onAddress: 'cadastrar o endereço',
+      onPhone: 'cadastrar o telefone',
+      onPlan: 'cadastrar seu novo plano'
+    },
+    formTitle: 'Detalhes do pagamento',
+    labels: {
+      card: 'Número do cartão de crédito',
+      name: 'Nome impresso no cartão',
+      validity: 'Data de validade',
+      cvv: 'CVV',
+      address: 'Endereço',
+      number: 'Número',
+      district: 'Bairro',
+      complement: 'Complemento (opcional)',
+      city: 'Cidade',
+      state: 'Estado',
+      cep: 'CEP',
+      cpf: 'CPF',
+      birthday: 'Data de nascimento',
+      phone: 'Telefone',
+    }
+  },
+  registration: {
+    usedEmail: 'Este endereço de e-mail ja possui uma conta cadastrada',
+    error: {
+      errorMessage: 'Ocorreu um erro ao tentar criar a sua conta, por favor, tente novamente.',
+      reason: 'Motivo do erro:',
+      tryAgain: 'Clique aqui para voltar ao inicio do cadastro',
+    },
+    titlePageA: 'Crie uma conta para começar a buscar no Diário do Clima',
+    titlePageB: 'Bem-vindo ao Diário do Clima',
+    subtitle: 'Queremos te conhecer um pouco melhor! Complete seu cadastro',
+    agree: 'Ao se cadastrar, você está aceitando os nossos',
+    terms: 'Termos e condições',
+    contact: 'Fale conosco',
+    haveAccount: 'Já possui uma conta?',
+    login: 'Faça o login',
+    labels: {
+      name: 'Nome Completo',
+      email: 'E-mail',
+      gender: 'Gênero',
+      area: 'Area de Atuação',
+      state: 'Estado',
+      city: 'Cidade',
+      lastSubmit: 'Finalizar'
+    },
+  },
+  reportsPage: {
+    simulation: {
+      title: 'Simular o valor do relatório',
+      subTitle: 'Você pode encomendar um relatório personalizado. Preencha o formulário abaixo para receber uma cotação.',
+      value: 'Valor estimado',
+    },
+    title: 'Relatórios de análises aprofundadas do Diário do Clima',
+    subtitle: 'Informações qualificadas, baseadas nos diários oficiais e curadas por profissionais. Mais resultados e insights do que a interface do Diário do Clima oferece.',
+    simulateButton: 'Simular o custo',
+    professionals: 'Para profissionais de pesquisa e consultores',
+    professionalsDesc: 'Obtenha uma visão geral e abrangente sobre um tema',
+    organizations: 'Para organizações',
+    organizationsDesc: 'Obtenha dados e insights para tomar melhores decisões',
+    reportTitle: 'Nome do relatório de exemplo',
+    report1Desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel accumsan massa, vitae bibendum turpis. Phasellus venenatis nunc in nisl lacinia, sed consequat nunc lobortis. Ut pellentesque, ligula fermentum imperdiet posuere, magna lorem sodales massa, ac posuere tortor magna vel quam. Nunc eu feugiat tellus, et luctus magna. Proin sodales tempus ultricies. Fusce tristique metus vitae enim egestas, fringilla imperdiet nulla ultrices. Nullam sed lacus ac erat ultricies hendrerit. Nulla sit amet sem dolor. Donec eros est, sagittis non metus ut, tempus facilisis sem.',
+    report2Desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel accumsan massa, vitae bibendum turpis. Phasellus venenatis nunc in nisl lacinia, sed consequat nunc lobortis. Ut pellentesque, ligula fermentum imperdiet posuere, magna lorem sodales massa, ac posuere tortor magna vel quam. Nunc eu feugiat tellus, et luctus magna. Proin sodales tempus ultricies. Fusce tristique metus vitae enim egestas, fringilla imperdiet nulla ultrices. Nullam sed lacus ac erat ultricies hendrerit. Nulla sit amet sem dolor. Donec eros est, sagittis non metus ut, tempus facilisis sem.',
+    reportButton: 'Ver relatório',
+    doubts: 'Dúvidas?',
+    knowMore: 'Quer saber mais sobre os dados em seu relatório? ',
+    contact: 'Entre em contato',
+    contactDesc: 'para receber dicas para melhor interpretar e compreender as suas principais descobertas. Nossos especialistas estão prontos para ajudá-lo com insights profundos para melhor apresentar e revelar as conclusões de seu relatório personalizado.'
 
+  },
+  searchPage: {
+    advancedSearchTitle: <span>Para usar um desses caracteres literalmente, escape-o com uma barra invertida (\).</span>,
+    advancedSearch: [
+      {
+        title: '+ significa operação E',
+        desc: 'Utilize + quando os resultados devem conter ambos os termos',
+        ex: 'crédito + cartão',
+      },
+      {
+        title: '| significa operação OU',
+        desc: 'Utilize | quando os resultados devem conter pelo menos um dos termos',
+        ex: 'débito | crédito',
+      },
+      {
+        title: '- nega um único token',
+        desc: 'Explicação de quando utilizar',
+        ex: '',
+      },
+      {
+        title: '" envolve um número de tokens para significar uma frase para pesquisa',
+        desc: 'Explicação de quando utilizar',
+        ex: '',
+      },
+      {
+        title: '* no final de um termo significa uma consulta de prefixo',
+        desc: '',
+        ex: '',
+      },
+      {
+        title: '~N depois de uma palavra significa editar a distância (indefinição)',
+        desc: '',
+        ex: '',
+      },
+      {
+        title: '~N depois de uma frase significa quantidade de despejo',
+        desc: '',
+        ex: '',
+      },
+      {
+        title: '* no final de um termo significa uma consulta de prefixo',
+        desc: '',
+        ex: '',
+      },
+    ],
+    searchfield: {
+      label: 'Encontre um ato ambiental',
+      title: 'Palavras-chave',
+      advanced: 'Busca avançada',
+      filter: 'Filtrar',
+      createAlert: 'Criar alerta',
+    },
+    list: {
+      results: 'resultados encontrados',
+      createAlert: 'Criar alerta',
+      orderSelect: 'Ordenar por',
+      initialText: 'Busque por palavras-chave ou utilize os filtros para encontrar resultados',
+      emptyResult: 'Nenhum resultado foi encontrado para sua busca.',
+    },
+    item: {
+      download: 'Baixar diário oficial'
+    },
+    filters: {
+      title: 'Filtros',
+      clean: 'Limpar tudo',
+      period: 'Período de tempo',
+      tab1: 'Recentes',
+      tab2: 'Intervalo de tempo',
+      from: 'De',
+      to: 'Até',
+      entityTitle: 'Entes do governo',
+      entityLabel: 'Selecione um ente',
+      locationTitle: 'Município',
+      locationLabel: 'Selecione um munícipio',
+      themeTitle: 'Tema',
+      themeSubtitle: 'Aqui uma descrição breve do que são e de como funcionam os temas'
+    }
   },
 }; 

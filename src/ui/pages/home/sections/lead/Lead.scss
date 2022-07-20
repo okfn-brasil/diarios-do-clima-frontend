@@ -62,7 +62,7 @@
   }
 
   .image-area {
-    @media only screen and (max-width: $desktopSize) {
+    @media only screen and (max-width: calc($desktopSize - 0.1px)) {
       margin-bottom: -110%;
       padding-left: 0px;
       padding-right: 0px;

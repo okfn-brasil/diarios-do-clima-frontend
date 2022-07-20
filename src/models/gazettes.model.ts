@@ -1,4 +1,5 @@
 import { removeSpecialChars } from '@app/ui/utils/functions.utils';
+import { urls } from '@app/ui/utils/urls';
 import { AxiosResponse } from 'axios';
 
 export interface GazetteResponse extends AxiosResponse{
@@ -29,7 +30,7 @@ export const parseGazettes = (gazettes: GazetteModel[]) => {
       const cnpjIndex = textFragment.indexOf('</entity_cnpj>');
       if (cnpjIndex > 0) {
         const cnpj = textFragment.slice(0, cnpjIndex).trim();
-        newText += `<a href='/cnpjs/${removeSpecialChars(cnpj)}'>${textFragment}`;
+        newText += `<a href='${urls.cnpjs.urlWithoutParam}${removeSpecialChars(cnpj)}'>${textFragment}`;
       } else {
         newText += textFragment;
       }

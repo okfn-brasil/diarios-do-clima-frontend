@@ -14,6 +14,7 @@ import { Grid, SelectChangeEvent } from '@mui/material';
 import SearchItem from './searchItem/SearchItem';
 
 import './SearchList.scss';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface PropsSearchList {
   list?: GazetteModel[];
@@ -46,7 +47,7 @@ const SearchList = ({list, listSize, searchTimes, isLoading, openCreateAlert}: P
       <Grid item sm={10}>
         {listSize ? 
           <div>
-            <h3 className='h3-class title'>{listSize} resultados encontrados</h3>
+            <h3 className='h3-class title'>{listSize} {TEXTS.searchPage.list.results}</h3>
           </div>
           : <></>
         }
@@ -57,12 +58,12 @@ const SearchList = ({list, listSize, searchTimes, isLoading, openCreateAlert}: P
                 <ButtonOutlined onClick={openCreateAlert} classess='create-alert-button'>
                   <Grid container justifyContent='space-between'>
                     <img src={bellIcon} alt='criar alerta'/>
-                    <div className='alert-button'>Criar alerta</div>
+                    <div className='alert-button'>{TEXTS.searchPage.list.createAlert}</div>
                   </Grid>
                 </ButtonOutlined>
               </span>
               <SelectInput
-                label='Ordenar por'
+                label={TEXTS.searchPage.list.orderSelect}
                 classes='half-width'
                 options={[{value: 'recente', label: 'Mais recente'},{value: 'menor', label: 'Menor'}, {value: 'maior', label: 'Maior'}]} 
                 value={order} 
@@ -81,7 +82,7 @@ const SearchList = ({list, listSize, searchTimes, isLoading, openCreateAlert}: P
                   <img src={EmptySearch} alt='logo - sem resultados na lista'/>
                 </div>
                 <div className='text-area'>
-                  <h3 className='h3-class'>Busque por palavras-chave ou utilize os filtros para encontrar resultados</h3>
+                  <h3 className='h3-class'>{TEXTS.searchPage.list.initialText}</h3>
                 </div>
               </div>
             </Grid>
@@ -94,7 +95,7 @@ const SearchList = ({list, listSize, searchTimes, isLoading, openCreateAlert}: P
               <div>
                 <div className='text-area'>
                   <img src={emptyListImage} alt='busca vazia'/>
-                  <h3 className='h3-class'>Nenhum resultado foi encontrado para sua busca.</h3>
+                  <h3 className='h3-class'>{TEXTS.searchPage.list.emptyResult}</h3>
                 </div>
               </div>
             </Grid>

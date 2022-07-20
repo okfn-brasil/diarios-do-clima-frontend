@@ -1,4 +1,5 @@
 import { GazetteModel } from '@app/models/gazettes.model';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 import './SearchItem.scss';
 
@@ -15,7 +16,7 @@ const SearchItem = ({data}: PropsSearchItem) => {
         {data.date as string} • <span>{data.territory_name}</span>
       </div>
       <a className='hover-animation' target='_blank' href={data.file_raw_txt} rel='noreferrer'>
-        <span className='hyper-link'>Baixar diário oficial</span>
+        <span className='hyper-link'>{TEXTS.searchPage.item.download}</span>
         <div className='arrow-link' ></div>
       </a>
     </div>

@@ -35,7 +35,7 @@ const DataLabel = ({ data, featured, label }: PropsDataLabel) => {
 const Data = () => {
   return (
     <Grid item container xs={12} className='vertical-spacing-container data-section'>
-      <Grid item xs={12}>
+      <Grid item xs={12} className='container'>
         <h3 className='h3-class'>{TEXTS.home.data.title}</h3>
       </Grid>
       <Grid item container xs={12} justifyContent='center'>
