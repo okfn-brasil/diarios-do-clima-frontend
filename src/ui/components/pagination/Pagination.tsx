@@ -87,8 +87,7 @@ const Pagination = ({onChangePage, currentPage, listSize, itemsPerPage}: Paginat
         </div>  
         :<></>
       }
-    </> 
-   
+    </>
   );
 };
 

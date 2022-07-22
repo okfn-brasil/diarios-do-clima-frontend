@@ -9,7 +9,7 @@ interface PropsPurchaseDetails {
 }
 
 const PurchaseDetails = ({isLoading}: PropsPurchaseDetails) => {
-  const mockPlan = {
+  const mockPlan = { // TO DO
     name: 'Profissional',
     value: 0,
   };

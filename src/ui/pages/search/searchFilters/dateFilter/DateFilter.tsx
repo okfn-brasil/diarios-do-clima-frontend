@@ -49,13 +49,25 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
     } else {
       submit();
     }
-  }, [invalidDate ,dates, currPeriod]);
+  }, [invalidDate, dates, currPeriod]);
 
   useEffect(() => {
     setDates(initialDates);
     setPeriod(1);
     onSubmit({period: null, dates: null});
   }, [cleanDate]);
+
+  useEffect(() => {
+    if (window.location.search) {
+      const urlFilters = parseUrlToFilters();
+      setPeriod(urlFilters.period as number);
+      const dates = urlFilters.dates;
+      if(dates?.end || dates?.start) {
+        setDates(urlFilters.dates as Dates);
+        setTab(1);
+      }
+    }
+  }, []);
 
   const dateChange = (value: Date, name: string) => {
     setInvalidDate(false);
@@ -82,18 +94,6 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
   const changePeriod = (period: number) => {
     setPeriod(period);
   };
-
-  useEffect(() => {
-    if (window.location.search) {
-      const urlFilters = parseUrlToFilters();
-      setPeriod(urlFilters.period as number);
-      const dates = urlFilters.dates;
-      if(dates?.end || dates?.start) {
-        setDates(urlFilters.dates as Dates);
-        setTab(1);
-      }
-    }
-  }, []);
 
   const getIfAllowsProFilter = (period: number) => {
     return !!(period === 4 && !userData.plan_pro);

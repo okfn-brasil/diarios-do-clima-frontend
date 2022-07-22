@@ -27,6 +27,13 @@ const SearchField = ({onClickFilters, openCreateAlert, onClickAdvenced, filters}
     setQuery(filters.query as string || '');
   }, [filters]);
 
+  useEffect(() => {
+    if (window.location.search) {
+      const urlFilters = parseUrlToFilters();
+      setQuery(urlFilters.query as string || '');
+    }
+  }, []);
+
   const updateQuery = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setQuery(value);
@@ -36,13 +43,6 @@ const SearchField = ({onClickFilters, openCreateAlert, onClickAdvenced, filters}
     e.preventDefault();
     dispatch(updateFilters({query: query}));
   };
-
-  useEffect(() => {
-    if (window.location.search) {
-      const urlFilters = parseUrlToFilters();
-      setQuery(urlFilters.query as string || '');
-    }
-  }, []);
 
   return (
     <Grid container item className='container search-field top-space' sm={12} justifyContent='center'>

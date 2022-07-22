@@ -15,7 +15,6 @@ interface ModalCreatedProps {
 }
 
 const ModalCreated = ({isOpen, onClose, onCreated, onCreateAnother}: ModalCreatedProps) => {
-  
 
   return (
     <Modal isOpen={isOpen} title={'Alerta criado'} onClose={onCreated || onClose} className='create-alert'>

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { FormPurchaseModel, SessionModel, SubscriptionModel } from '@app/models/purchase.model';
-import BillingService, { getCardType } from '@app/services/billing';
+import { FormPurchaseModel, getCardType, SessionModel, SubscriptionModel } from '@app/models/purchase.model';
+import BillingService from '@app/services/billing';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 declare const PagSeguroDirectPayment: {
   setSessionId: (e: string) => void;

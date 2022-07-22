@@ -8,7 +8,7 @@ import { Grid } from '@mui/material';
 
 import './About.scss';
 
-const partners = [
+const partners = [// TO DO
   {
     logo: 'Logo Parceiro 1',
     link: 'https://google.com',
@@ -72,7 +72,6 @@ const AboutPage = () => {
         </Grid>
       </Grid>
 
-        
       <Grid container item sm={12} className='vertical-spacing-container gray-area' justifyContent='center'>
         <Grid item sm={8} className='container'>
           <h3 className='h3-class-sx-margin'>{TEXTS.aboutPage.support}</h3>
@@ -85,7 +84,6 @@ const AboutPage = () => {
         </Grid>
       </Grid>
 
-        
       <Grid container item sm={12} justifyContent='center' className='vertical-spacing-container'>
         <Grid className='container partners' item sm={10}>
           <h3 className='h3-class'>{TEXTS.aboutPage.partnersTitle}</h3>

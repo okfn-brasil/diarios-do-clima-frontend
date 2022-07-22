@@ -52,6 +52,7 @@ const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: Moda
   const keyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
     e.key === 'Enter' ? apply() : null;
   };
+
   return (
     <Modal isOpen={isOpen} title={'Editar filtros do alerta'} onBack={onBack} className='create-alert'>
       <div onKeyUp={keyUp}>

@@ -50,7 +50,6 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmai
     onClickEmail();
   };
 
-  
   const submit = () => {
     setError(false);
     setLoading(true);

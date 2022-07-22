@@ -35,6 +35,7 @@ const ModalKeyWords = ({isOpen, onBack, onApply, filters, emptyFields}: ModalKey
   const keyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
     e.key === 'Enter' ? apply() : null;
   };
+
   return (
     <Modal isOpen={isOpen} title={'Editar filtros do alerta'} onBack={onBack} className='create-alert'>
       <div className='modal-key-words' onKeyUp={keyUp}>

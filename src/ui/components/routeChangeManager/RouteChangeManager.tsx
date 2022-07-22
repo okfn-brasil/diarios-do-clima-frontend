@@ -26,7 +26,6 @@ const RouteChangeManager = () => {
     if(userData.plan_pro && notSubscribedPaths.includes(location.pathname)) {
       navigate(urls.home.url);
     }
-
     
     const script = window.document.getElementById('pagseguro-dist') as HTMLScriptElement;
     const scriptCheckout = window.document.getElementById('pagseguro-checkout') as HTMLScriptElement;

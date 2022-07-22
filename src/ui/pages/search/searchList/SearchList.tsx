@@ -29,18 +29,18 @@ const SearchList = ({list, listSize, searchTimes, isLoading, openCreateAlert}: P
   const dispatch = useDispatch();
   const [order, setOrder] : [string, Dispatch<string>] = useState(filters.order as string);
 
-  const updateOrder = (event: SelectChangeEvent<string>) => {
-    const value = event.target.value;
-    setOrder(value);
-    dispatch(updateFilters({order: value}));
-  };
-
   useEffect(() => {
     if (window.location.search) {
       const urlFilters = parseUrlToFilters();
       setOrder(urlFilters.order as string);
     }
   }, []);
+
+  const updateOrder = (event: SelectChangeEvent<string>) => {
+    const value = event.target.value;
+    setOrder(value);
+    dispatch(updateFilters({order: value}));
+  };
 
   return (
     <Grid container justifyContent='center' className='container search-list'>

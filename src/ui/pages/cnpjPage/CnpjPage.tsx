@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { CNPJInfo, CNPJPartner } from '@app/models/cnpj.model';
+import { CNPJInfo, CNPJPartner, parsePartners } from '@app/models/cnpj.model';
 import GazettesService from '@app/services/gazettes';
 import ButtonDarkBlue from '@app/ui/components/button/buttonDarkBlue/ButtonDarkBlue';
 import Loading from '@app/ui/components/loading/Loading';
@@ -60,24 +60,6 @@ const CnpjPage = () => {
       setLoadingPartner(false);
     }).catch(() => {
       setLoadingPartner(false);
-    });
-  };
-
-  const parsePartners = (partners: CNPJPartner[]) => {
-    return partners.map(partner => {
-      return {
-        'CNPJ': partner.cnpj_completo,
-        'CPF do Sócio': partner.cnpj_cpf_socio,
-        'Data de início': partner.data_entrada_sociedade,
-        'Faixa etária': partner.faixa_etaria,
-        'Identificador de Sócio': partner.identificador_socio,
-        'Nome do representante legal': partner.nome_representante_legal,
-        'CPF do representante legal': partner.numero_cpf_representante_legal,
-        'País sócio estrangeiro': partner.pais_socio_estrangeiro,
-        'Qualificação do representante legal': partner.qualificacao_representante_legal,
-        'Qualificação do sócio': partner.qualificacao_socio,
-        'Razão Social': partner.razao_social,
-      };
     });
   };
 

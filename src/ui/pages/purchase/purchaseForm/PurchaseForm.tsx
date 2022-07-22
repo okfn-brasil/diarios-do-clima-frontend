@@ -2,8 +2,8 @@ import { Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { InputModel, InputType } from '@app/models/forms.model';
-import { FormPurchaseModel } from '@app/models/purchase.model';
-import BillingService, { getCardType } from '@app/services/billing';
+import { FormPurchaseModel, getCardType } from '@app/models/purchase.model';
+import BillingService from '@app/services/billing';
 import { userUpdate } from '@app/stores/user.store';
 import TextInput from '@app/ui/components/forms/input/Input';
 import SelectInput from '@app/ui/components/forms/select/Select';

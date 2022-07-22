@@ -32,6 +32,21 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
   const dispatch = useDispatch();
   const [filters, setFilters] : [FiltersStatePayload, Dispatch<SetStateAction<FiltersStatePayload>>] = useState(initialFilters);
   const [cleanDate, setCleanDate] : [number, Dispatch<number>] = useState(0);
+  
+  useEffect(() => {
+    dispatch(updateFilters(filters));
+  }, [filters]);
+
+  useEffect(() => {
+    if (window.location.search) {
+      const urlFilters = parseUrlToFilters();
+      setFilters((values: FiltersStatePayload) => ({...urlFilters, themes: {
+        ...values.themes,
+        ...urlFilters.themes
+      }}));
+      dispatch(updateFilters(urlFilters));
+    }
+  }, []);
 
   const inputChange = (event: SelectChangeEvent<string>) => {
     const {name, value} = event.target;
@@ -55,21 +70,6 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
     setFilters(initialFilters);
     setCleanDate(Math.random());
   };
-
-  useEffect(() => {
-    dispatch(updateFilters(filters));
-  }, [filters]);
-
-  useEffect(() => {
-    if (window.location.search) {
-      const urlFilters = parseUrlToFilters();
-      setFilters((values: FiltersStatePayload) => ({...urlFilters, themes: {
-        ...values.themes,
-        ...urlFilters.themes
-      }}));
-      dispatch(updateFilters(urlFilters));
-    }
-  }, []);
 
   return (
     <Grid 
