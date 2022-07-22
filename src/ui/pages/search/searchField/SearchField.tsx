@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import bellIcon from '@app/assets/images/icons/bell.svg';
 import filterIcon from '@app/assets/images/icons/filter.svg';
 import searchIcon from '@app/assets/images/icons/search.svg';
-import { parseUrlToFilters } from '@app/models/filters.model';
+import { FiltersState, parseUrlToFilters } from '@app/models/filters.model';
 import { updateFilters } from '@app/stores/filters.store';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
@@ -13,14 +13,19 @@ import { Grid } from '@mui/material';
 import './SearchField.scss';
 
 interface PropsSearchField {
+  filters: FiltersState;
   onClickFilters: () => void;
   openCreateAlert: () => void;
   onClickAdvenced: () => void;
 }
 
-const SearchField = ({onClickFilters, openCreateAlert, onClickAdvenced}: PropsSearchField) => {
+const SearchField = ({onClickFilters, openCreateAlert, onClickAdvenced, filters}: PropsSearchField) => {
   const dispatch = useDispatch();
   const [query, setQuery] : [string, Dispatch<string>] = useState('');
+
+  useEffect(() => {
+    setQuery(filters.query as string || '');
+  }, [filters]);
 
   const updateQuery = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;

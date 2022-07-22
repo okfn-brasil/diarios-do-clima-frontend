@@ -1,38 +1,57 @@
 import { ChangeEvent, Dispatch, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import AccountService from '@app/services/accounts';
+import { userUpdate } from '@app/stores/user.store';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import TextInput from '@app/ui/components/forms/input/Input';
 import InputError from '@app/ui/components/forms/inputError/inputError';
 import Modal from '@app/ui/components/modal/Modal';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 
+import Loading from '../../loading/Loading';
+
 import './ModalEmail.scss';
 
 interface ModalEmailProps {
   isOpen: boolean;
   onBack: () => void;
-  onApply: (kewWords: string) => void;
+  onApply: (email: string) => void;
   userEmail: string;
+  alertEmail: string;
 }
 
-const ModalEmail = ({isOpen, userEmail, onBack, onApply}: ModalEmailProps) => {
+const ModalEmail = ({isOpen, userEmail, alertEmail, onBack, onApply}: ModalEmailProps) => {
+  const dispatch = useDispatch();
+  const accountService = new AccountService();
   const [email, setEmail] : [string, Dispatch<string>] = useState('');
-  const [hasError, setError] : [boolean, Dispatch<boolean>] = useState(false);
+  const [hasError, setError] : [string, Dispatch<string>] = useState('');
+  const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
 
   useEffect(() => {
-    setEmail(userEmail || '');
-  }, [userEmail]);
+    setEmail(alertEmail || userEmail);
+  }, [alertEmail, userEmail]);
 
   const inputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setError(false);
+    setError('');
     setEmail(event.target.value);
   };
 
   const apply = () => {
     if(/\S+@\S+\.\S+/.test(email)) {
-      setError(false);
-      onApply(email);
+      setError('');
+      setLoading(true);
+      accountService.updateUserData(email).then(() => {
+        dispatch(userUpdate({
+          alert_email: email,
+        }));
+        onApply(email);
+        setLoading(false);
+      }).catch(() => {
+        setLoading(false);
+        setError(TEXTS.editEmail.apiError);
+      });
     } else {
-      setError(true);
+      setError(TEXTS.editEmail.invalidError);
     }
   };
 
@@ -54,8 +73,9 @@ const ModalEmail = ({isOpen, userEmail, onBack, onApply}: ModalEmailProps) => {
             name='email'
             label={TEXTS.editEmail.inputLabel}
           />
-          <InputError >{ hasError ? 'O e-mail inserido é invalido' : ''}</InputError>
-          <ButtonGreen disabled={hasError || !email} classess='button-apply-email' fullWidth onClick={apply}>{TEXTS.editEmail.subtitle}</ButtonGreen>
+          <InputError >{ hasError }</InputError>
+          <ButtonGreen disabled={(hasError === TEXTS.editEmail.invalidError) || !email} classess='button-apply-email' fullWidth onClick={apply}>{TEXTS.editEmail.submit}</ButtonGreen>
+          <Loading isLoading={isLoading}/>
         </div>
       </Modal>
     </>

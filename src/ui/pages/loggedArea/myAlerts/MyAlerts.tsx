@@ -1,9 +1,13 @@
 import { Dispatch, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import emptyListImage from '@app/assets/images/empty-list.svg';
 import { AlertModel, AlertsList } from '@app/models/alerts.model';
+import { UserState } from '@app/models/user.model';
 import AlertsService from '@app/services/alerts';
+import { RootState } from '@app/stores/store';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
+import ModalEmail from '@app/ui/components/createAlertModals/modalEmail/ModalEmail';
 import ModalsCreateAlert from '@app/ui/components/createAlertModals/ModalsCreateAlert';
 import Loading from '@app/ui/components/loading/Loading';
 import Pagination from '@app/ui/components/pagination/Pagination';
@@ -27,9 +31,11 @@ interface getConfig {
 let timeout: ReturnType<typeof setTimeout> ;
 
 const MyAlerts = () => {
+  const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const [alerts, setAlerts] : [AlertsListModel, Dispatch<AlertsListModel>] = useState({} as AlertsListModel);
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(true);
   const [isOpenCreateAlert, setStateCreateAlert] : [boolean, Dispatch<boolean>] = useState(false);
+  const [isOpenModalEmail, setModalEmail] : [boolean, Dispatch<boolean>] = useState(false);
   const [deleteAlertIt, setAlertDeleteId] : [string, Dispatch<string>] = useState('');
   const [deleteError, setDeleteError] : [string, Dispatch<string>] = useState('');
   const [listSize, setListSize] : [number, Dispatch<number>] = useState(0);
@@ -132,7 +138,8 @@ const MyAlerts = () => {
   return (
     <Grid className='my-alerts-page container' item container sm={12} justifyContent='center'>
       <DeleteAlert errorMessage={deleteError} onConfirmDelete={onConfirmDelete} onClose={onCloseModalDelete} isOpen={!!deleteAlertIt} alertId={deleteAlertIt}/>
-      <ModalsCreateAlert clean={cleanModal} isOpen={isOpenCreateAlert} onCreated={onCreated} onOpen={openCreateAlert} onClose={() => setStateCreateAlert(false)}/>
+      <ModalsCreateAlert isAlertsPage clean={cleanModal} isOpen={isOpenCreateAlert} onCreated={onCreated} onOpen={openCreateAlert} onClose={() => setStateCreateAlert(false)}/>
+      <ModalEmail isOpen={isOpenModalEmail} alertEmail={userData.alert_email || userData.email as string} userEmail={userData.email as string} onBack={() => setModalEmail(false)} onApply={() => setModalEmail(false)}/>
       <Loading isLoading={isLoading}></Loading>
       {alerts && Object.keys(alerts).filter(index => !!alerts[parseInt(index)].length).length ?
         <Grid sm={8} xs={12} item container className='alerts-list' justifyContent='center'>
@@ -142,7 +149,7 @@ const MyAlerts = () => {
             <p className='paragraph-class'>{TEXTS.myAlerts.text2A} <b>{TEXTS.myAlerts.text2B}</b>.</p>
             <div className='buttons'>
               <ButtonGreen onClick={openCreateAlert}>{TEXTS.myAlerts.createAlert}</ButtonGreen>
-              <ButtonOutlined>{TEXTS.myAlerts.editEmail}</ButtonOutlined>
+              <ButtonOutlined onClick={() => setModalEmail(true)}>{TEXTS.myAlerts.editEmail}</ButtonOutlined>
             </div>
           </Grid>
           <div className='list-items'>

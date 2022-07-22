@@ -1,3 +1,5 @@
+import { AxiosRequestConfig } from "axios";
+
 export const ITEMS_PER_PAGE = 6;
 
 export interface ModalFilters {
@@ -5,6 +7,19 @@ export interface ModalFilters {
   ente?: string;
   themes?: (string | null)[];
   [key: string]: string | (string | null)[] | undefined;
+}
+
+export interface ReqFilters {
+  querystring?: string;
+  offset: number;
+  order: string | undefined;
+  size: number;
+  until?: string | Date;
+  since?: string | Date;
+  local?: string;
+  subthemes?: string[];
+  entities?: string[];
+  [key: string]: string | Date | (string | null)[] | undefined | number | string[];
 }
 
 export const convertFiltersToModalFilters = (filters: FiltersStatePayload) => {

@@ -21,11 +21,16 @@ import './Search.scss';
 let timeout: ReturnType<typeof setTimeout>;
 const pageKeys: string[] = ['itemsPerPage', 'order'];
 
+interface List {
+  [key: number]: GazetteModel[];
+}
+
 const Search = () => {
   const filters: FiltersState = useSelector((state: RootState) => state.filter);
   const gazettesService = new GazettesService();
   const [showFiltersMobile, setFiltersMobileVisibility] : [boolean, Dispatch<boolean>] = useState(false);
-  const [listItems, setListItems] : [GazetteModel[], Dispatch<GazetteModel[]>] = useState([] as GazetteModel[]);
+  const [listItems, setListItems] : [List, Dispatch<List>] = useState({} as List);
+  const [listSize, setListSize] : [number, Dispatch<number>] = useState(0);
   const [currPage, setPage] : [number, Dispatch<number>] = useState(0);
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [searchTimes, setSearchTimes] : [number, Dispatch<number>] = useState(0);
@@ -38,30 +43,43 @@ const Search = () => {
       timeout = setTimeout(() => {
         setSearchTimes(searchTimes + 1);
         if (searchTimes > 0 || window.location.search) {
-          getItemsList();
+          getItemsList(null);
           setUrlParams(filters);
         }
       }, 400);
     }
   }, [filters]);
 
-  const getItemsList = (isPagination = false) => {
-    setLoading(true);
-    gazettesService.getAllGazettes(filters, currPage)
-      .then((response: GazetteResponse) => {
-        if(isPagination) {
-          window.scrollTo(0,0);
-          const newList = [...listItems, ...parseGazettes(response.gazettes)];
-          setListItems(newList);
-        } else {
-          setPage(0);
-          setListItems(parseGazettes(response.gazettes));
-        }
-        setLoading(false);
-      }).catch(() => {
-        setLoading(false);
-        setListItems([]);
-      });
+  const getItemsList = (page: number | null) => {
+    if((page === null) || (!listItems[page] || !listItems[page].length)){
+      setLoading(true);
+      gazettesService.getAllGazettes(filters, page || 0)
+        .then((response: GazetteResponse) => {
+          setListSize(response.total_excerpts);
+          if(page !== null) {
+            window.scrollTo(0,0);
+            setPage(page);
+            const newList = {...listItems, [page] :parseGazettes(response.excerpts, filters.query as string)};
+            setListItems(newList);
+          } else {
+            setPage(0);
+            setListItems({[0] : parseGazettes(response.excerpts, filters.query as string)});
+          }
+          setLoading(false);
+        }).catch(() => {
+          setLoading(false);
+          if(page !== null) {
+            const newList = {...listItems, [page]: []};
+            setListItems(newList);
+            setPage(page);
+          } else {
+            setListItems([]);
+          }
+        });
+    } else {
+      window.scrollTo(0,0);
+      setPage(page);
+    }
   };
 
   const onClickFilters = () => {
@@ -73,8 +91,7 @@ const Search = () => {
   };
 
   const onChangePage = (page: number) => {
-    setPage(page);
-    //getItemsList(true); // TO DO PAGINAÇÃO
+    getItemsList(page);
   };
 
   const setUrlParams = (currFilters: FiltersState) => {
@@ -91,7 +108,7 @@ const Search = () => {
       <ModalsCreateAlert filters={filters} isOpen={isOpenCreateAlert} onOpen={() => setStateCreateAlert(true)} onClose={() =>setStateCreateAlert(false)}/>
       <Loading isLoading={isLoading}></Loading>
       <div className='search-page'>
-        <SearchField onClickAdvenced={() => setStateAdvancedSearch(true)} openCreateAlert={() => setStateCreateAlert(true)} onClickFilters={onClickFilters}/>
+        <SearchField filters={filters} onClickAdvenced={() => setStateAdvancedSearch(true)} openCreateAlert={() => setStateCreateAlert(true)} onClickFilters={onClickFilters}/>
         {
           showFiltersMobile ? 
             <div className='only-mobile mobile-filters'>
@@ -109,16 +126,13 @@ const Search = () => {
                 isLoading={isLoading}
                 openCreateAlert={() => setStateCreateAlert(true)}
                 searchTimes={searchTimes}
-                listSize={listItems.length} 
-                list={listItems.slice(
-                  ((currPage + 1) * filters.itemsPerPage) - filters.itemsPerPage, 
-                  filters.itemsPerPage * (currPage + 1))
-                }
+                listSize={listSize} 
+                list={listItems[currPage]}
               />
               <Pagination
                 currentPage={currPage}
                 onChangePage={onChangePage} 
-                listSize={listItems.length} 
+                listSize={listSize} 
                 itemsPerPage={filters.itemsPerPage}
               />
             </div>

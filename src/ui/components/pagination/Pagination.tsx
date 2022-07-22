@@ -13,14 +13,17 @@ const Pagination = ({onChangePage, currentPage, listSize, itemsPerPage}: Paginat
 
   const pages = () => {
     const pageNumbers = [];
-    if(listSize/itemsPerPage < 5) {
-      for (let i = 0;  i < listSize/itemsPerPage && pageNumbers.length < 5; i++) {
+    const pagesSize = Math.ceil(listSize/itemsPerPage);
+    if(pagesSize < 5) {
+      for (let i = 0;  i < pagesSize && pageNumbers.length < 5; i++) {
         pageNumbers.push(getPage(i));
       }
-    } else if(currentPage < listSize - 3){
-      [currentPage, currentPage + 1, null, listSize - 2, listSize - 1].forEach((i) => pageNumbers.push(getPage(i)));
+    }  else if(currentPage < pagesSize - 3 && currentPage > 0){
+      [0, null, currentPage, currentPage + 1, null, pagesSize - 2, pagesSize - 1].forEach((i) => pageNumbers.push(getPage(i)));
+    } else if(currentPage < pagesSize - 3){
+      [currentPage, currentPage + 1, null, pagesSize - 2, pagesSize - 1].forEach((i) => pageNumbers.push(getPage(i)));
     } else {
-      [ 0, null, listSize - 3, listSize - 2, listSize - 1].forEach((i) => pageNumbers.push(getPage(i)));
+      [ 0, null, pagesSize - 3, pagesSize - 2, pagesSize - 1].forEach((i) => pageNumbers.push(getPage(i)));
     }
     return pageNumbers;
   };

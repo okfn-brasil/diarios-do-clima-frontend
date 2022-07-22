@@ -12,10 +12,12 @@ export interface UserState {
   state?: string;
   credit_card?: Card;
   date_joined?: string;
+  alert_email?: string;
   plan_subscription?: Plan;
 }
 
 export interface UserResponseModel extends AxiosResponse {
+  alert_email: string;
   address: Address;
   city: string;
   credit_card: Card;

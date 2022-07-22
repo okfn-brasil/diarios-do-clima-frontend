@@ -22,9 +22,10 @@ interface ModalCreateAlertProps {
   onCreated?: () => void;
   filters?: FiltersStatePayload;
   clean?: number;
+  isAlertsPage?: boolean;
 }
 
-const ModalsCreateAlert = ({isOpen, onClose, onCreated, clean, onOpen, filters = initialFilters}: ModalCreateAlertProps) => {
+const ModalsCreateAlert = ({isOpen, onClose, onCreated, clean, onOpen, isAlertsPage, filters = initialFilters}: ModalCreateAlertProps) => {
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const [isOpenBecomePro, setStateBecomePro] : [boolean, Dispatch<boolean>] = useState(false);
   const [isOpenFilters, setStateFilters] : [boolean, Dispatch<boolean>] = useState(false);
@@ -87,6 +88,7 @@ const ModalsCreateAlert = ({isOpen, onClose, onCreated, clean, onOpen, filters =
   };
 
   //email
+
   const onClickEmail = () => {
     onClose();
     setStateEmailModal(true);
@@ -134,11 +136,12 @@ const ModalsCreateAlert = ({isOpen, onClose, onCreated, clean, onOpen, filters =
         onClickFilters={onClickFilters} 
         onSubmit={onSubmit}
         userData={userData}
-        email={email}
+        email={email || userData.alert_email as string}
         onClose={onClose} 
         isOpen={isOpen}
+        isAlertsPage={isAlertsPage}
       />
-      <ModalEmail isOpen={isOpenEmail} onBack={onBackEmail} onApply={onApplyEmail} userEmail={userData.email as string}/>
+      <ModalEmail isOpen={isOpenEmail} onBack={onBackEmail} onApply={onApplyEmail} alertEmail={userData.alert_email as string} userEmail={userData.email as string}/>
       <ModalKeyWords filters={filters} emptyFields={emptyFields}  isOpen={isOpenKeyWords} onBack={onBackKeyWords} onApply={onApplyKeyWords}/>
       <ModalAlertFilters filters={filters} emptyFields={emptyFields}  isOpen={isOpenFilters} onApply={onApplyFilters} onBack={onBackFilters}/>
       <ModalBecomePro isOpen={isOpenBecomePro} onClose={() => setStateBecomePro(false)}/>

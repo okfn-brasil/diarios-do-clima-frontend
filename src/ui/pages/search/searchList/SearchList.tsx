@@ -90,7 +90,7 @@ const SearchList = ({list, listSize, searchTimes, isLoading, openCreateAlert}: P
         }
 
         {
-          !listSize && searchTimes > 1 && !isLoading ? 
+          (!listSize && searchTimes > 1 && !isLoading) || (listSize && !list?.length && !isLoading) ? 
             <Grid container justifyContent='center' className='container empty-list'>
               <div>
                 <div className='text-area'>
@@ -102,7 +102,7 @@ const SearchList = ({list, listSize, searchTimes, isLoading, openCreateAlert}: P
             : <></>
         }
         <div>
-          {list?.map((item: GazetteModel) => <SearchItem key={item.edition + item.date} data={item}/>)}
+          {list?.map((item: GazetteModel, index) => <SearchItem key={index.toString()} data={item}/>)}
         </div>
         
       </Grid>

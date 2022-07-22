@@ -1,20 +1,10 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import selectArrow from '@app/assets/images/icons/arrow-down.svg';
+import { CNPJPartner } from '@app/models/cnpj.model';
 
 interface PartnerModel {
   name: string;
-  data : {
-    'Identificador': string;
-    'Data de entrada da sociedade': string;
-    'Nome do representante legal': string;
-    'CNPJ do sócio': string;
-    'Código do país (sócio estrangeiro)': string;
-    'Código de qualificação do representante legal': string;
-    'Código de qualificação do sócio': string;
-    'Número de CPF do representante legal': string;
-    'Faixa etária': string;
-    [key: string]: string;
-  }
+  data : CNPJPartner;
 }
 
 const Partner = ({data, name}: PartnerModel) => {
@@ -29,12 +19,18 @@ const Partner = ({data, name}: PartnerModel) => {
           </div>
           { isOpen ? 
             <div className='partner-infos-items'>
-              {Object.keys(data).map(key => 
-                <div className='partner-info-item'>
-                  <div className='info-name'>{key}</div>
-                  <div className='info-text'>{data[key]}</div>
-                </div>
-              )}
+              {Object.keys(data).map(key => {
+                if(data[key]) {
+                  return (
+                    <div className='partner-info-item'>
+                      <div className='info-name'>{key}</div>
+                      <div className='info-text'>{data[key]}</div>
+                    </div>
+                  );
+                } else {
+                  return <></>;
+                }
+              })}
             </div>
             :
             <></>

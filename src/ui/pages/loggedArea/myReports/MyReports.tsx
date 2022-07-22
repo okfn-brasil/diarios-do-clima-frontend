@@ -43,7 +43,6 @@ const MyReports = () => {
         setLoadedPages([...loadedPages, page]);
         setListSize(response.count);
         changePage(page);
-        window.scrollTo(0,0);
         setLoading(false);
       }).catch(() => {
         setListSize(0);
@@ -56,6 +55,7 @@ const MyReports = () => {
   };
 
   const changePage = (page: number) => {
+    window.scrollTo(0,0);
     setPage(page);
   };
 

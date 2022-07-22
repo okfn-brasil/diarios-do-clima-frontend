@@ -23,9 +23,10 @@ interface ModalSetAlertSpecProps {
   filters: ModalFilters;
   query: string;
   email: string;
+  isAlertsPage?: boolean;
 }
 
-const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmail, onClose, openBecomePro, onSubmit, userData, email, filters, query}: ModalSetAlertSpecProps) => {
+const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmail, onClose, openBecomePro, onSubmit, isAlertsPage, userData, email, filters, query}: ModalSetAlertSpecProps) => {
   const alertsService = new AlertsService();
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [hasError, setError] : [boolean, Dispatch<boolean>] = useState(false);
@@ -53,7 +54,7 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmai
   const submit = () => {
     setError(false);
     setLoading(true);
-    alertsService.postAlert(filters, (email || userData.email) as string, query).then(() => {
+    alertsService.postAlert(filters, query).then(() => {
       onSubmit();
       setLoading(false);
     }).catch(() => {
@@ -85,7 +86,7 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmai
           </div>
           <hr className='thin-line'/>
           {
-            userData.plan_pro ? 
+            userData.plan_pro && !isAlertsPage ? 
               <div className='small-text email-setting'>
                 <span>{TEXTS.createAlertModal.alertDestination} <b>{email || userData.email}</b></span>
                 <span className='blue-link hover-animation' onClick={() => {checkPlan(onEmail);}}>{TEXTS.createAlertModal.edit}</span>

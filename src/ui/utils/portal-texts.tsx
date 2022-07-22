@@ -73,6 +73,8 @@ export const TEXTS = {
     subtitle: 'O seu e-mail de cadastro continuará sendo',
     submit: 'Salvar e-mail de alerta',
     inputLabel: 'E-mail',
+    apiError: 'Ocorreu um erro ao tentar salvar o e-mail, por favor, tente novamente',
+    invalidError: 'O e-mail inserido é invalido',
   },
   modalQuery: {
     title: 'Cadastre as palavras-chave do seu alerta e enviaremos as novidades que tiverem os termos buscados.',

@@ -52,7 +52,11 @@ const ThemeFilter = ({onChange, options, hasProPlan}: ThemeFilterProps) => {
               />);}
             )}
           </FormGroup>
-          <button onClick={() => setShowMoreThemes(!showMoreThemes)} className='blue-link hover-animation show-more'>Mostrar {showMoreThemes ? 'menos' : 'mais'}</button>
+          
+          { !options[Object.keys(options)[Object.keys(options).length - 1]] ?
+            <button onClick={() => setShowMoreThemes(!showMoreThemes)} className='blue-link hover-animation show-more'>Mostrar {showMoreThemes ? 'menos' : 'mais'}</button>
+            : <></>  
+          }
         </div>
       </section>
     </>
