@@ -41,14 +41,33 @@ const Search = () => {
     if  (Object.keys(filters).filter(item => !pageKeys.includes(item)).length) {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
-        setSearchTimes(searchTimes + 1);
-        if (searchTimes > 0 || window.location.search) {
+        setUrlParams(filters);
+        if (getIfCanSearch())  {
+          setSearchTimes(searchTimes + 1);
           getItemsList(null);
-          setUrlParams(filters);
         }
       }, 400);
     }
   }, [filters]);
+
+  const getIfCanSearch = () => {
+    const hasThemes = filters.themes ? 
+      Object.keys(filters.themes).filter(key => !!(filters.themes && !!filters.themes[key])).length 
+      : null;
+    if (filters.ente !== '0' || !!filters.query || !!hasThemes) {
+      return true;
+    } else {
+      emptyList();
+      return false;
+    }
+  };
+
+  const emptyList = (isError = false) => {
+    setListSize(0);
+    setPage(0);
+    setListItems({});
+    setSearchTimes(isError ? 2 : 0);
+  };
 
   const getItemsList = (page: number | null) => {
     if((page === null) || (!listItems[page] || !listItems[page].length)){
@@ -56,14 +75,18 @@ const Search = () => {
       gazettesService.getAllGazettes(filters, page || 0)
         .then((response: GazetteResponse) => {
           setListSize(response.total_excerpts);
-          if(page !== null) {
-            window.scrollTo(0,0);
-            setPage(page);
-            const newList = {...listItems, [page] :parseGazettes(response.excerpts, filters.query as string)};
-            setListItems(newList);
+          if(!response.total_excerpts) {
+            emptyList(true);
           } else {
-            setPage(0);
-            setListItems({[0] : parseGazettes(response.excerpts, filters.query as string)});
+            if(page !== null) {
+              window.scrollTo(0,0);
+              setPage(page);
+              const newList = {...listItems, [page] :parseGazettes(response.excerpts, filters.query as string)};
+              setListItems(newList);
+            } else {
+              setPage(0);
+              setListItems({[0] : parseGazettes(response.excerpts, filters.query as string)});
+            }
           }
           setLoading(false);
         }).catch(() => {
@@ -73,7 +96,7 @@ const Search = () => {
             setListItems(newList);
             setPage(page);
           } else {
-            setListItems([]);
+            emptyList(true);
           }
         });
     } else {

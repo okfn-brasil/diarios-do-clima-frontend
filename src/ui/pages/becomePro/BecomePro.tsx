@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import { TEXTS } from '@app/ui/utils/portal-texts';
@@ -9,6 +9,17 @@ import { Grid } from '@mui/material';
 import './BecomePro.scss';
 
 const BecomePro = () => {
+  const params = useParams();
+  const navigate = useNavigate();
+
+  const continueNavigation = () => {
+    console.log(params);
+    if(params.param === 'afterregistration') {
+      navigate(urls.startSearch.url);
+    } else {
+      history.back();
+    }
+  };
   return (
     <Grid container className='container become-pro vertical-spacing-container'>
       <Grid item container xs={0} sm={3}></Grid>
@@ -38,7 +49,7 @@ const BecomePro = () => {
         </div>
         <div className='button-area'>
           <Link to={urls.purchase.url}><ButtonGreen classess='card-button'>{TEXTS.becomeProPage.signUp}</ButtonGreen></Link>
-          <Link to={urls.startSearch.url}><ButtonOutlined classess='card-button button-gray'>{TEXTS.becomeProPage.continue}</ButtonOutlined></Link>
+          <ButtonOutlined onClick={continueNavigation} classess='card-button button-gray'>{TEXTS.becomeProPage.continue}</ButtonOutlined>
         </div>
       </Grid>
     </Grid>

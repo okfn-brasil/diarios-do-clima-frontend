@@ -63,6 +63,7 @@ const App = () => {
             <Route path={urls.home.url} element={<Home />} />
             <Route path={urls.registration.url} element={<Registration />} />
             <Route path={urls.becomePro.url} element={<BecomePro />} />
+            <Route path={urls.becomePro.url + '/:param'} element={<BecomePro />} />
             <Route path={urls.startSearch.url} element={<StartSearch />} />
             <Route path={urls.terms.url} element={<TermsPage />} />
             <Route path={urls.about.url} element={<AboutPage />} />

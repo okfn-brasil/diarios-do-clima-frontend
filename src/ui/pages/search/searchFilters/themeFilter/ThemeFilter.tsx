@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Theme } from '@app/models/filters.model';
 import HelpIcon from '@app/ui/components/helpIcon/HelpIcon';
@@ -17,17 +17,6 @@ interface ThemeFilterProps {
 
 const ThemeFilter = ({onChange, options, hasProPlan}: ThemeFilterProps) => {
   const navigate: NavigateFunction = useNavigate();
-  const [showMoreThemes, setShowMoreThemes] : [boolean, Dispatch<boolean>] = useState(false);
-
-  const checkIfShowMore = () => {
-    let min = 3;
-    Object.keys(options).forEach((option, index) => {
-      if(options[option] && index >= min) {
-        min = index + 1;
-      }
-    });
-    return showMoreThemes ? 20 : min;
-  };
 
   return (
     <>
@@ -39,7 +28,7 @@ const ThemeFilter = ({onChange, options, hasProPlan}: ThemeFilterProps) => {
         <p>{TEXTS.searchPage.filters.themeSubtitle}</p>
         <div>
           <FormGroup>
-            {Object.keys(options as Theme).splice(0, checkIfShowMore()).map((key: string) => {
+            {Object.keys(options as Theme).map((key: string) => {
               return (<FormControlLabel 
                 key={key} 
                 disabled={!hasProPlan}
@@ -52,11 +41,6 @@ const ThemeFilter = ({onChange, options, hasProPlan}: ThemeFilterProps) => {
               />);}
             )}
           </FormGroup>
-          
-          { !options[Object.keys(options)[Object.keys(options).length - 1]] ?
-            <button onClick={() => setShowMoreThemes(!showMoreThemes)} className='blue-link hover-animation show-more'>Mostrar {showMoreThemes ? 'menos' : 'mais'}</button>
-            : <></>  
-          }
         </div>
       </section>
     </>

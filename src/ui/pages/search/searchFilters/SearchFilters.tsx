@@ -34,7 +34,10 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
   const [cleanDate, setCleanDate] : [number, Dispatch<number>] = useState(0);
   
   useEffect(() => {
-    dispatch(updateFilters(filters));
+    const newFilters = filters;
+    delete newFilters.query;
+    delete newFilters.order;
+    dispatch(updateFilters(newFilters));
   }, [filters]);
 
   useEffect(() => {
