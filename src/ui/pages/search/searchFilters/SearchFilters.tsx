@@ -5,6 +5,7 @@ import { UserState } from '@app/models/user.model';
 import { updateFilters } from '@app/stores/filters.store';
 import { RootState } from '@app/stores/store';
 import { themesMock } from '@app/ui/utils/mocks';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import CloseIcon from '@mui/icons-material/Close';
 import { Grid, SelectChangeEvent } from '@mui/material';
 
@@ -31,6 +32,21 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
   const dispatch = useDispatch();
   const [filters, setFilters] : [FiltersStatePayload, Dispatch<SetStateAction<FiltersStatePayload>>] = useState(initialFilters);
   const [cleanDate, setCleanDate] : [number, Dispatch<number>] = useState(0);
+  
+  useEffect(() => {
+    dispatch(updateFilters(filters));
+  }, [filters]);
+
+  useEffect(() => {
+    if (window.location.search) {
+      const urlFilters = parseUrlToFilters();
+      setFilters((values: FiltersStatePayload) => ({...urlFilters, themes: {
+        ...values.themes,
+        ...urlFilters.themes
+      }}));
+      dispatch(updateFilters(urlFilters));
+    }
+  }, []);
 
   const inputChange = (event: SelectChangeEvent<string>) => {
     const {name, value} = event.target;
@@ -55,21 +71,6 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
     setCleanDate(Math.random());
   };
 
-  useEffect(() => {
-    dispatch(updateFilters(filters));
-  }, [filters]);
-
-  useEffect(() => {
-    if (window.location.search) {
-      const urlFilters = parseUrlToFilters();
-      setFilters((values: FiltersStatePayload) => ({...urlFilters, themes: {
-        ...values.themes,
-        ...urlFilters.themes
-      }}));
-      dispatch(updateFilters(urlFilters));
-    }
-  }, []);
-
   return (
     <Grid 
       item 
@@ -80,16 +81,16 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
         <Grid className='mobile-header' container alignItems='center' justifyContent='space-between'>
           <Grid container alignItems='center' className='close-icon-area'>
             <CloseIcon className='hover-animation' onClick={onClose} />
-            <div className='mobile-title'>Filtros</div>
+            <div className='mobile-title'>{TEXTS.searchPage.filters.title}</div>
           </Grid>
-          <span onClick={cleanFilters} className='blue-link'>Limpar tudo</span>
+          <span onClick={cleanFilters} className='blue-link'>{TEXTS.searchPage.filters.clean}</span>
         </Grid> 
         <hr className='thin-line'/>
       </div>
       <div className='filters'>
         <LocationFilter onChange={inputChange} value={filters.location as string}/>
         <section className='section-filter-class'>
-          <h3 className='h3-class'>Período de tempo</h3>
+          <h3 className='h3-class'>{TEXTS.searchPage.filters.period}</h3>
           <div>
             <DateFilter cleanDate={cleanDate} onSubmit={updateDateFilters} />
           </div>

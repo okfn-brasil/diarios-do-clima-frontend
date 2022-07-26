@@ -5,6 +5,7 @@ import { RootState } from '@app/stores/store';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import LoggedMenu from '@app/ui/components/menu/loggedMenu/LoggedMenu';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 
 import './MenuDesktop.scss';
@@ -23,26 +24,26 @@ const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
   return (
     <div className='menu-desktop'>
       <Link to={urls.plans.url}>
-        <span className={`hover-animation menu-desktop-link ${isWhite ? 'dark-blue-link' : ''}`}>Diario do Clima PRO</span>
+        <span className={`hover-animation menu-desktop-link ${isWhite ? 'dark-blue-link' : ''}`}>{TEXTS.menu.pro}</span>
       </Link>
       <Link to={urls.reports.url}>
-        <span className={`hover-animation menu-desktop-link ${isWhite ? 'dark-blue-link' : ''}`}>Relatórios</span>
+        <span className={`hover-animation menu-desktop-link ${isWhite ? 'dark-blue-link' : ''}`}>{TEXTS.menu.reports}</span>
       </Link>
       <Link to={urls.about.url}>
-        <span className={`hover-animation menu-desktop-link ${isWhite ? 'dark-blue-link' : ''}`}>Sobre o Diário do Clima</span>
+        <span className={`hover-animation menu-desktop-link ${isWhite ? 'dark-blue-link' : ''}`}>{TEXTS.menu.about}</span>
       </Link>
       { userData.access ? 
         <LoggedMenu isWhite={isWhite} classess='logged-menu' ></LoggedMenu> :
         <>
           <Link to='/cadastro'>
             <ButtonGreen classess='font-small-button'>
-              Começar a buscar
+              {TEXTS.menu.buttonSearch}
             </ButtonGreen>
           </Link>
 
           <div onClick={onShowLoginForm}>
             <ButtonOutlined classess={`font-small-button ${isWhite ? 'dark-blue-link' : ''}`}>
-              Iniciar Sessão
+              {TEXTS.menu.buttonSession}
             </ButtonOutlined>
           </div>
         </>

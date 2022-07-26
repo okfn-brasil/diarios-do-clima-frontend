@@ -14,6 +14,15 @@
 
   .footer-md {
     padding-right: 128px;
+
+    img {
+      margin-top: -20px;
+    }
+
+    a, a span {
+      margin: 0px 10px 20px;
+      transform: translateY(10px);
+    }
   }
 
   .footer {

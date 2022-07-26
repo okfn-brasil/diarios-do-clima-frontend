@@ -8,6 +8,7 @@ interface PropsInput {
   required?: boolean;
   classes?: string;
   onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onBlur?: () => void;
   name: string;
   label: string;
   mask?: string;
@@ -15,7 +16,7 @@ interface PropsInput {
   type?: string;
 }
 
-const TextInput = ({value, required, classes, onChange, name, label, type, error, mask}: PropsInput) => {
+const TextInput = ({value, required, classes, onBlur, onChange, name, label, type, error, mask}: PropsInput) => {
   return (
     <FormControl className={`form-input ${classes}`} fullWidth>
       <InputLabel id={name}>{label}</InputLabel>
@@ -37,6 +38,7 @@ const TextInput = ({value, required, classes, onChange, name, label, type, error
           name={name}
           className='input-class'
           value={value} 
+          onBlur={onBlur}
           onChange={onChange}
         />
       }

@@ -1,3 +1,4 @@
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { Grid } from '@mui/material';
 
 import PurchaseForm from './purchaseForm/PurchaseForm';
@@ -17,10 +18,10 @@ const Purchase = () => {
       >
         <div className='form-area'>
           <div className='title'>
-            Comece seu período de 7 dias de teste.
+            {TEXTS.purchasePage.title}
           </div>
           <div className='sub-title'>
-            Usufrua dos benefícios de ser PRO sem compromisso. Cancele a qualquer momento.
+            {TEXTS.purchasePage.subTitle}
           </div>
         </div>
         <Grid item xs={12}>

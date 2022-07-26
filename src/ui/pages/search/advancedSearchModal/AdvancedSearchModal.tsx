@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from '@app/ui/components/modal/Modal';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 import './AdvancedSearchModal.scss';
 
@@ -8,48 +9,7 @@ interface AdvancedSearchModalProps {
   onClose: () => void;
 }
 
-const items = [
-  {
-    title: '+ significa operação E',
-    desc: 'Utilize + quando os resultados devem conter ambos os termos',
-    ex: 'crédito + cartão',
-  },
-  {
-    title: '| significa operação OU',
-    desc: 'Utilize | quando os resultados devem conter pelo menos um dos termos',
-    ex: 'débito | crédito',
-  },
-  {
-    title: '- nega um único token',
-    desc: 'Explicação de quando utilizar',
-    ex: '',
-  },
-  {
-    title: '" envolve um número de tokens para significar uma frase para pesquisa',
-    desc: 'Explicação de quando utilizar',
-    ex: '',
-  },
-  {
-    title: '* no final de um termo significa uma consulta de prefixo',
-    desc: '',
-    ex: '',
-  },
-  {
-    title: '~N depois de uma palavra significa editar a distância (indefinição)',
-    desc: '',
-    ex: '',
-  },
-  {
-    title: '~N depois de uma frase significa quantidade de despejo',
-    desc: '',
-    ex: '',
-  },
-  {
-    title: '* no final de um termo significa uma consulta de prefixo',
-    desc: '',
-    ex: '',
-  },
-];
+const items = TEXTS.searchPage.advancedSearch;
 
 const AdvancedSearchModal = ({isOpen, onClose}: AdvancedSearchModalProps) => {
 
@@ -57,7 +17,7 @@ const AdvancedSearchModal = ({isOpen, onClose}: AdvancedSearchModalProps) => {
     <Modal isOpen={isOpen} title='Dicas de busca avançada' onClose={onClose} className='advanced-search-modal'>
       <div className='advanced-search-modal-content'>
         <div className='general-info'>
-          Para usar um desses caracteres literalmente, escape-o com uma barra invertida (\).
+          {TEXTS.searchPage.advancedSearchTitle}
         </div>
         <div>
           {items.map(item => 

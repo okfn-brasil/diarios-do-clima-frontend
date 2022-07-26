@@ -1,4 +1,5 @@
 import { MouseEventHandler } from 'react';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import CloseIcon from '@mui/icons-material/Close';
 
 import './CookieAlert.scss';
@@ -12,7 +13,7 @@ const CookieAlert = ({ onClick }: PropsCookieAlert) => {
   return (
     <div className='cookie-alert'>
       <span>
-        Nós utilizamos cookies essenciais para o site funcionar e alguns adicionais para entender como você utiliza o Diário do Clima. Mais detalhes nos Termos.
+        {TEXTS.cookieAlert.text}
       </span>
       <CloseIcon onClick={onClick} className='hover-animation close-icon'/>
     </div>

@@ -1,11 +1,14 @@
 
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Dates, parseUrlToFilters,SubmitDates } from '@app/models/filters.model';
 import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
 import ProFlag from '@app/ui/components/proFlag/ProFlag';
 import { datePickerTranslation } from '@app/ui/utils/datepicker.utils';
+import { TEXTS } from '@app/ui/utils/portal-texts';
+import { urls } from '@app/ui/utils/urls';
 import { Grid, TextField} from '@mui/material';
 import { DatePicker, LocalizationProvider, PickersLocaleText } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -25,6 +28,7 @@ const initialDates: Dates = {
 };
 
 const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
+  const navigate: NavigateFunction = useNavigate();
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const [tab, setTab] : [number, Dispatch<number>] = useState(0);
   const [invalidDate, setInvalidDate] : [boolean, Dispatch<boolean>] = useState(false);
@@ -45,13 +49,25 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
     } else {
       submit();
     }
-  }, [invalidDate ,dates, currPeriod]);
+  }, [invalidDate, dates, currPeriod]);
 
   useEffect(() => {
     setDates(initialDates);
     setPeriod(1);
     onSubmit({period: null, dates: null});
   }, [cleanDate]);
+
+  useEffect(() => {
+    if (window.location.search) {
+      const urlFilters = parseUrlToFilters();
+      setPeriod(urlFilters.period as number);
+      const dates = urlFilters.dates;
+      if(dates?.end || dates?.start) {
+        setDates(urlFilters.dates as Dates);
+        setTab(1);
+      }
+    }
+  }, []);
 
   const dateChange = (value: Date, name: string) => {
     setInvalidDate(false);
@@ -79,18 +95,6 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
     setPeriod(period);
   };
 
-  useEffect(() => {
-    if (window.location.search) {
-      const urlFilters = parseUrlToFilters();
-      setPeriod(urlFilters.period as number);
-      const dates = urlFilters.dates;
-      if(dates?.end || dates?.start) {
-        setDates(urlFilters.dates as Dates);
-        setTab(1);
-      }
-    }
-  }, []);
-
   const getIfAllowsProFilter = (period: number) => {
     return !!(period === 4 && !userData.plan_pro);
   };
@@ -98,9 +102,9 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
   return (
     <Grid>
       <Grid container>
-        <div onClick={() => {changeTab(0);}} className={`hover-animation ${tab ? 'tab-class' : 'curr-tab-class'}`}>Recentes</div>
+        <div onClick={() => {changeTab(0);}} className={`hover-animation ${tab ? 'tab-class' : 'curr-tab-class'}`}>{TEXTS.searchPage.filters.tab1}</div>
         <div  onClick={() => {changeTab(1);}} className={`hover-animation second-tab ${!tab ? 'tab-class' : 'curr-tab-class'}`}>
-          Intervalo de tempo <ProFlag spaceBottom={2} show={!!(!userData.plan_pro && tab)}/>
+          {TEXTS.searchPage.filters.tab2} <ProFlag spaceBottom={2} show={!!(!userData.plan_pro && tab)}/>
         </div>
       </Grid>
 
@@ -110,7 +114,7 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
             return (<div 
               className={`hover-animation ${getIfAllowsProFilter(period) ? 'disabled-box' : ''} ${currPeriod === period ? 'period-box-selected-class' : 'period-box-class'}`}
               key={period}
-              onClick={() => {getIfAllowsProFilter(period) ? {} : changePeriod(period);}}
+              onClick={() => {getIfAllowsProFilter(period) ? navigate(urls.becomePro.url) : changePeriod(period);}}
             >
               {period < 4 ? `${period}m` : 'Tudo'} 
               <ProFlag show={getIfAllowsProFilter(period)}/>
@@ -120,11 +124,11 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
       }
 
       {tab ?
-        <div className='date-pickers-container'>
+        <div className='date-pickers-container' onClick={() => !userData.plan_pro ? navigate(urls.becomePro.url) : null}>
           <Grid container justifyContent='space-between' className='date-pickers'>
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR} localeText={datePickerTranslation as Partial<PickersLocaleText<unknown>>}>
               <DatePicker
-                label='De'
+                label={TEXTS.searchPage.filters.from}
                 disabled={!userData.plan_pro}
                 disableFuture={true}
                 value={dates.start}
@@ -134,7 +138,7 @@ const DateFilter = ({onSubmit, cleanDate}: PropsDateFilter) => {
             </LocalizationProvider>
             <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR} localeText={datePickerTranslation as Partial<PickersLocaleText<unknown>>}>
               <DatePicker
-                label='Até'
+                label={TEXTS.searchPage.filters.to}
                 disabled={!userData.plan_pro}
                 disableFuture={true}
                 value={dates.end}

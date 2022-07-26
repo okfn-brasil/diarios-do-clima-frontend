@@ -1,0 +1,123 @@
+@import '@app/styles/globals.scss';
+
+.user-info-page {
+  background-color: $lightGray3;
+  padding: 56px 0;
+
+  .h2-class {
+    color: $darkBlue;
+    margin: 0 0 16px;
+  }
+
+  .sub-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .white-box {
+    align-self: flex-start;
+    background-color: $white;
+    padding: 40px 24px;
+    margin-top: 24px;
+    width: 100%;
+
+    &.not-align-self {
+      align-self: unset;
+    }
+    
+    @media only screen and (min-width: $desktopSize) {
+      width: calc(50% - 12px);
+      min-width: 300px;
+    }
+  }
+
+  .user-info {
+    margin-bottom: 16px;
+
+    .email, .password-display {
+      margin-bottom: 8px;
+    }
+
+    .email {
+      font-weight: 600;
+    }
+  }
+
+  a {
+    &:last-of-type, &.manage-payment {
+      .form-link {
+        border-bottom: 1px solid $gray2;
+      }
+    }
+
+    .form-link {
+      color: $black;
+      padding: 30px 0;
+      font-size: 14px;
+      border-top: 1px solid $gray2;
+      position: relative;
+
+      .right-arrow {
+        width: 16px;
+        position: absolute;
+        right: 10px;
+        top: calc(50% - 4px);
+        transform: rotate(-90deg);
+        transition: 0.4s;
+      }
+
+      &:hover {
+        .right-arrow {
+          right: 4px;
+        }
+      }
+    }
+  }
+
+  .plan-type {
+    font-weight: 600;
+    margin: 14px 0 30px;
+  }
+
+  .pro-sub-title {
+    margin-bottom: 30px;
+  }
+
+  .cancel button {
+    color: $gray5;
+    font-size: 16px;
+    margin-top: 16px;
+    padding-bottom: 12px;
+  }
+
+  .card-info {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .card-digits {
+    font-weight: 600;
+  }
+
+  .card-box {
+    width: 32px;
+    height: 22px;
+    border-radius: 4px;
+    background-color: $gray1;
+    margin-right: 16px;
+    margin-top: -2px;
+  }
+
+  .small-text {
+    margin: 20px 0 30px;
+    
+    @media only screen and (min-width: $desktopSize) {
+      margin: 20px 0 50px;
+    }
+  }
+
+  .need-help {
+    font-size: 14px;
+    margin-top: 40px;
+  }
+}

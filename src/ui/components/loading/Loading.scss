@@ -3,6 +3,14 @@
 .loading-area {
   z-index: 99999;
 
+  &.relative-loading {
+    position: relative;
+    background-color: $white;
+    height: calc(100vh - 350px);
+    z-index: 99;
+    max-width: 100%;
+  }
+
   .lds div {
     display: inline-block;
     position: absolute;

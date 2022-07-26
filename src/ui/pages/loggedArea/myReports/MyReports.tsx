@@ -6,10 +6,10 @@ import ReportsService from '@app/services/reports';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import Loading from '@app/ui/components/loading/Loading';
+import Pagination from '@app/ui/components/pagination/Pagination';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
-
-import Pagination from '@app/ui/components/pagination/Pagination';
 
 import ReportItem from './reportItem/ReportItem';
 
@@ -43,7 +43,6 @@ const MyReports = () => {
         setLoadedPages([...loadedPages, page]);
         setListSize(response.count);
         changePage(page);
-        window.scrollTo(0,0);
         setLoading(false);
       }).catch(() => {
         setListSize(0);
@@ -56,6 +55,7 @@ const MyReports = () => {
   };
 
   const changePage = (page: number) => {
+    window.scrollTo(0,0);
     setPage(page);
   };
 
@@ -64,7 +64,7 @@ const MyReports = () => {
       <Loading isLoading={isLoading}></Loading>
       {reports && Object.keys(reports).filter(index => !!reports[parseInt(index)].length).length ?
         <Grid lg={4} sm={8} xs={12} item className='container'>
-          <h2 className='h2-class font-sora'>Meus relatórios</h2>
+          <h2 className='h2-class font-sora'>{TEXTS.myReports.title}</h2>
           <div>
             {reports[page].map(report => <ReportItem key={report.id} report={report}></ReportItem>)}
           </div>
@@ -72,12 +72,12 @@ const MyReports = () => {
         </Grid>
         :
         <Grid className='empty-list container' item sm={4} xs={10}>
-          <h2 className='h2-class font-sora'>Meus relatórios</h2>
+          <h2 className='h2-class font-sora'>{TEXTS.myReports.title}</h2>
           <img src={emptyListImage} alt='Lista vazia' />
-          { !isLoading ? <div className='paragraph-class'>Você ainda não possui nenhum relatório</div> : <></> }
-          <Link to={urls.reports.url}><div className='blue-link hover-animation'>Saiba mais sobre os relatórios</div></Link>
-          <ButtonGreen fullWidth>Simular o custo</ButtonGreen>
-          <ButtonOutlined fullWidth>Falar com um especialista</ButtonOutlined>
+          { !isLoading ? <div className='paragraph-class'>{TEXTS.myReports.emptyList}</div> : <></> }
+          <Link to={urls.reports.url}><div className='blue-link hover-animation'>{TEXTS.myReports.knowMore}</div></Link>
+          <ButtonGreen fullWidth>{TEXTS.myReports.simulate}</ButtonGreen>
+          <ButtonOutlined fullWidth>{TEXTS.myReports.contact}</ButtonOutlined>
         </Grid>
       }
     </Grid>

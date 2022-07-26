@@ -2,6 +2,7 @@ import backgroundImage from '@app/assets/images/home/lead.background.png';
 import deviceImage from '@app/assets/images/home/lead.device.png';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import LinkManager from '@app/ui/components/linkManager/LinkManager';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
@@ -16,19 +17,19 @@ const Lead = () => {
       <Grid item container xs={12} className='banner-content'>
         <Grid item xs={12} lg={6} className='banner-container'>
           <p className='title'>
-              Encontre um <span>ato ambiental</span>
+            {TEXTS.home.lead.titleA} <span>{TEXTS.home.lead.titleB}</span>
           </p>
           <p className='description'>
-              O diário do Clima filtra as informações dos diários oficiais para você descobrir o que precisa mais fácil e rapidamente
+            {TEXTS.home.lead.subtitle}
           </p>
           <LinkManager to={urls.registration.url}>
             <ButtonGreen classess='start-search'>
-                Começar a buscar
+              {TEXTS.home.lead.buttonTitle}
             </ButtonGreen>
           </LinkManager>
         </Grid>
         <Grid className='image-area' container justifyContent='center' item xs={12} lg={6}>
-          <img src={deviceImage} alt='Exemplo de ui do diario do clima' />
+          <img src={deviceImage} alt={TEXTS.home.lead.deviceImageAlt} />
         </Grid>
       </Grid>
     </Grid >

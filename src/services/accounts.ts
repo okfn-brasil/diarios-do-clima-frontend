@@ -19,6 +19,10 @@ export default class AccountService {
     return api.post(this.currentUrl, newForm).then((response) => response as RegistrationResponse);
   }
 
+  updateUserData(alert_email: string) {
+    return api.patch(this.currentUrl + 'me/', { alert_email }).then((response) => response as UserResponseModel);
+  }
+
   getUserData() {
     return api.get(this.currentUrl + 'me/').then((response) => response as UserResponseModel);
   }

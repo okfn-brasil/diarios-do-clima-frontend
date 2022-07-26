@@ -2,6 +2,7 @@
 
 .my-alerts-page {
   background-color: $lightGray3;
+  min-height: calc(100vh - 80px - 100px);
 
   .h2-class {
     color: $black;

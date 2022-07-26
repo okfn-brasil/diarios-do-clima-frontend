@@ -4,6 +4,7 @@ import { Link, NavigateFunction, useLocation, useNavigate } from 'react-router-d
 import userBlackIcon from '@app/assets/images/icons/person.svg';
 import userWhiteIcon from '@app/assets/images/icons/person-white.svg';
 import { userReset } from '@app/stores/user.store';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 
 import './LoggedMenu.scss';
@@ -47,13 +48,13 @@ const LoggedMenu = ({isWhite, classess}: PropsLoggedMenu) => {
       </button>
       {isShowingDropdown ? <div className='dropdown-menu' onMouseLeave={closeMenu}>
         <div className='links'>
-          <Link to='' className='hover-animation'><div>Minha conta</div></Link>
-          <Link to={urls.myReports.url} className='hover-animation'><div>Meus relatórios</div></Link>
-          <Link to={urls.myAlerts.url} className='hover-animation'><div>Alertas salvos</div></Link>
+          <Link to={urls.userInfo.url} className='hover-animation'><div>{TEXTS.loggedMenu.myAccount}</div></Link>
+          <Link to={urls.myReports.url} className='hover-animation'><div>{TEXTS.loggedMenu.myReports}</div></Link>
+          <Link to={urls.myAlerts.url} className='hover-animation'><div>{TEXTS.loggedMenu.myAlerts}</div></Link>
         </div>
         <hr className='thin-line'/>
         <div onClick={signOut} className='links hover-animation'>
-          <Link to='' className='hover-animation'><div>Deslogar</div></Link>
+          <Link to='' className='hover-animation'><div>{TEXTS.loggedMenu.singOut}</div></Link>
         </div>
       </div> : <></> }
     </div>

@@ -2,7 +2,7 @@
 
 .data-section.vertical-spacing-container {
   
-  @media only screen and (max-width: $tabletSize) {
+  @media only screen and (max-width: $desktopSize) {
     margin-top: 280px;
   }
 

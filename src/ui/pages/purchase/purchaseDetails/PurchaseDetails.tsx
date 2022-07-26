@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { Grid } from '@mui/material';
 
 import './PurchaseDetails.scss';
@@ -9,7 +9,7 @@ interface PropsPurchaseDetails {
 }
 
 const PurchaseDetails = ({isLoading}: PropsPurchaseDetails) => {
-  const mockPlan = {
+  const mockPlan = { // TO DO
     name: 'Profissional',
     value: 0,
   };
@@ -17,30 +17,23 @@ const PurchaseDetails = ({isLoading}: PropsPurchaseDetails) => {
     <Grid className='purchase-details'>
       <div className='details-box'>
         <div className='details-title'>
-          Detalhes da assinatura
+          {TEXTS.purchasePage.detailsTitle}
         </div>
         <div className='plan-details'>
           <div className='plan-name'>
             {mockPlan.name}
           </div>
           <div  className='plan-value'>
-            R$ {mockPlan.value.toFixed(2)}/mês*
+            R$ {mockPlan.value.toFixed(2)}{TEXTS.purchasePage.perMonth}
           </div>
           <div className='plan-alert'>
-            * cobrado mensalmente após o período de 15 dias testes
+            {TEXTS.purchasePage.detailAlert}
           </div>
         </div>
-        <SubmitForm disabled={isLoading} classess='submit-purchase' label='Assinar'/>
+        <SubmitForm disabled={isLoading} classess='submit-purchase' label={TEXTS.purchasePage.submitLabel}/>
 
-        <div 
-          className='purchase-terms'
-        >
-          Ao clicar em assinar você está concordando com nossos
-          <Link to='' className='hover-animation blue-link'> termos de assinantes. </Link>
-          Sua assinatura será <b>renovada automaticamente</b> todo mês ao realizar a cobrança no seu cartão 
-          de crédito cadastrado até que você realize o cancelamento. <br/>
-          Você pode cancelar a qualquer 
-          momento antes do próximo ciclo de pagamento.
+        <div className='purchase-terms'>
+          {TEXTS.purchasePage.purchaseTerms}
         </div>
       </div>
     </Grid>

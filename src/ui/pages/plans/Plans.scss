@@ -34,10 +34,14 @@
   }
 
   .card-plan {
-    width: calc(50% - 12px - 48px);
+    width: calc(100% - 48px);
     border: 1px solid  $gray2;
     padding: 40px 24px;
     margin-top: 24px;
+
+    @media only screen and (min-width: $desktopSize) {
+      width: calc(50% - 12px - 48px);
+    }
   }
 
   .card-pro {
@@ -55,7 +59,6 @@
   
   .card-plan-mobile {
     @extend .card-plan;
-    width: calc(100% - 48px);
   }
   
   

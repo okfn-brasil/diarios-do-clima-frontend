@@ -1,6 +1,7 @@
 import downloadIcon from '@app/assets/images/icons/download.svg';
 import { ReportModel } from '@app/models/reports.model';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 import './ReportItem.scss';
 
@@ -17,7 +18,7 @@ const ReportItem = ({report}: ReportProps) => {
         <ButtonGreen fullWidth>
           <div>
             <img src={downloadIcon} alt='download'/>
-            Baixar relatório
+            {TEXTS.myReports.download}
           </div>
         </ButtonGreen>
       </a>

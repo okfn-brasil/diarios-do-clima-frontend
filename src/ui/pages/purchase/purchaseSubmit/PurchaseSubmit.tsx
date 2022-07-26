@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { FormPurchaseModel, SessionModel, SubscriptionModel } from '@app/models/purchase.model';
-import BillingService, { getCardType } from '@app/services/billing';
+import { FormPurchaseModel, getCardType, SessionModel, SubscriptionModel } from '@app/models/purchase.model';
+import BillingService from '@app/services/billing';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 declare const PagSeguroDirectPayment: {
   setSessionId: (e: string) => void;
   createCardToken: (e: {
@@ -35,7 +36,7 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
   const billingService = new BillingService();
 
   const errorMessage = (text: string) => {
-    return `Ocorreu um erro ao tentar ${text}. \n\nPor favor, verifique se os dados foram inseridos corretamente e tente novamente.`;
+    return `${TEXTS.purchasePage.errors.errorPartA} ${text}. \n\n${TEXTS.purchasePage.errors.errorPartB}`;
   };
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
   }, [isSubmitting]);
 
   const submit = () => {
-    const paymentErrorMessage = 'realizar o pagamento';
+    const paymentErrorMessage = TEXTS.purchasePage.errors.onPayment;
     billingService.getSessionId().then(
       (response: SessionModel) => {
         PagSeguroDirectPayment.setSessionId(response.session);
@@ -80,7 +81,7 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
         addAddress();
       })
       .catch(() => {
-        onError(errorMessage('cadastrar seu cartão'));
+        onError(errorMessage(TEXTS.purchasePage.errors.onCard));
       });
   };
 
@@ -90,7 +91,7 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
         addPhone();
       })
       .catch(() => {
-        onError(errorMessage('cadastrar o endereço'));
+        onError(errorMessage(TEXTS.purchasePage.errors.onAddress));
       });
   };
 
@@ -100,15 +101,15 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
         postPlanId();
       })
       .catch(() => {
-        onError(errorMessage('cadastrar o telefone'));
+        onError(errorMessage(TEXTS.purchasePage.errors.onPhone));
       });
   };
 
   const postPlanId = () => {
-    billingService.postSubscription('9ea3eb5f-d2d5-4433-8714-43fa7bdb0ce3').then((response: SubscriptionModel)  => {
+    billingService.postSubscription(TEXTS.purchasePage.planCode).then((response: SubscriptionModel)  => {
       onSuccess(response.plan);
     }).catch(() => {
-      onError(errorMessage('cadastrar seu novo plano'));
+      onError(errorMessage(TEXTS.purchasePage.errors.onPlan));
     });
   };
 

@@ -1,7 +1,10 @@
 import { ChangeEvent, Dispatch, useState } from 'react';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { Theme } from '@app/models/filters.model';
 import HelpIcon from '@app/ui/components/helpIcon/HelpIcon';
 import ProFlag from '@app/ui/components/proFlag/ProFlag';
+import { TEXTS } from '@app/ui/utils/portal-texts';
+import { urls } from '@app/ui/utils/urls';
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 
 import './ThemeFilter.scss';
@@ -13,6 +16,7 @@ interface ThemeFilterProps {
 }
 
 const ThemeFilter = ({onChange, options, hasProPlan}: ThemeFilterProps) => {
+  const navigate: NavigateFunction = useNavigate();
   const [showMoreThemes, setShowMoreThemes] : [boolean, Dispatch<boolean>] = useState(false);
 
   const checkIfShowMore = () => {
@@ -27,12 +31,12 @@ const ThemeFilter = ({onChange, options, hasProPlan}: ThemeFilterProps) => {
 
   return (
     <>
-      <section className='section-filter-class theme-filter'>
+      <section className='section-filter-class theme-filter' onClick={() => !hasProPlan ? navigate(urls.becomePro.url) : null}>
         <h3 className='h3-class'>
-            Tema <HelpIcon />
+          {TEXTS.searchPage.filters.themeTitle} <HelpIcon />
           <ProFlag spaceBottom={2} show={!hasProPlan}/>
         </h3>
-        <p>Aqui uma descrição breve do que são e de como funcionam os temas</p>
+        <p>{TEXTS.searchPage.filters.themeSubtitle}</p>
         <div>
           <FormGroup>
             {Object.keys(options as Theme).splice(0, checkIfShowMore()).map((key: string) => {
@@ -48,7 +52,11 @@ const ThemeFilter = ({onChange, options, hasProPlan}: ThemeFilterProps) => {
               />);}
             )}
           </FormGroup>
-          <button onClick={() => setShowMoreThemes(!showMoreThemes)} className='blue-link hover-animation show-more'>Mostrar {showMoreThemes ? 'menos' : 'mais'}</button>
+          
+          { !options[Object.keys(options)[Object.keys(options).length - 1]] ?
+            <button onClick={() => setShowMoreThemes(!showMoreThemes)} className='blue-link hover-animation show-more'>Mostrar {showMoreThemes ? 'menos' : 'mais'}</button>
+            : <></>  
+          }
         </div>
       </section>
     </>

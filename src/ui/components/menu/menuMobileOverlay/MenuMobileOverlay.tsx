@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import DiarioLogo from '@app/assets/images/logo.svg';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import CloseIcon from '@mui/icons-material/Close';
 import { Grid } from '@mui/material';
@@ -34,31 +35,31 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobi
           <img src={DiarioLogo} alt='Logo do Diario do Clima' />
           <CloseIcon className='close-icon' onClick={onClose} />
         </Grid>
-        { isLoggedIn ? <div className='menu-item'><Link to={urls.search.url}>Buscar</Link></div> : <></>}
-        <div className='menu-item'><Link to={urls.plans.url}>Diário do clima PRO</Link></div>
-        <div className='menu-item'><Link to={urls.reports.url}>Relatórios</Link></div>
-        <div className='menu-item'><Link to={urls.about.url}>Sobre o Diário do Clima</Link></div>
+        { isLoggedIn ? <div className='menu-item'><Link to={urls.search.url}>{TEXTS.menu.search}</Link></div> : <></>}
+        <div className='menu-item'><Link to={urls.plans.url}>{TEXTS.menu.pro}</Link></div>
+        <div className='menu-item'><Link to={urls.reports.url}>{TEXTS.menu.reports}</Link></div>
+        <div className='menu-item'><Link to={urls.about.url}>{TEXTS.menu.about}</Link></div>
         { isLoggedIn ? <></> :
           <>
             <Grid item xs={12} className='buttons-area'>
               <Link to={urls.registration.url}>
                 <ButtonGreen classess='buttons'>
-                  Começar a buscar
+                  {TEXTS.menu.buttonSearch}
                 </ButtonGreen>
               </Link>
             </Grid>
             <Grid  onClick={onShowLoginForm} item xs={12} className='buttons-area'>
               <ButtonOutlined classess='buttons outlined'>
-                Iniciar sessão
+                {TEXTS.menu.buttonSession}
               </ButtonOutlined>
             </Grid>
           </>
         }
       </Grid>
       <div className='links-area'>
-        <span className='mobile-menu-link'>Fale conosco</span>
+        <span className='mobile-menu-link'>{TEXTS.menu.contactUs}</span>
         <span className='mobile-menu-link'>
-          <Link to={urls.terms.url} >Termos e condições</Link>
+          <Link to={urls.terms.url} >{TEXTS.menu.termsAndConditions}</Link>
         </span>
       </div>
     </div>

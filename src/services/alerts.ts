@@ -6,10 +6,9 @@ export default class AlertsService {
   currentUrl = '/alerts/';
   itemsPerPage = 6;
 
-  postAlert(filters: ModalFilters, email: string, query: string) {
+  postAlert(filters: ModalFilters, query: string) {
     const newFilters: SubmitAlertForm = {
       query_string: query,
-      email: email,
       territory_id: filters.location as string,
       sub_themes: filters.themes && filters.themes.length ? filters.themes as string[] : undefined,
       gov_entities: filters.ente ? [filters.ente] : undefined,

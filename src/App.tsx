@@ -16,6 +16,9 @@ import AboutPage from '@app/ui/pages/about/About';
 import BecomePro from '@app/ui/pages/becomePro/BecomePro';
 import CnpjPage from '@app/ui/pages/cnpjPage/CnpjPage';
 import Home from '@app/ui/pages/home/Home';
+import MyAlerts from '@app/ui/pages/loggedArea/myAlerts/MyAlerts';
+import MyReports from '@app/ui/pages/loggedArea/myReports/MyReports';
+import UserInfo from '@app/ui/pages/loggedArea/userInfo/UserInfo';
 import NotFound from '@app/ui/pages/notFound/NotFound';
 import Plans from '@app/ui/pages/plans/Plans';
 import Purchase from '@app/ui/pages/purchase/Purchase';
@@ -27,9 +30,6 @@ import TermsPage from '@app/ui/pages/terms/Terms';
 import { tokenKeys } from '@app/ui/utils/storage-utils';
 import { urls } from '@app/ui/utils/urls';
 
-import MyAlerts from './ui/pages/loggedArea/myAlerts/MyAlerts';
-import MyReports from './ui/pages/loggedArea/myReports/MyReports';
-
 const App = () => {
   const dispatch = useDispatch();
   const accountService = new AccountService();
@@ -40,10 +40,8 @@ const App = () => {
       accountService.getUserData().then(
         (response: UserResponseModel) => {
           dispatch(userUpdate({
-            id: response.id,
-            email: response.email,
-            full_name: response.full_name,
             plan_pro: checkPlan(response),
+            ...response
           }));
         });
     }
@@ -74,6 +72,7 @@ const App = () => {
             <Route path={urls.search.url} element={<Search />} />
             <Route path={urls.myReports.url} element={<MyReports />} />
             <Route path={urls.myAlerts.url} element={<MyAlerts />} />
+            <Route path={urls.userInfo.url} element={<UserInfo />} />
             <Route path={urls.cnpjs.url} element={<CnpjPage />} />
             <Route path='*' element={<NotFound />} />
           </Routes>

@@ -5,12 +5,12 @@
   margin-top: 24px;
 
   .pagination-container {
-    width: 280px;
+    width: 330px;
   }
 
   .arrow-area-class {
     border: 1px solid $gray;
-    width: 32px;
+    min-width: 32px;
     height: 32px;
     display: flex;
     justify-content: center;

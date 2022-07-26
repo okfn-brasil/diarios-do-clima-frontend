@@ -3,6 +3,7 @@ import { FiltersStatePayload } from '@app/models/filters.model';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import TextInput from '@app/ui/components/forms/input/Input';
 import Modal from '@app/ui/components/modal/Modal';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 interface ModalKeyWordsProps {
   isOpen: boolean;
@@ -34,18 +35,18 @@ const ModalKeyWords = ({isOpen, onBack, onApply, filters, emptyFields}: ModalKey
   const keyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
     e.key === 'Enter' ? apply() : null;
   };
+
   return (
     <Modal isOpen={isOpen} title={'Editar filtros do alerta'} onBack={onBack} className='create-alert'>
       <div className='modal-key-words' onKeyUp={keyUp}>
-        <div className='paragraph-class'>Cadastre as palavras-chave do seu alerta e enviaremos as novidades que tiverem os termos buscados.
-        </div>
+        <div className='paragraph-class'>{TEXTS.modalQuery.title}</div>
         <TextInput 
           value={keyWords}
           onChange={inputChange}
           name='keywords'
-          label='Ex: Consulta teste'
+          label={TEXTS.modalQuery.inputLabel}
         /> 
-        <ButtonGreen disabled={!keyWords} classess='button-apply-key-words' fullWidth onClick={apply}>Aplicar</ButtonGreen>
+        <ButtonGreen disabled={!keyWords} classess='button-apply-key-words' fullWidth onClick={apply}>{TEXTS.modalQuery.apply}</ButtonGreen>
       </div>
     </Modal>
   );

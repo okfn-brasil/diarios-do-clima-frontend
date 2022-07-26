@@ -29,7 +29,7 @@ body {
 
 .only-mobile {
   display: none;
-  @media only screen and (max-width: $desktopSize) {
+  @media only screen and (max-width: $maxWidthMobile) {
     display: block;
   }
 }
@@ -283,7 +283,7 @@ a, a span, a button  {
   padding: 24px 24px 17px;
   position: relative;
 
-  @media only screen and (max-width: $desktopSize) {
+  @media only screen and (max-width: $maxWidthMobile) {
     height: calc(100vh - 76px - 41px);
   }
 
@@ -294,7 +294,7 @@ a, a span, a button  {
   .button-apply-key-words, .button-apply-email {
     margin-top: 80px;
 
-    @media only screen and (max-width: $desktopSize) {
+    @media only screen and (max-width: $maxWidthMobile) {
       position: absolute;
       bottom: 20px;
       width: calc(100% - 48px) !important;

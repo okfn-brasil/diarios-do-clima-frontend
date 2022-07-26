@@ -1,3 +1,4 @@
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { Grid } from '@mui/material';
 
 import './Data.scss';
@@ -34,18 +35,18 @@ const DataLabel = ({ data, featured, label }: PropsDataLabel) => {
 const Data = () => {
   return (
     <Grid item container xs={12} className='vertical-spacing-container data-section'>
-      <Grid item xs={12}>
-        <h3 className='h3-class'>Dados confiáveis baseados no querido diário</h3>
+      <Grid item xs={12} className='container'>
+        <h3 className='h3-class'>{TEXTS.home.data.title}</h3>
       </Grid>
       <Grid item container xs={12} justifyContent='center'>
         <Grid item md={4} xs={12}>
-          <DataLabel data='21' featured='cidades' label=' já estão disponíveis para realizar buscas' />
+          <DataLabel data={TEXTS.home.data.label.city.data} featured={TEXTS.home.data.label.city.featured} label={TEXTS.home.data.label.city.label} />
         </Grid>
         <Grid item md={4} xs={12}>
-          <DataLabel data='139mil' featured='diários oficiais' label=' encontrados pela busca até o momento' />
+          <DataLabel data={TEXTS.home.data.label.diaries.data} featured={TEXTS.home.data.label.diaries.featured} label={TEXTS.home.data.label.diaries.label} />
         </Grid>
         <Grid item md={4} xs={12}>
-          <DataLabel data='2420' featured='cidades' label=' estarão disponíveis em breve' />
+          <DataLabel data={TEXTS.home.data.label.citiesMore.data} featured={TEXTS.home.data.label.citiesMore.featured} label={TEXTS.home.data.label.citiesMore.label}/>
         </Grid>
       </Grid>
     </Grid>

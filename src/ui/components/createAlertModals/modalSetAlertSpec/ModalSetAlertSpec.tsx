@@ -7,6 +7,7 @@ import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import InputError from '@app/ui/components/forms/inputError/inputError';
 import Loading from '@app/ui/components/loading/Loading';
 import Modal from '@app/ui/components/modal/Modal';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 
 import './ModalSetAlertSpec.scss';
 
@@ -22,9 +23,10 @@ interface ModalSetAlertSpecProps {
   filters: ModalFilters;
   query: string;
   email: string;
+  isAlertsPage?: boolean;
 }
 
-const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmail, onClose, openBecomePro, onSubmit, userData, email, filters, query}: ModalSetAlertSpecProps) => {
+const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmail, onClose, openBecomePro, onSubmit, isAlertsPage, userData, email, filters, query}: ModalSetAlertSpecProps) => {
   const alertsService = new AlertsService();
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [hasError, setError] : [boolean, Dispatch<boolean>] = useState(false);
@@ -48,11 +50,10 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmai
     onClickEmail();
   };
 
-  
   const submit = () => {
     setError(false);
     setLoading(true);
-    alertsService.postAlert(filters, (email || userData.email) as string, query).then(() => {
+    alertsService.postAlert(filters, query).then(() => {
       onSubmit();
       setLoading(false);
     }).catch(() => {
@@ -66,34 +67,34 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmai
       <Modal isOpen={isOpen} title={'Criar Alerta'} showFlag={!userData.plan_pro} onClose={onClose} className='create-alert'>
         <div className='create-alert-content'>
           <p className='title paragraph-class'>
-            Crie um alerta com aspectos da política ambiental que deseja monitorar
+            {TEXTS.createAlertModal.title}
           </p>
           <hr className='thin-line'/>
           <div className='alert-filters' onClick={() => {checkPlan(onFilters);}}>
             <div className='green-arrow'><img src={Arrow} alt='seta para a direita'/></div>
-            <div className='small-text alert-filter-desc'>Edite os filtros para receber alertas com o tema que você quer</div>
-            {filters.location ? <div className='small-text alert-filter-keys'>Município: {filters.location}</div> : <></>}
-            {filters.themes && filters.themes.length? <div className='small-text alert-filter-keys'>Temas: {filters.themes?.join(', ')}</div> : <></>}
-            {filters.ente ? <div className='small-text alert-filter-keys'>Ente do governo: {filters.ente}</div> : <></>}
+            <div className='small-text alert-filter-desc'>{TEXTS.createAlertModal.filters}</div>
+            {filters.location ? <div className='small-text alert-filter-keys'>{TEXTS.createAlertModal.localFilter} {filters.location}</div> : <></>}
+            {filters.themes && filters.themes.length? <div className='small-text alert-filter-keys'>{TEXTS.createAlertModal.themesFilter} {filters.themes?.join(', ')}</div> : <></>}
+            {filters.ente ? <div className='small-text alert-filter-keys'>{TEXTS.createAlertModal.enteFilter} {filters.ente}</div> : <></>}
           </div>
           <hr className='thin-line'/>
           <div className='alert-filters' onClick={() => {checkPlan(onKeyWords);}}>
             <div className='green-arrow'><img src={Arrow} alt='seta para a direita'/></div>
-            <div className='small-text alert-filter-desc'>Adicione palavras-chave</div>
-            <div className='small-text alert-filter-keys'>{query ? query : 'Cadastre palavras chaves na sua busca (Obrigatório)'}</div>
+            <div className='small-text alert-filter-desc'>{TEXTS.createAlertModal.keyWords}</div>
+            <div className='small-text alert-filter-keys'>{query ? query : TEXTS.createAlertModal.keyWordsPlaceHolder}</div>
           </div>
           <hr className='thin-line'/>
           {
-            userData.plan_pro ? 
+            userData.plan_pro && !isAlertsPage ? 
               <div className='small-text email-setting'>
-                <span>Seus alertas serão encaminhados para <b>{email || userData.email}</b></span>
-                <span className='blue-link hover-animation' onClick={() => {checkPlan(onEmail);}}>Editar</span>
+                <span>{TEXTS.createAlertModal.alertDestination} <b>{email || userData.email}</b></span>
+                <span className='blue-link hover-animation' onClick={() => {checkPlan(onEmail);}}>{TEXTS.createAlertModal.edit}</span>
               </div> :
               <></>
           }
           <div className='button-space'>
-            <InputError>{hasError ? 'Ocorreu um erro ao cadastrar o alerta, por favor, tente novamente' : ''}</InputError>
-            <ButtonGreen disabled={!query} onClick={() => {checkPlan(submit);}}>Criar Alerta</ButtonGreen>
+            <InputError>{hasError ? TEXTS.createAlertModal.error : ''}</InputError>
+            <ButtonGreen disabled={!query} onClick={() => {checkPlan(submit);}}>{TEXTS.createAlertModal.create}</ButtonGreen>
           </div>
         </div>
       </Modal>

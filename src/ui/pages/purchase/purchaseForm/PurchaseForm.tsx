@@ -2,15 +2,15 @@ import { Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { InputModel, InputType } from '@app/models/forms.model';
-import { FormPurchaseModel } from '@app/models/purchase.model';
-import BillingService, { getCardType } from '@app/services/billing';
+import { FormPurchaseModel, getCardType } from '@app/models/purchase.model';
+import BillingService from '@app/services/billing';
 import { userUpdate } from '@app/stores/user.store';
 import TextInput from '@app/ui/components/forms/input/Input';
 import SelectInput from '@app/ui/components/forms/select/Select';
 import Loading from '@app/ui/components/loading/Loading';
 import WarnModal from '@app/ui/components/warn-modal/WarnModal';
 import { removeSpecialChars } from '@app/ui/utils/functions.utils';
-import { portalTexts } from '@app/ui/utils/portal-texts';
+import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
@@ -186,7 +186,7 @@ const PurchaseForm = () => {
         <Grid item sm={7} xs={12}>
           <div>
             <div className='payment-section-title h3-class'>
-              Detalhes do pagamento
+              {TEXTS.purchasePage.formTitle}
             </div>
             <Grid container>
               <div className='gray-box'></div>
@@ -196,7 +196,7 @@ const PurchaseForm = () => {
             </Grid>
             <div className='field-are'>
               <TextInput
-                label='Número do cartão de crédito'
+                label={TEXTS.purchasePage.labels.card}
                 name='card'
                 mask='9999 9999 9999 9999 9999'
                 error={inputs.card.errorMessage}
@@ -206,7 +206,7 @@ const PurchaseForm = () => {
               />
 
               <TextInput
-                label='Nome impresso no cartão'
+                label={TEXTS.purchasePage.labels.name}
                 name='fullName'
                 error={inputs.fullName.errorMessage}
                 value={inputs.fullName.value}
@@ -215,7 +215,7 @@ const PurchaseForm = () => {
               />
 
               <TextInput
-                label='Data de validade'
+                label={TEXTS.purchasePage.labels.validity}
                 mask='99/9999'
                 name='validity'
                 error={inputs.validity.errorMessage}
@@ -225,7 +225,7 @@ const PurchaseForm = () => {
               />
 
               <TextInput
-                label='CVV'
+                label={TEXTS.purchasePage.labels.cvv}
                 name='cvv'
                 error={inputs.cvv.errorMessage}
                 value={inputs.cvv.value}
@@ -237,7 +237,7 @@ const PurchaseForm = () => {
               <Grid container justifyContent='space-between'>
                 <TextInput
                   classes='half-width full-width-mobile'
-                  label='Endereço'
+                  label={TEXTS.purchasePage.labels.address}
                   name='address'
                   error={inputs.address.errorMessage}
                   value={inputs.address.value}
@@ -247,7 +247,7 @@ const PurchaseForm = () => {
               
                 <TextInput
                   classes='half-width full-width-mobile'
-                  label='Número'
+                  label={TEXTS.purchasePage.labels.number}
                   name='number'
                   error={inputs.number.errorMessage}
                   value={inputs.number.value}
@@ -259,7 +259,7 @@ const PurchaseForm = () => {
               <Grid container justifyContent='space-between'>
                 <TextInput
                   classes='half-width full-width-mobile'
-                  label='Bairro'
+                  label={TEXTS.purchasePage.labels.district}
                   name='district'
                   error={inputs.district.errorMessage}
                   value={inputs.district.value}
@@ -269,7 +269,7 @@ const PurchaseForm = () => {
 
                 <TextInput
                   classes='half-width full-width-mobile'
-                  label='Complemento (opcional)'
+                  label={TEXTS.purchasePage.labels.complement}
                   name='complement'
                   error={inputs.complement.errorMessage}
                   value={inputs.complement.value}
@@ -280,7 +280,7 @@ const PurchaseForm = () => {
               <Grid container justifyContent='space-between'>
                 <TextInput
                   classes='half-width'
-                  label='Cidade'
+                  label={TEXTS.purchasePage.labels.city}
                   name='city'
                   error={inputs.city.errorMessage}
                   value={inputs.city.value}
@@ -290,8 +290,8 @@ const PurchaseForm = () => {
 
                 <SelectInput 
                   classes='half-width state-select' 
-                  options={portalTexts.stateList.map(state => {return {value: state, label: state};})} 
-                  label='Estado' 
+                  options={TEXTS.stateList.map(state => {return {value: state, label: state};})} 
+                  label={TEXTS.purchasePage.labels.state}
                   value={inputs.state.value} 
                   name='state' 
                   required={true} 
@@ -300,7 +300,7 @@ const PurchaseForm = () => {
               </Grid>
 
               <TextInput
-                label='CEP'
+                label={TEXTS.purchasePage.labels.cep}
                 name='cep'
                 error={inputs.cep.errorMessage}
                 value={inputs.cep.value}
@@ -310,7 +310,7 @@ const PurchaseForm = () => {
               />
 
               <TextInput
-                label='CPF'
+                label={TEXTS.purchasePage.labels.cpf}
                 name='cpf'
                 error={inputs.cpf.errorMessage}
                 value={inputs.cpf.value}
@@ -320,7 +320,7 @@ const PurchaseForm = () => {
               />
 
               <TextInput
-                label='Data de nascimento'
+                label={TEXTS.purchasePage.labels.birthday}
                 name='birthday'
                 error={inputs.birthday.errorMessage}
                 value={inputs.birthday.value}
@@ -330,7 +330,7 @@ const PurchaseForm = () => {
               />
 
               <TextInput
-                label='Telefone'
+                label={TEXTS.purchasePage.labels.phone}
                 name='phone'
                 error={inputs.phone.errorMessage}
                 value={inputs.phone.value}

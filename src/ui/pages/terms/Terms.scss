@@ -15,8 +15,12 @@
 }
 
 .terms {
-  .terms-session {
+  .terms-section {
     border-top: 1px solid $gray2;
+  }
+
+  :nth-child(2) {
+    border-top: 0;
   }
 
   .font-sora {

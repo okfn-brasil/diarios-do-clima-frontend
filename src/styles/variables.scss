@@ -18,7 +18,7 @@ $darkGray1: rgba(33, 36, 41, 1);
 $black: #000;
 $white: #fff;
 
-
+// SCREEN SIZES
 $mobileSize: 600px;
-$tabletSize: 1200px;
-$desktopSize: 1280px;
+$desktopSize: 1180px;
+$maxWidthMobile: calc($desktopSize - 0.1px);
