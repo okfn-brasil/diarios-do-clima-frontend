@@ -1,15 +1,22 @@
 import { Dispatch, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Arrow from '@app/assets/images/icons/arrow-down.svg';
-import { UserState } from '@app/models/user.model';
+import { UserResponseModel, UserState } from '@app/models/user.model';
+import AccountService, { checkPlan } from '@app/services/accounts';
 import { RootState } from '@app/stores/store';
+import { userUpdate } from '@app/stores/user.store';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import Loading from '@app/ui/components/loading/Loading';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
+
+import ChangeEmailModal from './changeEmail/ChangeEmail';
+import ChangeInfoModal from './changeInfo/ChangeInfo';
+import ChangePasswordModal from './changePassword/ChangePassword';
+import ChangePaymentModal from './changePayment/ChangePayment';
 
 import './UserInfo.scss';
 
@@ -21,15 +28,20 @@ const ArrowRight = () => {
   );
 };
 
-const UserInfo = () => {// TO DO FORMS
+const UserInfo = () => {
+  const dispatch = useDispatch();
+  const accountService = new AccountService();
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
-  const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(true);
+  const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
+  const [showChangeEmailModal, setVisibilityEmailModal] : [boolean, Dispatch<boolean>] = useState(false);
+  const [showEditInfoModal, setVisibilityInfoModal] : [boolean, Dispatch<boolean>] = useState(false);
+  const [showPasswordModal, setVisibilityPassModal] : [boolean, Dispatch<boolean>] = useState(false);
+  const [showPaymentModal, setVisibilityPaymentModal] : [boolean, Dispatch<boolean>] = useState(false);
 
   useEffect(() => {
-    if(userData.date_joined) {
-      setLoading(false);
-    }
-  }, [userData]);
+    setLoading(true);
+    getUserInfo();
+  }, []);
 
   const getDate = () => {
     const date = new Date(userData.date_joined || '');
@@ -52,8 +64,25 @@ const UserInfo = () => {// TO DO FORMS
     }
   };
 
+  const getUserInfo = () => {
+    accountService.getUserData().then(
+      (response: UserResponseModel) => {
+        dispatch(userUpdate({
+          plan_pro: checkPlan(response),
+          ...response
+        }));
+        setLoading(false);
+      }).catch(() => {
+      location.reload();
+    });
+  };
+
   return (
     <Grid container justifyContent='center' className='user-info-page'>
+      <ChangeEmailModal setLoading={setLoading} defaultEmail={userData.email} isOpen={showChangeEmailModal} onClose={() => {setVisibilityEmailModal(false); getUserInfo();}}/>
+      <ChangeInfoModal setLoading={setLoading} userData={userData} isOpen={showEditInfoModal} onClose={() => {setVisibilityInfoModal(false); getUserInfo();}}/>
+      <ChangePasswordModal setLoading={setLoading} isOpen={showPasswordModal} onClose={() => {setVisibilityPassModal(false); getUserInfo();}}/>
+      <ChangePaymentModal userData={userData} isOpen={showPaymentModal} onClose={() => {setVisibilityPaymentModal(false); getUserInfo();}}/>
       <Loading isLoading={isLoading}></Loading>
       <Grid item sm={7} xs={12} className='container'>
         <div>
@@ -69,21 +98,30 @@ const UserInfo = () => {// TO DO FORMS
                 <div className='user-name'>{userData.full_name} - {userData.city} - {userData.state}</div>
               </div>
               <div>
-                <Link to='' className='hover-animation'>
+                <div 
+                  onClick={() => setVisibilityEmailModal(true)} 
+                  className='hover-animation modal-link'
+                >
                   <div className='form-link'>
                     {TEXTS.myAccount.changeEmail} <ArrowRight/>
                   </div>
-                </Link>
-                <Link to='' className='hover-animation'>
+                </div>
+                <div  
+                  onClick={() => setVisibilityPassModal(true)} 
+                  className='hover-animation modal-link'
+                >
                   <div className='form-link'>
                     {TEXTS.myAccount.changePassowrd} <ArrowRight/>
                   </div>
-                </Link>
-                <Link to='' className='hover-animation'>
+                </div>
+                <div  
+                  onClick={() => setVisibilityInfoModal(true)} 
+                  className='hover-animation modal-link'
+                >
                   <div className='form-link'>
                     {TEXTS.myAccount.changeData}<ArrowRight/>
                   </div>
-                </Link>
+                </div>
               </div>
             </Grid>
             <Grid className={(userData.plan_pro ? 'not-align-self' : '')  + ' white-box'}>
@@ -99,13 +137,16 @@ const UserInfo = () => {// TO DO FORMS
 
                   <div className='small-text'>{TEXTS.myAccount.nextCharge} {getNextPayment()}.</div>
 
-                  <Link to='' className='hover-animation manage-payment'>
+                  <div 
+                    onClick={() => setVisibilityPaymentModal(true)}
+                    className='hover-animation manage-payment modal-link'
+                  >
                     <div className='form-link'>
                       {TEXTS.myAccount.changePayment} <ArrowRight/>
                     </div>
-                  </Link>
+                  </div>
                   
-                  <Link to={urls.purchase.url} className='cancel'><ButtonOutlined fullWidth>{TEXTS.myAccount.cancelPlan}</ButtonOutlined></Link>
+                  <Link to='' className='cancel'><ButtonOutlined fullWidth>{TEXTS.myAccount.cancelPlan}</ButtonOutlined></Link>
                 </div>
                 :
                 <div>

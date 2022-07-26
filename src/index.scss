@@ -303,6 +303,18 @@ a, a span, a button  {
   }
 }
 
+.edit-form-modal {
+  padding: 10px 24px 64px;
+  height: 100%;
+  min-height: 300px;
+  position: relative;
+  max-height: calc(100vh - 150px);
+
+  @media only screen and (min-width: $desktopSize) {
+    padding-top: 0px;
+  }
+}
+
 //animations
 @keyframes fadeIn {
   0% {

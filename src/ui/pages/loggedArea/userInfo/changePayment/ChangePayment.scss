@@ -1,0 +1,25 @@
+@import '@app/styles/globals.scss';
+
+.modal-payment .modal-container {
+
+  .purchase-form > .MuiGrid-root:first-child {
+    overflow: auto;
+    height: calc(80vh - 70px);
+    padding-bottom: 30px;
+    padding-right: 24px;
+  }
+
+  .payment-section-title, .gray-box {
+    display: none;
+  }
+  
+  .details-box {
+    .submit-form {
+      margin-top: 20px;
+    }
+
+    .details-title, .plan-details, .purchase-terms {
+      display: none;
+    }
+  }
+}

@@ -52,7 +52,7 @@ const App = () => {
     setShowCookieAlert(false);
   };
 
-  return (
+  return ( // TO DO PAGINA DE CONTATO
     <div>
       <Router>
         <RouteChangeManager />

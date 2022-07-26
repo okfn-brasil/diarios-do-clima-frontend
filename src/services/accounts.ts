@@ -1,5 +1,5 @@
 import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
-import { UserResponseModel } from '@app/models/user.model';
+import { UserInfo, UserResponseModel } from '@app/models/user.model';
 import api from '@app/services/interceptor';
 
 export default class AccountService {
@@ -19,8 +19,8 @@ export default class AccountService {
     return api.post(this.currentUrl, newForm).then((response) => response as RegistrationResponse);
   }
 
-  updateUserData(alert_email: string) {
-    return api.patch(this.currentUrl + 'me/', { alert_email }).then((response) => response as UserResponseModel);
+  updateUserData(userData: UserInfo) {
+    return api.patch(this.currentUrl + 'me/', userData).then((response) => response as UserResponseModel);
   }
 
   getUserData() {

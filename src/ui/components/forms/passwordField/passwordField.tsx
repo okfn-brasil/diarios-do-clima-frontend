@@ -22,9 +22,10 @@ interface PasswordValidation {
   lettersAndNumbers: boolean;
   specials: boolean;
   uppercase: boolean;
+  placeholder?: string;
 }
 
-const PasswordField = ({ classess, value, name, errorMessage, onChange }: PropsPasswordField) => {
+const PasswordField = ({ classess, placeholder, value, name, errorMessage, onChange }: PropsPasswordField) => {
   const [fieldType, setType]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(true);
   const [inputValue, setInputValue]: [string, Dispatch<SetStateAction<string>>] = useState(value);
   const [fieldValidation, setValidation]: [PasswordValidation, Dispatch<SetStateAction<PasswordValidation>>] = useState({
@@ -58,7 +59,7 @@ const PasswordField = ({ classess, value, name, errorMessage, onChange }: PropsP
         <img className={'hover-animation ' + (fieldType ? 'low-opacity' : '')} src={ShowPassIcon} onClick={changeFieldType} />
         
         <TextInput
-          label='Senha'
+          label={placeholder || 'Senha'}
           name={name}
           error={errorMessage as string}
           value={inputValue}

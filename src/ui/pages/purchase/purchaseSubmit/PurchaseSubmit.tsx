@@ -30,9 +30,10 @@ interface PropsPurchaseSubmit {
   onError: (e: string) => void;
   addressMethod: string;
   phoneMethod: string;
+  isModal?: boolean;
 }
 
-const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, addressMethod}: PropsPurchaseSubmit) => {
+const PurchaseSubmit = ({form, onSuccess, onError, isModal, isSubmitting, phoneMethod, addressMethod}: PropsPurchaseSubmit) => {
   const billingService = new BillingService();
 
   const errorMessage = (text: string) => {
@@ -98,7 +99,11 @@ const PurchaseSubmit = ({form, onSuccess, onError, isSubmitting, phoneMethod, ad
   const addPhone = () => {
     billingService.addPhone(form, phoneMethod)
       .then(() => {
-        postPlanId();
+        if(isModal) {
+          onSuccess('');
+        } else {
+          postPlanId();
+        }
       })
       .catch(() => {
         onError(errorMessage(TEXTS.purchasePage.errors.onPhone));

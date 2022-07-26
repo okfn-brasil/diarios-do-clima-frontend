@@ -164,7 +164,7 @@ const Plans = () => {
           <h2 className='h2-class faq-title'>{TEXTS.plansPage.faq}</h2>
           <div>
             {TEXTS.plansPage.faqItems.map(faqItem => 
-              <FAQItem title={faqItem.title}>
+              <FAQItem key={faqItem.title} title={faqItem.title}>
                 {faqItem.text}
               </FAQItem>
             )}

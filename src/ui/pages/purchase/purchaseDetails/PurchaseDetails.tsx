@@ -6,10 +6,11 @@ import './PurchaseDetails.scss';
 
 interface PropsPurchaseDetails {
   isLoading: boolean;
+  isModal?: boolean;
 }
 
-const PurchaseDetails = ({isLoading}: PropsPurchaseDetails) => {
-  const mockPlan = { // TO DO
+const PurchaseDetails = ({isLoading, isModal}: PropsPurchaseDetails) => {
+  const mockPlan = { // TO DO Plano
     name: 'Profissional',
     value: 0,
   };
@@ -30,7 +31,7 @@ const PurchaseDetails = ({isLoading}: PropsPurchaseDetails) => {
             {TEXTS.purchasePage.detailAlert}
           </div>
         </div>
-        <SubmitForm disabled={isLoading} classess='submit-purchase' label={TEXTS.purchasePage.submitLabel}/>
+        <SubmitForm disabled={isLoading} classess='submit-purchase' label={isModal ? TEXTS.myAccount.savePayment : TEXTS.purchasePage.submitLabel}/>
 
         <div className='purchase-terms'>
           {TEXTS.purchasePage.purchaseTerms}

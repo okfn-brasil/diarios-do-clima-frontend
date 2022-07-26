@@ -40,7 +40,7 @@ const ModalEmail = ({isOpen, userEmail, alertEmail, onBack, onApply}: ModalEmail
     if(/\S+@\S+\.\S+/.test(email)) {
       setError('');
       setLoading(true);
-      accountService.updateUserData(email).then(() => {
+      accountService.updateUserData({ alert_email: email}).then(() => {
         dispatch(userUpdate({
           alert_email: email,
         }));
