@@ -23,7 +23,7 @@ const LoggedMenu = ({isWhite, classess}: PropsLoggedMenu) => {
   const closeMenu = () => {
     setTimeout(() => {
       setDropDownVisibility(false);
-    }, 100);
+    }, 300);
   };
 
   const showMenu = () => {

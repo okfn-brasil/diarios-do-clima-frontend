@@ -1,0 +1,15 @@
+@import '@app/styles/globals.scss';
+
+.user-info-edit-modal {
+  .form-fields {
+    max-height: calc(100vh - 150px);
+    overflow: auto;
+  }
+
+  .submit-form {
+    position: absolute;
+    bottom: 17px;
+    left: 24px;
+    width: calc(100% - 48px);
+  }
+}

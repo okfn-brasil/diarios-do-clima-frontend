@@ -32,7 +32,7 @@ const Modal = ({isOpen, className, children, showFlag, onBack, onClose, title}: 
             {onBack? <div>
               <Grid container alignItems='center' className='modal-header'>
                 <img className='hover-animation back-icon' src={BackIcon} onClick={onBack} />
-                <div className='modal-title h3-class'>{title}<ProFlag show={!!showFlag} margin={12} spaceBottom={4}/></div>
+                <div className='modal-title back-title h3-class'>{title}<ProFlag show={!!showFlag} margin={12} spaceBottom={4}/></div>
               </Grid>
             </div>: <></>}
             {children}

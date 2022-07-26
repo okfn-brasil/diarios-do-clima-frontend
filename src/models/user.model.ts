@@ -7,6 +7,8 @@ export interface UserState {
   id?: string | null;
   plan_pro?: boolean | string | null;
   email?: string | null;
+  gender?: string | null;
+  sector?: string | null;
   address?: Address;
   city?: string;
   state?: string;
@@ -14,26 +16,34 @@ export interface UserState {
   date_joined?: string;
   alert_email?: string;
   plan_subscription?: Plan;
+  phone?: Phone;
 }
 
-export interface UserResponseModel extends AxiosResponse {
-  alert_email: string;
-  address: Address;
-  city: string;
-  credit_card: Card;
-  date_joined: string;
-  email: string;
-  full_name: string;
-  gender: string;
-  id: string;
-  last_login: string;
-  phone: {
-    area_code: string;
-    number: string;
-  }
-  plan_subscription: Plan;
-  sector: string;
-  state: string;
+export interface UserInfo {
+  alert_email?: string;
+  address?: Address;
+  city?: string;
+  credit_card?: Card;
+  date_joined?: string;
+  email?: string;
+  full_name?: string;
+  gender?: string;
+  id?: string;
+  last_login?: string;
+  phone?: Phone;
+  plan_subscription?: Plan;
+  sector?: string;
+  state?: string;
+  password?: string;
+}
+
+export interface UserResponseModel extends AxiosResponse, UserInfo {
+
+}
+
+interface Phone {
+  area_code: string;
+  number: string;
 }
 
 interface Address {

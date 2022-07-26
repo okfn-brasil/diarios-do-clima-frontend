@@ -95,12 +95,18 @@ const fieldValidations: ValidationModel = {
 const homePhoneMask = '(99) 9999-99999';
 const mobilePhoneMask = '(99) 99999-9999';
 
-const PurchaseForm = () => {
+interface PurchaseFormInterface {
+  isModal?: boolean;
+  onSubmit?: () => void;
+  filledFields: FormPurchaseModel;
+}
+
+const PurchaseForm = ({isModal, onSubmit, filledFields}: PurchaseFormInterface) => {
   const dispatch = useDispatch();
   const navigate: NavigateFunction = useNavigate();
   const billingService = new BillingService();
-  const [inputs, setInputs] : [FormPurchaseModel, Dispatch<SetStateAction<FormPurchaseModel>>] = useState(inputsDefaultValue);
-  const [submitForm, setSubmitForm] : [FormPurchaseModel, Dispatch<SetStateAction<FormPurchaseModel>>] = useState(inputsDefaultValue);
+  const [inputs, setInputs] : [FormPurchaseModel, Dispatch<SetStateAction<FormPurchaseModel>>] = useState(filledFields || inputsDefaultValue);
+  const [submitForm, setSubmitForm] : [FormPurchaseModel, Dispatch<SetStateAction<FormPurchaseModel>>] = useState(filledFields || inputsDefaultValue);
   const [phoneMask, setPhoneMask] : [string, Dispatch<SetStateAction<string>>] = useState(homePhoneMask);
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [submitError, setSubmitError] : [string, Dispatch<string>] = useState('');
@@ -169,21 +175,25 @@ const PurchaseForm = () => {
   };
 
   const onSuccess = (response: string) => {
-    navigate(urls.startSearch.url);
-    setTimeout(() => {
-      dispatch(userUpdate({
-        plan_pro: response,
-      }));
-    }, 200);
+    if(!isModal) {
+      navigate(urls.startSearch.url);
+      setTimeout(() => {
+        dispatch(userUpdate({
+          plan_pro: response,
+        }));
+      }, 200);
+    } else if(onSubmit) {
+      onSubmit();
+    }
   };
 
   return (
     <>
       <WarnModal isOpen={!!submitError} message={submitError} onClose={() => setSubmitError('')} onCancel={() => location.href = '/'}/>
       <form className='purchase-form' onSubmit={handleSubmit} >
-        <PurchaseSubmit phoneMethod={phoneMethod} addressMethod={addressMethod} isSubmitting={isLoading} onSuccess={onSuccess} onError={onError} form={submitForm} />
+        <PurchaseSubmit phoneMethod={phoneMethod} isModal={isModal} addressMethod={addressMethod} isSubmitting={isLoading} onSuccess={onSuccess} onError={onError} form={submitForm} />
         <Loading isLoading={isLoading}></Loading>
-        <Grid item sm={7} xs={12}>
+        <Grid item sm={isModal? 12 : 7} xs={12}>
           <div>
             <div className='payment-section-title h3-class'>
               {TEXTS.purchasePage.formTitle}
@@ -194,7 +204,7 @@ const PurchaseForm = () => {
               <div className='gray-box'></div>
               <div className='gray-box'></div>
             </Grid>
-            <div className='field-are'>
+            <div>
               <TextInput
                 label={TEXTS.purchasePage.labels.card}
                 name='card'
@@ -341,12 +351,13 @@ const PurchaseForm = () => {
             </div>
           </div>
         </Grid>
+
         <Grid 
           item 
-          sm={4} 
+          sm={isModal? 12 : 4} 
           xs={12}
         >
-          <PurchaseDetails isLoading={isLoading}/>
+          <PurchaseDetails isModal={isModal} isLoading={isLoading}/>
         </Grid>
       </form>
     </>

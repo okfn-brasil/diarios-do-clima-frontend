@@ -29,7 +29,7 @@ const RouteChangeManager = () => {
     
     const script = window.document.getElementById('pagseguro-dist') as HTMLScriptElement;
     const scriptCheckout = window.document.getElementById('pagseguro-checkout') as HTMLScriptElement;
-    if(location.pathname === urls.purchase.url) {
+    if(location.pathname === urls.purchase.url || location.pathname === urls.userInfo.url) {
       script.src = 'https://assets.pagseguro.com.br/checkout-sdk-js/rc/dist/browser/pagseguro.min.js';
     
       scriptCheckout.src = 'https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js';
