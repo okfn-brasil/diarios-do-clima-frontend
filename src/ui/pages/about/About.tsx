@@ -8,7 +8,7 @@ import { Grid } from '@mui/material';
 
 import './About.scss';
 
-const partners = [// TO DO
+const partners = [// TO DO colocar no arquivo de textos
   {
     logo: 'Logo Parceiro 1',
     link: 'https://google.com',

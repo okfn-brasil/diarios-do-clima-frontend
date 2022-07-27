@@ -93,7 +93,7 @@ const WeOffer = () => {
                 </ButtonGreen>
               </LinkManager>
             </div>
-            <HyperLink link={urls.purchase.url}>
+            <HyperLink link={urls.plans.url}>
               {TEXTS.home.weOffer.linkAboutSubscription}
             </HyperLink>
           </Grid>
