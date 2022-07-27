@@ -1,11 +1,11 @@
-import { FiltersState, FiltersStatePayload, ITEMS_PER_PAGE } from '@app/models/filters.model';
+import { FiltersState, FiltersStatePayload, ITEMS_PER_PAGE, OrderFilter } from '@app/models/filters.model';
 import type { PayloadAction } from '@reduxjs/toolkit';
 // eslint-disable-next-line no-duplicate-imports
 import { createSlice } from '@reduxjs/toolkit';
 
 export const initialState: FiltersState = {
   itemsPerPage: ITEMS_PER_PAGE,
-  order: 'recente',
+  order: OrderFilter.relevance,
 };
 
 export const filtersSlice = createSlice({

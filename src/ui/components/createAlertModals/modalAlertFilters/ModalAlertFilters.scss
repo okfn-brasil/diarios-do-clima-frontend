@@ -1,6 +1,12 @@
 @import '@app/styles/globals.scss';
 .modal-filters {
   padding: 20px 24px;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  
+  @media only screen and (min-width: $desktopSize) {
+    max-height: calc(80vh - 40px);
+  }
 
   .modal-filter-apply {
     margin-top: 56px;

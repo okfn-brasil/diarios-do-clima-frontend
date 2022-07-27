@@ -519,4 +519,30 @@ export const TEXTS = {
       themeSubtitle: 'Aqui uma descrição breve do que são e de como funcionam os temas'
     }
   },
+  partners: [
+    {
+      logo: 'https://i.pinimg.com/736x/0d/cf/b5/0dcfb548989afdf22afff75e2a46a508.jpg',
+      link: 'https://google.com',
+    },
+    {
+      logo: 'https://logosmarcas.net/wp-content/uploads/2020/04/Nike-Logo.png',
+      link: 'https://google.com',
+    },
+    {
+      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0gP4e6d3FYtX8vMriPYJnJP2KCAS_AVJ6XA&usqp=CAU',
+      link: 'https://google.com',
+    },
+    {
+      logo: 'Logo Parceiro 4',
+      link: 'https://google.com',
+    },
+    {
+      logo: 'Logo Parceiro 5',
+      link: 'https://google.com',
+    },
+    {
+      logo: 'Logo Parceiro 6',
+      link: 'https://google.com',
+    },
+  ]
 }; 

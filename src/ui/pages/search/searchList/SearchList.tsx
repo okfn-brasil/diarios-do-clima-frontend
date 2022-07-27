@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import emptyListImage from '@app/assets/images/empty-list.svg';
 import bellIcon from '@app/assets/images/icons/black-bell.svg';
 import EmptySearch from '@app/assets/images/icons/empty-search.svg';
-import { FiltersState, parseUrlToFilters } from '@app/models/filters.model';
+import { FiltersState, OrderFilter, parseUrlToFilters } from '@app/models/filters.model';
 import { GazetteModel } from '@app/models/gazettes.model';
 import { updateFilters } from '@app/stores/filters.store';
 import { RootState } from '@app/stores/store';
@@ -65,7 +65,10 @@ const SearchList = ({list, listSize, searchTimes, isLoading, openCreateAlert}: P
               <SelectInput
                 label={TEXTS.searchPage.list.orderSelect}
                 classes='half-width'
-                options={[{value: 'recente', label: 'Mais recente'},{value: 'menor', label: 'Menor'}, {value: 'maior', label: 'Maior'}]} 
+                options={[
+                  {value: OrderFilter.relevance, label: 'Mais relevante'}
+                  ,{value: OrderFilter.ascending_date, label: 'Mais recente'}
+                  , {value: OrderFilter.descending_date, label: 'Mais antigo'}]} 
                 value={order} 
                 name='order'
                 onChange={updateOrder}

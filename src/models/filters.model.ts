@@ -9,6 +9,12 @@ export interface ModalFilters {
   [key: string]: string | (string | null)[] | undefined;
 }
 
+export enum OrderFilter {
+  relevance = 'relevance',
+  descending_date = 'descending_date',
+  ascending_date = 'ascending_date',
+}
+
 export interface ReqFilters {
   querystring?: string;
   offset: number;
