@@ -55,6 +55,7 @@ const Registration = () => {
   const navigate: NavigateFunction = useNavigate();
   const accountsService = new AccountService();
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
+  const [isLoadingEmail, setLoadingEmail] : [boolean, Dispatch<boolean>] = useState(false);
   const [submitError, setSubmitError] : [JSX.Element, Dispatch<JSX.Element>] = useState(emptyError);
   const [step, setStep] : [number, Dispatch<SetStateAction<number>>] = useState(1);
   const [inputs, setInputs] : [RegistrationModel, Dispatch<SetStateAction<RegistrationModel>>] = useState(inputsDefaultValue);
@@ -89,22 +90,24 @@ const Registration = () => {
   };
 
   const checkEmail = (nextStep = true) => {
-    setLoading(true);
-    accountsService.getEmail(inputs.email.value).then(() => {
-      setLoading(false);
-      setInputs((values: RegistrationModel) => ({...values, email: 
-        {
-          ...inputs.email,
-          errorMessage: TEXTS.registration.usedEmail
+    if(inputs.email.value) {
+      setLoadingEmail(true);
+      accountsService.getEmail(inputs.email.value).then(() => {
+        setLoadingEmail(false);
+        setInputs((values: RegistrationModel) => ({...values, email: 
+          {
+            ...inputs.email,
+            errorMessage: TEXTS.registration.usedEmail
+          }
+        }));
+      }).catch(() => {
+        setLoadingEmail(false);
+        if(nextStep) {
+          const nextStep = step + 1;
+          setStep(nextStep);
         }
-      }));
-    }).catch(() => {
-      setLoading(false);
-      if(nextStep) {
-        const nextStep = step + 1;
-        setStep(nextStep);
-      }
-    });
+      });
+    }
   };
 
   const submit = () => {
@@ -112,7 +115,7 @@ const Registration = () => {
     setSubmitError(emptyError);
     accountsService.createNewAcount(inputs).then(
       (response: RegistrationResponse) => {
-        navigate(urls.becomePro.url);
+        navigate(urls.becomePro.url + '/afterregistration');
         setTimeout(() => {
           dispatch(userUpdate({
             access: response.jwt.access,
@@ -165,16 +168,20 @@ const Registration = () => {
             required={true}
           />
 
-          <TextInput
-            label={TEXTS.registration.labels.email}
-            name='email'
-            error={inputs.email.errorMessage}
-            value={inputs.email.value}
-            onChange={inputChange}
-            onBlur={() => checkEmail(false)}
-            required={true}
-            type='email'
-          />
+          <div className='email-loading'>
+            {isLoadingEmail ? <div className="lds-ring"><div></div><div></div><div></div><div></div></div> : <></> }
+            <TextInput
+              label={TEXTS.registration.labels.email}
+              name='email'
+              error={inputs.email.errorMessage}
+              value={inputs.email.value}
+              onChange={inputChange}
+              onBlur={() => checkEmail(false)}
+              required={true}
+              type='email'
+              disabled={isLoadingEmail}
+            />
+          </div>
 
           <PasswordField errorMessage={inputs.password.errorMessage} value={inputs.password.value} onChange={inputChange} name='password' classess='input-class'/>
           

@@ -14,9 +14,10 @@ interface PropsInput {
   mask?: string;
   error?: JSX.Element | string;
   type?: string;
+  disabled?: boolean;
 }
 
-const TextInput = ({value, required, classes, onBlur, onChange, name, label, type, error, mask}: PropsInput) => {
+const TextInput = ({value, disabled, required, classes, onBlur, onChange, name, label, type, error, mask}: PropsInput) => {
   return (
     <FormControl className={`form-input ${classes}`} fullWidth>
       <InputLabel id={name}>{label}</InputLabel>
@@ -28,6 +29,7 @@ const TextInput = ({value, required, classes, onBlur, onChange, name, label, typ
             type={type || 'text'}
             name={name}
             className='input-class'
+            disabled={disabled}
           />}
         </InputMask>
         :
@@ -40,6 +42,7 @@ const TextInput = ({value, required, classes, onBlur, onChange, name, label, typ
           value={value} 
           onBlur={onBlur}
           onChange={onChange}
+          disabled={disabled}
         />
       }
       <InputError>{error}</InputError>
