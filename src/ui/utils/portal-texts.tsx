@@ -1,6 +1,7 @@
 import { urls } from './urls';
 
 export const TEXTS = {
+  contactEmail: 'teste@contato.com',
   defaultSubmitText: 'Continuar',
   stateList: [
     'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF'
@@ -230,7 +231,7 @@ export const TEXTS = {
     proPlan: 'PRO',
     nextCharge: 'Sua próxima data de cobrança é',
     changePayment: 'Gerenciar informações de pagamento',
-    cancelPlan: 'Cancelar assinatura', //TO DO
+    cancelPlan: 'Cancelar assinatura',
     basic: 'Básico',
     startTest: 'Iniciar teste grátis PRO',
     needHelp: 'Precisa de ajuda?',
@@ -246,6 +247,7 @@ export const TEXTS = {
     saveInfo: 'Salvar dados',
     changePaymentTitle: 'Alterar dados de pagamento',
     savePayment: 'Salvar dados de pagamento',
+    cancellingError: 'Ocorreu um erro ao tentar cancelar seu plano, por favor, tente novamente. Caso o erro persista, entre em contato conosco.'
   },
   notFound: {
     title: '404 - Página não encontrada',
@@ -355,6 +357,7 @@ export const TEXTS = {
     subTitle: 'Usufrua dos benefícios de ser PRO sem compromisso. Cancele a qualquer momento.',
     detailsTitle: 'Detalhes da assinatura',
     perMonth: '/mês*',
+    getPlanError: 'Ocorreu um erro ao receber o plano pro, por favor, recarregue a página. Caso o erro persista, entre em contato conosco.',
     detailAlert: '* cobrado mensalmente após o período de 15 dias testes',
     purchaseTerms: <span>
       Ao clicar em assinar você está concordando com nossos
@@ -364,7 +367,6 @@ export const TEXTS = {
       Você pode cancelar a qualquer momento antes do próximo ciclo de pagamento.
     </span>,
     submitLabel: 'Assinar',
-    planCode: '9ea3eb5f-d2d5-4433-8714-43fa7bdb0ce3',
     errors: {
       errorPartA: 'Ocorreu um erro ao tentar',
       errorPartB: 'Por favor, verifique se os dados foram inseridos corretamente e tente novamente.',

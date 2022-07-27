@@ -17,11 +17,27 @@ interface ModalProps {
 
 const Modal = ({isOpen, className, children, showFlag, onBack, onClose, title}: ModalProps) => {
 
+  const onClickInside = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+  };
+
+  const keyUp = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    e.key === 'Escape' ? closeModal() : null;
+  };
+
+  const closeModal = () => {
+    if(onClose) {
+      onClose();
+    } else if (onBack) {
+      onBack();
+    }
+  };
+
   return (
     <>
       {isOpen ? 
-        <div className={`shadow-modal ${className}`}>
-          <div className='modal-container'>
+        <div onKeyUp={keyUp} onClick={closeModal} className={`shadow-modal ${className}`}>
+          <div onClick={onClickInside} className='modal-container'>
             {onClose? <div>
               <Grid container alignItems='center' className='modal-header'>
                 <CloseIcon className='hover-animation close-icon' onClick={onClose} />

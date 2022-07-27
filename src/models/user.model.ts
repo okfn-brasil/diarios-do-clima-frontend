@@ -69,16 +69,22 @@ interface Card {
 }
 
 interface Plan {
-  created_at: string;
-  id: number;
+  created_at?: string;
+  id?: number;
   plan:{
     id: string;
     pagseguro_plan_id: string;
     title: string;
   }
-  status: {
+  status?: {
     id: number;
     data: string;
     created_at: string;
   }
+}
+
+export interface ChangePasswordForm {
+  old_password: string;
+  new_password1: string;
+  new_password2: string;
 }

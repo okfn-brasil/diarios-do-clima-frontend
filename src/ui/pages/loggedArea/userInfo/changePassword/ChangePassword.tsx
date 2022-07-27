@@ -3,6 +3,7 @@ import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
 import { InputModel, InputType } from '@app/models/forms.model';
 import AccountService from '@app/services/accounts';
 import TextInput from '@app/ui/components/forms/input/Input';
+import InputError from '@app/ui/components/forms/inputError/inputError';
 import PasswordField from '@app/ui/components/forms/passwordField/passwordField';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 
@@ -21,12 +22,14 @@ interface ChangePassword {
   setLoading: (e: boolean) => void;
 }
 
+const initialPasswords: Passwords = {
+  new: { value: '' },
+  old: { value: '' },
+};
+
 const ChangePasswordModal = ({isOpen, setLoading, onClose}: ChangePassword) => {
   const accountsService = new AccountService();
-  const [passwords, setPasswords] : [Passwords, Dispatch<SetStateAction<Passwords>>] = useState({
-    new: { value: '' },
-    old: { value: '' },
-  } as Passwords);
+  const [passwords, setPasswords] : [Passwords, Dispatch<SetStateAction<Passwords>>] = useState(initialPasswords);
   const [error, setError] : [string, Dispatch<string>] = useState('');
   const [passFieldType, setPassType] : [boolean, Dispatch<boolean>] = useState(true);
 
@@ -36,21 +39,33 @@ const ChangePasswordModal = ({isOpen, setLoading, onClose}: ChangePassword) => {
     setError('');
   };
 
-  const submit = () => { // TO DO validação de senha antiga
+  const submit = () => {
     setLoading(true);
-    accountsService.updateUserData({password: passwords.new.value}).then(() => {
+    accountsService.updateUserPassword({
+      old_password: passwords.old.value,
+      new_password1: passwords.new.value,
+      new_password2: passwords.new.value,
+    }).then(() => {
       setLoading(false);
-      onClose();
-    }).catch(() => {
+      closeModal();
+    }).catch(error => {
+      const errorKey = error ? Object.keys(error)[0] : '';
       setLoading(false);
-      setError(TEXTS.myAccount.updatePassword);
+      setPasswords(initialPasswords);
+      setError(error[errorKey] ? error[errorKey][0] : TEXTS.myAccount.updatePassword);
     });
+  };
+
+  const closeModal = () => {
+    setError('');
+    setPasswords(initialPasswords);
+    onClose();
   };
 
   return (
     <EditDataModal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={closeModal}
       modalTitle={TEXTS.myAccount.updatePasswordTitle}
       onSubmit={submit}
       submitLabel={TEXTS.myAccount.savePassword}
@@ -67,20 +82,21 @@ const ChangePasswordModal = ({isOpen, setLoading, onClose}: ChangePassword) => {
             required 
             type={passFieldType ? 'password' : 'text'} 
             value={passwords.old.value}
-            name='old' 
+            name='old'
+            autoComplete='off'
             onChange={onChangeInput} 
             label='Senha atual'
           />
         </div>
 
         <PasswordField 
-          errorMessage={error} 
           value={passwords.new.value}
           placeholder='Nova senha'
           onChange={onChangeInput} 
           name='new' 
           classess='input-class'
         />
+        <InputError>{error}</InputError>
       </div>
     </EditDataModal>
   );

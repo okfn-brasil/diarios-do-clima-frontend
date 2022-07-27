@@ -42,7 +42,7 @@ const Option = ({ id, selectedId, label, icon, onClick }: PropsOption) => {
   const isSelected = selectedId === id;
 
   return (
-    <Grid item xs={3} md={12} container alignItems='center' className='tab-grid'onClick={onClick}>
+    <Grid item xs={3} md={12} container alignItems='center' className='tab-grid' onClick={onClick}>
       <Box className='tab-area'>
         <img src={icon} alt='logo'/>
       </Box>
