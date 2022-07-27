@@ -1,9 +1,7 @@
 import { ChangeEvent, Dispatch, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { FiltersState, Theme } from '@app/models/filters.model';
+import { Theme } from '@app/models/filters.model';
 import GazettesService from '@app/services/gazettes';
-import { RootState } from '@app/stores/store';
 import HelpIcon from '@app/ui/components/helpIcon/HelpIcon';
 import ProFlag from '@app/ui/components/proFlag/ProFlag';
 import { TEXTS } from '@app/ui/utils/portal-texts';
