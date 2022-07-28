@@ -23,14 +23,14 @@ export interface RegistrationResponse extends AxiosResponse {
     refresh: string;
   }
   plan_subscription: {
-    created_at: string;
-    id: 2
+    created_at?: string;
+    id?: 2
     plan: {
       id: string;
       title: string;
       pagseguro_plan_id: string;
     }
-    status: {
+    status?: {
       id: number;
       data: string;
       created_at: string;

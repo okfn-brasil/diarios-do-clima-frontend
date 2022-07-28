@@ -19,6 +19,20 @@ export interface FormPurchaseModel {
   [key: string]: InputModel;
 }
 
+export interface PlansResponse extends AxiosResponse {
+  results: Plan[];
+}
+
+export interface Plan {
+  created_at?: string;
+  edited_at?: string;
+  html?: string;
+  id?: string;
+  pagseguro_plan_id?: string;
+  title?: string;
+  value?: number;
+}
+
 export interface SessionModel extends AxiosResponse {
   session: string;
 }

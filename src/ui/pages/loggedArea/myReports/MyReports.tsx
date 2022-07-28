@@ -77,7 +77,7 @@ const MyReports = () => {
           { !isLoading ? <div className='paragraph-class'>{TEXTS.myReports.emptyList}</div> : <></> }
           <Link to={urls.reports.url}><div className='blue-link hover-animation'>{TEXTS.myReports.knowMore}</div></Link>
           <ButtonGreen fullWidth>{TEXTS.myReports.simulate}</ButtonGreen>
-          <ButtonOutlined fullWidth>{TEXTS.myReports.contact}</ButtonOutlined>
+          <a href={`mailto:${TEXTS.contactEmail}`}><ButtonOutlined fullWidth>{TEXTS.myReports.contact}</ButtonOutlined></a>
         </Grid>
       }
     </Grid>

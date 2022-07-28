@@ -2,7 +2,7 @@ import { Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { InputModel, InputType } from '@app/models/forms.model';
-import { FormPurchaseModel, getCardType } from '@app/models/purchase.model';
+import { FormPurchaseModel, getCardType, Plan } from '@app/models/purchase.model';
 import BillingService from '@app/services/billing';
 import { userUpdate } from '@app/stores/user.store';
 import TextInput from '@app/ui/components/forms/input/Input';
@@ -98,7 +98,7 @@ const mobilePhoneMask = '(99) 99999-9999';
 interface PurchaseFormInterface {
   isModal?: boolean;
   onSubmit?: () => void;
-  filledFields: FormPurchaseModel;
+  filledFields?: FormPurchaseModel;
 }
 
 const PurchaseForm = ({isModal, onSubmit, filledFields}: PurchaseFormInterface) => {
@@ -112,9 +112,16 @@ const PurchaseForm = ({isModal, onSubmit, filledFields}: PurchaseFormInterface) 
   const [submitError, setSubmitError] : [string, Dispatch<string>] = useState('');
   const [phoneMethod, setPhoneMethod] : [string, Dispatch<string>] = useState('POST');
   const [addressMethod, setAddressMethod] : [string, Dispatch<string>] = useState('POST');
+  const [plan, setPlan] : [Plan, Dispatch<Plan>] = useState({} as Plan);
 
   useEffect(() => {
     getMethodsType();
+
+    billingService.getPlans().then(response => {
+      setPlan(response.results.filter(plan => plan.pagseguro_plan_id)[0]);
+    }).catch(() => {
+      setPlan({title: TEXTS.purchasePage.getPlanError, id: undefined} as Plan);
+    });
   }, []);
 
   const getMethodsType = () => {
@@ -179,7 +186,13 @@ const PurchaseForm = ({isModal, onSubmit, filledFields}: PurchaseFormInterface) 
       navigate(urls.startSearch.url);
       setTimeout(() => {
         dispatch(userUpdate({
-          plan_pro: response,
+          plan_subscription: {
+            plan: {
+              id: plan.title as string,
+              title: plan.title as string,
+              pagseguro_plan_id: response,
+            }
+          }
         }));
       }, 200);
     } else if(onSubmit) {
@@ -191,7 +204,7 @@ const PurchaseForm = ({isModal, onSubmit, filledFields}: PurchaseFormInterface) 
     <>
       <WarnModal isOpen={!!submitError} message={submitError} onClose={() => setSubmitError('')} onCancel={() => location.href = '/'}/>
       <form className='purchase-form' onSubmit={handleSubmit} >
-        <PurchaseSubmit phoneMethod={phoneMethod} isModal={isModal} addressMethod={addressMethod} isSubmitting={isLoading} onSuccess={onSuccess} onError={onError} form={submitForm} />
+        <PurchaseSubmit plan={plan} phoneMethod={phoneMethod} isModal={isModal} addressMethod={addressMethod} isSubmitting={isLoading} onSuccess={onSuccess} onError={onError} form={submitForm} />
         <Loading isLoading={isLoading}></Loading>
         <Grid item sm={isModal? 12 : 7} xs={12}>
           <div>
@@ -357,7 +370,7 @@ const PurchaseForm = ({isModal, onSubmit, filledFields}: PurchaseFormInterface) 
           sm={isModal? 12 : 4} 
           xs={12}
         >
-          <PurchaseDetails isModal={isModal} isLoading={isLoading}/>
+          <PurchaseDetails plan={plan} isModal={isModal} isLoading={isLoading}/>
         </Grid>
       </form>
     </>

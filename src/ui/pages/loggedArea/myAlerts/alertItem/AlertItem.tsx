@@ -30,7 +30,7 @@ const AlertItem = ({alert, onDelete}: AlertProps) => {
             { alert.sub_themes && alert.sub_themes.length ? 
               <div className='filter-item'>
                 <img src={ThemeIcon} alt='icone de tema' />
-                {alert.sub_themes[0]}
+                {alert.sub_themes.join(', ')}
               </div> 
               : <></> }
             { alert.gov_entities && alert.gov_entities.length ? 

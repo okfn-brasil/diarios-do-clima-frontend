@@ -1,5 +1,5 @@
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { FiltersStatePayload, Theme } from '@app/models/filters.model';
+import { FiltersStatePayload } from '@app/models/filters.model';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import Modal from '@app/ui/components/modal/Modal';
 import EntityFilter from '@app/ui/pages/search/searchFilters/entityFilter/EntityFilter';
@@ -59,7 +59,7 @@ const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: Moda
         <div className='modal-filters'>
           <LocationFilter onChange={inputChange} value={currFilters.location as string}/>
 
-          <ThemeFilter onChange={checkBoxChange} options={currFilters.themes as Theme} hasProPlan={true} />
+          <ThemeFilter themesFilter={currFilters.themes} onChange={checkBoxChange} hasProPlan={true} />
         
           <EntityFilter onChange={inputChange} value={currFilters.ente as string}/>
 

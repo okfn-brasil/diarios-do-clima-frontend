@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
 import { InputType } from '@app/models/forms.model';
 import TextInput from '@app/ui/components/forms/input/Input';
@@ -34,6 +34,10 @@ const PasswordField = ({ classess, placeholder, value, name, errorMessage, onCha
     specials: false,
     uppercase: false,
   } as PasswordValidation);
+
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
 
   const changeFieldType = () => {
     setType(!fieldType);

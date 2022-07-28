@@ -4,7 +4,7 @@ import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import computerImage from '@app/assets/images/computer-registration.svg';
 import { InputModel, InputType } from '@app/models/forms.model';
 import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
-import AccountService, { checkPlan } from '@app/services/accounts';
+import AccountService from '@app/services/accounts';
 import { userUpdate } from '@app/stores/user.store';
 import TextInput from '@app/ui/components/forms/input/Input';
 import PasswordField from '@app/ui/components/forms/passwordField/passwordField';
@@ -120,7 +120,6 @@ const Registration = () => {
           dispatch(userUpdate({
             access: response.jwt.access,
             refresh: response.jwt.refresh,
-            plan_pro: checkPlan(response),
             ...response
           }));
         }, 100);
@@ -295,11 +294,11 @@ const Registration = () => {
                         {TEXTS.registration.terms}
                       </span>
                     </Link>
-                    <Link to='' className='hover-animation'>
+                    <a href={`mailto:${TEXTS.contactEmail}`} className='hover-animation'>
                       <span className='blue-link terms-link'>
                         {TEXTS.registration.contact}
                       </span>
-                    </Link>
+                    </a>
                   </div>
                 </div>
                 <div>

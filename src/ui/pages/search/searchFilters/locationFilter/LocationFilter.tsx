@@ -10,7 +10,7 @@ interface LocationFilterProps {
 
 const LocationFilter = ({value, onChange}: LocationFilterProps) => {
 
-  return (
+  return ( // TO DO GET LOCATIONS
     <>
       <section className='section-filter-class'>  
         <h3 className='h3-class'>

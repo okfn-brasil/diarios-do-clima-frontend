@@ -9,10 +9,16 @@ export interface ModalFilters {
   [key: string]: string | (string | null)[] | undefined;
 }
 
+export enum OrderFilter {
+  relevance = 'relevance',
+  descending_date = 'descending_date',
+  ascending_date = 'ascending_date',
+}
+
 export interface ReqFilters {
   querystring?: string;
   offset: number;
-  order: string | undefined;
+  sort_by: string | undefined;
   size: number;
   until?: string | Date;
   since?: string | Date;
@@ -160,7 +166,7 @@ export const parseFiltersToApi = (filters: FiltersState, currPage: number) => {
   const parsedFilters = parseFiltersToUrl(filters);
   const newFilters: ReqFilters = {
     querystring: parsedFilters.query,
-    order: parsedFilters.order,
+    sort_by: parsedFilters.order,
     offset: offset,
     size: pageSize,
     until: parseDate(filters.dates?.end),

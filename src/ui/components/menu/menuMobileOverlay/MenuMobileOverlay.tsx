@@ -57,7 +57,9 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobi
         }
       </Grid>
       <div className='links-area'>
-        <span className='mobile-menu-link'>{TEXTS.menu.contactUs}</span>
+        <span className='mobile-menu-link'>
+          <a href={`mailto:${TEXTS.contactEmail}`}>{TEXTS.menu.contactUs}</a>
+        </span>
         <span className='mobile-menu-link'>
           <Link to={urls.terms.url} >{TEXTS.menu.termsAndConditions}</Link>
         </span>

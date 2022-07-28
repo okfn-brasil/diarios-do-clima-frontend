@@ -1,10 +1,9 @@
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Dates, FiltersStatePayload, parseUrlToFilters,SubmitDates, Theme } from '@app/models/filters.model';
+import { Dates, FiltersStatePayload, parseUrlToFilters, SubmitDates } from '@app/models/filters.model';
 import { UserState } from '@app/models/user.model';
 import { updateFilters } from '@app/stores/filters.store';
 import { RootState } from '@app/stores/store';
-import { themesMock } from '@app/ui/utils/mocks';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import CloseIcon from '@mui/icons-material/Close';
 import { Grid, SelectChangeEvent } from '@mui/material';
@@ -23,7 +22,6 @@ interface PropsSearchFilters{
 const initialFilters: FiltersStatePayload = {
   location: '0',
   ente: '0',
-  themes: themesMock,
   period: 0,
 };
 
@@ -98,7 +96,7 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
             <DateFilter cleanDate={cleanDate} onSubmit={updateDateFilters} />
           </div>
         </section>
-        <ThemeFilter onChange={checkBoxChange} options={filters.themes as Theme} hasProPlan={!!userData.plan_pro} />
+        <ThemeFilter themesFilter={filters.themes} onChange={checkBoxChange} hasProPlan={!!userData.plan_pro} />
         
         <EntityFilter onChange={inputChange} value={filters.ente as string}/>
         

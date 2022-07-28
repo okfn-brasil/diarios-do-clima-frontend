@@ -8,33 +8,6 @@ import { Grid } from '@mui/material';
 
 import './About.scss';
 
-const partners = [// TO DO
-  {
-    logo: 'Logo Parceiro 1',
-    link: 'https://google.com',
-  },
-  {
-    logo: 'Logo Parceiro 2',
-    link: 'https://google.com',
-  },
-  {
-    logo: 'Logo Parceiro 3',
-    link: 'https://google.com',
-  },
-  {
-    logo: 'Logo Parceiro 4',
-    link: 'https://google.com',
-  },
-  {
-    logo: 'Logo Parceiro 5',
-    link: 'https://google.com',
-  },
-  {
-    logo: 'Logo Parceiro 6',
-    link: 'https://google.com',
-  },
-];
-
 const AboutPage = () => {
   return (
     <div className='about-page'>
@@ -88,11 +61,11 @@ const AboutPage = () => {
         <Grid className='container partners' item sm={10}>
           <h3 className='h3-class'>{TEXTS.aboutPage.partnersTitle}</h3>
           <Grid container className='partners-list'>
-            {partners.map(partner => {
+            {TEXTS.partners.map(partner => {
               return (
                 <div key={partner.logo} className='partner-box'>
-                  <div className='partner-logo'>{partner.logo}</div>
-                  <a className='blue-link' href={partner.link}>{TEXTS.aboutPage.accessSite}</a>
+                  <img className='partner-logo' alt='logo' src={partner.logo}/>
+                  <div className='partner-link'><a className='blue-link' href={partner.link}>{TEXTS.aboutPage.accessSite}</a></div>
                 </div>
               );
             })}

@@ -2,12 +2,15 @@ import { Dispatch, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Arrow from '@app/assets/images/icons/arrow-down.svg';
+import { PlansResponse } from '@app/models/purchase.model';
 import { UserResponseModel, UserState } from '@app/models/user.model';
-import AccountService, { checkPlan } from '@app/services/accounts';
+import AccountService from '@app/services/accounts';
+import BillingService from '@app/services/billing';
 import { RootState } from '@app/stores/store';
 import { userUpdate } from '@app/stores/user.store';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
+import InputError from '@app/ui/components/forms/inputError/inputError';
 import Loading from '@app/ui/components/loading/Loading';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
@@ -30,8 +33,10 @@ const ArrowRight = () => {
 
 const UserInfo = () => {
   const dispatch = useDispatch();
+  const billingService = new BillingService();
   const accountService = new AccountService();
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
+  const [cancellingError, setCancellingError] : [string, Dispatch<string>] = useState('');
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [showChangeEmailModal, setVisibilityEmailModal] : [boolean, Dispatch<boolean>] = useState(false);
   const [showEditInfoModal, setVisibilityInfoModal] : [boolean, Dispatch<boolean>] = useState(false);
@@ -67,15 +72,35 @@ const UserInfo = () => {
   const getUserInfo = () => {
     accountService.getUserData().then(
       (response: UserResponseModel) => {
-        dispatch(userUpdate({
-          plan_pro: checkPlan(response),
-          ...response
-        }));
+        dispatch(userUpdate(response));
         setLoading(false);
       }).catch(() => {
       location.reload();
     });
   };
+
+  const cancelPlan = () => {
+    setCancellingError('');
+    setLoading(true);
+    billingService.getPlans().then(response => {
+      cancel(response);
+    }).catch(() => {
+      setLoading(false);
+      setCancellingError(TEXTS.myAccount.cancellingError);
+    });
+  };
+
+  const cancel = (response: PlansResponse) => {
+    const freePlan = response.results.filter(plan => !plan.pagseguro_plan_id)[0];
+    billingService.postSubscription(freePlan.id as string).then(() => {
+      getUserInfo();
+    }).catch(() => {
+      setLoading(false);
+      setCancellingError(TEXTS.myAccount.cancellingError);
+    });
+  };
+
+
 
   return (
     <Grid container justifyContent='center' className='user-info-page'>
@@ -145,8 +170,8 @@ const UserInfo = () => {
                       {TEXTS.myAccount.changePayment} <ArrowRight/>
                     </div>
                   </div>
-                  
-                  <Link to='' className='cancel'><ButtonOutlined fullWidth>{TEXTS.myAccount.cancelPlan}</ButtonOutlined></Link>
+                  <InputError classess='cancelling-error'>{cancellingError}</InputError>
+                  <ButtonOutlined onClick={cancelPlan} fullWidth>{TEXTS.myAccount.cancelPlan}</ButtonOutlined>
                 </div>
                 :
                 <div>
@@ -158,7 +183,7 @@ const UserInfo = () => {
             </Grid>
           </Grid>
 
-          <div className='need-help'>{TEXTS.myAccount.needHelp} <Link to='' className='blue-link hover-animation'>{TEXTS.myAccount.contact}</Link></div>
+          <div className='need-help'>{TEXTS.myAccount.needHelp} <a href={`mailto:${TEXTS.contactEmail}`} className='blue-link hover-animation'>{TEXTS.myAccount.contact}</a></div>
         </div>
       </Grid>
     </Grid>

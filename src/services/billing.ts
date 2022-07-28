@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { FormPurchaseModel, SessionModel, SubscriptionModel } from '@app/models/purchase.model';
+import { FormPurchaseModel, PlansResponse, SessionModel, SubscriptionModel } from '@app/models/purchase.model';
 import api from '@app/services/interceptor';
 
 export default class BillingService {
@@ -15,6 +15,10 @@ export default class BillingService {
 
   getPhone() {
     return api.get(this.currentUrl + `phone/`).then((response) => response as AxiosResponse);
+  }
+
+  getPlans() {
+    return api.get('/plans').then((response) => response as PlansResponse);
   }
 
   addAddress(form: FormPurchaseModel, method: string) {

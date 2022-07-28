@@ -42,7 +42,7 @@ const Option = ({ id, selectedId, label, icon, onClick }: PropsOption) => {
   const isSelected = selectedId === id;
 
   return (
-    <Grid item xs={3} md={12} container alignItems='center' className='tab-grid'onClick={onClick}>
+    <Grid item xs={3} md={12} container alignItems='center' className='tab-grid' onClick={onClick}>
       <Box className='tab-area'>
         <img src={icon} alt='logo'/>
       </Box>
@@ -93,7 +93,7 @@ const WeOffer = () => {
                 </ButtonGreen>
               </LinkManager>
             </div>
-            <HyperLink link={urls.purchase.url}>
+            <HyperLink link={urls.plans.url}>
               {TEXTS.home.weOffer.linkAboutSubscription}
             </HyperLink>
           </Grid>

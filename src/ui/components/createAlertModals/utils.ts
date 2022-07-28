@@ -1,5 +1,4 @@
 import { FiltersStatePayload, ModalFilters } from '@app/models/filters.model';
-import { themesMock } from '@app/ui/utils/mocks';
 
 export const checkKeyWords = (value: string) => {
   const keywordsSplited = (value || '').split(';');
@@ -13,5 +12,4 @@ export const checkFiltersValidity = (filters: ModalFilters) => {
 export const initialFilters: FiltersStatePayload = {
   location: '0',
   ente: '0',
-  themes: themesMock,
 };

@@ -88,7 +88,7 @@ const ReportsPage = () => {
         <Grid item sm={8} className='vertical-spacing-container'>
           <h3 className='h3-class-sx-margin'>{TEXTS.reportsPage.doubts}</h3>
           <p className='paragraph-class'>{TEXTS.reportsPage.knowMore}
-            <Link to=''><span className='hover-animation'> {TEXTS.reportsPage.contact} </span></Link> 
+            <a href={`mailto:${TEXTS.contactEmail}`}><span className='hover-animation'> {TEXTS.reportsPage.contact} </span></a> 
             {TEXTS.reportsPage.contactDesc}
           </p>
         </Grid>

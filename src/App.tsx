@@ -6,7 +6,7 @@ import {
   Routes,
 } from 'react-router-dom';
 import { UserResponseModel } from '@app/models/user.model';
-import AccountService, { checkPlan } from '@app/services/accounts';
+import AccountService from '@app/services/accounts';
 import { userUpdate } from '@app/stores/user.store';
 import CookieAlert from '@app/ui/components/cookieAlert/CookieAlert';
 import Footer from '@app/ui/components/footer/Footer';
@@ -39,10 +39,7 @@ const App = () => {
     if(localStorage.getItem(tokenKeys.access)) {
       accountService.getUserData().then(
         (response: UserResponseModel) => {
-          dispatch(userUpdate({
-            plan_pro: checkPlan(response),
-            ...response
-          }));
+          dispatch(userUpdate(response));
         });
     }
   }, []);
@@ -52,7 +49,7 @@ const App = () => {
     setShowCookieAlert(false);
   };
 
-  return ( // TO DO PAGINA DE CONTATO
+  return (
     <div>
       <Router>
         <RouteChangeManager />

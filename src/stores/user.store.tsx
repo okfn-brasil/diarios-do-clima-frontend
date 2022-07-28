@@ -17,7 +17,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     userUpdate: (state, action: PayloadAction<UserState>) => {
-      Object.assign(state, action.payload);
+      Object.assign(state, {...action.payload, plan_pro: checkPlan(action.payload)});
       if(action.payload.access) {
         localStorage.setItem(tokenKeys.access, action.payload.access as string);
         localStorage.setItem(tokenKeys.refresh, action.payload.refresh as string);
@@ -35,3 +35,8 @@ export const userSlice = createSlice({
 export const { userUpdate, userReset } = userSlice.actions;
 
 export default userSlice.reducer;
+
+const checkPlan = (userData: UserState) => {
+  return userData.plan_subscription && userData.plan_subscription.plan ?
+    userData.plan_subscription.plan.pagseguro_plan_id : null;
+};

@@ -5,7 +5,7 @@ import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
 import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
 import { LoginModel, LoginResponse } from '@app/models/login.model';
 import { UserResponseModel } from '@app/models/user.model';
-import AccountService, { checkPlan } from '@app/services/accounts';
+import AccountService from '@app/services/accounts';
 import LoginService from '@app/services/login';
 import { userUpdate } from '@app/stores/user.store';
 import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
@@ -65,10 +65,7 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
   const getUserData = () => {
     accountService.getUserData().then(
       (response: UserResponseModel) => {
-        dispatch(userUpdate({
-          plan_pro: checkPlan(response),
-          ...response
-        }));
+        dispatch(userUpdate(response));
         setLoading(false);
         closeModal();
       }).catch(() => {

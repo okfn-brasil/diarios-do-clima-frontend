@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { FormPurchaseModel, getCardType, SessionModel, SubscriptionModel } from '@app/models/purchase.model';
+import { FormPurchaseModel, getCardType, Plan, SessionModel, SubscriptionModel } from '@app/models/purchase.model';
 import BillingService from '@app/services/billing';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 declare const PagSeguroDirectPayment: {
@@ -31,9 +31,10 @@ interface PropsPurchaseSubmit {
   addressMethod: string;
   phoneMethod: string;
   isModal?: boolean;
+  plan: Plan;
 }
 
-const PurchaseSubmit = ({form, onSuccess, onError, isModal, isSubmitting, phoneMethod, addressMethod}: PropsPurchaseSubmit) => {
+const PurchaseSubmit = ({form, onSuccess, onError, plan, isModal, isSubmitting, phoneMethod, addressMethod}: PropsPurchaseSubmit) => {
   const billingService = new BillingService();
 
   const errorMessage = (text: string) => {
@@ -111,7 +112,7 @@ const PurchaseSubmit = ({form, onSuccess, onError, isModal, isSubmitting, phoneM
   };
 
   const postPlanId = () => {
-    billingService.postSubscription(TEXTS.purchasePage.planCode).then((response: SubscriptionModel)  => {
+    billingService.postSubscription(plan.id as string).then((response: SubscriptionModel)  => {
       onSuccess(response.plan);
     }).catch(() => {
       onError(errorMessage(TEXTS.purchasePage.errors.onPlan));

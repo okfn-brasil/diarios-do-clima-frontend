@@ -30,6 +30,7 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmai
   const alertsService = new AlertsService();
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [hasError, setError] : [boolean, Dispatch<boolean>] = useState(false);
+
   const checkPlan = (result: () => void) => {
     if(!userData.plan_pro) {
       openBecomePro();
