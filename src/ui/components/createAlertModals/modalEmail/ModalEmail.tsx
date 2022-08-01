@@ -5,11 +5,10 @@ import { userUpdate } from '@app/stores/user.store';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import TextInput from '@app/ui/components/forms/input/Input';
 import InputError from '@app/ui/components/forms/inputError/inputError';
+import Loading from '@app/ui/components/loading/Loading';
 import Modal from '@app/ui/components/modal/Modal';
 import { testEmail } from '@app/ui/utils/functions.utils';
 import { TEXTS } from '@app/ui/utils/portal-texts';
-
-import Loading from '@app/ui/components/loading/Loading';
 
 import './ModalEmail.scss';
 

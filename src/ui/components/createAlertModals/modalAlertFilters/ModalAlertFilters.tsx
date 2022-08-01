@@ -1,13 +1,13 @@
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { FiltersStatePayload } from '@app/models/filters.model';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import EntityFilter from '@app/ui/components/filters/entityFilter/EntityFilter';
+import LocationFilter from '@app/ui/components/filters/locationFilter/LocationFilter';
+import ThemeFilter from '@app/ui/components/filters/themeFilter/ThemeFilter';
 import Modal from '@app/ui/components/modal/Modal';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { SelectChangeEvent } from '@mui/material';
 
-import EntityFilter from '@app/ui/components/filters/entityFilter/EntityFilter';
-import LocationFilter from '@app/ui/components/filters/locationFilter/LocationFilter';
-import ThemeFilter from '@app/ui/components/filters/themeFilter/ThemeFilter';
 import { initialFilters } from '../utils';
 
 import './ModalAlertFilters.scss';
