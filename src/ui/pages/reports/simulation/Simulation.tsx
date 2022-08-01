@@ -1,31 +1,57 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
+import { FieldValidation, InputModel, InputType } from '@app/models/forms.model';
+import TextInput from '@app/ui/components/forms/input/Input';
 import SelectInput from '@app/ui/components/forms/select/Select';
 import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
+import { testEmail } from '@app/ui/utils/functions.utils';
 import { TEXTS } from '@app/ui/utils/portal-texts';
-import { Grid, SelectChangeEvent } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import './Simulation.scss';
 
 interface SimulationModel {
-  criterio1: string;
-  criterio2: string;
-  criterio3: string;
+  email: InputModel;
+  name: InputModel;
+  categoria: InputModel;
+  [key: string]: InputModel;
 }
+
+const fieldValidations: FieldValidation = {
+  name: (value: string) => { return value && value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false; },
+  email: (value: string) => { return testEmail(value) ? false : 'O e-mail inserido é invalido'; },
+};
 
 const SimulationForm = () => {
   const [inputs, setInputs] : [SimulationModel, Dispatch<SetStateAction<SimulationModel>>] = useState({
-    criterio1: '',
-    criterio2: '',
-    criterio3: '',
+    email: { value: '' },
+    name: { value: '' },
+    categoria: { value: '' },
   });
 
-  const inputChange = (event: SelectChangeEvent<string>) => {
+  const inputChange = (event: InputType) => {
     const {name, value} = event.target;
-    setInputs((values: SimulationModel) => ({...values, [name]: value}));
+    setInputs((values: SimulationModel) => ({...values, [name]: {value}}));
   };
 
-  const handleSubmit = () => {
-    // TO DO SIMULAÇÃO
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const errors = [];
+    Object.keys(inputs).forEach((key: string) => {
+      const inputValue: string = inputs[key].value;
+      const validator = fieldValidations[key] ? fieldValidations[key](inputValue) : false;
+      if(inputValue) {
+        setInputs((values: SimulationModel) => ({
+          ...values,
+          [key]: {value: inputValue, errorMessage: validator as string
+          }}));
+        if(typeof validator === 'string') {
+          errors.push(key);
+        }
+      }
+    });
+    if(!errors.length) {
+      // TO DO SIMULAÇÃO
+    }
   };
 
   return (
@@ -34,36 +60,34 @@ const SimulationForm = () => {
       <p className='paragraph-class'>{TEXTS.reportsPage.simulation.subTitle}</p>
 
       <form onSubmit={handleSubmit}>
-        <SelectInput
-          options={[{value: 'x', label: 'x'},{value: 'y', label: 'y'}]} 
-          label='critério 1' 
-          value={inputs.criterio1} 
-          name='criterio1' 
-          required={true} 
+        <TextInput 
+          value={inputs.email.value}
+          required
+          type='email'
           onChange={inputChange}
+          name='email'
+          label='E-mail'
+          error={inputs.email.errorMessage as string}
+        />
+
+        <TextInput 
+          value={inputs.name.value}
+          required
+          type='text'
+          onChange={inputChange}
+          name='name'
+          label='Nome completo'
+          error={inputs.name.errorMessage as string}
         />
 
         <SelectInput
           options={[{value: 'x', label: 'x'},{value: 'y', label: 'y'}]} 
-          label='critério 2' 
-          value={inputs.criterio2} 
-          name='criterio2' 
+          label='Categoria' 
+          value={inputs.categoria.value} 
+          name='categoria' 
           required={true} 
           onChange={inputChange}
         />
-
-        <SelectInput
-          options={[{value: 'x', label: 'x'},{value: 'y', label: 'y'}]} 
-          label='critério 3' 
-          value={inputs.criterio3} 
-          name='criterio3' 
-          required={true} 
-          onChange={inputChange}
-        />
-        <div>
-          <p className='paragraph-class value-simulated'>{TEXTS.reportsPage.simulation.value}</p>
-          <div className='value'>R$ 0</div>
-        </div>
 
         <SubmitForm label='Solicitar uma proposta' classess='submit-simulation'/>
       </form>

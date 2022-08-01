@@ -20,6 +20,7 @@ const ThemeFilter = ({onChange, hasProPlan, themesFilter}: ThemeFilterProps) => 
   const navigate: NavigateFunction = useNavigate();
   const gazzetesService = new GazettesService();
   const [themes, setThemes] : [Theme, Dispatch<Theme>] = useState({} as Theme);
+  const [showMoreThemes, setShowMoreThemes] : [boolean, Dispatch<boolean>] = useState(false);
 
   useEffect(() => {
     gazzetesService.getThemes().then(response => {
@@ -32,7 +33,7 @@ const ThemeFilter = ({onChange, hasProPlan, themesFilter}: ThemeFilterProps) => 
       setThemes({});
     });
   }, []);
-  
+
   return (
     <>
       { (themes && Object.keys(themes).length) ?
@@ -44,19 +45,32 @@ const ThemeFilter = ({onChange, hasProPlan, themesFilter}: ThemeFilterProps) => 
           <p>{TEXTS.searchPage.filters.themeSubtitle}</p>
           <div>
             <FormGroup>
-              {Object.keys(themes as Theme).map((key: string) => {
-                return (<FormControlLabel 
-                  key={key} 
-                  disabled={!hasProPlan}
-                  control={<Checkbox 
-                    checked={!!((themesFilter || themes) as Theme)[key]} 
-                    name={key} 
-                    onChange={(e) => {hasProPlan ? onChange(e) : {};}} 
-                  />} 
-                  label={key} 
-                />);}
-              )}
+              {Object.keys(themes as Theme)
+                .sort((themeA, themeB) => { 
+                  const items: Theme = themesFilter || themes;
+                  return (themes[themeA] === items[themeB])? 0 : items[themeA]? -1 : 1;
+                })
+                .map((key: string, index: number) => {
+                  const item = !!((themesFilter || themes)[key]);
+                  if (item || index < 4 || showMoreThemes) {
+                    return (<FormControlLabel 
+                      key={key} 
+                      disabled={!hasProPlan}
+                      control={<Checkbox 
+                        checked={!!item} 
+                        name={key} 
+                        onChange={(e) => {hasProPlan ? onChange(e) : {};}} 
+                      />} 
+                      label={key} 
+                    />);
+                
+                  } else {
+                    return <></>;
+                  }
+                })
+              }
             </FormGroup>
+            <button onClick={() => setShowMoreThemes(!showMoreThemes)} className='blue-link hover-animation show-more'>Mostrar {showMoreThemes ? 'menos' : 'mais'}</button>
           </div>
         </section> :
         <></>

@@ -1,7 +1,7 @@
 import { Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { InputModel, InputType } from '@app/models/forms.model';
+import { InputModel, InputType, ValidationInputModel } from '@app/models/forms.model';
 import { FormPurchaseModel, getCardType, Plan } from '@app/models/purchase.model';
 import BillingService from '@app/services/billing';
 import { userUpdate } from '@app/stores/user.store';
@@ -18,21 +18,6 @@ import PurchaseDetails from '../purchaseDetails/PurchaseDetails';
 import PurchaseSubmit from '../purchaseSubmit/PurchaseSubmit';
 
 import './PurchaseForm.scss';
-
-interface ValidationModel {
-  card: (s: InputModel) => string | boolean;
-  fullName: (s: InputModel) => string | boolean;
-  cvv: (s: InputModel) => string | boolean;
-  address: (s: InputModel) => string | boolean;
-  city: (s: InputModel) => string | boolean;
-  district: (s: InputModel) => string | boolean;
-  cep: (s: InputModel) => string | boolean;
-  cpf: (s: InputModel) => string | boolean;
-  phone: (s: InputModel) => string | boolean;
-  birthday: (s: InputModel) => string | boolean | undefined;
-  validity: (s: InputModel) => string | boolean | undefined;
-  [key: string]: (s: InputModel) => string | boolean | undefined;
-}
 
 const inputsDefaultValue: FormPurchaseModel = {
   card: { value: '' },
@@ -78,7 +63,7 @@ const cardValidation = (value: string, text: string) => {
   return !getCardType(getCardValue(value)) ? text : false;
 };
 
-const fieldValidations: ValidationModel = {
+const fieldValidations: ValidationInputModel = {
   card: (s: InputModel) => { return cardValidation(s.value, 'O cartão inserido é inválido');},
   fullName: (s: InputModel) => { return inputValidation(s.value, 8, 'O campo deve possuir no mínimo 8 caracteres');},
   cvv: (s: InputModel) => { return inputValidation(s.value, 3, 'O CVV inserido é inválido');},
