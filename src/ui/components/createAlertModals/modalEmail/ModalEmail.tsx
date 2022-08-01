@@ -9,7 +9,7 @@ import Modal from '@app/ui/components/modal/Modal';
 import { testEmail } from '@app/ui/utils/functions.utils';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 
-import Loading from '../../loading/Loading';
+import Loading from '@app/ui/components/loading/Loading';
 
 import './ModalEmail.scss';
 

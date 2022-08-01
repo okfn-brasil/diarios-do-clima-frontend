@@ -5,9 +5,9 @@ import Modal from '@app/ui/components/modal/Modal';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { SelectChangeEvent } from '@mui/material';
 
-import EntityFilter from '../../filters/entityFilter/EntityFilter';
-import LocationFilter from '../../filters/locationFilter/LocationFilter';
-import ThemeFilter from '../../filters/themeFilter/ThemeFilter';
+import EntityFilter from '@app/ui/components/filters/entityFilter/EntityFilter';
+import LocationFilter from '@app/ui/components/filters/locationFilter/LocationFilter';
+import ThemeFilter from '@app/ui/components/filters/themeFilter/ThemeFilter';
 import { initialFilters } from '../utils';
 
 import './ModalAlertFilters.scss';

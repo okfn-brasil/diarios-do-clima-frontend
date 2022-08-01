@@ -11,7 +11,7 @@ import { TEXTS } from '@app/ui/utils/portal-texts';
 import CloseIcon from '@mui/icons-material/Close';
 import { Grid, SelectChangeEvent } from '@mui/material';
 
-import DateFilter from '../../../components/filters/dateFilter/DateFilter';
+import DateFilter from '@app/ui/components/filters/dateFilter/DateFilter';
 
 import './SearchFilters.scss';
 
