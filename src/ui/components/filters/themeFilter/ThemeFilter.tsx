@@ -56,21 +56,21 @@ const ThemeFilter = ({onChange, hasProPlan, themesFilter}: ThemeFilterProps) => 
                     return (<FormControlLabel 
                       key={key} 
                       disabled={!hasProPlan}
+                      label={key}
                       control={<Checkbox 
                         checked={!!item} 
                         name={key} 
                         onChange={(e) => {hasProPlan ? onChange(e) : {};}} 
                       />} 
-                      label={key} 
                     />);
                 
                   } else {
-                    return <></>;
+                    return <span key={key}></span>;
                   }
                 })
               }
             </FormGroup>
-            <button onClick={() => setShowMoreThemes(!showMoreThemes)} className='blue-link hover-animation show-more'>Mostrar {showMoreThemes ? 'menos' : 'mais'}</button>
+            <div onClick={() => setShowMoreThemes(!showMoreThemes)} className='blue-link hover-animation show-more'>Mostrar {showMoreThemes ? 'menos' : 'mais'}</div>
           </div>
         </section> :
         <></>

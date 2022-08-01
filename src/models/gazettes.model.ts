@@ -33,7 +33,7 @@ export const parseGazettes = (gazettes: GazetteModel[], query: string) => {
       const cnpjIndex = textFragment.indexOf('</~~~>');
       if (cnpjIndex > 0) {
         const cnpj = textFragment.slice(0, cnpjIndex).trim();
-        newText += `<a href='${urls.cnpjs.urlWithoutParam}${removeSpecialChars(cnpj)}'>${textFragment}`;
+        newText += `<a href='${urls.cnpjs.urlWithoutParam}${removeSpecialChars(cnpj).replace(/b/g, '')}'>${textFragment}`;
       } else {
         newText += textFragment;
       }

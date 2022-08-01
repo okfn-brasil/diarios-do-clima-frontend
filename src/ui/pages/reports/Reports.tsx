@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
 import badge from '@app/assets/images/icons/badge.svg';
 import homeWork from '@app/assets/images/icons/home_work.svg';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import { TEXTS } from '@app/ui/utils/portal-texts';
+import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
 import SimulationForm from './simulation/Simulation';
@@ -21,11 +21,11 @@ const ReportsPage = () => {
             <p className='paragraph-class'>
               {TEXTS.reportsPage.subtitle}
             </p>
-            <Link to=''>
+            <a href={urls.reports.url + '#orcamento-form'}>
               <ButtonGreen >
                 {TEXTS.reportsPage.simulateButton}
               </ButtonGreen>
-            </Link>
+            </a>
           </div>
         </Grid>
       </Grid>
@@ -59,29 +59,29 @@ const ReportsPage = () => {
             <div className='report-card-class'>
               <h3 className='h3-class'>{TEXTS.reportsPage.reportTitle}</h3>
               <p className='card-paragraph'>{TEXTS.reportsPage.report1Desc}</p>
-              <Link to='' className='hover-animation'>
+              <a className='hover-animation'>
                 <ButtonGreen classess='card-button'>
                   {TEXTS.reportsPage.reportButton}
                 </ButtonGreen>
-              </Link>
+              </a>
             </div>
             <div className='report-card-class'>
               <h3 className='h3-class'>{TEXTS.reportsPage.reportTitle}</h3>
               <p className='card-paragraph'>{TEXTS.reportsPage.report2Desc}</p>
-              <Link to='' className='hover-animation'>
+              <a className='hover-animation'>
                 <ButtonGreen classess='card-button'>
                   {TEXTS.reportsPage.reportButton}
                 </ButtonGreen>
-              </Link>
+              </a>
             </div>
           </Grid>
         </Grid>
       </Grid>
 
-      <Grid container item className='container gray-area' justifyContent='center' sm={12}>
-        <Grid container item sm={8} className='vertical-spacing-container' justifyContent='center'>
+      <Grid container item className='gray-area' justifyContent='center' sm={12} id='orcamento-form'>
+        <div className='vertical-spacing-container form-container'>
           <SimulationForm />
-        </Grid>
+        </div>
       </Grid>
 
       <Grid container item className='container doubts' sm={12} justifyContent='center'>

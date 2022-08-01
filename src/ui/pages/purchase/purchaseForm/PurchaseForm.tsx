@@ -9,7 +9,7 @@ import TextInput from '@app/ui/components/forms/input/Input';
 import SelectInput from '@app/ui/components/forms/select/Select';
 import Loading from '@app/ui/components/loading/Loading';
 import WarnModal from '@app/ui/components/warn-modal/WarnModal';
-import { removeSpecialChars } from '@app/ui/utils/functions.utils';
+import { getInputWithoutMask, homePhoneMask, inputValidation, mobilePhoneMask } from '@app/ui/utils/form.utils';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
@@ -50,15 +50,6 @@ const getCardValue = (value: string) => {
   return getInputWithoutMask(value.replace(/ /g,''));
 };
 
-const getInputWithoutMask = (value: string) => {
-  const newValue = removeSpecialChars(value);
-  return newValue;
-};
-
-const inputValidation = (value: string, size: number, text: string, isMax = false) => {
-  return value && (isMax ? getInputWithoutMask(value).length > size :  getInputWithoutMask(value).length < size) ? text : false;
-};
-
 const cardValidation = (value: string, text: string) => {
   return !getCardType(getCardValue(value)) ? text : false;
 };
@@ -77,8 +68,6 @@ const fieldValidations: ValidationInputModel = {
   birthday: (s: InputModel) => { return validateDate(s.value, (value: Date) => !(new Date() > value));},
   validity: (s: InputModel) => { return validateDate(s.value, (value: Date) => !(new Date() < value));},
 };
-const homePhoneMask = '(99) 9999-99999';
-const mobilePhoneMask = '(99) 99999-9999';
 
 interface PurchaseFormInterface {
   isModal?: boolean;

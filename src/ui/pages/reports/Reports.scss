@@ -70,7 +70,13 @@
     }
   }
 
- 
+  .form-container {
+    width: calc(100% - 48px);
+
+    @media only screen and (min-width: $desktopSize) {
+      width: 60%;
+    }
+  }
   
   .report-card-class {
     background-color: $white;
