@@ -16,3 +16,7 @@ export interface ReportModel {
   description: string;
   location: string;
 }
+
+export interface ReportsListModel {
+  [key: number]: ReportModel[];
+}

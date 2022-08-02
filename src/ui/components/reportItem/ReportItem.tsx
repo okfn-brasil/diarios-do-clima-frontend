@@ -15,7 +15,7 @@ const ReportItem = ({report}: ReportProps) => {
       <h3 className='h3-class-sx-margin'>{report.title}</h3>
       <p className='paragraph-class'>{report.description}</p>
       <a target='_blank' href={report.file}>
-        <ButtonGreen fullWidth>
+        <ButtonGreen>
           <div>
             <img src={downloadIcon} alt='download'/>
             {TEXTS.myReports.download}
