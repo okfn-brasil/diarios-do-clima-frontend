@@ -20,6 +20,7 @@ import ChangeEmailModal from './changeEmail/ChangeEmail';
 import ChangeInfoModal from './changeInfo/ChangeInfo';
 import ChangePasswordModal from './changePassword/ChangePassword';
 import ChangePaymentModal from './changePayment/ChangePayment';
+import CancelPlan from './confirmCancel/ConfirmCancel';
 
 import './UserInfo.scss';
 
@@ -42,6 +43,7 @@ const UserInfo = () => {
   const [showEditInfoModal, setVisibilityInfoModal] : [boolean, Dispatch<boolean>] = useState(false);
   const [showPasswordModal, setVisibilityPassModal] : [boolean, Dispatch<boolean>] = useState(false);
   const [showPaymentModal, setVisibilityPaymentModal] : [boolean, Dispatch<boolean>] = useState(false);
+  const [showCancelPlan, setVisibilityCancelPlan] : [boolean, Dispatch<boolean>] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -82,6 +84,7 @@ const UserInfo = () => {
   const cancelPlan = () => {
     setCancellingError('');
     setLoading(true);
+    setVisibilityCancelPlan(false);
     billingService.getPlans().then(response => {
       cancel(response);
     }).catch(() => {
@@ -104,6 +107,7 @@ const UserInfo = () => {
 
   return (
     <Grid container justifyContent='center' className='user-info-page'>
+      <CancelPlan isOpen={showCancelPlan} onConfirmCancel={cancelPlan} onClose={() => setVisibilityCancelPlan(false)}/>
       <ChangeEmailModal setLoading={setLoading} defaultEmail={userData.email} isOpen={showChangeEmailModal} onClose={() => {setVisibilityEmailModal(false); getUserInfo();}}/>
       <ChangeInfoModal setLoading={setLoading} userData={userData} isOpen={showEditInfoModal} onClose={() => {setVisibilityInfoModal(false); getUserInfo();}}/>
       <ChangePasswordModal setLoading={setLoading} isOpen={showPasswordModal} onClose={() => {setVisibilityPassModal(false); getUserInfo();}}/>
@@ -113,7 +117,7 @@ const UserInfo = () => {
         <div>
           <h2 className='h2-class font-sora'>{TEXTS.myAccount.title}</h2>
           <div className='sub-title'>{TEXTS.myAccount.subTitleA}{ userData.plan_pro ? ' PRO' : ''} {TEXTS.myAccount.subTitleB} {getDate()}</div>
-
+          {userData.plan_pro ? <div className='time-remaining-test'>{TEXTS.myAccount.remainingTime(5)}</div> : <></> }
           <Grid container justifyContent='space-between'>
             <Grid className={(userData.plan_pro ? 'not-align-self' : '')  + ' white-box'}>
               <div className='sub-title'>{TEXTS.myAccount.yourData}</div>
@@ -171,7 +175,7 @@ const UserInfo = () => {
                     </div>
                   </div>
                   <InputError classess='cancelling-error'>{cancellingError}</InputError>
-                  <ButtonOutlined onClick={cancelPlan} fullWidth>{TEXTS.myAccount.cancelPlan}</ButtonOutlined>
+                  <ButtonOutlined onClick={() => setVisibilityCancelPlan(true)} fullWidth>{TEXTS.myAccount.cancelPlan}</ButtonOutlined>
                 </div>
                 :
                 <div>

@@ -1,23 +1,17 @@
 import { Dispatch, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import emptyListImage from '@app/assets/images/empty-list.svg';
-import { ReportModel } from '@app/models/reports.model';
+import { ReportsListModel } from '@app/models/reports.model';
 import ReportsService from '@app/services/reports';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
-import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import Loading from '@app/ui/components/loading/Loading';
 import Pagination from '@app/ui/components/pagination/Pagination';
+import ReportItem from '@app/ui/components/reportItem/ReportItem';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
-import ReportItem from './reportItem/ReportItem';
-
 import './MyReports.scss';
-
-interface ReportsListModel {
-  [key: number]: ReportModel[];
-}
 
 const MyReports = () => {
   const [reports, setReports] : [ReportsListModel, Dispatch<ReportsListModel>] = useState({} as ReportsListModel);
@@ -76,8 +70,7 @@ const MyReports = () => {
           <img src={emptyListImage} alt='Lista vazia' />
           { !isLoading ? <div className='paragraph-class'>{TEXTS.myReports.emptyList}</div> : <></> }
           <Link to={urls.reports.url}><div className='blue-link hover-animation'>{TEXTS.myReports.knowMore}</div></Link>
-          <ButtonGreen fullWidth>{TEXTS.myReports.simulate}</ButtonGreen>
-          <a href={`mailto:${TEXTS.contactEmail}`}><ButtonOutlined fullWidth>{TEXTS.myReports.contact}</ButtonOutlined></a>
+          <Link to={urls.reports.url}><ButtonGreen fullWidth>{TEXTS.myReports.simulate}</ButtonGreen></Link>
         </Grid>
       }
     </Grid>

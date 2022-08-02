@@ -214,8 +214,7 @@ export const TEXTS = {
     title: 'Meus relatórios',
     download: 'Baixar relatório',
     knowMore: 'Saiba mais sobre os relatórios',
-    simulate: 'Simular o custo',
-    contact: 'Falar com um especialista',
+    simulate: 'Solicitar proposta',
     emptyList: 'Você ainda não possui nenhum relatório',
   },
   myAccount: {
@@ -223,6 +222,7 @@ export const TEXTS = {
     subTitleA: 'Usuário',
     subTitleB: 'desde',
     yourData: 'Seus dados',
+    remainingTime: (days: number) => `Faltam ${days} dias para expirar o teste grátis`,
     password: 'Senha: ••••••••',
     changeEmail: 'Alterar e-mail da conta',
     changePassowrd: 'Alterar senha',
@@ -247,7 +247,13 @@ export const TEXTS = {
     saveInfo: 'Salvar dados',
     changePaymentTitle: 'Alterar dados de pagamento',
     savePayment: 'Salvar dados de pagamento',
-    cancellingError: 'Ocorreu um erro ao tentar cancelar seu plano, por favor, tente novamente. Caso o erro persista, entre em contato conosco.'
+    cancellingError: 'Ocorreu um erro ao tentar cancelar seu plano, por favor, tente novamente. Caso o erro persista, entre em contato conosco.',
+    cancelPlanModal: {
+      title: 'Deseja realmente cancelar seu plano PRO?',
+      subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      cancel: 'Voltar',
+      ok: 'Cancelar plano',
+    },
   },
   notFound: {
     title: '404 - Página não encontrada',
@@ -425,6 +431,8 @@ export const TEXTS = {
       subTitle: 'Você pode encomendar um relatório personalizado. Preencha o formulário abaixo para receber uma cotação.',
       value: 'Valor estimado',
     },
+    error: 'Ocorreu um erro ao carregar os relatórios públicos.',
+    reloadPage: 'Recarregar página',
     title: 'Relatórios de análises aprofundadas do Diário do Clima',
     subtitle: 'Informações qualificadas, baseadas nos diários oficiais e curadas por profissionais. Mais resultados e insights do que a interface do Diário do Clima oferece.',
     simulateButton: 'Simular o custo',
@@ -440,7 +448,6 @@ export const TEXTS = {
     knowMore: 'Quer saber mais sobre os dados em seu relatório? ',
     contact: 'Entre em contato',
     contactDesc: 'para receber dicas para melhor interpretar e compreender as suas principais descobertas. Nossos especialistas estão prontos para ajudá-lo com insights profundos para melhor apresentar e revelar as conclusões de seu relatório personalizado.'
-
   },
   searchPage: {
     advancedSearchTitle: <span>Para usar um desses caracteres literalmente, escape-o com uma barra invertida (\).</span>,

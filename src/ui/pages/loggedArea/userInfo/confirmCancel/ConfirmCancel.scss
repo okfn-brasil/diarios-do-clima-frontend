@@ -1,0 +1,23 @@
+@import '@app/styles/globals.scss';
+
+.delete-alert-modal {
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 140px);
+
+  @media only screen and (min-width: $desktopSize) {
+    padding: 68px 126px;
+  }
+
+  .buttons {
+    margin-top: 40px;
+    position: relative;
+
+    button {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+  }
+}

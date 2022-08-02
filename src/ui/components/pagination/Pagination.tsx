@@ -18,20 +18,33 @@ const Pagination = ({onChangePage, currentPage, listSize, itemsPerPage}: Paginat
       for (let i = 0;  i < pagesSize && pageNumbers.length < 5; i++) {
         pageNumbers.push(getPage(i));
       }
-    }  else if(currentPage < pagesSize - 3 && currentPage > 0){
-      [0, null, currentPage - 1, currentPage, currentPage + 1, null, pagesSize - 1].forEach((i) => pageNumbers.push(getPage(i)));
-    } else if(currentPage < pagesSize - 3){
-      [currentPage, currentPage + 1, null, pagesSize - 2, pagesSize - 1].forEach((i) => pageNumbers.push(getPage(i)));
-    } else {
-      [ 0, null, pagesSize - 3, pagesSize - 2, pagesSize - 1].forEach((i) => pageNumbers.push(getPage(i)));
+    } else if( pagesSize >= 5 && currentPage < pagesSize - 3) {
+      [ 
+        currentPage > 1 ? 0 : undefined,
+        currentPage > 1 ? null : undefined,
+        currentPage > 0 ? currentPage - 1 : undefined,
+        currentPage,
+        currentPage + 1,
+        null,
+        pagesSize - 1
+      ].forEach((i) => pageNumbers.push(getPage(i)));
+    } else if (currentPage >= pagesSize - 3){
+      [ 
+        0,
+        null,
+        pagesSize - 4,
+        pagesSize - 3,
+        pagesSize - 2,
+        pagesSize - 1,
+      ].forEach((i) => pageNumbers.push(getPage(i)));
     }
     return pageNumbers;
   };
 
-  const getPage = (i: number | null) => {
+  const getPage = (i: number | null | undefined) => {
     const isCurrentPage = i === currentPage;
     const currentClass = isCurrentPage ? 'page-number-current-class' : 'page-number-class';
-    return (
+    return ( i !== undefined ? 
       <span key={i !== null ? i : 'x'}>
         {i !== null ? 
           <span 
@@ -44,6 +57,7 @@ const Pagination = ({onChangePage, currentPage, listSize, itemsPerPage}: Paginat
           <span className={currentClass}>...</span>
         }
       </span>
+      : <span key={Math.random()}></span>
     );
   };
 
@@ -63,25 +77,23 @@ const Pagination = ({onChangePage, currentPage, listSize, itemsPerPage}: Paginat
     <>
       {listSize  && listSize > 6?
         <div className='pagination'>
-          <Grid container justifyContent='center'>
-            <Grid  sm={8} item container justifyContent='center'>
-              <Grid className='pagination-container' alignItems='center' container justifyContent='space-between'>
-                <div 
-                  className={currentPage ? 'arrow-area-class' : 'arrow-area-disabled-class'} 
-                  onClick={previousPage}
-                >
-                  <div className={'left-arrow ' + (currentPage ? 'arrow-class' : 'arrow-disabled-class')} >
-                  </div>
+          <Grid>
+            <Grid className='pagination-container' justifyContent='center' alignItems='center' container>
+              <div 
+                className={currentPage ? 'arrow-area-class' : 'arrow-area-disabled-class'} 
+                onClick={previousPage}
+              >
+                <div className={'left-arrow ' + (currentPage ? 'arrow-class' : 'arrow-disabled-class')} >
                 </div>
-                {pages()}
-                <div 
-                  className={currentPage < ((listSize / itemsPerPage) - 1) ? 'arrow-area-class' : 'arrow-area-disabled-class'} 
-                  onClick={nextPage}
-                >
-                  <div className={currentPage < ((listSize / itemsPerPage) - 1) ? 'arrow-class' : 'arrow-disabled-class'} >
-                  </div>
+              </div>
+              {pages()}
+              <div 
+                className={currentPage < ((listSize / itemsPerPage) - 1) ? 'arrow-area-class' : 'arrow-area-disabled-class'} 
+                onClick={nextPage}
+              >
+                <div className={currentPage < ((listSize / itemsPerPage) - 1) ? 'arrow-class' : 'arrow-disabled-class'} >
                 </div>
-              </Grid>
+              </div>
             </Grid>
           </Grid>
         </div>  
