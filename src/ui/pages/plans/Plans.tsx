@@ -138,7 +138,7 @@ const Plans = () => {
                 {TEXTS.plansPage.contact}
               </ButtonGreen>
             </a>
-            <Link to=''>
+            <Link to={urls.reports.url}>
               <ButtonOutlined classess='button button-gray'>
                 {TEXTS.plansPage.simulate}
               </ButtonOutlined>
@@ -151,11 +151,11 @@ const Plans = () => {
         <Grid item sm={8} className='container'>
           <h3 className='h3-class' >{TEXTS.plansPage.discount}</h3>
           <p className='paragraph-class'>{TEXTS.plansPage.discountDesc}</p>
-          <Link to=''>
+          <a href={'mailto:' + TEXTS.contactEmail}>
             <ButtonGreen>
               {TEXTS.plansPage.getDiscount}
             </ButtonGreen>
-          </Link>
+          </a>
         </Grid>
       </Grid>
 

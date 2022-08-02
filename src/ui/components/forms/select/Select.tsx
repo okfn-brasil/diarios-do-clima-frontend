@@ -10,13 +10,14 @@ interface Option {
 
 interface PropsSelect{
   placeholder?: string;
-  value: string;
+  value: string | string[];
   label?: string;
   name: string;
   onChange: (e: SelectChangeEvent<string>) => void;
   options: Option[];
   required?: boolean;
   classes?: string;
+  multiple?: boolean;
 }
 
 const selectIcon = () => {
@@ -25,7 +26,7 @@ const selectIcon = () => {
   );
 };
 
-const SelectInput = ({value, required, classes, onChange, name, label, options, placeholder}: PropsSelect) => {
+const SelectInput = ({value, required, multiple, classes, onChange, name, label, options, placeholder}: PropsSelect) => {
   return (
     <FormControl fullWidth className={`form-select ${classes}`}>
       {label ? <InputLabel id={`${name}-select`}>{label}</InputLabel> : <></>}
@@ -34,7 +35,8 @@ const SelectInput = ({value, required, classes, onChange, name, label, options, 
         variant='standard' 
         IconComponent={selectIcon} 
         labelId={`${name}-select`} 
-        value={value} 
+        value={value as string}
+        multiple={multiple}
         name={name} 
         onChange={onChange} 
       >

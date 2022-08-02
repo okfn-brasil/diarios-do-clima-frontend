@@ -32,9 +32,11 @@ const LoggedMenu = ({isWhite, classess}: PropsLoggedMenu) => {
 
   const signOut = () => {
     dispatch(userReset());
-    if(routerLocation.pathname !== '/'){
-      navigate(urls.home.url);
-    }
+    setTimeout(() => {
+      if(routerLocation.pathname !== '/'){
+        navigate(urls.home.url);
+      }
+    }, 200);
   };
 
   return (
@@ -54,7 +56,7 @@ const LoggedMenu = ({isWhite, classess}: PropsLoggedMenu) => {
         </div>
         <hr className='thin-line'/>
         <div onClick={signOut} className='links hover-animation'>
-          <Link to='' className='hover-animation'><div>{TEXTS.loggedMenu.singOut}</div></Link>
+          <a className='hover-animation'><div>{TEXTS.loggedMenu.singOut}</div></a>
         </div>
       </div> : <></> }
     </div>

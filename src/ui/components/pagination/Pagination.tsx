@@ -19,7 +19,7 @@ const Pagination = ({onChangePage, currentPage, listSize, itemsPerPage}: Paginat
         pageNumbers.push(getPage(i));
       }
     }  else if(currentPage < pagesSize - 3 && currentPage > 0){
-      [0, null, currentPage, currentPage + 1, null, pagesSize - 2, pagesSize - 1].forEach((i) => pageNumbers.push(getPage(i)));
+      [0, null, currentPage - 1, currentPage, currentPage + 1, null, pagesSize - 1].forEach((i) => pageNumbers.push(getPage(i)));
     } else if(currentPage < pagesSize - 3){
       [currentPage, currentPage + 1, null, pagesSize - 2, pagesSize - 1].forEach((i) => pageNumbers.push(getPage(i)));
     } else {

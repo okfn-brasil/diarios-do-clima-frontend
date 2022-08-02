@@ -102,7 +102,7 @@ const CnpjPage = () => {
                   <Info infoName='Ente federativo responsável' infoText={cnpj.ente_federativo_responsavel}/>
                   <Info infoName='Simples nacional' infoText={cnpj.opcao_pelo_simples}/>
                   <Info infoName='Código e descrição da atividade econômica principal' infoText={cnpj.cnae}/>
-                  <Info infoName='Código e descrição das atividades secundárias' infoText={cnpj.cnae_fiscal_secundario}/>
+                  <Info infoName='Código e descrição das atividades secundárias' infoText={cnpj.cnae_fiscal_secundario ? cnpj.cnae_fiscal_secundario.split(';').join('\n\n') : ''}/>
                   <Info infoName='Código e endereço da natureza jurídica' infoText={cnpj.natureza_juridica}/>
                 </div>
               </div>

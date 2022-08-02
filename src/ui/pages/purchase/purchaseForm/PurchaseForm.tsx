@@ -1,7 +1,7 @@
 import { Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { InputModel, InputType } from '@app/models/forms.model';
+import { InputModel, InputType, ValidationInputModel } from '@app/models/forms.model';
 import { FormPurchaseModel, getCardType, Plan } from '@app/models/purchase.model';
 import BillingService from '@app/services/billing';
 import { userUpdate } from '@app/stores/user.store';
@@ -9,7 +9,7 @@ import TextInput from '@app/ui/components/forms/input/Input';
 import SelectInput from '@app/ui/components/forms/select/Select';
 import Loading from '@app/ui/components/loading/Loading';
 import WarnModal from '@app/ui/components/warn-modal/WarnModal';
-import { removeSpecialChars } from '@app/ui/utils/functions.utils';
+import { getInputWithoutMask, homePhoneMask, inputValidation, mobilePhoneMask } from '@app/ui/utils/form.utils';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
@@ -18,21 +18,6 @@ import PurchaseDetails from '../purchaseDetails/PurchaseDetails';
 import PurchaseSubmit from '../purchaseSubmit/PurchaseSubmit';
 
 import './PurchaseForm.scss';
-
-interface ValidationModel {
-  card: (s: InputModel) => string | boolean;
-  fullName: (s: InputModel) => string | boolean;
-  cvv: (s: InputModel) => string | boolean;
-  address: (s: InputModel) => string | boolean;
-  city: (s: InputModel) => string | boolean;
-  district: (s: InputModel) => string | boolean;
-  cep: (s: InputModel) => string | boolean;
-  cpf: (s: InputModel) => string | boolean;
-  phone: (s: InputModel) => string | boolean;
-  birthday: (s: InputModel) => string | boolean | undefined;
-  validity: (s: InputModel) => string | boolean | undefined;
-  [key: string]: (s: InputModel) => string | boolean | undefined;
-}
 
 const inputsDefaultValue: FormPurchaseModel = {
   card: { value: '' },
@@ -65,20 +50,11 @@ const getCardValue = (value: string) => {
   return getInputWithoutMask(value.replace(/ /g,''));
 };
 
-const getInputWithoutMask = (value: string) => {
-  const newValue = removeSpecialChars(value);
-  return newValue;
-};
-
-const inputValidation = (value: string, size: number, text: string, isMax = false) => {
-  return value && (isMax ? getInputWithoutMask(value).length > size :  getInputWithoutMask(value).length < size) ? text : false;
-};
-
 const cardValidation = (value: string, text: string) => {
   return !getCardType(getCardValue(value)) ? text : false;
 };
 
-const fieldValidations: ValidationModel = {
+const fieldValidations: ValidationInputModel = {
   card: (s: InputModel) => { return cardValidation(s.value, 'O cartão inserido é inválido');},
   fullName: (s: InputModel) => { return inputValidation(s.value, 8, 'O campo deve possuir no mínimo 8 caracteres');},
   cvv: (s: InputModel) => { return inputValidation(s.value, 3, 'O CVV inserido é inválido');},
@@ -92,8 +68,6 @@ const fieldValidations: ValidationModel = {
   birthday: (s: InputModel) => { return validateDate(s.value, (value: Date) => !(new Date() > value));},
   validity: (s: InputModel) => { return validateDate(s.value, (value: Date) => !(new Date() < value));},
 };
-const homePhoneMask = '(99) 9999-99999';
-const mobilePhoneMask = '(99) 99999-9999';
 
 interface PurchaseFormInterface {
   isModal?: boolean;
