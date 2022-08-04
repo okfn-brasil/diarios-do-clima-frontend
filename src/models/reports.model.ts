@@ -20,3 +20,9 @@ export interface ReportModel {
 export interface ReportsListModel {
   [key: number]: ReportModel[];
 }
+
+export interface QuotationPostModel {
+  name: string;
+  email: string;
+  message: string;
+}
