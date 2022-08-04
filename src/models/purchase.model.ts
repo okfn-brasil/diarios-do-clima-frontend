@@ -30,7 +30,7 @@ export interface Plan {
   id?: string;
   pagseguro_plan_id?: string;
   title?: string;
-  value?: number;
+  price: number;
 }
 
 export interface SessionModel extends AxiosResponse {
