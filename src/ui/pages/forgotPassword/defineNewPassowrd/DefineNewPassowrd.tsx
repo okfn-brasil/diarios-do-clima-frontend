@@ -8,12 +8,14 @@ import { TEXTS } from '@app/ui/utils/portal-texts';
 import { Grid } from '@mui/material';
 
 const DefineNewPassowrd = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlParams);
+  const token = params?.token || '';
   const resetPasswordService = new ResetPasswordService();
   const [password, setPassword] : [InputModel, Dispatch<InputModel>] = useState({value: ''});
   const [error, setError] : [string, Dispatch<string>] = useState('');
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [sent, setSent] : [boolean, Dispatch<boolean>] = useState(false);
-  const token = '';
 
   const onSubmit = () => {
     if(!password.isValid) {
