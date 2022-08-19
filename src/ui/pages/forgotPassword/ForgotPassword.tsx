@@ -7,6 +7,7 @@ import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import Input from '@app/ui/components/forms/input/Input';
 import InputError from '@app/ui/components/forms/inputError/inputError';
 import Loading from '@app/ui/components/loading/Loading';
+import { testEmail } from '@app/ui/utils/functions.utils';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { Grid } from '@mui/material';
 
@@ -19,7 +20,7 @@ const ForgotPassowrd = () => {
   const [sent, setSent] : [boolean, Dispatch<boolean>] = useState(false);
 
   const onSubmit = () => {
-    if (/\S+@\S+\.\S+/.test(email)) {
+    if (testEmail(email)) {
       setError('');
       setLoading(true);
       resetPasswordService.startReset(email).then(() => {

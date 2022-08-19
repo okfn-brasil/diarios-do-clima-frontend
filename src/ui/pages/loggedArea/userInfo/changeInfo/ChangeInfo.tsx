@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { InputType } from '@app/models/forms.model';
+import { FieldValidation, InputType } from '@app/models/forms.model';
 import { UserState } from '@app/models/user.model';
 import AccountService from '@app/services/accounts';
 import TextInput from '@app/ui/components/forms/input/Input';
@@ -31,10 +31,6 @@ interface ChangeEmail {
   onClose: () => void;
   userData: UserState;
   setLoading: (e: boolean) => void;
-}
-
-interface FieldValidation {
-  [key: string]: (value: string) => boolean | string;
 }
 
 const fieldValidations: FieldValidation = {

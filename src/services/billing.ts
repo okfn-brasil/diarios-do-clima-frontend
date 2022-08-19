@@ -18,7 +18,7 @@ export default class BillingService {
   }
 
   getPlans() {
-    return api.get('/plans').then((response) => response as PlansResponse);
+    return api.get('/plans/').then((response) => response as PlansResponse);
   }
 
   addAddress(form: FormPurchaseModel, method: string) {

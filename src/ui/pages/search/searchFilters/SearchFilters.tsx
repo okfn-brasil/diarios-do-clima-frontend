@@ -4,14 +4,13 @@ import { Dates, FiltersStatePayload, parseUrlToFilters, SubmitDates } from '@app
 import { UserState } from '@app/models/user.model';
 import { updateFilters } from '@app/stores/filters.store';
 import { RootState } from '@app/stores/store';
+import DateFilter from '@app/ui/components/filters/dateFilter/DateFilter';
+import EntityFilter from '@app/ui/components/filters/entityFilter/EntityFilter';
+import LocationFilter from '@app/ui/components/filters/locationFilter/LocationFilter';
+import ThemeFilter from '@app/ui/components/filters/themeFilter/ThemeFilter';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import CloseIcon from '@mui/icons-material/Close';
 import { Grid, SelectChangeEvent } from '@mui/material';
-
-import DateFilter from './dateFilter/DateFilter';
-import EntityFilter from './entityFilter/EntityFilter';
-import LocationFilter from './locationFilter/LocationFilter';
-import ThemeFilter from './themeFilter/ThemeFilter';
 
 import './SearchFilters.scss';
 

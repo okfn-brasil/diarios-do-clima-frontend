@@ -1,8 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Dispatch, useEffect, useState } from 'react';
 import badge from '@app/assets/images/icons/badge.svg';
 import homeWork from '@app/assets/images/icons/home_work.svg';
+import { ReportsListModel} from '@app/models/reports.model';
+import ReportsService from '@app/services/reports';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import Loading from '@app/ui/components/loading/Loading';
+import Pagination from '@app/ui/components/pagination/Pagination';
+import ReportItem from '@app/ui/components/reportItem/ReportItem';
 import { TEXTS } from '@app/ui/utils/portal-texts';
+import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
 import SimulationForm from './simulation/Simulation';
@@ -10,6 +16,47 @@ import SimulationForm from './simulation/Simulation';
 import './Reports.scss';
 
 const ReportsPage = () => {
+  const [reports, setReports] : [ReportsListModel, Dispatch<ReportsListModel>] = useState({} as ReportsListModel);
+  const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(true);
+  const [listSize, setListSize] : [number, Dispatch<number>] = useState(0);
+  const [page, setPage] : [number, Dispatch<number>] = useState(0);
+  const [error, setError] : [string, Dispatch<string>] = useState('');
+  const [loadedPages, setLoadedPages] : [number[], Dispatch<number[]>] = useState([] as number[]);
+  const reportsService = new ReportsService();
+
+  useEffect(() => {
+    getList(page);
+  }, []);
+
+  const onChangePage = (page: number) => {
+    getList(page);
+  };
+
+  const getList = (page: number) => {
+    if(!loadedPages.includes(page)) {
+      setLoading(true);
+      reportsService.getPublicReports(page).then(response => {
+        setReports({...reports, [page] : response.results});
+        setLoadedPages([...loadedPages, page]);
+        setListSize(response.count);
+        changePage(page);
+        setLoading(false);
+      }).catch(() => {
+        setError(TEXTS.reportsPage.error);
+        setListSize(0);
+        setReports({});
+        setLoading(false);
+      });
+    } else {
+      changePage(page);
+    }
+  };
+
+  const changePage = (page: number) => {
+    location.href = urls.reports.url + '#reports-list';
+    setPage(page);
+  };
+
   return (
     <div className='reports-page'>
       <Grid container item className='container top-space header-area' sm={12} justifyContent='center'>
@@ -21,11 +68,11 @@ const ReportsPage = () => {
             <p className='paragraph-class'>
               {TEXTS.reportsPage.subtitle}
             </p>
-            <Link to=''>
+            <a href={urls.reports.url + '#orcamento-form'}>
               <ButtonGreen >
                 {TEXTS.reportsPage.simulateButton}
               </ButtonGreen>
-            </Link>
+            </a>
           </div>
         </Grid>
       </Grid>
@@ -52,36 +99,35 @@ const ReportsPage = () => {
         </Grid>
       </Grid>
 
-        
-      <Grid container item className='container gray-area' sm={12} justifyContent='center'>
-        <Grid container item sm={8} className='vertical-spacing-container'>
-          <Grid container justifyContent='space-between'>
-            <div className='report-card-class'>
-              <h3 className='h3-class'>{TEXTS.reportsPage.reportTitle}</h3>
-              <p className='card-paragraph'>{TEXTS.reportsPage.report1Desc}</p>
-              <Link to='' className='hover-animation'>
-                <ButtonGreen classess='card-button'>
-                  {TEXTS.reportsPage.reportButton}
-                </ButtonGreen>
-              </Link>
-            </div>
-            <div className='report-card-class'>
-              <h3 className='h3-class'>{TEXTS.reportsPage.reportTitle}</h3>
-              <p className='card-paragraph'>{TEXTS.reportsPage.report2Desc}</p>
-              <Link to='' className='hover-animation'>
-                <ButtonGreen classess='card-button'>
-                  {TEXTS.reportsPage.reportButton}
-                </ButtonGreen>
-              </Link>
-            </div>
+      { listSize > 0 || error ?
+        <Grid container item className='container gray-area' sm={12} justifyContent='center' id='reports-list'>
+          <Grid container item sm={8} className='vertical-spacing-container' justifyContent='center'>
+            <Loading isLoading={isLoading}></Loading>
+            { error ? 
+              <div className='reports-error'>{error} 
+                <div className='hover-animation' onClick={() => location.reload()}>{TEXTS.reportsPage.reloadPage}</div>
+              </div> 
+              : <></> 
+            }
+            { reports && Object.keys(reports).filter(index => !!reports[parseInt(index)].length).length ?
+              <>
+                <Grid container justifyContent='space-between'>
+                  {reports[page].map(report => <ReportItem key={report.id} report={report}></ReportItem>)}
+                </Grid>
+                
+                <Pagination currentPage={page} itemsPerPage={reportsService.itemsPerPagePublic} listSize={listSize} onChangePage={onChangePage}/>
+              </>
+              : <></>
+            }
           </Grid>
         </Grid>
-      </Grid>
+        : <></>
+      }
 
-      <Grid container item className='container gray-area' justifyContent='center' sm={12}>
-        <Grid container item sm={8} className='vertical-spacing-container' justifyContent='center'>
+      <Grid container item className='gray-area' justifyContent='center' sm={12} id='orcamento-form'>
+        <div className='vertical-spacing-container form-container'>
           <SimulationForm />
-        </Grid>
+        </div>
       </Grid>
 
       <Grid container item className='container doubts' sm={12} justifyContent='center'>

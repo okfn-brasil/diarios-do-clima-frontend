@@ -18,29 +18,22 @@ const AlertItem = ({alert, onDelete}: AlertProps) => {
       <div className='filters-items'>
         <div className='font-sora filter-title'>{TEXTS.myAlerts.alertItem.keyWords}</div>
         <h3 className='key-words'>{alert.query_string}</h3>
-        { alert.territory_id || (alert.sub_themes && alert.sub_themes.length) || (alert.gov_entities && alert.gov_entities.length) ?
-          <div> <hr className='thin-line'/>
-            <div className='font-sora filter-title'>{TEXTS.myAlerts.alertItem.filters}</div>
-            { alert.territory_id ? 
-              <div className='filter-item'>
-                <img src={LocationIcon} alt='icone de localização' />
-                {alert.territory_id}
-              </div> 
-              : <></> }
-            { alert.sub_themes && alert.sub_themes.length ? 
-              <div className='filter-item'>
-                <img src={ThemeIcon} alt='icone de tema' />
-                {alert.sub_themes.join(', ')}
-              </div> 
-              : <></> }
-            { alert.gov_entities && alert.gov_entities.length ? 
-              <div className='filter-item'>
-                <img src={EnteIcon} alt='icone de ente governamental' />
-                {alert.gov_entities[0]}
-              </div> 
-              : <></> }
+        <div> <hr className='thin-line'/>
+          <div className='font-sora filter-title'>{TEXTS.myAlerts.alertItem.filters}</div>
+          <div className='filter-item'>
+            <img src={LocationIcon} alt='icone de localização' />
+            {alert.territory_id ? alert.territory_id : 'Nenhuma localização selecionada'}
           </div> 
-          :<></> }
+          <div className='filter-item'>
+            <img src={ThemeIcon} alt='icone de tema' />
+            {alert.sub_themes && alert.sub_themes.length ? alert.sub_themes.join(', ') : 'Nenhum tema selecionado'}
+          </div> 
+          
+          <div className='filter-item'>
+            <img src={EnteIcon} alt='icone de ente governamental' />
+            {alert.gov_entities && alert.gov_entities.length ?  alert.gov_entities[0] : 'Nenhum ente do governo selecionado'}
+          </div> 
+        </div> 
       </div> 
       <Grid container justifyContent='center' className='delete-alert'>
         <span className='hyper-link hover-animation' onClick={() => onDelete(alert.id)}>{TEXTS.myAlerts.alertItem.delete}</span>

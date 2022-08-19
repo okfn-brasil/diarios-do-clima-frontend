@@ -70,30 +70,23 @@
     }
   }
 
- 
-  
-  .report-card-class {
-    background-color: $white;
-    padding: 18px 24px 40px;
-    width: calc(100% - 48px);
-    margin-bottom: 24px;
+  .reports-error {
+    text-align: center;
+    line-height: 24px;
+    color: $red;
 
-    @media only screen and (min-width: $desktopSize) {
-      width: calc(50% - 12px - 48px);
-      margin-bottom: 0;
+    .hover-animation {
+      font-size: 14px;
+      text-decoration: underline;
     }
   }
-  
-  .reportCardMobileStyle {
-    @extend .report-card-class;
-  }
-  
-  .card-paragraph {
-    margin: 8px 0 24px;
-  }
 
-  .card-button {
-    width: 100%;
+  .form-container {
+    width: calc(100% - 48px);
+
+    @media only screen and (min-width: $desktopSize) {
+      width: 60%;
+    }
   }
 
   .doubts {
@@ -103,6 +96,12 @@
       span {
         color: $blue
       }
+    }
+  }
+
+  .report-item {
+    @media only screen and (min-width: $desktopSize) {
+      width: calc(50% - 12px - 48px);
     }
   }
 }

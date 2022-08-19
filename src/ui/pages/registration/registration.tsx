@@ -2,7 +2,7 @@ import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import computerImage from '@app/assets/images/computer-registration.svg';
-import { InputModel, InputType } from '@app/models/forms.model';
+import { InputModel, InputType, ValidationInputModel } from '@app/models/forms.model';
 import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
 import AccountService from '@app/services/accounts';
 import { userUpdate } from '@app/stores/user.store';
@@ -11,6 +11,7 @@ import PasswordField from '@app/ui/components/forms/passwordField/passwordField'
 import SelectInput from '@app/ui/components/forms/select/Select';
 import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
 import Loading from '@app/ui/components/loading/Loading';
+import { testEmail } from '@app/ui/utils/functions.utils';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid} from '@mui/material';
@@ -23,15 +24,6 @@ interface FormsSelector {
   3: JSX.Element;
   [key: number]: JSX.Element;
 }
-
-interface FieldValidation {
-  username: (s: InputModel) => string | boolean;
-  password: (s: InputModel) => string | boolean;
-  email: (s: InputModel) => string | boolean;
-  city: (s: InputModel) => string | boolean;
-  [key: string]: (s: InputModel) => string | boolean | undefined;
-}
-
 const emptyError = <></>;
 const inputsDefaultValue = {
   username: { value: '' },
@@ -43,10 +35,10 @@ const inputsDefaultValue = {
   city: { value: '' },
 };
 
-const fieldValidations: FieldValidation = {
+const fieldValidations: ValidationInputModel = {
   username: (s: InputModel) => { return s.value && s.value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false; },
   password: (s: InputModel) => { return s.isValid ? false : 'A senha deve atender todos os requisitos a baixo'; },
-  email: (s: InputModel) => { return /\S+@\S+\.\S+/.test(s.value) ? false : 'O e-mail inserido é invalido'; },
+  email: (s: InputModel) => { return testEmail(s.value) ? false : 'O e-mail inserido é invalido'; },
   city: (s: InputModel) => { return s.value && s.value.length < 5  ? 'O campo deve possuir no mínimo 5 caracteres' : false; },
 };
 

@@ -67,9 +67,9 @@ const SearchList = ({list, listSize, searchTimes, isLoading, openCreateAlert}: P
                 classes='half-width'
                 options={[
                   {value: OrderFilter.relevance, label: 'Mais relevante'}
-                  ,{value: OrderFilter.ascending_date, label: 'Mais recente'}
-                  , {value: OrderFilter.descending_date, label: 'Mais antigo'}]} 
-                value={order} 
+                  ,{value: OrderFilter.descending_date, label: 'Mais recente'}
+                  , {value: OrderFilter.ascending_date, label: 'Mais antigo'}]} 
+                value={order || OrderFilter.relevance} 
                 name='order'
                 onChange={updateOrder}
               />

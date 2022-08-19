@@ -141,9 +141,9 @@ const MyAlerts = () => {
       <ModalsCreateAlert isAlertsPage clean={cleanModal} isOpen={isOpenCreateAlert} onCreated={onCreated} onOpen={openCreateAlert} onClose={() => setStateCreateAlert(false)}/>
       <ModalEmail isOpen={isOpenModalEmail} alertEmail={userData.alert_email || userData.email as string} userEmail={userData.email as string} onBack={() => setModalEmail(false)} onApply={() => setModalEmail(false)}/>
       <Loading isLoading={isLoading}></Loading>
-      {alerts && Object.keys(alerts).filter(index => !!alerts[parseInt(index)].length).length ?
-        <Grid sm={8} xs={12} item container className='alerts-list' justifyContent='center'>
-          <Grid item lg={7} sm={12} className='alerts-header'>
+      {userData.plan_pro && alerts && Object.keys(alerts).filter(index => !!alerts[parseInt(index)].length).length ?
+        <Grid sm={10} xs={12} item container className='alerts-list' justifyContent='center'>
+          <Grid item lg={8} sm={12} className='alerts-header'>
             <h3 className='h3-class'>{TEXTS.myAlerts.title}</h3>
             <p className='paragraph-class'>{TEXTS.myAlerts.text1A} <b>{TEXTS.myAlerts.text1B}a</b>.</p>
             <p className='paragraph-class'>{TEXTS.myAlerts.text2A} <b>{TEXTS.myAlerts.text2B}</b>.</p>

@@ -35,7 +35,7 @@ const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
       { userData.access ? 
         <LoggedMenu isWhite={isWhite} classess='logged-menu' ></LoggedMenu> :
         <>
-          <Link to='/cadastro'>
+          <Link to={urls.registration.url}>
             <ButtonGreen classess='font-small-button'>
               {TEXTS.menu.buttonSearch}
             </ButtonGreen>

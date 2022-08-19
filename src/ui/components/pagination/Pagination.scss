@@ -4,10 +4,6 @@
   position: relative;
   margin-top: 24px;
 
-  .pagination-container {
-    width: 330px;
-  }
-
   .arrow-area-class {
     border: 1px solid $gray;
     min-width: 32px;
@@ -62,5 +58,9 @@
   .left-arrow {
     transform: rotate(135deg);
     margin-left: 0;
+  }
+
+  .page-number-class, .arrow-class {
+    margin: 0 5px;
   }
 }

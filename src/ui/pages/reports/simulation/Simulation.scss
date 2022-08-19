@@ -6,21 +6,50 @@
   }
 
   .form-select {
-    margin-top: 30px;
-  }
+    margin-top: 20px;
 
-  .value-simulated {
-    margin-top: 22px;
-    margin-bottom: 8px;
-  }
+    #mui-component-select-cities {
+      padding-left: 2px !important;
+    }
 
-  .value {
-    font-size: 38px;
-    line-height: 45px;
+    .MuiInputLabel-formControl {
+      transform: translate(15px, 5px);
+    }
+
+    .MuiFormLabel-filled {
+      font-size: 12px;
+      transform: translate(15px, -15px);
+    }
   }
 
   .submit-simulation {
     width: unset;
-    margin-top: 22px;
+    margin-top: 30px;
+  }
+
+  .theme-filter {
+    margin-top: 35px;
+
+    .h3-class {
+      font-weight: 500;
+      font-size: 16px;
+      color: $black;
+
+      span {
+        display: none;
+      }
+    }
+
+    .show-more {
+      font-size: 14px;
+    }
+
+    p {
+      display: none;
+    }
+
+    .MuiFormControlLabel-label {
+      font-size: 14px;
+    }
   }
 }
