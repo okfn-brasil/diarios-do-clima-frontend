@@ -11,7 +11,7 @@ interface PropsPurchaseDetails {
   isModal?: boolean;
   plan: Plan;
 }
-// TO DO VALOR DO PLANO
+
 const PurchaseDetails = ({isLoading, plan, isModal}: PropsPurchaseDetails) => {
   return (
     <Grid className='purchase-details'>
@@ -26,7 +26,7 @@ const PurchaseDetails = ({isLoading, plan, isModal}: PropsPurchaseDetails) => {
                 {plan.title}
               </div>
               <div  className='plan-value'>
-              R$ {plan.value?.toFixed(2)}{TEXTS.purchasePage.perMonth}
+              R$ {plan.price}{TEXTS.purchasePage.perMonth}
               </div>
               <div className='plan-alert'>
                 {TEXTS.purchasePage.detailAlert}
