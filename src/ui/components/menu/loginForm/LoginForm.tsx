@@ -19,9 +19,10 @@ import './LoginForm.scss';
 
 interface PropsLoginForm{
   showLoginForm: (e: boolean) => void;
+  onClickForgot: () => void;
 }
 
-const LoginForm = ({showLoginForm}: PropsLoginForm) => {
+const LoginForm = ({showLoginForm, onClickForgot}: PropsLoginForm) => {
   const dispatch = useDispatch();
   const loginService = new LoginService();
   const accountService = new AccountService();
@@ -75,7 +76,7 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
   };
 
   const onForgotPassword = () => {
-    dispatch(userUpdate({email: inputs.email}));
+    onClickForgot();
     closeModal();
   };
 
@@ -101,6 +102,13 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
               <img className={'hover-animation ' + (passFieldType ? 'low-opacity' : '')} src={ShowPassIcon} onClick={changeFieldType} />
               <Input required type={passFieldType ? 'password' : 'text'} value={inputs.password} className='input-class' name='password' onChange={inputChange} placeholder={TEXTS.loginForm.inputPassword} />
             </div>
+            <div className='forgot-link'>
+              <Link to='' onClick={onForgotPassword} className='hover-animation'>
+                <span className='blue-link'>
+                  {TEXTS.loginForm.forgotpassword}
+                </span>
+              </Link>
+            </div> 
             
             <div className='submit-login'>
               <SubmitForm  disabled={isLoading} label={TEXTS.loginForm.submit} />
@@ -120,14 +128,6 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
               <Link to={urls.registration.url} onClick={closeModal} className='hover-animation'>
                 <span className='blue-link'>
                   {TEXTS.loginForm.register}
-                </span>
-              </Link>
-            </div> 
-
-            <div className='forgot-link'>
-              <Link to={urls.forgotPassword.url} onClick={onForgotPassword} className='hover-animation'>
-                <span className='blue-link'>
-                  {TEXTS.loginForm.forgotpassword}
                 </span>
               </Link>
             </div> 

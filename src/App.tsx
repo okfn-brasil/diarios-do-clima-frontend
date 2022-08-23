@@ -16,7 +16,6 @@ import AboutPage from '@app/ui/pages/about/About';
 import BecomePro from '@app/ui/pages/becomePro/BecomePro';
 import CnpjPage from '@app/ui/pages/cnpjPage/CnpjPage';
 import DefineNewPassowrd from '@app/ui/pages/forgotPassword/defineNewPassowrd/DefineNewPassowrd';
-import ForgotPassowrd from '@app/ui/pages/forgotPassword/ForgotPassword';
 import Home from '@app/ui/pages/home/Home';
 import MyAlerts from '@app/ui/pages/loggedArea/myAlerts/MyAlerts';
 import MyReports from '@app/ui/pages/loggedArea/myReports/MyReports';
@@ -74,7 +73,6 @@ const App = () => {
             <Route path={urls.myAlerts.url} element={<MyAlerts />} />
             <Route path={urls.userInfo.url} element={<UserInfo />} />
             <Route path={urls.cnpjs.url} element={<CnpjPage />} />
-            <Route path={urls.forgotPassword.url} element={<ForgotPassowrd />} />
             <Route path={urls.defineNewPassword.url} element={<DefineNewPassowrd />} />
             <Route path='*' element={<NotFound />} />
           </Routes>

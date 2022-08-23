@@ -51,7 +51,7 @@ export const TEXTS = {
     inputEmail: 'E-mail',
     inputPassword: 'Senha',
     submit: 'Continuar',
-    forgotpassword: 'Esqueci minha senha',
+    forgotpassword: 'Esqueceu sua senha?',
   },
   filters: {
     applyFilters: 'Aplicar Filtro',
@@ -452,13 +452,14 @@ export const TEXTS = {
   },
   forgotPassword: {
     title: 'Esqueceu a senha?',
-    text: 'preencha o e-mail e nós enviaremos um link para resetar sua senha caso o e-mail inserido exista em nossa base de dados',
+    text: 'Preencha o email e nós enviaremos um link para redefinir sua senha caso o e-mail informado exista em nossa base de dados.',
     button: 'Enviar',
     emailInvalid: 'O e-mail inserido é inválido',
     emailLabel: 'E-mail',
-    sentTitle: 'Enviado com sucesso!',
+    sentTitle: 'Email enviado com sucesso.',
+    sentText: 'Acesso o link em seu email. Verifique sua caixa de entrada e também a caixa de spam.',
     apiError: 'Ocorreu um erro ao tentar enviar a mensagem, por favor, tente novamente.',
-    sentText: 'Verifique sua caixa de entrada e caixa de spam.',
+    notFound: 'Não encontramos seu email cadastrado em nosso site. Verifique se digitou corretamente, por favor.',
   },
   defineNewPassword: {
     title: 'Redefinir senha',

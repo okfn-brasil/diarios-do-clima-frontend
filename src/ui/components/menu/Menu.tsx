@@ -5,6 +5,7 @@ import DiarioLogo from '@app/assets/images/logo.svg';
 import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
 import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
+import ForgotPassowrd from '@app/ui/pages/forgotPassword/ForgotPassword';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { UrlModel, urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
@@ -20,6 +21,7 @@ const Menu = () => {
   const [searchParams] = useSearchParams();
   const [hasScrolled, setScrolled]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
   const [showLogin, setLoginVisibility]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
+  const [showForgotModal, setForgotModalVisibility]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -49,7 +51,11 @@ const Menu = () => {
   return (
     <>
       { showLogin ? 
-        <LoginForm showLoginForm={showLoginForm}></LoginForm> 
+        <LoginForm onClickForgot={() => setForgotModalVisibility(true)} showLoginForm={showLoginForm}></LoginForm> 
+        : <></>
+      }
+      { showForgotModal ? 
+        <ForgotPassowrd onClickClose={() => setForgotModalVisibility(false)}/>
         : <></>
       }
       <Grid 

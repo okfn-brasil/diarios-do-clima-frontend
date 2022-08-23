@@ -14,7 +14,6 @@ export interface UrlsModel {
   userInfo: UrlModel;
   cnpjs: UrlModel;
   notFound: UrlModel;
-  forgotPassword: UrlModel;
   defineNewPassword: UrlModel;
   [key: string]: UrlModel;
 }
@@ -43,6 +42,5 @@ export const urls: UrlsModel = {
   userInfo: { url: '/meus-dados', isWhiteMenu: true },
   cnpjs: { url: '/cnpjs/:id', urlWithoutParam: '/cnpjs/', isWhiteMenu: true },
   notFound: { url: '/nao-encontrado' },
-  forgotPassword: {url: '/esqueci-senha', isWhiteMenu: true},
   defineNewPassword: {url: '/redefinir-senha', isWhiteMenu: true},
 };
