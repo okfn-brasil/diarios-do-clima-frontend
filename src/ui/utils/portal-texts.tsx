@@ -51,6 +51,7 @@ export const TEXTS = {
     inputEmail: 'E-mail',
     inputPassword: 'Senha',
     submit: 'Continuar',
+    forgotpassword: 'Esqueci minha senha',
   },
   filters: {
     applyFilters: 'Aplicar Filtro',
@@ -455,6 +456,27 @@ export const TEXTS = {
     knowMore: 'Quer saber mais sobre os dados em seu relatório? ',
     contact: 'Entre em contato',
     contactDesc: 'para receber dicas para melhor interpretar e compreender as suas principais descobertas. Nossos especialistas estão prontos para ajudá-lo com insights profundos para melhor apresentar e revelar as conclusões de seu relatório personalizado.'
+  },
+  forgotPassword: {
+    title: 'Esqueceu a senha?',
+    text: 'preencha o e-mail e nós enviaremos um link para resetar sua senha caso o e-mail inserido exista em nossa base de dados',
+    button: 'Enviar',
+    emailInvalid: 'O e-mail inserido é inválido',
+    emailLabel: 'E-mail',
+    sentTitle: 'Enviado com sucesso!',
+    apiError: 'Ocorreu um erro ao tentar enviar a mensagem, por favor, tente novamente.',
+    sentText: 'Verifique sua caixa de entrada e caixa de spam.',
+  },
+  defineNewPassword: {
+    title: 'Redefinir senha',
+    text: 'Digite uma nova senha',
+    button: 'Redefinir',
+    inputLabel: 'Nova senha',
+    error: 'A senha deve atender todos os requisitos',
+    apiError: 'Ocorreu um erro ao tentar redefinir a senha, por favor, tente novamente',
+    sentTitle: 'A senha foi redefinida com sucesso!',
+    sentButton: 'Entrar',
+    expired: 'O link expirou, por favor, tente novamente.'
   },
   searchPage: {
     advancedSearchTitle: <span>Para usar um desses caracteres literalmente, escape-o com uma barra invertida (\).</span>,

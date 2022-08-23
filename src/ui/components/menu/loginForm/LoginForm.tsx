@@ -74,6 +74,11 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
     });
   };
 
+  const onForgotPassword = () => {
+    dispatch(userUpdate({email: inputs.email}));
+    closeModal();
+  };
+
   return (
     <div className='login-form'>
       <Loading isLoading={isLoading}></Loading>
@@ -115,6 +120,14 @@ const LoginForm = ({showLoginForm}: PropsLoginForm) => {
               <Link to={urls.registration.url} onClick={closeModal} className='hover-animation'>
                 <span className='blue-link'>
                   {TEXTS.loginForm.register}
+                </span>
+              </Link>
+            </div> 
+
+            <div className='forgot-link'>
+              <Link to={urls.forgotPassword.url} onClick={onForgotPassword} className='hover-animation'>
+                <span className='blue-link'>
+                  {TEXTS.loginForm.forgotpassword}
                 </span>
               </Link>
             </div> 
