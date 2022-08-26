@@ -544,7 +544,7 @@ export const TEXTS = {
       entityTitle: 'Entes do governo',
       entityLabel: 'Selecione um ente',
       locationTitle: 'Município',
-      locationLabel: 'Selecione um munícipio',
+      locationLabel: 'Comece a digitar para encontrar a cidade que procura',
       themeTitle: 'Tema',
       themeSubtitle: 'Aqui uma descrição breve do que são e de como funcionam os temas'
     }

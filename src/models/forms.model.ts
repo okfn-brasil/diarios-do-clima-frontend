@@ -20,3 +20,8 @@ export interface ValidationInputModel {
 }
 
 export type InputType =  ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<string>;
+
+export interface Option {
+  value: string;
+  label: string; 
+}

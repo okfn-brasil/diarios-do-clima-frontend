@@ -1,17 +1,19 @@
-import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useState } from 'react';
+import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react';
 import { Theme } from '@app/models/filters.model';
 import { FieldValidation, InputModel, InputType } from '@app/models/forms.model';
 import ThemeFilter from '@app/ui/components/filters/themeFilter/ThemeFilter';
 import TextInput from '@app/ui/components/forms/input/Input';
 import InputError from '@app/ui/components/forms/inputError/inputError';
-import SelectInput from '@app/ui/components/forms/select/Select';
 import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
 import { getInputWithoutMask, homePhoneMask, inputValidation, mobilePhoneMask } from '@app/ui/utils/form.utils';
 import { testEmail } from '@app/ui/utils/functions.utils';
 import { TEXTS } from '@app/ui/utils/portal-texts';
+import { Option } from '@app/models/forms.model';
 import { Grid } from '@mui/material';
 
 import './Simulation.scss';
+import SelectWithSearch from '@app/ui/components/forms/selectWithSearch/SelectWithSearch';
+import CitiesService from '@app/services/cities';
 
 interface MultipleSelect {
   value: string[];
@@ -42,14 +44,36 @@ const SimulationForm = () => {
     phone: { value: '' },
     horizon: { value: '' },
   });
+  const [selectedCities, setCities] : [string[], Dispatch<SetStateAction<string[]>>] = useState([] as string[]);
   const [themes, setThemes] : [Theme, Dispatch<SetStateAction<Theme>>] = useState({});
   const [themeError, setThemeError] : [string, Dispatch<SetStateAction<string>>] = useState('');
   const [phoneMask, setPhoneMask] : [string, Dispatch<SetStateAction<string>>] = useState(homePhoneMask);
+  const [citiesList, setCitiesList]: [Option[], Dispatch<SetStateAction<Option[]>>] = useState([] as Option[]);
+  const citiesService = new CitiesService();
+
+  useEffect(() => {
+    citiesService.getAll().then(response => {
+      const newCities = response.data.cities.map(city => { return {
+        value: city.territory_id,
+        label: `${city.territory_name} (${city.state_code})`,
+      }});
+      setCitiesList(newCities);
+    });
+  }, []);
 
   const inputChange = (event: InputType) => {
     const {name, value} = event.target;
     getPhoneMask(name, value);
     setInputs((values: SimulationModel) => ({...values, [name]: {value}}));
+  };
+
+  const selectChange = (event: InputType) => {
+    const {name, value} = event.target;
+    if(!selectedCities.includes(value)) {
+      const newCities = [...selectedCities, value];
+      setCities(newCities);
+      setInputs((values: SimulationModel) => ({...values, [name]: {value: newCities}}));
+    }
   };
 
   const getPhoneMask = (name: string, value: string) => {
@@ -102,6 +126,14 @@ const SimulationForm = () => {
     }
   };
 
+  const onRemoveCity = (id: string) => {
+    let newCities = [...selectedCities];
+    newCities = newCities.filter(function(item) {
+      return item !== id
+    });
+    setCities(newCities);
+  }
+
   const submit = () => {
     // TO DO
   };
@@ -142,15 +174,20 @@ const SimulationForm = () => {
           mask={phoneMask}
         />
 
-        <SelectInput
-          options={[{value: 'x', label: 'x'},{value: 'y', label: 'y'}]} 
-          label='Cidades de interesse' 
-          value={inputs.cities.value} 
-          multiple
-          name='cities' 
-          required={true} 
-          onChange={inputChange}
-        />
+        <div>
+          <SelectWithSearch
+            options={citiesList} 
+            label='Cidades de interesse (Comece a digitar para encontrar cidades)'
+            value={inputs.cities.value}
+            name='cities'
+            onChange={selectChange}
+          />
+          <div className='selected-cities'>
+            {selectedCities.filter(city => !!city).map(city => 
+              <div className='selected-city' key={city} onClick={() => onRemoveCity(city)}>{citiesList.find(curr => curr.value === city)?.label}  x</div>
+            )}
+          </div>
+        </div>
 
         <TextInput 
           value={inputs.horizon.value}

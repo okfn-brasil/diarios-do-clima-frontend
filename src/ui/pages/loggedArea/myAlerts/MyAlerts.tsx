@@ -18,6 +18,8 @@ import AlertItem from './alertItem/AlertItem';
 import DeleteAlert from './deleteAlert/DeleteAlert';
 
 import './MyAlerts.scss';
+import { City } from '@app/models/cities.model';
+import CitiesService from '@app/services/cities';
 
 interface AlertsListModel {
   [key: number]: AlertModel[];
@@ -31,6 +33,7 @@ interface getConfig {
 let timeout: ReturnType<typeof setTimeout> ;
 
 const MyAlerts = () => {
+  const citiesService = new CitiesService();
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const [alerts, setAlerts] : [AlertsListModel, Dispatch<AlertsListModel>] = useState({} as AlertsListModel);
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(true);
@@ -42,10 +45,14 @@ const MyAlerts = () => {
   const [page, setPage] : [number, Dispatch<number>] = useState(0);
   const [cleanModal, setCleanModal] : [number, Dispatch<number>] = useState(0);
   const [loadedPages, setLoadedPages] : [number[], Dispatch<number[]>] = useState([] as number[]);
+  const [citiesList, setCitiesList] : [City[], Dispatch<City[]>] = useState([] as City[]);
   const alertsService = new AlertsService();
 
   useEffect(() => {
     getList(page);
+    citiesService.getAll().then(response => {
+      setCitiesList(response.data.cities);
+    });
   }, []);
 
   const onChangePage = (page: number) => {
@@ -153,7 +160,7 @@ const MyAlerts = () => {
             </div>
           </Grid>
           <div className='list-items'>
-            {alerts[page].map(alert => <AlertItem key={alert.id} onDelete={onDelete} alert={alert}/>)}
+            {alerts[page].map(alert => <AlertItem key={alert.id} cities={citiesList} onDelete={onDelete} alert={alert}/>)}
           </div>
           <Pagination currentPage={page} itemsPerPage={alertsService.itemsPerPage} listSize={listSize} onChangePage={onChangePage}/>
         </Grid>
