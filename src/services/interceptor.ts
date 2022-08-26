@@ -43,8 +43,8 @@ api.interceptors.response.use(
       return response;
     } else if (erroCode === 401 && error.config.url.includes('refresh')) {
       localStorage.setItem(tokenKeys.refresh, '');
-      localStorage.setItem(tokenKeys.access, '')
-      location.href = '/?login=open';
+      localStorage.setItem(tokenKeys.access, '');
+      //location.href = '/?login=open';
     } else {
       return Promise.reject(error.response.data);
     }

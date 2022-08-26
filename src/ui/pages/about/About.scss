@@ -40,6 +40,7 @@
   .partners {
     .partners-list {
       padding-top: 10px;
+      justify-content: center;
     }
 
     .partner-link {
@@ -50,6 +51,13 @@
     .partner-logo {
       height: 50px;
       margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+
+      img {
+        max-height: 100%;
+        max-width: 100%;
+      }
     }
 
     .blue-link {
@@ -71,7 +79,7 @@
   
     @media only screen and (min-width: $desktopSize) {
       padding: 0;
-      width: calc((100% / 6) - 12px);
+      width: calc((100% / 4) - 12px);
       border-bottom: 0;
     }
   }
