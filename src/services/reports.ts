@@ -1,4 +1,4 @@
-import { ReportsModel } from '@app/models/reports.model';
+import { QuotationPostModel, ReportsModel } from '@app/models/reports.model';
 import api from '@app/services/interceptor';
 
 export default class ReportsService {
@@ -12,6 +12,10 @@ export default class ReportsService {
 
   getPublicReports(page: number) {
     return api.get(this.currentUrl + `public/?limit=${this.itemsPerPagePublic}&offset=${page * this.itemsPerPagePublic}`).then((response) => response as ReportsModel);
+  }
+
+  postQuotation(data: QuotationPostModel) {
+    return api.post(this.currentUrl + 'quotation/', data).then((response) => response as ReportsModel);
   }
 }
 
