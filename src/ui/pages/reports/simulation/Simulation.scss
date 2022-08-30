@@ -52,4 +52,36 @@
       font-size: 14px;
     }
   }
+
+  .select-with-search {
+    margin-top: 30px;
+
+    .MuiInputLabel-formControl {
+      transform: translate(15px, -10px);
+    }
+
+    .MuiFormLabel-filled, label.Mui-focused {
+      font-size: 12px;
+      transform: translate(15px, -25px);
+    }
+  }
+
+  .selected-cities {
+    display: flex;
+
+    .selected-city {
+      cursor: pointer;
+      background-color: $gray2;
+      padding: 5px 10px;
+      margin-right: 5px;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
 }

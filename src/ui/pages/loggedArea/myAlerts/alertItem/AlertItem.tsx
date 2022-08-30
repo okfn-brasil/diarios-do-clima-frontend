@@ -2,6 +2,7 @@ import EnteIcon from '@app/assets/images/icons/ente.svg';
 import LocationIcon from '@app/assets/images/icons/location.svg';
 import ThemeIcon from '@app/assets/images/icons/theme.svg';
 import { AlertModel } from '@app/models/alerts.model';
+import { City } from '@app/models/cities.model';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { Grid } from '@mui/material';
 
@@ -10,9 +11,11 @@ import './AlertItem.scss';
 interface AlertProps {
   alert: AlertModel;
   onDelete: (alert: string) => void;
+  cities: City[];
 }
 
-const AlertItem = ({alert, onDelete}: AlertProps) => {
+const AlertItem = ({alert, cities, onDelete}: AlertProps) => {
+
   return (
     <div className='alert-item'>
       <div className='filters-items'>
@@ -22,7 +25,7 @@ const AlertItem = ({alert, onDelete}: AlertProps) => {
           <div className='font-sora filter-title'>{TEXTS.myAlerts.alertItem.filters}</div>
           <div className='filter-item'>
             <img src={LocationIcon} alt='icone de localização' />
-            {alert.territory_id ? alert.territory_id : 'Nenhuma localização selecionada'}
+            {alert.territory_id ? cities.find(city => city.territory_id === alert.territory_id)?.territory_name : 'Nenhuma localização selecionada'}
           </div> 
           <div className='filter-item'>
             <img src={ThemeIcon} alt='icone de tema' />

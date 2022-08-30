@@ -1,0 +1,36 @@
+@import '@app/styles/globals.scss';
+
+.select-with-search {
+  position: relative;
+
+  input {
+    padding: 15px 0;
+  }
+
+  img {
+    position: absolute;
+    right: 0;
+    bottom: 22px;
+  }
+
+  .select-menu {
+    background-color: $white;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 3px 4px 13px 3px rgb(0 0 0 / 10%);
+    z-index: 99;
+
+    .option {
+      padding: 10px 20px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(243, 243, 243);
+      }
+    }
+  }
+}

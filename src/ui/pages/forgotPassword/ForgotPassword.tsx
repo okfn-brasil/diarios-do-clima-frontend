@@ -9,9 +9,16 @@ import InputError from '@app/ui/components/forms/inputError/inputError';
 import Loading from '@app/ui/components/loading/Loading';
 import { testEmail } from '@app/ui/utils/functions.utils';
 import { TEXTS } from '@app/ui/utils/portal-texts';
+import CloseIcon from '@mui/icons-material/Close';
 import { Grid } from '@mui/material';
 
-const ForgotPassowrd = () => {
+import './ForgotPassword.scss';
+
+interface ForgotPasswordModal {
+  onClickClose: () => void;
+}
+
+const ForgotPassowrd = ({onClickClose}: ForgotPasswordModal) => {
   const resetPasswordService = new ResetPasswordService();
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const [email, setEmail] : [string, Dispatch<string>] = useState(userData.email as string || '');
@@ -26,8 +33,12 @@ const ForgotPassowrd = () => {
       resetPasswordService.startReset(email).then(() => {
         setSent(true);
         setLoading(false);
-      }).catch(() => {
-        setError(TEXTS.forgotPassword.apiError);
+      }).catch(error => {
+        if(error?.email[0] === 'We couldn\'t find an account associated with that email. Please try a different e-mail address.') {
+          setError(TEXTS.forgotPassword.notFound);
+        } else {
+          setError(TEXTS.forgotPassword.apiError);
+        }
         setLoading(false);
       });
     } else {
@@ -36,41 +47,49 @@ const ForgotPassowrd = () => {
   };
 
   return (
-    <Grid container className='container forgot-password-page'>
+    <Grid className='forgot-password-modal'>
       <Loading isLoading={isLoading}/>
-      { !sent ? 
-        <Grid item sm={5} xs={12}>
-          <div className='text-area'>
-            <p className='h3-class'>{TEXTS.forgotPassword.title}</p>
-            <p className='paragraph-class'>
-              {TEXTS.forgotPassword.text}
-            </p>
-          </div>
-          <div className='redefine-field'>
-            <Input 
-              onChange={(input: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setEmail(input.target.value)}
-              label={TEXTS.forgotPassword.emailLabel} 
-              name='email' 
-              value={email} 
-              required 
-              type='email'
-            />
-            <InputError>{error}</InputError>
-          </div>
-          <div className='button-area'>
-            <ButtonGreen onClick={onSubmit}>{TEXTS.forgotPassword.button}</ButtonGreen>
-          </div>
-        </Grid>
-        : 
-        <Grid item sm={5} xs={12}>
-          <div className='text-area'>
-            <p className='h3-class'>{TEXTS.forgotPassword.sentTitle}</p>
-            <p className='paragraph-class'>
-              {TEXTS.forgotPassword.sentText}
-            </p>
-          </div>
-        </Grid>
-      }
+      <div className='content'>
+        <div>
+          <CloseIcon className='hover-animation close-icon' onClick={onClickClose} />
+        </div>
+        <hr className='thin-line' />
+        <div className='modal-padding'>
+          { !sent ? 
+            <Grid item sm={5} xs={12}>
+              <div className='text-area'>
+                <p className='h3-class'>{TEXTS.forgotPassword.title}</p>
+                <p className='paragraph-class'>
+                  {TEXTS.forgotPassword.text}
+                </p>
+              </div>
+              <div className='redefine-field'>
+                <Input 
+                  onChange={(input: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setEmail(input.target.value)}
+                  label={TEXTS.forgotPassword.emailLabel} 
+                  name='email' 
+                  value={email} 
+                  required 
+                  type='email'
+                />
+                <InputError classess='send-error'>{error}</InputError>
+              </div>
+              <div className='button-area'>
+                <ButtonGreen onClick={onSubmit}>{TEXTS.forgotPassword.button}</ButtonGreen>
+              </div>
+            </Grid>
+            : 
+            <Grid item sm={5} xs={12}>
+              <div className='text-area success'>
+                <p className='h3-class'>{TEXTS.forgotPassword.sentTitle}</p>
+                <p className='paragraph-class'>
+                  {TEXTS.forgotPassword.sentText}
+                </p>
+              </div>
+            </Grid>
+          }
+        </div>
+      </div>
     </Grid>
   );
 };

@@ -1,4 +1,7 @@
 import { urls } from './urls';
+import LOGOProjetoColabora from '@app/assets/images/projetocolabora.com.br.png';
+import LOGOinfoamazonia from '@app/assets/images/infoamazonia.org.png';
+import LOGOoeco from '@app/assets/images/oeco.org.br.png';
 
 export const TEXTS = {
   contactEmail: 'teste@contato.com',
@@ -51,7 +54,7 @@ export const TEXTS = {
     inputEmail: 'E-mail',
     inputPassword: 'Senha',
     submit: 'Continuar',
-    forgotpassword: 'Esqueci minha senha',
+    forgotpassword: 'Esqueceu sua senha?',
   },
   filters: {
     applyFilters: 'Aplicar Filtro',
@@ -154,11 +157,11 @@ export const TEXTS = {
   aboutPage: {
     title: 'SOBRE O DIÁRIO DO CLIMA',
     subTitle: 'Nós estamos aqui para promover transparência',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.',
+    description: 'O Diário do Clima é uma plataforma para auxiliar principalmente jornalistas e comunicadores sociais, mas também grupos de pesquisas, consultorias, empresas com atuação com responsabilidade social e governos a acompanharem os atos publicados pelos estados e municípios brasileiros relacionados ao meio ambiente. Monitora os atos publicados em jornais oficiais, raspa e processa os documentos com o uso da IA, para categorizar e organizar as informações. Tendo a tecnologia como aliada e como parte do fluxo de produção de conteúdo, possibilita a  cobertura de temas que, de outra forma, ficariam invisíveis. Este produto tem uma interface pública gratuita com recursos direcionados ao jornalismo local, que pode focar em temas de maior interesse de seus públicos. Os veículos têm acesso mais fácil a temas de interesse de seu público, o que agiliza a produção de conteúdo e aumenta a necessidade de responsabilização dos governos locais por suas ações.',
     photoLegend: 'Foto por USGS no Unsplash',
     whereStarted: 'Onde tudo começou',
-    p1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.',
-    p2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.',
+    p1: 'O “Diário do Clima” é um projeto de autoria e administrado pelo consórcio formado pelas organizações jornalísticas: o Eco, Eco Nordeste, Agência Envolverde, InfoAmazonia, Open Knowledge Brasil e Projeto Colabora;  organizações que atuam na cobertura jornalística de temas relacionados à sustentabilidade, meio ambiente e análise de dados e transparência nas as contas públicas. A plataforma teve apoio de capital semente do Google News Initiative para desenvolver o Mínimo Produto Viável (MVP).',
+    p2: '',
     objective: 'Nosso propósito é facilitar o acesso a dados sobre o clima para proteger o meio ambiente',
     support: 'Contamos com seu apoio!',
     becomePro: 'Você pode se tornar um assinante. Assim, você recebe os benefícios de ser PRO e ainda ajuda o Diário do Clima a abrir os dados de novas cidades e desenvolver novas ferramentas!',
@@ -339,23 +342,32 @@ export const TEXTS = {
     faqItems: [
       {
         title:'Como funciona a assinatura profissional do Diário do Clima?',
-        text: 'Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais'
+        text: 'A assinatura profissional do Diário do Clima atenderá  pessoas ou organizações que estão começando a explorar sobre as políticas ambientais.'
       },
       {
         title:'Quais formas de pagamento vocês aceitam?',
-        text: 'Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais'
+        text: <div>
+          <p>Você será enviado para um ambiente seguro do nosso parceiro Pagseguro, plataforma segura de pagamentos on-line.</p>
+          <p>Ali, você terá as opções de pagamento via boleto bancário (somente à vista) ou cartão de crédito (à vista ou parcelado).</p>
+        </div>
       },
       {
         title:'Quão seguro é o Diário do Clima?',
-        text: 'Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais'
+        text: 'O Diário do Clima se responsabiliza pela adoção e manutenção de medidas razoáveis de segurança, técnicas e administrativas que visam à proteção dos dados pessoais contra situações acidentais ou ilícitas de destruição, perda, alteração, comunicação ou qualquer forma de tratamento inadequado ou ilícito, bem como processamento discriminatório de informações, conforme critérios definidos pelos melhores padrões de mercado e em legislação aplicável.'
       },
       {
         title:'Como eu cancelo minha assinatura do Diário do Clima?',
-        text: 'Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais'
-      },
-      {
-        title:'O diário do clima oferece desconto?',
-        text: 'Para pessoas ou organizações que estão apenas começando a explorar sobre as políticas ambientais'
+        text: <div>
+          <p>É importante de início informarmos que o procedimento de cancelamento deve ser realizado pelo assinante. O mesmo pode ser realizado de forma simples e segura, através das configurações de seu perfil.</p>
+
+          <p>
+            <li>1. Realize o <a style={{color: '#52ce5f'}} href='/?login=open'>login</a> em seu perfil assinante;</li>
+      
+            <li>2. Acesse as configurações de seu perfil xxxxxxxxxxx</li>
+      
+            <li>3. Em seguida clique em Assinaturas e em Cancelar Assinatura.</li>
+          </p>
+        </div>
       },
     ]
   },
@@ -459,13 +471,14 @@ export const TEXTS = {
   },
   forgotPassword: {
     title: 'Esqueceu a senha?',
-    text: 'preencha o e-mail e nós enviaremos um link para resetar sua senha caso o e-mail inserido exista em nossa base de dados',
+    text: 'Preencha o email e nós enviaremos um link para redefinir sua senha caso o e-mail informado exista em nossa base de dados.',
     button: 'Enviar',
     emailInvalid: 'O e-mail inserido é inválido',
     emailLabel: 'E-mail',
-    sentTitle: 'Enviado com sucesso!',
+    sentTitle: 'Email enviado com sucesso.',
+    sentText: 'Acesso o link em seu email. Verifique sua caixa de entrada e também a caixa de spam.',
     apiError: 'Ocorreu um erro ao tentar enviar a mensagem, por favor, tente novamente.',
-    sentText: 'Verifique sua caixa de entrada e caixa de spam.',
+    notFound: 'Não encontramos seu email cadastrado em nosso site. Verifique se digitou corretamente, por favor.',
   },
   defineNewPassword: {
     title: 'Redefinir senha',
@@ -550,35 +563,23 @@ export const TEXTS = {
       entityTitle: 'Entes do governo',
       entityLabel: 'Selecione um ente',
       locationTitle: 'Município',
-      locationLabel: 'Selecione um munícipio',
+      locationLabel: 'Comece a digitar para encontrar a cidade que procura',
       themeTitle: 'Tema',
       themeSubtitle: 'Aqui uma descrição breve do que são e de como funcionam os temas'
     }
   },
   partners: [
     {
-      logo: 'https://i.pinimg.com/736x/0d/cf/b5/0dcfb548989afdf22afff75e2a46a508.jpg',
-      link: 'https://google.com',
+      logo: LOGOProjetoColabora,
+      link: 'https://projetocolabora.com.br/',
     },
     {
-      logo: 'https://logosmarcas.net/wp-content/uploads/2020/04/Nike-Logo.png',
-      link: 'https://google.com',
+      logo: LOGOinfoamazonia,
+      link: 'https://infoamazonia.org/',
     },
     {
-      logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0gP4e6d3FYtX8vMriPYJnJP2KCAS_AVJ6XA&usqp=CAU',
-      link: 'https://google.com',
-    },
-    {
-      logo: 'Logo Parceiro 4',
-      link: 'https://google.com',
-    },
-    {
-      logo: 'Logo Parceiro 5',
-      link: 'https://google.com',
-    },
-    {
-      logo: 'Logo Parceiro 6',
-      link: 'https://google.com',
+      logo: LOGOoeco,
+      link: 'https://oeco.org.br/',
     },
   ]
 }; 

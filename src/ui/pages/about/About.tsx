@@ -64,7 +64,7 @@ const AboutPage = () => {
             {TEXTS.partners.map(partner => {
               return (
                 <div key={partner.logo} className='partner-box'>
-                  <img className='partner-logo' alt='logo' src={partner.logo}/>
+                  <div className='partner-logo'><img  alt='logo' src={partner.logo}/></div>
                   <div className='partner-link'><a className='blue-link' href={partner.link}>{TEXTS.aboutPage.accessSite}</a></div>
                 </div>
               );
