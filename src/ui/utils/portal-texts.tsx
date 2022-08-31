@@ -443,6 +443,14 @@ export const TEXTS = {
       title: 'Simular o valor do relatório',
       subTitle: 'Você pode encomendar um relatório personalizado. Preencha o formulário abaixo para receber uma cotação.',
       value: 'Valor estimado',
+      submitError: 'Ocorreu um erro ao enviar a mensagem, por favor, tente novamente.',
+      message: (phone: string, horizon: string, cities: string[]) => {
+        return `
+          Telefone: ${phone}
+          Horizonte temporal: ${horizon}
+          Cidades de interesse: ${cities.join(',')}
+        `;
+      }
     },
     submitButton: 'Solicitar uma proposta',
     error: 'Ocorreu um erro ao carregar os relatórios públicos.',

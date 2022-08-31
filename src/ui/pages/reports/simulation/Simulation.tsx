@@ -14,6 +14,8 @@ import { Grid } from '@mui/material';
 import './Simulation.scss';
 import SelectWithSearch from '@app/ui/components/forms/selectWithSearch/SelectWithSearch';
 import CitiesService from '@app/services/cities';
+import ReportsService from '@app/services/reports';
+import { QuotationPostModel } from '@app/models/reports.model';
 
 interface MultipleSelect {
   value: string[];
@@ -29,6 +31,14 @@ interface SimulationModel {
   [key: string]: InputModel | MultipleSelect;
 }
 
+const initialValue = {
+  email: { value: '' },
+    name: { value: '' },
+    cities: { value: [] as string[] },
+    phone: { value: '' },
+    horizon: { value: '' },
+}
+
 const fieldValidations: FieldValidation = {
   name: (value: string) => { return value && value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false; },
   email: (value: string) => { return testEmail(value) ? false : 'O e-mail inserido é invalido'; },
@@ -37,19 +47,16 @@ const fieldValidations: FieldValidation = {
 };
 
 const SimulationForm = () => {
-  const [inputs, setInputs] : [SimulationModel, Dispatch<SetStateAction<SimulationModel>>] = useState({
-    email: { value: '' },
-    name: { value: '' },
-    cities: { value: [] as string[] },
-    phone: { value: '' },
-    horizon: { value: '' },
-  });
+  const [inputs, setInputs] : [SimulationModel, Dispatch<SetStateAction<SimulationModel>>] = useState(initialValue);
   const [selectedCities, setCities] : [string[], Dispatch<SetStateAction<string[]>>] = useState([] as string[]);
   const [themes, setThemes] : [Theme, Dispatch<SetStateAction<Theme>>] = useState({});
   const [themeError, setThemeError] : [string, Dispatch<SetStateAction<string>>] = useState('');
   const [phoneMask, setPhoneMask] : [string, Dispatch<SetStateAction<string>>] = useState(homePhoneMask);
   const [citiesList, setCitiesList]: [Option[], Dispatch<SetStateAction<Option[]>>] = useState([] as Option[]);
+  const [submitError, setSubmitError] : [string, Dispatch<SetStateAction<string>>] = useState('');
+  const [submitted, setSubmittted] : [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
   const citiesService = new CitiesService();
+  const reportsService = new ReportsService();
 
   useEffect(() => {
     citiesService.getAll().then(response => {
@@ -135,7 +142,18 @@ const SimulationForm = () => {
   }
 
   const submit = () => {
-    // TO DO
+    setSubmitError('');
+    const message: QuotationPostModel = {
+      email: inputs.email.value,
+      name: inputs.name.value,
+      message: TEXTS.reportsPage.simulation.message(inputs.phone.value, inputs.horizon.value, selectedCities)
+    }
+    reportsService.postQuotation(message).then(() => {
+      setInputs(initialValue);
+      setSubmittted(true);
+    }).catch(() => {
+      setSubmitError(TEXTS.reportsPage.simulation.submitError);
+    });
   };
 
   return (
@@ -208,6 +226,8 @@ const SimulationForm = () => {
         </div>
 
         <SubmitForm label='Solicitar uma proposta' classess='submit-simulation'/>
+        {submitted? <div className='success-message'>Sua mensagem foi enviada com sucesso!</div> : <></>}
+        <InputError>{submitError}</InputError>
       </form>
     </Grid>
   );
