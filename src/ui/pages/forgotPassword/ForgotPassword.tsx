@@ -47,50 +47,53 @@ const ForgotPassowrd = ({onClickClose}: ForgotPasswordModal) => {
   };
 
   return (
-    <Grid className='forgot-password-modal'>
-      <Loading isLoading={isLoading}/>
-      <div className='content'>
-        <div>
-          <CloseIcon className='hover-animation close-icon' onClick={onClickClose} />
-        </div>
-        <hr className='thin-line' />
-        <div className='modal-padding'>
-          { !sent ? 
-            <Grid item sm={5} xs={12}>
-              <div className='text-area'>
-                <p className='h3-class'>{TEXTS.forgotPassword.title}</p>
-                <p className='paragraph-class'>
-                  {TEXTS.forgotPassword.text}
-                </p>
-              </div>
-              <div className='redefine-field'>
-                <Input 
-                  onChange={(input: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setEmail(input.target.value)}
-                  label={TEXTS.forgotPassword.emailLabel} 
-                  name='email' 
-                  value={email} 
-                  required 
-                  type='email'
-                />
-                <InputError classess='send-error'>{error}</InputError>
-              </div>
-              <div className='button-area'>
-                <ButtonGreen onClick={onSubmit}>{TEXTS.forgotPassword.button}</ButtonGreen>
-              </div>
-            </Grid>
-            : 
-            <Grid item sm={5} xs={12}>
-              <div className='text-area success'>
-                <p className='h3-class'>{TEXTS.forgotPassword.sentTitle}</p>
-                <p className='paragraph-class'>
-                  {TEXTS.forgotPassword.sentText}
-                </p>
-              </div>
-            </Grid>
-          }
-        </div>
-      </div>
-    </Grid>
+    <div className='forgot-password-modal'>
+      <Loading isLoading={isLoading}></Loading>
+      <Grid container justifyContent='center'>
+        <Grid item xs={12} sm={5} className='container forgot-password-content'>
+          <div>
+            <CloseIcon className='hover-animation close-icon' onClick={onClickClose} />
+          </div>
+          <hr className='thin-line' />
+          <div className='modal-padding'>
+            { !sent ? 
+              <Grid>
+                <div className='text-area'>
+                  <p className='h3-class'>{TEXTS.forgotPassword.title}</p>
+                  <p className='paragraph-class'>
+                    {TEXTS.forgotPassword.text}
+                  </p>
+                </div>
+                <div className='redefine-field'>
+                  <Input 
+                    onChange={(input: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setEmail(input.target.value)}
+                    label={TEXTS.forgotPassword.emailLabel} 
+                    name='email' 
+                    value={email} 
+                    required 
+                    type='email'
+                  />
+                  <InputError classess='send-error'>{error}</InputError>
+                </div>
+                <div className='button-area'>
+                  <ButtonGreen onClick={onSubmit}>{TEXTS.forgotPassword.button}</ButtonGreen>
+                </div>
+              </Grid>
+              : 
+              <Grid>
+                <div className='text-area success'>
+                  <p className='h3-class'>{TEXTS.forgotPassword.sentTitle}</p>
+                  <p className='paragraph-class'>
+                    {TEXTS.forgotPassword.sentText}
+                  </p>
+                  <ButtonGreen onClick={onClickClose}>{TEXTS.forgotPassword.buttonClose}</ButtonGreen>
+                </div>
+              </Grid>
+            }
+          </div>
+        </Grid>
+      </Grid>
+    </div>
   );
 };
 

@@ -490,6 +490,7 @@ export const TEXTS = {
     title: 'Esqueceu a senha?',
     text: 'Preencha o email e nós enviaremos um link para redefinir sua senha caso o e-mail informado exista em nossa base de dados.',
     button: 'Enviar',
+    buttonClose: 'Ok',
     emailInvalid: 'O e-mail inserido é inválido',
     emailLabel: 'E-mail',
     sentTitle: 'Email enviado com sucesso.',
