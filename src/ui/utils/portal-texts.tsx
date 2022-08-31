@@ -2,6 +2,7 @@ import { urls } from './urls';
 import LOGOProjetoColabora from '@app/assets/images/projetocolabora.com.br.png';
 import LOGOinfoamazonia from '@app/assets/images/infoamazonia.org.png';
 import LOGOoeco from '@app/assets/images/oeco.org.br.png';
+import { Theme } from '@app/models/filters.model';
 
 export const TEXTS = {
   contactEmail: 'teste@contato.com',
@@ -444,11 +445,19 @@ export const TEXTS = {
       subTitle: 'Você pode encomendar um relatório personalizado. Preencha o formulário abaixo para receber uma cotação.',
       value: 'Valor estimado',
       submitError: 'Ocorreu um erro ao enviar a mensagem, por favor, tente novamente.',
-      message: (phone: string, horizon: string, cities: string[]) => {
+      message: (phone: string, horizon: string, cities: string[], themes: Theme) => {
+        const selectedThemes: string[] = [];
+        Object.keys(themes).forEach(theme => {
+          if(themes[theme]) {
+            selectedThemes.push(theme);
+          }
+        });
+
         return `
           Telefone: ${phone}
           Horizonte temporal: ${horizon}
           Cidades de interesse: ${cities.join(',')}
+          Temas: ${selectedThemes.join(',')}
         `;
       }
     },

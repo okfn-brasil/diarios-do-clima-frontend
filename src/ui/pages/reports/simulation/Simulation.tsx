@@ -146,7 +146,7 @@ const SimulationForm = () => {
     const message: QuotationPostModel = {
       email: inputs.email.value,
       name: inputs.name.value,
-      message: TEXTS.reportsPage.simulation.message(inputs.phone.value, inputs.horizon.value, selectedCities)
+      message: TEXTS.reportsPage.simulation.message(inputs.phone.value, inputs.horizon.value, selectedCities, themes)
     }
     reportsService.postQuotation(message).then(() => {
       setInputs(initialValue);
