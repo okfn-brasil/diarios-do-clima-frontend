@@ -18,6 +18,7 @@ interface PropsSelect{
   options: Option[];
   label?: string;
   classes?: string;
+  resetField?: number;
 }
 
 const SelectIcon = () => {
@@ -26,12 +27,18 @@ const SelectIcon = () => {
   );
 };
 
-const SelectWithSearch = ({value, label, classes, onChange, name, options, placeholder}: PropsSelect) => {
+const SelectWithSearch = ({value, resetField, label, classes, onChange, name, options, placeholder}: PropsSelect) => {
   const [inputValue, setInputValue]: [string, Dispatch<SetStateAction<string>>] = useState('' as string);
   const [showMenu, setShowMenu]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
   const [selectedOption, setSelectedOption]: [Option, Dispatch<SetStateAction<Option>>] = useState(
     options.find(option => option.value === value) as Option || { label: '', value: '' }
   );
+
+  useEffect(() => {
+    console.log(resetField)
+    setInputValue('');
+    setSelectedOption({ label: '', value: '' });
+  }, [resetField])
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;

@@ -16,6 +16,8 @@ import SelectWithSearch from '@app/ui/components/forms/selectWithSearch/SelectWi
 import CitiesService from '@app/services/cities';
 import ReportsService from '@app/services/reports';
 import { QuotationPostModel } from '@app/models/reports.model';
+import ModalSubmitted from '../modalSubmitted/ModalSubmitted';
+import Loading from '@app/ui/components/loading/Loading';
 
 interface MultipleSelect {
   value: string[];
@@ -33,10 +35,10 @@ interface SimulationModel {
 
 const initialValue = {
   email: { value: '' },
-    name: { value: '' },
-    cities: { value: [] as string[] },
-    phone: { value: '' },
-    horizon: { value: '' },
+  name: { value: '' },
+  cities: { value: [] as string[] },
+  phone: { value: '' },
+  horizon: { value: '' },
 }
 
 const fieldValidations: FieldValidation = {
@@ -55,6 +57,8 @@ const SimulationForm = () => {
   const [citiesList, setCitiesList]: [Option[], Dispatch<SetStateAction<Option[]>>] = useState([] as Option[]);
   const [submitError, setSubmitError] : [string, Dispatch<SetStateAction<string>>] = useState('');
   const [submitted, setSubmittted] : [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
+  const [isLoading, setLoading] : [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
+  const [resetCities, setResetCities] : [number, Dispatch<SetStateAction<number>>] = useState(0);
   const citiesService = new CitiesService();
   const reportsService = new ReportsService();
 
@@ -142,6 +146,7 @@ const SimulationForm = () => {
   }
 
   const submit = () => {
+    setLoading(true);
     setSubmitError('');
     const message: QuotationPostModel = {
       email: inputs.email.value,
@@ -150,14 +155,21 @@ const SimulationForm = () => {
     }
     reportsService.postQuotation(message).then(() => {
       setInputs(initialValue);
+      setThemes({});
+      setCities([])
       setSubmittted(true);
+      setLoading(false);
+      setResetCities(Math.random());
     }).catch(() => {
       setSubmitError(TEXTS.reportsPage.simulation.submitError);
+      setLoading(false);
     });
   };
 
   return (
     <Grid className='simulation-form'>
+      <Loading isLoading={isLoading} />
+      <ModalSubmitted isOpen={submitted} onClose={() => setSubmittted(false)} />
       <h3 className='h3-class-sx-margin'>{TEXTS.reportsPage.simulation.title}</h3>
       <p className='paragraph-class'>{TEXTS.reportsPage.simulation.subTitle}</p>
 
@@ -198,6 +210,7 @@ const SimulationForm = () => {
             label='Cidades de interesse (Comece a digitar para encontrar cidades)'
             value={inputs.cities.value}
             name='cities'
+            resetField={resetCities}
             onChange={selectChange}
           />
           <div className='selected-cities'>
@@ -225,8 +238,7 @@ const SimulationForm = () => {
           <InputError>{themeError}</InputError>
         </div>
 
-        <SubmitForm label='Solicitar uma proposta' classess='submit-simulation'/>
-        {submitted? <div className='success-message'>Sua mensagem foi enviada com sucesso!</div> : <></>}
+        <SubmitForm label='Solicitar uma proposta' disabled={isLoading} classess='submit-simulation'/>
         <InputError>{submitError}</InputError>
       </form>
     </Grid>

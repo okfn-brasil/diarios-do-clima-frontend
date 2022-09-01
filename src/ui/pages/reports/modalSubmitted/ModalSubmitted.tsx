@@ -9,7 +9,7 @@ interface ModalSubmittedProps {
   onClose: () => void;
 }
 
-const ModalModalSubmitted = ({isOpen, onClose}: ModalSubmittedProps) => {
+const ModalSubmitted = ({isOpen, onClose}: ModalSubmittedProps) => {
 
   return (
     <Modal isOpen={isOpen} title={'Pedido enviado'} onClose={onClose}>
@@ -24,4 +24,4 @@ const ModalModalSubmitted = ({isOpen, onClose}: ModalSubmittedProps) => {
   );
 };
 
-export default ModalModalSubmitted;
+export default ModalSubmitted;
