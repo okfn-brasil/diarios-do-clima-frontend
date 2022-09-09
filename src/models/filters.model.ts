@@ -21,7 +21,7 @@ export interface ReqFilters {
   sort_by: string | undefined;
   size: number;
   until?: string | Date;
-  since?: string | Date;
+  published_since?: string | Date;
   local?: string;
   subthemes?: string[];
   entities?: string[];
@@ -170,7 +170,7 @@ export const parseFiltersToApi = (filters: FiltersState, currPage: number) => {
     offset: offset,
     size: pageSize,
     until: parseDate(filters.dates?.end),
-    since: filters.dates?.start || filters.dates?.end ? parseDate(filters.dates?.start) : parsePeriod(parsedFilters.period as number),
+    published_since: filters.dates?.start || filters.dates?.end ? parseDate(filters.dates?.start) : parsePeriod(parsedFilters.period as number),
     territory_id: parsedFilters.location,
     subthemes: parsedFilters.themes as string[],
     entities: filters.ente ? [filters.ente] : undefined,
