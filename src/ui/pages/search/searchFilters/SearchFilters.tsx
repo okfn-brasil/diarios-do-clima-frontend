@@ -19,7 +19,7 @@ interface PropsSearchFilters{
 }
 
 const initialFilters: FiltersStatePayload = {
-  location: '0',
+  territory_id: '0',
   ente: '0',
   period: 0,
 };
@@ -88,7 +88,7 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
         <hr className='thin-line'/>
       </div>
       <div className='filters'>
-        <LocationFilter onChange={inputChange} value={filters.location as string}/>
+        <LocationFilter onChange={inputChange} value={filters.territory_id as string}/>
         <section className='section-filter-class'>
           <h3 className='h3-class'>{TEXTS.searchPage.filters.period}</h3>
           <div>

@@ -34,7 +34,7 @@ const LocationFilter = ({value, onChange}: LocationFilterProps) => {
         </h3>
         { citiesList && citiesList.length ? 
           <SelectWithSearch
-            name='location'
+            name='territory_id'
             options={citiesList}
             placeholder={TEXTS.searchPage.filters.locationLabel} 
             value={value}

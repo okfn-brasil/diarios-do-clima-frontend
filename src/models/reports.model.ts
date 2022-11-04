@@ -14,7 +14,7 @@ export interface ReportModel {
   is_public: boolean;
   title: string;
   description: string;
-  location: string;
+  territory_id: string;
 }
 
 export interface ReportsListModel {

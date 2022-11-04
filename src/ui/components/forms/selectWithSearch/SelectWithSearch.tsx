@@ -35,7 +35,6 @@ const SelectWithSearch = ({value, resetField, label, classes, onChange, name, op
   );
 
   useEffect(() => {
-    console.log(resetField)
     setInputValue('');
     setSelectedOption({ label: '', value: '' });
   }, [resetField])
