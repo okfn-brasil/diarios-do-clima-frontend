@@ -8,7 +8,7 @@ body {
     position: relative;
     margin: 0;
     padding: 0;
-    font-family: Roboto;
+    font-family: Montserrat;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -38,12 +38,12 @@ body {
 //global
 .hyper-link {
   font-weight: 700;            
-  border-bottom: 4px solid $lightGreen;
+  border-bottom: 4px solid $terciary;
   padding-top: 0;
   padding-bottom: 2px;
   font-size: 16px;
   font-weight: 600;
-  color: $darkBlue;
+  color: $dark;
 }
 
 a, a span, a button  {
@@ -67,13 +67,17 @@ a, a span, a button  {
 }
 
 .gray-area {
+  background-color: $baseGray1;
+}
+
+.light-blue-area {
   background-color: $lightGray3;
 }
 
 //texts
 .small-text {
   font-size: 14px;
-  color: $darkBlue;
+  color: $dark;
 }
 
 .h2-class {
@@ -87,7 +91,7 @@ a, a span, a button  {
   font-size: 22px;
   line-height: 27px;
   font-weight: 600;
-  color: $darkBlue;
+  color: $dark;
   margin: 22px 0;
 }
 
@@ -119,11 +123,11 @@ a, a span, a button  {
 
 .green-h3 {
   @extend .h3-class;
-  color: $green;
+  color: $dark;
 }
 
 .dark-text {
-  color: $darkBlue;
+  color: $dark;
 }
 
 .green-title {
@@ -131,11 +135,11 @@ a, a span, a button  {
   line-height: 18px;
   font-weight: 600;
   font-size: 14px;
-  color: $green;
+  color: $primaryDark;
 }
 
 .blue-link {
-  color: $blue;
+  color: $secundary;
   font-weight: 600;
 }
 
@@ -154,7 +158,7 @@ a, a span, a button  {
   .font-dark-blue {
     font-size: 16px;
     font-weight: 600;
-    color: $darkBlue;
+    color: $dark;
   }
 
   .font-small-button {
@@ -202,6 +206,10 @@ a, a span, a button  {
 }
 
 //forms 
+
+.Mui-checked {
+  color: $primary !important;
+}
 
 .password-field {
   position: relative;
@@ -266,6 +274,7 @@ a, a span, a button  {
 //buttons
 .base-button, .base-button.MuiButtonBase-root {
   padding: 14px 40px;
+  font-family: Montserrat;
 }
 
 // popup 

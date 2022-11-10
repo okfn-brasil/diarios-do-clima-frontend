@@ -12,15 +12,18 @@ const Lead = () => {
   return (
     <Grid container className='top-space lead-session'
       sx={{
-        background: `linear-gradient(to right, rgba(34, 23, 48, 0.88), rgba(33, 57, 139, 0.88)), url(${backgroundImage})`,
+        background: `url(${backgroundImage})`,
       }}>
-      <Grid item container xs={12} className='banner-content'>
+      <Grid item container xs={12} className='banner-content' alignItems='center'>
         <Grid item xs={12} lg={6} className='banner-container'>
           <p className='title'>
-            {TEXTS.home.lead.titleA} <span>{TEXTS.home.lead.titleB}</span>
+            {TEXTS.home.lead.title}
           </p>
           <p className='description'>
             {TEXTS.home.lead.subtitle}
+          </p>
+          <p className='description bold'>
+            {TEXTS.home.lead.secondSubtitle}
           </p>
           <LinkManager to={urls.registration.url}>
             <ButtonGreen classess='start-search'>

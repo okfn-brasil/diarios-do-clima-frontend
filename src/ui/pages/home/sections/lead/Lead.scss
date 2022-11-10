@@ -10,8 +10,7 @@
   }
 
   .banner-content {
-    margin-bottom: 100px;
-    margin-top: 92px;
+    margin-bottom: 10px;
   }
 
   .banner-container {
@@ -28,24 +27,25 @@
     font-size: 50px;
     font-weight: 600;
     font-family: Sora;
-    color: $white;
+    color: $lightYellow;
     margin: 0;
 
     span {
-      color: $green;
+      color: $primaryDark;
 
       @media only screen and (min-width: $desktopSize) {
         color: $white;
       }
     }
-
-    @media only screen and (min-width: $desktopSize) {
-      margin-top: 45px;
-    }
   }
 
   .description {
     font-size: 20px;
+    color: $lightYellow;
+
+    &.bold {
+      font-weight: bold;
+    }
 
     @media only screen and (min-width: $desktopSize) {
       margin-top: 16px;
@@ -69,7 +69,7 @@
     }
 
     img {
-      max-height: 423px;
+      max-height: 550px;
       max-width: 100%;
     }
   }

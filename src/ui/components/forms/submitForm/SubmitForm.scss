@@ -4,13 +4,13 @@
   cursor: pointer;
   font-size: 16px;
   transition: 0.4s;
-  background-color: $lightGreen;
+  background-color: $primary;
   font-weight: 600;
   width: 100%;
   margin-top: 32px;
   border: 0;
   transition: none;
-  color: $darkBlue;
+  color: $lightYellow;
 
   &:disabled {
     opacity: 0.6;

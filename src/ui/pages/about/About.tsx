@@ -45,7 +45,7 @@ const AboutPage = () => {
         </Grid>
       </Grid>
 
-      <Grid container item sm={12} className='vertical-spacing-container gray-area' justifyContent='center'>
+      <Grid container item sm={12} className='vertical-spacing-container light-blue-area' justifyContent='center'>
         <Grid item sm={8} className='container'>
           <h3 className='h3-class-sx-margin'>{TEXTS.aboutPage.support}</h3>
           <p className='paragraph-class'>{TEXTS.aboutPage.becomePro}</p>
@@ -58,9 +58,11 @@ const AboutPage = () => {
       </Grid>
 
       <Grid container item sm={12} justifyContent='center' className='vertical-spacing-container'>
-        <Grid className='container partners' item sm={10}>
-          <h3 className='h3-class'>{TEXTS.aboutPage.partnersTitle}</h3>
-          <Grid container className='partners-list'>
+        <Grid className='partners container' container justifyContent='center' item sm={12}>
+          <Grid item sm={8} container>
+            <h3 className='h3-class partners-title'>{TEXTS.aboutPage.partnersTitle}</h3>
+          </Grid>
+          <Grid item sm={8} container className='partners-list'>
             {TEXTS.partners.map(partner => {
               return (
                 <div key={partner.logo} className='partner-box'>

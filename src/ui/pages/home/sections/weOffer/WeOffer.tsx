@@ -2,9 +2,9 @@ import { MouseEventHandler, useState } from 'react';
 import AlertsLogo from '@app/assets/images/home/icons/alerts.svg';
 import HistoryLogo from '@app/assets/images/home/icons/history.svg';
 import ThemeLogo from '@app/assets/images/home/icons/theme.svg';
-import AlertsLead from '@app/assets/images/home/weoffer.alerts.svg';
-import HistoryLead from '@app/assets/images/home/weoffer.history.svg';
-import ThemeLead from '@app/assets/images/home/weoffer.theme.svg';
+import AlertsLead from '@app/assets/images/home/weoffer.alert.png';
+import HistoryLead from '@app/assets/images/home/weoffer.history.png';
+import ThemeLead from '@app/assets/images/home/weoffer.theme.png';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import HyperLink from '@app/ui/components/hyperLink/HyperLink';
 import LinkManager from '@app/ui/components/linkManager/LinkManager';
@@ -76,8 +76,8 @@ const WeOffer = () => {
         </Grid>
         <Grid item container xs={12}>
           <Grid item container xs={12} md={3} justifyContent='space-between'>
-            <Option id={1} onClick={() => setSelectedId(1)} icon={HistoryLogo} label={TEXTS.home.weOffer.option.history} selectedId={selectedId} />
             <Option id={2} onClick={() => setSelectedId(2)} icon={ThemeLogo} label={TEXTS.home.weOffer.option.theme} selectedId={selectedId} />
+            <Option id={1} onClick={() => setSelectedId(1)} icon={HistoryLogo} label={TEXTS.home.weOffer.option.history} selectedId={selectedId} />
             <Option id={3} onClick={() => setSelectedId(3)} icon={AlertsLogo} label={TEXTS.home.weOffer.option.alerts} selectedId={selectedId} />
           </Grid>
           <Grid item container justifyContent='center' xs={12} md={5}>

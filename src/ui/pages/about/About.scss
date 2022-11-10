@@ -2,7 +2,7 @@
 
 .about-page {
   .top-space {
-    background-color: $blue;
+    background-color: $secundary;
   }
   .h2-class {
     font-family: Sora;
@@ -49,6 +49,7 @@
     }
 
     .partner-logo {
+      max-width: 65%;
       height: 50px;
       margin-bottom: 16px;
       display: flex;
@@ -65,6 +66,10 @@
     }
   }
 
+  .partners-title {
+    margin-bottom: 0;
+  }
+
   .partner-box {
     width: 100%;
     padding: 32px 0;
@@ -72,6 +77,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 30px;
 
     &:last-of-type {
       border-bottom: 0;

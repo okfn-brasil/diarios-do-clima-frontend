@@ -7,6 +7,11 @@
     }
   }
 
+  .registration-image {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
   .h3-class {
     font-family: Sora;
   }
@@ -62,7 +67,7 @@
   
   .step-selected-class {
     @extend .step-class;
-    background-color: rgba(127, 227, 137, 0.45);
+    background-color: rgba($primaryDark, 0.45);
   }
   
   .steps-area {
@@ -145,10 +150,10 @@
     width: 64px;
     height: 64px;
     margin: 8px;
-    border: 8px solid $green;
+    border: 8px solid $primaryDark;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: $green transparent transparent transparent;
+    border-color: $primaryDark transparent transparent transparent;
   }
   .lds-ring div:nth-child(1) {
     animation-delay: -0.45s;

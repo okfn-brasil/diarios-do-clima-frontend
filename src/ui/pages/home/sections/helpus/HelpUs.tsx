@@ -1,4 +1,4 @@
-import ButtonSolidDarkBlue from '@app/ui/components/button/buttonDarkBlue/ButtonDarkBlue';
+import ButtonSoliddark from '@app/ui/components/button/buttonDark/ButtonDark';
 import ButtonSolidGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import LinkManager from '@app/ui/components/linkManager/LinkManager';
 import { TEXTS } from '@app/ui/utils/portal-texts';
@@ -24,9 +24,9 @@ const HelpUs = () => {
         </LinkManager>
 
         <LinkManager to={urls.registration.url}>
-          <ButtonSolidDarkBlue classess='button'>
+          <ButtonSoliddark classess='button'>
             {TEXTS.home.helpUs.buttonStart}
-          </ButtonSolidDarkBlue>
+          </ButtonSoliddark>
         </LinkManager>
       </Grid>
     </Grid>

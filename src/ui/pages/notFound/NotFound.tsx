@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import ImageNotFound from '@app/assets/images/computer-registration.svg';
+import ImageNotFound from '@app/assets/images/computer-registration.png';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';

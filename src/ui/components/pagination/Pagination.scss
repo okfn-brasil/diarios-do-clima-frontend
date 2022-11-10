@@ -5,7 +5,7 @@
   margin-top: 24px;
 
   .arrow-area-class {
-    border: 1px solid $gray;
+    border: 1px solid $baseGray3;
     min-width: 32px;
     height: 32px;
     display: flex;
@@ -17,9 +17,10 @@
   
   .arrow-area-disabled-class {
     @extend .arrow-area-class;
-    background-color: $gray2;
-    border-color: $gray2;
+    background-color: $baseGray2;
+    border-color: $baseGray2;
     cursor: not-allowed;
+    opacity: 0.5;
   }
   
   .arrow-class {
@@ -27,7 +28,7 @@
     border-width: 0 3px 3px 0;
     margin-left: -4px;
     padding: 3px;
-    transform: rotate(-45deg)
+    transform: rotate(-45deg);
   }
   
   .arrow-disabled-class {
@@ -50,9 +51,9 @@
 
   .page-number-current-class {
     @extend .page-number-class;
-    background-color: $lightGreen;
-    border: 1px solid $lightGreen;
-    color: $darkBlue;
+    background-color: $primary;
+    border: 1px solid $primary;
+    color: $white;
   }
 
   .left-arrow {

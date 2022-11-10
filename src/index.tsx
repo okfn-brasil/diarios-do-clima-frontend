@@ -6,7 +6,7 @@ import reportWebVitals from '@app/reportWebVitals';
 import { store } from '@app/stores/store';
 
 import '@fontsource/sora';
-import '@fontsource/roboto';
+import '@fontsource/montserrat';
 
 import '@app/index.scss';
 

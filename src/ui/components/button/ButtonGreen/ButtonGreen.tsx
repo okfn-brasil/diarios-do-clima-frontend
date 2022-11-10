@@ -12,7 +12,7 @@ interface PropsButtonGreen {
 
 const ButtonGreen = ({ children, disabled, fullWidth, onClick, classess }: PropsButtonGreen) => {
   return (
-    <ButtonBase disabled={disabled} className={`base-button button-green font-dark-blue ${classess}`} style={{width: fullWidth ? '100%' : ''}} onClick={onClick}>
+    <ButtonBase disabled={disabled} className={`base-button button-green ${classess}`} style={{width: fullWidth ? '100%' : ''}} onClick={onClick}>
       {children}
     </ButtonBase>
   );

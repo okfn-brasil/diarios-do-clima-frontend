@@ -2,10 +2,9 @@
 
 #root {
   .footer {
-    background-color: $darkBlue;
+    background-color: $dark;
     padding-top: 60px;
     padding-bottom: 80px;
-    color: $gray;
     font-size: 14px;
     font-weight: 600;
 
@@ -15,6 +14,7 @@
 
     .footer-links {
       display: flex;
+      align-items: center;
 
       @media only screen and (max-width: $desktopSize) {
         display: block;
@@ -24,14 +24,16 @@
 
     .footer-link {
       width: calc(100% / 4);
+      text-align: center;
 
       a {
-        color: $gray;
+        color: $baseGray3;
       }
 
       @media only screen and (max-width: $desktopSize) {
         width: 100%;
         margin: 0 0 16px;
+        text-align: left;
       }
     }
 
@@ -44,7 +46,7 @@
     }
 
     img {
-      width: 160px;
+      width: 200px;
     }
   }
 }
