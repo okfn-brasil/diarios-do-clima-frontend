@@ -20,6 +20,7 @@
     @media only screen and (min-width: $desktopSize) {
       padding-left: 230px;
       padding-right: 0;
+      max-width: 45%;
     }
   }
 
@@ -27,7 +28,7 @@
     font-size: 50px;
     font-weight: 600;
     font-family: Sora;
-    color: $lightYellow;
+    color: $white;
     margin: 0;
 
     span {
@@ -41,11 +42,7 @@
 
   .description {
     font-size: 20px;
-    color: $lightYellow;
-
-    &.bold {
-      font-weight: bold;
-    }
+    color: $white;
 
     @media only screen and (min-width: $desktopSize) {
       margin-top: 16px;

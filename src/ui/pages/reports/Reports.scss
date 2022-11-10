@@ -12,6 +12,10 @@
 
     .paragraph-class, .h2-class {
       color: $white;
+
+      @media only screen and (min-width: $desktopSize) {
+        max-width: 60%;
+      }
     }
   }
 

@@ -22,9 +22,6 @@ const Lead = () => {
           <p className='description'>
             {TEXTS.home.lead.subtitle}
           </p>
-          <p className='description bold'>
-            {TEXTS.home.lead.secondSubtitle}
-          </p>
           <LinkManager to={urls.registration.url}>
             <ButtonGreen classess='start-search'>
               {TEXTS.home.lead.buttonTitle}

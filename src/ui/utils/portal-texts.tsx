@@ -103,9 +103,8 @@ export const TEXTS = {
   },
   home: {
     lead: {
-      title: 'Pesquisar sobre Meio Ambiente no Brasil é uma luta contra o tempo',
-      subtitle: 'O diário do Clima ajuda a encontrar informações dos Diários Oficiais relacionados ao meio ambiente.',
-      secondSubtitle: 'A nossa tecnologia traz vida aos dados que atualmente são invisíveis',
+      title: 'Encontre um ato ambiental',
+      subtitle: 'O diário do Clima filtra as informações dos diários oficiais para você descobrir o que precisa mais fácil e rapidamente',
       buttonTitle: 'Começar a buscar',
       deviceImageAlt: 'Exemplo de ui do diario do clima',
     },
@@ -474,7 +473,7 @@ export const TEXTS = {
       button: 'ok',
     },
     reloadPage: 'Recarregar página',
-    title: 'Encontre a raiz do problema com os nossos relatórios de análise aprofundadas',
+    title: 'Relatórios de análises aprofundadas do Diário do Clima',
     subtitle: 'Informações qualificadas, baseadas nos diários oficiais e curadas por profissionais. Mais resultados e insights do que a interface do Diário do Clima oferece.',
     simulateButton: 'Simular o custo',
     professionals: 'Para profissionais de pesquisa e consultores',
