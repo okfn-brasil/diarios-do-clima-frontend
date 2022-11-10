@@ -1,17 +1,19 @@
 import { Link } from 'react-router-dom';
-import desktopBanner from '@app/assets/images/about/about-desktop.png';
-import mobileBanner from '@app/assets/images/about/about-mobile.png';
+import firstBanner from '@app/assets/images/about/about-desktop-top.png';
+import secondBanner from '@app/assets/images/about/about.png';
 import ButtonSolidGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
 import './About.scss';
+import LinkManager from '@app/ui/components/linkManager/LinkManager';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 
 const AboutPage = () => {
   return (
     <div className='about-page'>
-      <Grid container item className='container top-space' sm={12} justifyContent='center'>
+      <Grid container item className='container top-space banner-area' style={{backgroundImage: 'url(' + firstBanner + ')'}} sm={12} justifyContent='center'>
         <Grid container item sm={8}>
           <div className='vertical-spacing-container about-header'>
             <div className='green-title'>
@@ -26,13 +28,25 @@ const AboutPage = () => {
           </div>
         </Grid>
       </Grid>
-      <Grid container item sm={12} className='banner' justifyContent='center'>
-        <img className='only-mobile' src={mobileBanner} alt='vista de satélite de um rio'/>
-        <img className='only-desktop' src={desktopBanner} alt='vista de satélite de um rio'/>
+      <Grid container item className='container banner-area' style={{backgroundImage: 'url(' + secondBanner + ')'}} sm={12} justifyContent='center'>
+        <Grid container item sm={8}>
+          <div className='vertical-spacing-container about-header'>
+            <div className='h2-class'>
+              {TEXTS.aboutPage.secondTitle}
+            </div>
+            <p className='paragraph-class '>
+              {TEXTS.aboutPage.secondSubTitle}
+            </p>
+            <LinkManager to={urls.registration.url}>
+              <ButtonGreen classess='start-search'>
+                {TEXTS.aboutPage.secondBannerButton}
+              </ButtonGreen>
+            </LinkManager>
+          </div>
+        </Grid>
       </Grid>
       <Grid container item sm={12} className='container were-started' justifyContent='center'>
         <Grid item sm={8}>
-          <div className='subtitle'>{TEXTS.aboutPage.photoLegend}</div>
           <div className='spacing-top'>
             <h3 className='h3-class'>{TEXTS.aboutPage.whereStarted}</h3>
             <p className='paragraph-class'>{TEXTS.aboutPage.p1}</p>

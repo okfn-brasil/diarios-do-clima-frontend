@@ -38,7 +38,7 @@ body {
 //global
 .hyper-link {
   font-weight: 700;            
-  border-bottom: 4px solid $terciary;
+  border-bottom: 4px solid $primary;
   padding-top: 0;
   padding-bottom: 2px;
   font-size: 16px;
@@ -54,6 +54,7 @@ a, a span, a button  {
 .thin-line {
   border-top: none; 
   margin: 0;
+  border-bottom: 1px solid $baseGray2;
 }
 
 .hover-animation {
@@ -206,6 +207,10 @@ a, a span, a button  {
 }
 
 //forms 
+
+.MuiInput-underline.MuiInputBase-root::before{
+  border-bottom-color: $baseGray2;
+}
 
 .Mui-checked {
   color: $primary !important;

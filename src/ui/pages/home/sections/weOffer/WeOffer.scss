@@ -20,14 +20,14 @@
 
   .tab-selected {
     @extend .tab-default;
-    border-bottom: 5px solid $terciary;
+    border-bottom: 5px solid $primary;
     padding-bottom: 2px;
   }
 
   .tab-area {
     width: 68px;
     height: 68px;
-    background-color: $terciary;
+    background-color: #172030;
     border-radius: 100%;
     display: flex;
     justify-content: center;
@@ -49,10 +49,10 @@
     padding-top: 0;
     padding-bottom: 30px;
     text-align: 'center';
-    font-weight: 100;
+    font-weight: bold;
 
     span {
-      font-weight: bold;
+      color: $primary;
     }
 
     @media only screen and (min-width: $desktopSize) {

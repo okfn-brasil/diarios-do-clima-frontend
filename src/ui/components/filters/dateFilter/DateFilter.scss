@@ -76,9 +76,9 @@
 }
 
 .disabled-box {
-  background-color: $gray2;
-  border-color: $gray2;
-  color: $gray;
+  background-color: $baseGray2;
+  border-color: $baseGray2;
+  color: $baseGray4;
   cursor: not-allowed;
 
   &:hover {

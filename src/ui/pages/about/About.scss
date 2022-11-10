@@ -4,6 +4,16 @@
   .top-space {
     background-color: $secundary;
   }
+
+  .start-search {
+    margin-top: 18px;
+  }
+
+  .banner-area {
+    background-size: cover;
+    background-position: center;
+  }
+
   .h2-class {
     font-family: Sora;
   }
@@ -17,6 +27,11 @@
     .h2-class {
       margin: 8px 0;
       color: $white;
+    }
+
+    
+    @media only screen and (min-width: $desktopSize) {
+      max-width: 50%;
     }
   }
 

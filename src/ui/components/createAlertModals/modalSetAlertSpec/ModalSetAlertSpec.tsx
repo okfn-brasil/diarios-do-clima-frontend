@@ -70,7 +70,6 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmai
           <p className='title paragraph-class'>
             {TEXTS.createAlertModal.title}
           </p>
-          <hr className='thin-line'/>
           <div className='alert-filters' onClick={() => {checkPlan(onFilters);}}>
             <div className='green-arrow'><img src={Arrow} alt='seta para a direita'/></div>
             <div className='small-text alert-filter-desc'>{TEXTS.createAlertModal.filters}</div>

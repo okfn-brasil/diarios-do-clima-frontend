@@ -67,11 +67,11 @@ const getLeadImage = (index: number) => {
 const WeOffer = () => {
   const [selectedId, setSelectedId] = useState(1);
   return (
-    <Grid container className='we-offer container gray-area' justifyContent='center'>
+    <Grid container className='we-offer container light-blue-area' justifyContent='center'>
       <Grid item container xs={10} className='vertical-spacing-container'>
         <Grid item container xs={12} justifyContent='center'>
           <h3 className='h3-class-sx-margin'>
-            {TEXTS.home.weOffer.titleA} <span className='green-h3'>{TEXTS.home.weOffer.titleB}</span>
+            {TEXTS.home.weOffer.titleA} <span>{TEXTS.home.weOffer.titleB}</span>
           </h3>
         </Grid>
         <Grid item container xs={12}>

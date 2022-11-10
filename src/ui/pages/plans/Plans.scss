@@ -18,18 +18,15 @@
     .h2-class {
       color: $white;
       margin: 16px 0;
+      
+      @media only screen and (min-width: $desktopSize) {
+        max-width: 45%;
+      }
     }
 
     .paragraph-class {
       color: $white;
       margin: 0;
-    }
-
-    .sub-title {
-      font-size: 20px;
-      line-height: 25px;
-      margin-bottom: 8px;
-      margin-top: 33px;
     }
   }
 

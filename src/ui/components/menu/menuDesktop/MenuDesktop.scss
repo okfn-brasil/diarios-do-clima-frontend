@@ -4,7 +4,7 @@
   .menu-desktop  {
     display: flex;
     align-items: center;
-    color: $lightYellow;
+    color: $white;
     font-size: 14px;
 
     & > span {
@@ -20,7 +20,7 @@
       margin-right: 24px;
       font-weight: 600;
       letter-spacing: 0.8px;
-      color: $lightYellow;
+      color: $white;
     }
 
     .dark-blue-link {
