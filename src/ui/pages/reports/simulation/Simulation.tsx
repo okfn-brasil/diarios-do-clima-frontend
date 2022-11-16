@@ -67,7 +67,7 @@ const SimulationForm = () => {
       const newCities = response.data.cities.map(city => { return {
         value: city.territory_id,
         label: `${city.territory_name} (${city.state_code})`,
-      }});
+      }}).sort((a, b) => a.label.localeCompare(b.label));
       setCitiesList(newCities);
     });
   }, []);
@@ -206,6 +206,7 @@ const SimulationForm = () => {
 
         <div>
           <SelectWithSearch
+            showAlways={true}
             options={citiesList} 
             label='Cidades de interesse (Comece a digitar para encontrar cidades)'
             value={inputs.cities.value}
