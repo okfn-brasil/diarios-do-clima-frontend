@@ -20,7 +20,7 @@ const LocationFilter = ({value, onChange}: LocationFilterProps) => {
       const newCities = response.data.cities.map(city => { return {
         value: city.territory_id,
         label: `${city.territory_name} (${city.state_code})`,
-      }});
+      }}).sort((a, b) => a.label.localeCompare(b.label));
       setCitiesList(newCities);
     });
   }, []);
