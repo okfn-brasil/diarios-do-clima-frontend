@@ -14,6 +14,7 @@ interface PropsSelect{
   placeholder?: string;
   value: string | string[];
   name: string;
+  showAlways?: boolean;
   onChange: (e: SelectChangeEvent<string>) => void;
   options: Option[];
   label?: string;
@@ -27,7 +28,7 @@ const SelectIcon = () => {
   );
 };
 
-const SelectWithSearch = ({value, resetField, label, classes, onChange, name, options, placeholder}: PropsSelect) => {
+const SelectWithSearch = ({value, resetField, label, classes, showAlways, onChange, name, options, placeholder}: PropsSelect) => {
   const [inputValue, setInputValue]: [string, Dispatch<SetStateAction<string>>] = useState('' as string);
   const [showMenu, setShowMenu]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
   const [selectedOption, setSelectedOption]: [Option, Dispatch<SetStateAction<Option>>] = useState(
@@ -42,7 +43,7 @@ const SelectWithSearch = ({value, resetField, label, classes, onChange, name, op
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     setInputValue(inputValue as string);
-    if (inputValue.length >= 3) {
+    if (inputValue.length >= 3 || showAlways) {
       setShowMenu(true);
     }
     
@@ -63,7 +64,7 @@ const SelectWithSearch = ({value, resetField, label, classes, onChange, name, op
   }
 
   const onClick = () => {
-    if (inputValue.length >= 3) {
+    if (inputValue.length >= 3 || showAlways) {
       setShowMenu(true);
     }
   }
@@ -91,7 +92,7 @@ const SelectWithSearch = ({value, resetField, label, classes, onChange, name, op
       />
       {showMenu ? 
         <div className='select-menu'>
-          {options.filter(option => inputValue.length >=3 && option.label.toLowerCase().includes(inputValue.toLowerCase()))
+          {options.filter(option => (inputValue.length >=3 || showAlways) && option.label.toLowerCase().includes(inputValue.toLowerCase()))
             .map(option => <div key={option.value} onClick={() => onClickOption(option)} className='option'>{option.label}</div>)}
         </div>
         : <></>
