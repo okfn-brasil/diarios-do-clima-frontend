@@ -17,7 +17,7 @@ const EntityFilter = ({value, onChange}: EntityFilterProps) => {
 
   useEffect(() => {
     gazzetesService.getEntities().then((response: AxiosResponse | string[]) => {
-      const responseEntities = (response as string[]).sort((a, b) => a.localeCompare(b)) as string[];
+      const responseEntities = (response as string[]).sort((a, b) => a.localeCompare(b));
       setEntities(responseEntities);
     }).catch(() => {
       setEntities([]);
