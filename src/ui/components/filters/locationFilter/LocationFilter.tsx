@@ -20,7 +20,7 @@ const LocationFilter = ({value, onChange}: LocationFilterProps) => {
       const newCities = response.data.cities.map(city => { return {
         value: city.territory_id,
         label: `${city.territory_name} (${city.state_code})`,
-      }});
+      }}).sort((a, b) => a.label.localeCompare(b.label));
       setCitiesList(newCities);
     });
   }, []);
@@ -34,6 +34,7 @@ const LocationFilter = ({value, onChange}: LocationFilterProps) => {
         </h3>
         { citiesList && citiesList.length ? 
           <SelectWithSearch
+            showAlways={true}
             name='territory_id'
             options={citiesList}
             placeholder={TEXTS.searchPage.filters.locationLabel} 
