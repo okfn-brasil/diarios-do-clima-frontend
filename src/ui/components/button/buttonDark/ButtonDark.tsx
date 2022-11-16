@@ -1,14 +1,14 @@
 import { ButtonBase } from '@mui/material';
 
-import './ButtonDarkBlue.scss';
+import './ButtonDark.scss';
 
-interface PropsButtonDarkBlue {
+interface PropsButtondark {
   children: JSX.Element | string;
   classess?: string;
   fullWidth?: boolean;
 }
 
-const ButtonDarkBlue = ({ children, classess, fullWidth }: PropsButtonDarkBlue) => {
+const Buttondark = ({ children, classess, fullWidth }: PropsButtondark) => {
   return (
     <ButtonBase className={`base-button button-dark-blue font-white-bold ${classess}`} style={{width: fullWidth ? '100%' : ''}}>
       {children}
@@ -16,4 +16,4 @@ const ButtonDarkBlue = ({ children, classess, fullWidth }: PropsButtonDarkBlue) 
   );
 };
 
-export default ButtonDarkBlue;
+export default Buttondark;

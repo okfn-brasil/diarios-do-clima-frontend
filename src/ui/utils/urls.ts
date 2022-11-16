@@ -32,7 +32,7 @@ export const urls: UrlsModel = {
   becomePro: { url: '/seja-assinante', isWhiteMenu: true, hideLinks: true },
   startSearch: { url: '/iniciar-busca', isWhiteMenu: true, hideLinks: true },
   terms: { url: '/termos', isWhiteMenu: true },
-  about: { url: '/sobre', customColor: 'rgba(62, 109, 194, 1)' },
+  about: { url: '/sobre', customColor: '#296566' },
   reports: { url: '/relatorios' },
   purchase: { url: '/assine', isWhiteMenu: true },
   plans: { url: '/planos' },

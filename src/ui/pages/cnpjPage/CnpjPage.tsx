@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { CNPJInfo, CNPJPartner, parsePartners } from '@app/models/cnpj.model';
 import GazettesService from '@app/services/gazettes';
-import ButtonDarkBlue from '@app/ui/components/button/buttonDarkBlue/ButtonDarkBlue';
+import Buttondark from '@app/ui/components/button/buttonDark/ButtonDark';
 import Loading from '@app/ui/components/loading/Loading';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
@@ -78,7 +78,7 @@ const CnpjPage = () => {
               </div>
               <div>
                 <Link to={urls.search.url + '?period=1&query=' + cnpj.cnpj_completo}>
-                  <ButtonDarkBlue>{TEXTS.cnpjPage.search}</ButtonDarkBlue>
+                  <Buttondark>{TEXTS.cnpjPage.search}</Buttondark>
                 </Link>
               </div>
             </div>

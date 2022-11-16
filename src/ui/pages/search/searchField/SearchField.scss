@@ -1,7 +1,7 @@
 @import '@app/styles/globals.scss';
 
 .search-field {
-  background-color: $darkBlue;
+  background-color: $dark;
 
   .search-img {
     position: absolute;
@@ -15,7 +15,7 @@
     padding: 17px 60px 15px;
     font-size: 16px;
     line-height: 18px;
-    background-color: rgb(56, 64, 78);
+    background-color: #2f392e;
     border: none;
     color: $white;
     
@@ -51,7 +51,7 @@
   }
 
   .advanced-search {
-    color: $green;
+    color: $primaryDark;
     font-size: 14px;
     line-height: 17px;
     margin-bottom: 6px;

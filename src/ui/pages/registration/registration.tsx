@@ -1,7 +1,7 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
-import computerImage from '@app/assets/images/computer-registration.svg';
+import computerImage from '@app/assets/images/computer-registration.png';
 import { InputModel, InputType, ValidationInputModel } from '@app/models/forms.model';
 import { RegistrationModel, RegistrationResponse } from '@app/models/registration.model';
 import AccountService from '@app/services/accounts';
@@ -310,7 +310,7 @@ const Registration = () => {
             </Grid>
           </Grid>
           <Grid item sm={5} xs={0}>
-            <img src={computerImage} alt='imagem - pagina de cadastro'/>
+            <img className='registration-image' src={computerImage} alt='imagem - pagina de cadastro'/>
           </Grid>
         </Grid>
       </form>

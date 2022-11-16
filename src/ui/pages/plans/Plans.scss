@@ -2,12 +2,12 @@
 
 .plan-page {
   .top-space {
-    background-color: $darkBlue;
+    background-color: $dark;
   }
 
   .faq-title {
     margin: 0 0 56px;
-    color: $darkBlue;
+    color: $dark;
   }
 
   .h3-class, .h2-class {
@@ -18,18 +18,15 @@
     .h2-class {
       color: $white;
       margin: 16px 0;
+      
+      @media only screen and (min-width: $desktopSize) {
+        max-width: 45%;
+      }
     }
 
     .paragraph-class {
       color: $white;
       margin: 0;
-    }
-
-    .sub-title {
-      font-size: 20px;
-      line-height: 25px;
-      margin-bottom: 8px;
-      margin-top: 33px;
     }
   }
 
@@ -46,10 +43,11 @@
 
   .card-pro {
     @extend .card-plan;
-    border: 2px solid $pink;
+    border: 2px solid $terciary;
 
     .card-button {
       margin-bottom: 20px;
+      color: $white;
     }
 
     .plan-pro-link {
@@ -66,7 +64,7 @@
     margin: 0 0 8px; 
     font-size: 22px; 
     line-height: 28px;
-    color: $darkBlue;
+    color: $dark;
   }
   
   .card-desc {
@@ -139,5 +137,5 @@
 }
 
 .pink-icon {
-  color: $pink;
+  color: $terciary;
 }

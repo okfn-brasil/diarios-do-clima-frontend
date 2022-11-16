@@ -10,8 +10,7 @@
   }
 
   .banner-content {
-    margin-bottom: 100px;
-    margin-top: 92px;
+    margin-bottom: 10px;
   }
 
   .banner-container {
@@ -21,6 +20,7 @@
     @media only screen and (min-width: $desktopSize) {
       padding-left: 230px;
       padding-right: 0;
+      max-width: 45%;
     }
   }
 
@@ -32,20 +32,17 @@
     margin: 0;
 
     span {
-      color: $green;
+      color: $primaryDark;
 
       @media only screen and (min-width: $desktopSize) {
         color: $white;
       }
     }
-
-    @media only screen and (min-width: $desktopSize) {
-      margin-top: 45px;
-    }
   }
 
   .description {
     font-size: 20px;
+    color: $white;
 
     @media only screen and (min-width: $desktopSize) {
       margin-top: 16px;
@@ -63,13 +60,13 @@
 
   .image-area {
     @media only screen and (max-width: $maxWidthMobile) {
-      margin-bottom: -110%;
+      margin-bottom: -40%;
       padding-left: 0px;
       padding-right: 0px;
     }
 
     img {
-      max-height: 423px;
+      max-height: 550px;
       max-width: 100%;
     }
   }

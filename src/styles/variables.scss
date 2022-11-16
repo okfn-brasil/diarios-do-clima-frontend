@@ -1,22 +1,28 @@
-$green: rgba(82, 206, 95, 1);
-$darkGreen: rgb(86, 223, 100);
+$primary: #32612A;
+$primaryDark: #A4B57A;
+$secundary: #296566;
+$terciary: #EE7917;
+$lightYellow: #f8f4dd;
 $red: #d32f2f;
-$pink: rgba(247, 132, 173, 1);
-$lightGreen: rgba(127, 227, 137, 1);
-$darkBlue: rgba(23, 32, 48, 1);
-$blue: rgba(62, 109, 194, 1);
-$gray: rgba(172, 181, 189, 1);
-$gray1: rgba(196, 196, 196, 1);
-$gray2: rgba(221, 226, 229, 1);
-$gray4: rgba(106, 119, 132, 1);
-$gray5: rgba(73, 80, 87, 1);
-$lightGray2: rgba(235, 239, 245, 1);
-$lightGray3: rgba(246, 248, 251, 1);
-$lightGray4: rgba(244, 246, 248, 1);
-$darkGray: rgba(73, 80, 87, 1);
-$darkGray1: rgba(33, 36, 41, 1);
+$dark: #0c180a;
+$gray: #acb5bd;
+$gray1: #c4c4c4;
+$gray2: #dde2e5;
+$gray4: #6a7784;
+$gray5: #495057;
+$lightGray2: #ebeff5;
+$lightGray3: #f6f8fb;
+$lightGray4: #f4f6f8;
+$darkGray: #495057;
+$darkGray1: #212429;
 $black: #000;
 $white: #fff;
+
+
+$baseGray1: #d6dfd4;
+$baseGray2: #c2d1a5;
+$baseGray3: #b6c495;
+$baseGray4: #7b885c;
 
 // SCREEN SIZES
 $mobileSize: 600px;

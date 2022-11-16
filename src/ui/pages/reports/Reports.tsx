@@ -10,6 +10,7 @@ import ReportItem from '@app/ui/components/reportItem/ReportItem';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
+import bg from '@app/assets/images/reports_bg.png';
 
 import SimulationForm from './simulation/Simulation';
 
@@ -59,7 +60,7 @@ const ReportsPage = () => {
 
   return (
     <div className='reports-page'>
-      <Grid container item className='container top-space header-area' sm={12} justifyContent='center'>
+      <Grid container item className='container top-space header-area' style={{backgroundImage: 'url(' + bg + ')'}} sm={12} justifyContent='center'>
         <Grid container item sm={8}>
           <div className='vertical-spacing-container'>
             <div className='h2-class'>
@@ -124,7 +125,7 @@ const ReportsPage = () => {
         : <></>
       }
 
-      <Grid container item className='gray-area' justifyContent='center' sm={12} id='orcamento-form'>
+      <Grid container item className='light-blue-area' justifyContent='center' sm={12} id='orcamento-form'>
         <div className='vertical-spacing-container form-container'>
           <SimulationForm />
         </div>

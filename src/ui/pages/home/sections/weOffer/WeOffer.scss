@@ -20,14 +20,14 @@
 
   .tab-selected {
     @extend .tab-default;
-    border-bottom: 5px solid $green;
+    border-bottom: 5px solid $primary;
     padding-bottom: 2px;
   }
 
   .tab-area {
     width: 68px;
     height: 68px;
-    background-color: $darkBlue;
+    background-color: #172030;
     border-radius: 100%;
     display: flex;
     justify-content: center;
@@ -49,6 +49,11 @@
     padding-top: 0;
     padding-bottom: 30px;
     text-align: 'center';
+    font-weight: bold;
+
+    span {
+      color: $primary;
+    }
 
     @media only screen and (min-width: $desktopSize) {
       margin-right: 16px ;
@@ -58,20 +63,16 @@
   }
 
   .central-img {
-    background-color: $lightGray3;
-    padding-top: 80px;
     padding-left: 24px;
     padding-right: 24px;
     margin-top: 0;
-    padding-bottom: 80px;
-    max-width: 100%;
-    max-height: 196px;
+    max-height: 100%;
     margin-bottom: 14px;
+    min-width: 300px;
 
     @media only screen and (min-width: $desktopSize) {
-      max-height: 320px;
+      max-height: 600px;
       margin-bottom: 0;
-      padding-left: 125px;
       padding-right: 125px;
     }
   }
@@ -88,6 +89,8 @@
     .call-to-action-button {
       margin-bottom: 18px;
       min-width: 100%;
+      font-size: 14px;
+      color: $white;
         
       @media only screen and (min-width: $desktopSize) {
         min-width: unset;

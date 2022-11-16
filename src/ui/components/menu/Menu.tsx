@@ -62,7 +62,7 @@ const Menu = () => {
         container
         justifyContent='center'
         className={`container header ${isWhiteMenu ? 'inverted' : ''} ${hideLinks ? 'hide-links': ''}`} 
-        sx={{backgroundColor: hasScrolled ? (customColor || 'rgba(23, 32, 48, 1)') : ''}}
+        sx={{backgroundColor: hasScrolled ? (customColor || 'rgba(12, 24, 10, 1)') : ''}}
       >
         <Grid
           item container

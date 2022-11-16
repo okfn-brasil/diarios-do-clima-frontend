@@ -3,7 +3,7 @@
 .reports-page {
 
   .header-area {
-    background-color: $darkBlue;
+    background-size: cover;
 
     .h2-class {
       font-family: Sora;
@@ -12,11 +12,15 @@
 
     .paragraph-class, .h2-class {
       color: $white;
+
+      @media only screen and (min-width: $desktopSize) {
+        max-width: 60%;
+      }
     }
   }
 
   .icons-area {
-    background-color: $blue;
+    background-color: $secundary;
     color: $white;
 
     img {
@@ -27,7 +31,7 @@
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background-color: $darkBlue;
+      background-color: $dark;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -94,7 +98,7 @@
       margin: 0;
 
       span {
-        color: $blue
+        color: $secundary
       }
     }
   }

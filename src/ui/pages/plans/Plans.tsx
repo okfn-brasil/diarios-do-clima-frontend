@@ -9,6 +9,7 @@ import LinkManager from '@app/ui/components/linkManager/LinkManager';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import CheckIcon from '@mui/icons-material/Check';
+import bg from '@app/assets/images/planos/banner_planos.png';
 import { Grid } from '@mui/material';
 
 import FAQItem from './FaqItem/FaqItem';
@@ -20,27 +21,23 @@ const Plans = () => {
 
   return (
     <div className='plan-page'>
-      <Grid container item className='container top-space' sm={12} justifyContent='center'>
+      <Grid container item className='container top-space' style={{backgroundImage: 'url(' + bg + ')'}}  sm={12} justifyContent='center'>
+      <Grid container item className='container vertical-spacing-container' sm={12} justifyContent='center'>
         <Grid container item sm={8} >
-          <div className='vertical-spacing-container plan-header'>
-            <div className='green-title'>
-              {TEXTS.plansPage.title}
+            <div className='vertical-spacing-container plan-header'>
+              <div className='green-title'>
+                {TEXTS.plansPage.title}
+              </div>
+              <h2 className='h2-class'>
+                {TEXTS.plansPage.subtitle}
+              </h2>
+              <LinkManager to={urls.purchase.url}>
+                <ButtonGreen>
+                  {TEXTS.plansPage.startTest}
+                </ButtonGreen>
+              </LinkManager>
             </div>
-            <h2 className='h2-class'>
-              {TEXTS.plansPage.subtitle}
-            </h2>
-            <LinkManager to={urls.purchase.url}>
-              <ButtonGreen>
-                {TEXTS.plansPage.startTest}
-              </ButtonGreen>
-            </LinkManager>
-            <p className='paragraph-class sub-title'>
-              {TEXTS.plansPage.testCost}
-            </p>
-            <p className='paragraph-class'>
-              {TEXTS.plansPage.testWarn}
-            </p>
-          </div>
+          </Grid>
         </Grid>
       </Grid>
       <Grid container item className='container' sm={12} justifyContent='center'>

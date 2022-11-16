@@ -103,8 +103,7 @@ export const TEXTS = {
   },
   home: {
     lead: {
-      titleA: 'Encontre um',
-      titleB: 'ato ambiental',
+      title: 'Encontre um ato ambiental',
       subtitle: 'O diário do Clima filtra as informações dos diários oficiais para você descobrir o que precisa mais fácil e rapidamente',
       buttonTitle: 'Começar a buscar',
       deviceImageAlt: 'Exemplo de ui do diario do clima',
@@ -168,7 +167,11 @@ export const TEXTS = {
     becomePro: 'Você pode se tornar um assinante. Assim, você recebe os benefícios de ser PRO e ainda ajuda o Diário do Clima a abrir os dados de novas cidades e desenvolver novas ferramentas!',
     signUp: 'Quero assinar',
     partnersTitle: 'Quem está por trás disso',
-    accessSite: 'Acessar o site'
+    accessSite: 'Acessar o site',
+    
+    secondTitle: 'Este produto tem uma interface pública gratuita, para que possamos focar em temas que são verdadeiramente de interesse público.',
+    secondSubTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque venenatis diam vel nisl aliquet aliquam. Donec dignissim massa et erat semper, eu condimentum eros cursus. Etiam convallis sollicitudin faucibus.',
+    secondBannerButton: 'pesquisar agora',
   },
   becomeProPage: {
     title: 'Torne-se assinante do',

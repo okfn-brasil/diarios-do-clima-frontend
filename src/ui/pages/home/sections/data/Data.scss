@@ -1,9 +1,17 @@
 @import '@app/styles/globals.scss';
 
 .data-section.vertical-spacing-container {
+
+  @media only screen and (max-width: 1175.5px) {
+    margin-top: 400px;
+  }
+
+  @media only screen and (max-width: 1100px) {
+    margin-top: 300px;
+  }
   
-  @media only screen and (max-width: $desktopSize) {
-    margin-top: 280px;
+  @media only screen and (max-width: 700px) {
+    margin-top: 150px;
   }
 
   .paragraph-class, .h3-class {
@@ -11,7 +19,7 @@
   }
 
   .paragraph-class, .mobile-text {
-    color: $darkBlue;
+    color: $dark;
   }
 
   .data-label {
@@ -29,7 +37,7 @@
   }
 
   .number-title {
-    color: $green;
+    color: $primaryDark;
     font-family: Sora;
     font-size: 50px;
     font-weight: 600;
