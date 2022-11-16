@@ -57,7 +57,7 @@ const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: Moda
     <Modal isOpen={isOpen} title={'Editar filtros do alerta'} onBack={onBack} className='create-alert'>
       <div onKeyUp={keyUp}>
         <div className='modal-filters'>
-          <LocationFilter onChange={inputChange} value={currFilters.location as string}/>
+          <LocationFilter onChange={inputChange} value={currFilters.territory_id as string}/>
 
           <ThemeFilter themesFilter={currFilters.themes} onChange={checkBoxChange} hasProPlan={true} />
         

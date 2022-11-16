@@ -74,7 +74,7 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmai
           <div className='alert-filters' onClick={() => {checkPlan(onFilters);}}>
             <div className='green-arrow'><img src={Arrow} alt='seta para a direita'/></div>
             <div className='small-text alert-filter-desc'>{TEXTS.createAlertModal.filters}</div>
-            {filters.location ? <div className='small-text alert-filter-keys'>{TEXTS.createAlertModal.localFilter} {filters.location}</div> : <></>}
+            {filters.territory_id ? <div className='small-text alert-filter-keys'>{TEXTS.createAlertModal.localFilter} {filters.territory_id}</div> : <></>}
             {filters.themes && filters.themes.length? <div className='small-text alert-filter-keys'>{TEXTS.createAlertModal.themesFilter} {filters.themes?.join(', ')}</div> : <></>}
             {filters.ente ? <div className='small-text alert-filter-keys'>{TEXTS.createAlertModal.enteFilter} {filters.ente}</div> : <></>}
           </div>

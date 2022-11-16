@@ -3,7 +3,7 @@ import { formatMonth } from './gazettes.model';
 export const ITEMS_PER_PAGE = 6;
 
 export interface ModalFilters {
-  location?: string;
+  territory_id?: string;
   ente?: string;
   themes?: (string | null)[];
   [key: string]: string | (string | null)[] | undefined;
@@ -22,7 +22,7 @@ export interface ReqFilters {
   size: number;
   until?: string | Date;
   published_since?: string | Date;
-  local?: string;
+  territory_id?: string;
   subthemes?: string[];
   entities?: string[];
   [key: string]: string | Date | (string | null)[] | undefined | number | string[];
@@ -30,7 +30,7 @@ export interface ReqFilters {
 
 export const convertFiltersToModalFilters = (filters: FiltersStatePayload) => {
   const newFilters: ModalFilters = {
-    location: filters.location,
+    territory_id: filters.territory_id,
     ente: filters.ente,
     themes: filters.themes ? Object.keys(filters.themes as Theme).map(theme => {
       return !!filters.themes && filters.themes[theme] ? theme : null;
@@ -49,7 +49,7 @@ export interface FiltersStatePayload {
   itemsPerPage?: number;
   query?: string;
   order?: string;
-  location?: string;
+  territory_id?: string;
   ente?: string;
   dates?: Dates;
   themes?: Theme;
@@ -66,7 +66,7 @@ export interface FiltersState {
   itemsPerPage: number;
   query?: string;
   order?: string;
-  location?: string;
+  territory_id?: string;
   ente?: string;
   dates?: Dates;
   themes?: Theme;
@@ -83,7 +83,7 @@ export interface Dates {
 export interface FilterUrl {
   query?: string;
   order?: string;
-  location?: string;
+  territory_id?: string;
   ente?: string;
   startDate?: string | Date | null;
   endDate?: string | Date | null;
@@ -112,7 +112,7 @@ export const parseUrlToFilters = () => {
     itemsPerPage: ITEMS_PER_PAGE,
     query: filters.query,
     order: filters.order,
-    location: filters.location || '0',
+    territory_id: filters.territory_id || '0',
     ente: filters.ente || '0',
     dates: { 
       start: filters.startDate ? new Date(filters.startDate) : '',
@@ -132,7 +132,7 @@ export const parseFiltersToUrl = (filters: FiltersState) => {
   const newFilters: FilterUrl = {
     query: filters.query,
     order: filters.order,
-    location: filters.location,
+    territory_id: filters.territory_id,
     ente: filters.ente,
     startDate: start,
     endDate: end,
@@ -171,7 +171,7 @@ export const parseFiltersToApi = (filters: FiltersState, currPage: number) => {
     size: pageSize,
     until: parseDate(filters.dates?.end),
     published_since: filters.dates?.start || filters.dates?.end ? parseDate(filters.dates?.start) : parsePeriod(parsedFilters.period as number),
-    territory_id: parsedFilters.location,
+    territory_id: parsedFilters.territory_id,
     subthemes: parsedFilters.themes as string[],
     entities: filters.ente ? [filters.ente] : undefined,
   };

@@ -6,10 +6,10 @@ export const checkKeyWords = (value: string) => {
 }
 
 export const checkFiltersValidity = (filters: ModalFilters) => {
-  return !!(filters && (filters.ente || filters.location || (filters.themes && filters.themes.length)))
+  return !!(filters && (filters.ente || filters.territory_id || (filters.themes && filters.themes.length)))
 }
 
 export const initialFilters: FiltersStatePayload = {
-  location: '0',
+  territory_id: '0',
   ente: '0',
 };

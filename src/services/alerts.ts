@@ -9,7 +9,7 @@ export default class AlertsService {
   postAlert(filters: ModalFilters, query: string) {
     const newFilters: SubmitAlertForm = {
       query_string: query,
-      territory_id: filters.location as string,
+      territory_id: filters.territory_id as string,
       sub_themes: filters.themes && filters.themes.length ? filters.themes as string[] : undefined,
       gov_entities: filters.ente ? [filters.ente] : undefined,
     }
