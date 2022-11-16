@@ -40,18 +40,18 @@ api.interceptors.response.use(
         error.config.__isRetryRequest = true;
         return axios(error.config).then(response => response.data);
        }).catch(() => {
-        onRenewError();
+        onRefreshError();
        });
       return response;
     } else if (erroCode === 401 && error.config.url.includes('refresh')) {
-      onRenewError();
+      onRefreshError();
     } else {
       return Promise.reject(error.response.data);
     }
   }
 );
 
-const onRenewError = () => {
+const onRefreshError = () => {
   localStorage.setItem(tokenKeys.refresh, '');
   localStorage.setItem(tokenKeys.access, '');
   location.href = '/?login=open';
