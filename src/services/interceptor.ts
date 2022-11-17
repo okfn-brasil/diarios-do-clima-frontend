@@ -39,17 +39,23 @@ api.interceptors.response.use(
         error.config.headers.Authorization = `Bearer ${localStorage.getItem(tokenKeys.access)}`;
         error.config.__isRetryRequest = true;
         return axios(error.config).then(response => response.data);
+       }).catch(() => {
+        onRefreshError();
        });
       return response;
     } else if (erroCode === 401 && error.config.url.includes('refresh')) {
-      localStorage.setItem(tokenKeys.refresh, '');
-      localStorage.setItem(tokenKeys.access, '');
-      //location.href = '/?login=open';
+      onRefreshError();
     } else {
       return Promise.reject(error.response.data);
     }
   }
 );
+
+const onRefreshError = () => {
+  localStorage.setItem(tokenKeys.refresh, '');
+  localStorage.setItem(tokenKeys.access, '');
+  location.href = '/?login=open';
+}
 
 const getAuthTokenRefreshed = (refresh: string) => {
   return api.post('/token/refresh/', {refresh}).then((response) => response as RefreshResponse);
