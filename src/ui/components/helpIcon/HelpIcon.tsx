@@ -2,14 +2,24 @@ import icon from '@app/assets/images/icons/help.svg';
 
 import './HelpIcon.scss';
 
-const HelpIcon = () => {
+interface HelpIconProps {
+  tooltip: string | React.ReactElement<any>;
+}
+
+const HelpIcon = ({tooltip}: HelpIconProps) => {
   return (
-    <span className='hover-animation'>        
+    <span className='help-icon-area'>        
       <img 
-        className='help-icon'
+        className='help-icon hover-animation'
         src={icon} 
         alt='icone - ajuda'
       />
+      {tooltip ?
+        <div className='tooltip'>
+          {tooltip}
+        </div>
+        : <></>
+      }
     </span>
   );
 };

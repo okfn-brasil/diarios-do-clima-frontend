@@ -7,17 +7,17 @@ const options = {
   "name": "Diário do clima",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "logo.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "logo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "logo.png",
       "type": "image/png",
       "sizes": "512x512"
     }
@@ -43,7 +43,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: path.resolve(__dirname, "public", "index.html"),
       title: 'Production',
-      favicon: "./public/favicon.ico",
+      favicon: "./public/logo.ico",
       filename: "index.html",
       manifest: "./public/manifest.json",
     }),
@@ -54,7 +54,7 @@ module.exports = {
     alias: {
       '@app': path.resolve(__dirname, 'src'),
     },
-    extensions: ['.tsx', '.ts', '.js', '.jsx', '.png', '.svg'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.jpeg', '.png', '.svg'],
   },
   module: {
     rules: [

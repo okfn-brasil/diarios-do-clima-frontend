@@ -1,6 +1,47 @@
-.help-icon {
-  width: 24px;
-  margin-left: 6px;
-  top: 2px;
-  position: absolute;
+@import '@app/styles/globals.scss';
+
+.help-icon-area {
+  position: relative;
+
+  .help-icon {
+    width: 24px;
+    margin-left: 6px;
+    top: 2px;
+    position: absolute;
+  }
+
+  .tooltip {
+    display: none;
+    font-size: 12px;
+    line-height: 16px;
+    position: absolute;
+    background-color: $white;
+    z-index: 999;
+    width: 250px;
+    border-radius: 5px;
+    box-shadow: 3px 4px 13px 3px rgb(0 0 0 / 10%);
+    padding: 10px;
+
+    a {
+      color: $primary;
+    }
+
+    &::after {
+      content: '';
+      bottom: 100%;
+      left: calc(50% - 12px);
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 8px solid $white;
+    }
+  }
+
+  &:hover {
+    .tooltip {
+      display: block;
+    }
+  }
 }

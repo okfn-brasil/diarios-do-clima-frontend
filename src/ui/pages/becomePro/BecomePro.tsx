@@ -13,7 +13,6 @@ const BecomePro = () => {
   const navigate = useNavigate();
 
   const continueNavigation = () => {
-    console.log(params);
     if(params.param === 'afterregistration') {
       navigate(urls.startSearch.url);
     } else {

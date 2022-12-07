@@ -4,7 +4,6 @@ import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
-import HyperLink from '@app/ui/components/hyperLink/HyperLink';
 import LinkManager from '@app/ui/components/linkManager/LinkManager';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
@@ -51,7 +50,7 @@ const Plans = () => {
               <p className='card-desc'>{TEXTS.plansPage.basicDesc}</p>
               <h1 className='card-price'>{TEXTS.plansPage.basicPrice}</h1>
               <div className='card-status'>{!userData.plan_pro ? TEXTS.plansPage.state : ''}</div>
-              <Link to={urls.search.url} className='hover-animation'>
+              <Link to={userData.id ? urls.search.url : urls.registration.url} className='hover-animation'>
                 <ButtonOutlined classess='card-button'>
                   {TEXTS.plansPage.startSearch}
                 </ButtonOutlined>
@@ -80,16 +79,12 @@ const Plans = () => {
               <h4 className='card-title'>{TEXTS.plansPage.pro}</h4>
               <p className='card-desc'>{TEXTS.plansPage.proDesc}</p>
               <h1 className='card-price'>{TEXTS.plansPage.proPrice}<span>{TEXTS.plansPage.perMonth}</span></h1>
-              <Link to={urls.purchase.url} className='hover-animation'>
+              <Link to={userData.id ? urls.purchase.url : urls.registration.url} className='hover-animation'>
                 <ButtonGreen classess='card-button'>
                   {TEXTS.plansPage.startTestLink}
                 </ButtonGreen>
               </Link>
-              <Grid container justifyContent='center' className='plan-pro-link'>
-                <HyperLink link={urls.purchase.url}>
-                  {TEXTS.plansPage.signUp}
-                </HyperLink>
-              </Grid>
+
               <div>
                 <div className='card-list-check'>
                   <span className='check-icon'><CheckIcon color='disabled'/></span>

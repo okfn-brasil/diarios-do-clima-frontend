@@ -2,6 +2,8 @@ import { urls } from './urls';
 import LOGOProjetoColabora from '@app/assets/images/projetocolabora.com.br.png';
 import LOGOinfoamazonia from '@app/assets/images/infoamazonia.org.png';
 import LOGOoeco from '@app/assets/images/oeco.org.br.png';
+import LOGOenvolverde from '@app/assets/images/envolverde.jpeg';
+import LOGOokbr from '@app/assets/images/okbr.png';
 import { Theme } from '@app/models/filters.model';
 
 export const TEXTS = {
@@ -601,6 +603,17 @@ export const TEXTS = {
     {
       logo: LOGOoeco,
       link: 'https://oeco.org.br/',
+    },
+    {
+      logo: LOGOenvolverde,
+      link: 'https://envolverde.com.br/',
+    },
+    {
+      logo: LOGOokbr,
+      customSize: {
+        width: '100px',
+      },
+      link: 'https://ok.org.br/',
     },
   ]
 }; 
