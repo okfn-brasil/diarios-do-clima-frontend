@@ -1,4 +1,5 @@
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Option } from '@app/models/forms.model';
 import { FiltersStatePayload } from '@app/models/filters.model';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import EntityFilter from '@app/ui/components/filters/entityFilter/EntityFilter';
@@ -36,6 +37,10 @@ const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: Moda
     setFilters((values: FiltersStatePayload) => ({...values, [name]: value}));
   };
 
+  const inputLocationChange = (name: string, newValues: Option[]) => {
+    setFilters((values: FiltersStatePayload) => ({...values, [name]: newValues.map(item => item.value)}));
+  };
+
   const checkBoxChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {name, checked} = event.target;
     
@@ -57,7 +62,7 @@ const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: Moda
     <Modal isOpen={isOpen} title={'Editar filtros do alerta'} onBack={onBack} className='create-alert'>
       <div onKeyUp={keyUp}>
         <div className='modal-filters'>
-          <LocationFilter onChange={inputChange} value={currFilters.territory_id as string}/>
+          <LocationFilter onChange={inputLocationChange} value={currFilters.territory_id as string}/>
 
           <ThemeFilter themesFilter={currFilters.themes} onChange={checkBoxChange} hasProPlan={true} />
         

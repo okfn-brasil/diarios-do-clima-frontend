@@ -125,11 +125,6 @@ const Plans = () => {
           <h3 className='h3-class'>{TEXTS.plansPage.preOrder}</h3>
           <p className='paragraph-class'>{TEXTS.plansPage.preOrderDesc}</p>
           <Grid>
-            <a href={`mailto:${TEXTS.contactEmail}`}>
-              <ButtonGreen classess='button'>
-                {TEXTS.plansPage.contact}
-              </ButtonGreen>
-            </a>
             <Link to={urls.reports.url}>
               <ButtonOutlined classess='button button-gray'>
                 {TEXTS.plansPage.simulate}

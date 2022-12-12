@@ -15,6 +15,7 @@ interface PropsPasswordField {
   value: string;
   errorMessage?: string | boolean;
   classess?: string;
+  id?: string;
 }
 
 interface PasswordValidation {
@@ -25,7 +26,7 @@ interface PasswordValidation {
   placeholder?: string;
 }
 
-const PasswordField = ({ classess, placeholder, value, name, errorMessage, onChange }: PropsPasswordField) => {
+const PasswordField = ({ id, classess, placeholder, value, name, errorMessage, onChange }: PropsPasswordField) => {
   const [fieldType, setType]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(true);
   const [inputValue, setInputValue]: [string, Dispatch<SetStateAction<string>>] = useState(value);
   const [fieldValidation, setValidation]: [PasswordValidation, Dispatch<SetStateAction<PasswordValidation>>] = useState({
@@ -63,6 +64,7 @@ const PasswordField = ({ classess, placeholder, value, name, errorMessage, onCha
         <img className={'hover-animation ' + (fieldType ? 'low-opacity' : '')} src={ShowPassIcon} onClick={changeFieldType} />
         
         <TextInput
+          id={id}
           label={placeholder || 'Senha'}
           name={name}
           error={errorMessage as string}

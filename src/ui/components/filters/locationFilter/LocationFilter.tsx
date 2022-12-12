@@ -2,13 +2,12 @@ import { Option } from '@app/models/forms.model';
 import CitiesService from '@app/services/cities';
 import HelpIcon from '@app/ui/components/helpIcon/HelpIcon';
 import { TEXTS } from '@app/ui/utils/portal-texts';
-import { SelectChangeEvent } from '@mui/material';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import SelectWithSearch from '../../forms/selectWithSearch/SelectWithSearch';
 
 interface LocationFilterProps {
   value: string;
-  onChange: (e: SelectChangeEvent<string>) => void;
+  onChange: (name: string, value: Option[]) => void;
 }
 
 const LocationFilter = ({value, onChange}: LocationFilterProps) => {

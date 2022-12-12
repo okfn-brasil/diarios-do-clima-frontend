@@ -154,6 +154,7 @@ const Registration = () => {
             label={TEXTS.registration.labels.name}
             classes='first-input'
             name='username'
+            id='username-registration'
             error={inputs.username.errorMessage}
             value={inputs.username.value}
             onChange={inputChange}
@@ -165,6 +166,7 @@ const Registration = () => {
             <TextInput
               label={TEXTS.registration.labels.email}
               name='email'
+              id='email-registration'
               error={inputs.email.errorMessage}
               value={inputs.email.value}
               onChange={inputChange}
@@ -175,7 +177,7 @@ const Registration = () => {
             />
           </div>
 
-          <PasswordField errorMessage={inputs.password.errorMessage} value={inputs.password.value} onChange={inputChange} name='password' classess='input-class'/>
+          <PasswordField id='password-registration' errorMessage={inputs.password.errorMessage} value={inputs.password.value} onChange={inputChange} name='password' classess='input-class'/>
           
           <SubmitForm />
         </div>

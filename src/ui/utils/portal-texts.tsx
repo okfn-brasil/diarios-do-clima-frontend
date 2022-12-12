@@ -194,7 +194,8 @@ export const TEXTS = {
     situation: 'Situação',
     geralInfo: 'Informações gerais',
     address: 'Endereço',
-    partners: 'Sócios'
+    partners: 'Sócios',
+    noPartners: 'Este CNPJ não possui sócios cadastrados na Receita Federal.',
   },
   myAlerts: {
     alertItem: {
@@ -232,7 +233,7 @@ export const TEXTS = {
     subTitleA: 'Usuário',
     subTitleB: 'desde',
     yourData: 'Seus dados',
-    remainingTime: (days: number) => `Faltam ${days} dias para expirar o teste grátis`,
+    remainingTime: (days: number) => `Falta${days > 1 ?'m' : ''} ${days} dia${days > 1 ?'s' : ''} para expirar o teste grátis`,
     password: 'Senha: ••••••••',
     changeEmail: 'Alterar e-mail da conta',
     changePassowrd: 'Alterar senha',
@@ -339,7 +340,6 @@ export const TEXTS = {
     proItem3: 'Criação de alertas com filtros e palavras-chaves personalizadas',
     preOrder: 'Encomende seu relatório',
     preOrderDesc: 'Para organização que precisam de conteúdo centralizado e curado por especialistas sobre um determinado assunto',
-    contact: 'Contactar vendas',
     simulate: 'Simular custo',
     discount: '50% para organizações que não visam lucro',
     discountDesc: 'Seu impacto é importante. O Diário do Clima apoia pessoas e organizações independentes que desejam utilizar nosso conteúdo para transformar a sociedade. Para se inscrever na lista de espera, preencha o formulário.',

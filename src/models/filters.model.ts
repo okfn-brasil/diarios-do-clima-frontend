@@ -23,7 +23,7 @@ export interface ReqFilters {
   until?: string | Date;
   published_since?: string | Date;
   territory_id?: string;
-  subthemes?: string[];
+  subtheme?: string[];
   entities?: string[];
   [key: string]: string | Date | (string | null)[] | undefined | number | string[];
 }
@@ -161,6 +161,7 @@ const getDate = (dates: Dates | undefined, key: string ) => {
 
 // FILTERS TO API
 export const parseFiltersToApi = (filters: FiltersState, currPage: number) => {
+  console.log(filters);
   const offset = currPage * filters.itemsPerPage;
   const pageSize = (offset + filters.itemsPerPage < 10000) ?  filters.itemsPerPage : 10000 - offset;
   const parsedFilters = parseFiltersToUrl(filters);
@@ -171,8 +172,8 @@ export const parseFiltersToApi = (filters: FiltersState, currPage: number) => {
     size: pageSize,
     until: parseDate(filters.dates?.end),
     published_since: filters.dates?.start || filters.dates?.end ? parseDate(filters.dates?.start) : parsePeriod(parsedFilters.period as number),
-    territory_id: parsedFilters.territory_id,
-    subthemes: parsedFilters.themes as string[],
+    territory_ids: parsedFilters.territory_id,
+    subthemes: parsedFilters.themes?.map(theme => theme?.replace(/\ /g, '+')) as string[],
     entities: filters.ente ? [filters.ente] : undefined,
   };
   return convertToParams(newFilters)

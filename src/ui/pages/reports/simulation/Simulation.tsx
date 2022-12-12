@@ -83,6 +83,7 @@ const SimulationForm = () => {
     if(!selectedCities.includes(value)) {
       const newCities = [...selectedCities, value];
       setCities(newCities);
+      console.log(newCities)
       setInputs((values: SimulationModel) => ({...values, [name]: {value: newCities}}));
     }
   };
@@ -212,11 +213,11 @@ const SimulationForm = () => {
             value={inputs.cities.value}
             name='cities'
             resetField={resetCities}
-            onChange={selectChange}
+            onChangeSelect={selectChange}
           />
           <div className='selected-cities'>
             {selectedCities.filter(city => !!city).map(city => 
-              <div className='selected-city' key={city} onClick={() => onRemoveCity(city)}>{citiesList.find(curr => curr.value === city)?.label}  x</div>
+              <div className='selected-city' key={city} onClick={() => onRemoveCity(city)}>{citiesList.find(curr => curr.value === city)?.label}{city}  x</div>
             )}
           </div>
         </div>

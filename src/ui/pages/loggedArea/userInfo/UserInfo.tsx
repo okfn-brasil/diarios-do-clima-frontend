@@ -103,7 +103,17 @@ const UserInfo = () => {
     });
   };
 
-
+  const getRemainingTime = () => {
+    if(userData?.plan_subscription?.trial_end_at) {
+      const endDate = userData?.plan_subscription?.trial_end_at?.split('-') as string[];
+      const date_1 = new Date(`${endDate[1]}/${endDate[2]}/${endDate[0]}`);
+      const date_2 = new Date();
+      let difference = date_1.getTime() - date_2.getTime();
+      return Math.ceil(difference / (1000 * 3600 * 24));
+    } else {
+      return 0;
+    }
+  }
 
   return (
     <Grid container justifyContent='center' className='user-info-page'>
@@ -117,7 +127,7 @@ const UserInfo = () => {
         <div>
           <h2 className='h2-class font-sora'>{TEXTS.myAccount.title}</h2>
           <div className='sub-title'>{TEXTS.myAccount.subTitleA}{ userData.plan_pro ? ' PRO' : ''} {TEXTS.myAccount.subTitleB} {getDate()}</div>
-          {userData.plan_pro ? <div className='time-remaining-test'>{TEXTS.myAccount.remainingTime(5)}</div> : <></> }
+          {userData.plan_pro && getRemainingTime() > 0 ? <div className='time-remaining-test'>{TEXTS.myAccount.remainingTime(getRemainingTime())}</div> : <></> }
           <Grid container justifyContent='space-between'>
             <Grid className={(userData.plan_pro ? 'not-align-self' : '')  + ' white-box'}>
               <div className='sub-title'>{TEXTS.myAccount.yourData}</div>
