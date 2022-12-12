@@ -161,7 +161,6 @@ const getDate = (dates: Dates | undefined, key: string ) => {
 
 // FILTERS TO API
 export const parseFiltersToApi = (filters: FiltersState, currPage: number) => {
-  console.log(filters);
   const offset = currPage * filters.itemsPerPage;
   const pageSize = (offset + filters.itemsPerPage < 10000) ?  filters.itemsPerPage : 10000 - offset;
   const parsedFilters = parseFiltersToUrl(filters);

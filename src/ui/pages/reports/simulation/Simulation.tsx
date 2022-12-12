@@ -83,7 +83,6 @@ const SimulationForm = () => {
     if(!selectedCities.includes(value)) {
       const newCities = [...selectedCities, value];
       setCities(newCities);
-      console.log(newCities)
       setInputs((values: SimulationModel) => ({...values, [name]: {value: newCities}}));
     }
   };
