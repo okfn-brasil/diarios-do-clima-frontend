@@ -164,7 +164,6 @@ export const parseFiltersToApi = (filters: FiltersState, currPage: number) => {
   const offset = currPage * filters.itemsPerPage;
   const pageSize = (offset + filters.itemsPerPage < 10000) ?  filters.itemsPerPage : 10000 - offset;
   const parsedFilters = parseFiltersToUrl(filters);
-  console.log()
   const newFilters: ReqFilters = {
     querystring: parsedFilters.query,
     sort_by: parsedFilters.order,
