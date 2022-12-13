@@ -164,6 +164,7 @@ export const parseFiltersToApi = (filters: FiltersState, currPage: number) => {
   const offset = currPage * filters.itemsPerPage;
   const pageSize = (offset + filters.itemsPerPage < 10000) ?  filters.itemsPerPage : 10000 - offset;
   const parsedFilters = parseFiltersToUrl(filters);
+  console.log()
   const newFilters: ReqFilters = {
     querystring: parsedFilters.query,
     sort_by: parsedFilters.order,
@@ -171,7 +172,7 @@ export const parseFiltersToApi = (filters: FiltersState, currPage: number) => {
     size: pageSize,
     until: parseDate(filters.dates?.end),
     published_since: filters.dates?.start || filters.dates?.end ? parseDate(filters.dates?.start) : parsePeriod(parsedFilters.period as number),
-    territory_ids: parsedFilters.territory_id,
+    territories: typeof parsedFilters.territory_id === 'string' ? parsedFilters.territory_id?.split(',') : parsedFilters.territory_id,
     subthemes: parsedFilters.themes?.map(theme => theme?.replace(/\ /g, '+')) as string[],
     entities: filters.ente ? [filters.ente] : undefined,
   };
