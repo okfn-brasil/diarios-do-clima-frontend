@@ -1,5 +1,6 @@
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Option } from '@app/models/forms.model';
 import { Dates, FiltersStatePayload, parseUrlToFilters, SubmitDates } from '@app/models/filters.model';
 import { UserState } from '@app/models/user.model';
 import { updateFilters } from '@app/stores/filters.store';
@@ -53,6 +54,10 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
     setFilters((values: FiltersStatePayload) => ({...values, [name]: value}));
   };
 
+  const inputLocationChange = (name: string, newValues: Option[]) => {
+    setFilters((values: FiltersStatePayload) => ({...values, [name]: newValues.map(item => item.value)}));
+  };
+
   const checkBoxChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {name, checked} = event.target;
     
@@ -88,7 +93,7 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
         <hr className='thin-line'/>
       </div>
       <div className='filters'>
-        <LocationFilter onChange={inputChange} value={filters.territory_id as string}/>
+        <LocationFilter onChange={inputLocationChange} value={filters.territory_id as string}/>
         <section className='section-filter-class'>
           <h3 className='h3-class'>{TEXTS.searchPage.filters.period}</h3>
           <div>

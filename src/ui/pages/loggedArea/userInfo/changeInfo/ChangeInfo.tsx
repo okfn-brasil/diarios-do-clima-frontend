@@ -107,7 +107,7 @@ const ChangeInfoModal = ({isOpen, setLoading, onClose, userData}: ChangeEmail) =
 
         <SelectInput 
           classes='select-area-class' 
-          options={[{value: 'f', label: 'Feminino'},{value: 'm', label: 'Masculino'},{value: 'o', label: 'Outro'}]} 
+          options={[{value: 'f', label: 'Feminino'},{value: 'm', label: 'Masculino'},{value: 'n', label: 'Não binário'},{value: 'p', label: 'Prefiro não informar'}]} 
           label={TEXTS.registration.labels.gender}
           value={userInfo.gender} 
           name='gender' 

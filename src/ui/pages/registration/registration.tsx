@@ -1,4 +1,4 @@
-import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
+import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import computerImage from '@app/assets/images/computer-registration.png';
@@ -66,6 +66,7 @@ const Registration = () => {
         setInputs((values: RegistrationModel) => ({...values, [key]: {...input, errorMessage: validator as string}}));
         if(typeof validator === 'string') {
           errors.push(key);
+          (document.querySelector(`input[name='${key}']`) as HTMLInputElement)?.focus();
         }
       }
     });
@@ -153,6 +154,7 @@ const Registration = () => {
             label={TEXTS.registration.labels.name}
             classes='first-input'
             name='username'
+            id='username-registration'
             error={inputs.username.errorMessage}
             value={inputs.username.value}
             onChange={inputChange}
@@ -164,6 +166,7 @@ const Registration = () => {
             <TextInput
               label={TEXTS.registration.labels.email}
               name='email'
+              id='email-registration'
               error={inputs.email.errorMessage}
               value={inputs.email.value}
               onChange={inputChange}
@@ -174,7 +177,7 @@ const Registration = () => {
             />
           </div>
 
-          <PasswordField errorMessage={inputs.password.errorMessage} value={inputs.password.value} onChange={inputChange} name='password' classess='input-class'/>
+          <PasswordField id='password-registration' errorMessage={inputs.password.errorMessage} value={inputs.password.value} onChange={inputChange} name='password' classess='input-class'/>
           
           <SubmitForm />
         </div>
@@ -189,7 +192,7 @@ const Registration = () => {
         <div>
           <SelectInput 
             classes='select-area-class first-input' 
-            options={[{value: 'f', label: 'Feminino'},{value: 'm', label: 'Masculino'},{value: 'o', label: 'Outro'}]} 
+            options={[{value: 'f', label: 'Feminino'},{value: 'm', label: 'Masculino'},{value: 'n', label: 'Não binário'},{value: 'p', label: 'Prefiro não informar'}]} 
             label={TEXTS.registration.labels.gender}
             value={inputs.gender.value} 
             name='gender' 

@@ -133,7 +133,10 @@ const CnpjPage = () => {
                     {partners.map((partner, index) => <Partner key={index} name={`Sócio ${index + 1}`} data={partner} />)}
                   </div>
                 </div>
-                : <></>
+                : <div >
+                    <div className='h3-class'>{TEXTS.cnpjPage.partners}</div>
+                    <p className='no-partners'>{TEXTS.cnpjPage.noPartners}</p>
+                </div>
               }
             </div>
 

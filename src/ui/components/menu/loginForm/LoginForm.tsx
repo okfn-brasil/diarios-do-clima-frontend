@@ -96,11 +96,11 @@ const LoginForm = ({showLoginForm, onClickForgot}: PropsLoginForm) => {
           <p className='paragraph-class'>{TEXTS.loginForm.subTitle}</p>
 
           <form onSubmit={handleSubmit}>
-            <Input required type='email' value={inputs.email} className='input-class' name='email' onChange={inputChange} placeholder={TEXTS.loginForm.inputEmail} />
+            <Input id='user-login' required type='email' value={inputs.email} className='input-class' name='email' onChange={inputChange} placeholder={TEXTS.loginForm.inputEmail} />
             
             <div className='password-field'>
               <img className={'hover-animation ' + (passFieldType ? 'low-opacity' : '')} src={ShowPassIcon} onClick={changeFieldType} />
-              <Input required type={passFieldType ? 'password' : 'text'} value={inputs.password} className='input-class' name='password' onChange={inputChange} placeholder={TEXTS.loginForm.inputPassword} />
+              <Input id='password-login' required type={passFieldType ? 'password' : 'text'} value={inputs.password} className='input-class' name='password' onChange={inputChange} placeholder={TEXTS.loginForm.inputPassword} />
             </div>
             <div className='forgot-link'>
               <Link to='' onClick={onForgotPassword} className='hover-animation'>

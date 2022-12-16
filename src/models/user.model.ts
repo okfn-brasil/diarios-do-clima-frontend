@@ -81,6 +81,7 @@ interface Plan {
     data: string;
     created_at: string;
   }
+  trial_end_at?: string;
 }
 
 export interface ChangePasswordForm {

@@ -16,9 +16,10 @@ interface PropsInput {
   type?: string;
   autoComplete?: string;
   disabled?: boolean;
+  id?: string;
 }
 
-const TextInput = ({value, autoComplete, disabled, required, classes, onBlur, onChange, name, label, type, error, mask}: PropsInput) => {
+  const TextInput = ({id, value, autoComplete, disabled, required, classes, onBlur, onChange, name, label, type, error, mask}: PropsInput) => {
   return (
     <FormControl className={`form-input ${classes}`} fullWidth>
       <InputLabel id={name}>{label}</InputLabel>
@@ -31,6 +32,7 @@ const TextInput = ({value, autoComplete, disabled, required, classes, onBlur, on
             name={name}
             className='input-class'
             disabled={disabled}
+            id={id}
           />}
         </InputMask>
         :
@@ -45,6 +47,7 @@ const TextInput = ({value, autoComplete, disabled, required, classes, onBlur, on
           onChange={onChange}
           disabled={disabled}
           autoComplete={autoComplete}
+          id={id}
         />
       }
       <InputError>{error}</InputError>

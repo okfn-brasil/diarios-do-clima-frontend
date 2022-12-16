@@ -212,11 +212,11 @@ const SimulationForm = () => {
             value={inputs.cities.value}
             name='cities'
             resetField={resetCities}
-            onChange={selectChange}
+            onChangeSelect={selectChange}
           />
           <div className='selected-cities'>
             {selectedCities.filter(city => !!city).map(city => 
-              <div className='selected-city' key={city} onClick={() => onRemoveCity(city)}>{citiesList.find(curr => curr.value === city)?.label}  x</div>
+              <div className='selected-city' key={city} onClick={() => onRemoveCity(city)}>{citiesList.find(curr => curr.value === city)?.label}{city}  x</div>
             )}
           </div>
         </div>

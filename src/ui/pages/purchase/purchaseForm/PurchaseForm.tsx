@@ -18,6 +18,8 @@ import PurchaseDetails from '../purchaseDetails/PurchaseDetails';
 import PurchaseSubmit from '../purchaseSubmit/PurchaseSubmit';
 
 import './PurchaseForm.scss';
+import { is_cpf } from '@app/ui/utils/functions.utils';
+
 
 const inputsDefaultValue: FormPurchaseModel = {
   card: { value: '' },
@@ -63,7 +65,7 @@ const fieldValidations: ValidationInputModel = {
   city: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres');},
   district: (s: InputModel) => { return inputValidation(s.value, 5, 'O campo deve possuir no mínimo 5 caracteres');},
   cep: (s: InputModel) => { return inputValidation(s.value, 8, 'O CEP inserido é inválido');},
-  cpf: (s: InputModel) => { return inputValidation(s.value, 11, 'O CPF inserido é inválido');},
+  cpf: (s: InputModel) => { return is_cpf(s.value) ? false : 'O CPF inserido é inválido';},
   phone: (s: InputModel) => { return inputValidation(s.value, 11, 'O número de telefone inserido é inválido');},
   birthday: (s: InputModel) => { return validateDate(s.value, (value: Date) => !(new Date() > value));},
   validity: (s: InputModel) => { return validateDate(s.value, (value: Date) => !(new Date() < value));},

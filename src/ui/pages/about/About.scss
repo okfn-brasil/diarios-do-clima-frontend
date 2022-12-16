@@ -79,6 +79,16 @@
     .blue-link {
       font-size: 14px;
     }
+
+    .has-custom-size {
+      .partner-logo  {
+        height: unset;
+
+        img {
+          max-height: unset;
+        }
+      }
+    }
   }
 
   .partners-title {
