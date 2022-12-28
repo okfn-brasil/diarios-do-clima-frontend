@@ -23,6 +23,12 @@ import ChangePaymentModal from './changePayment/ChangePayment';
 import CancelPlan from './confirmCancel/ConfirmCancel';
 
 import './UserInfo.scss';
+import { AxiosResponse } from 'axios';
+
+interface CurrentPlanInfo {
+  nextDate: Date;
+  active: boolean;
+}
 
 const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
@@ -39,6 +45,8 @@ const UserInfo = () => {
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
   const [cancellingError, setCancellingError] : [string, Dispatch<string>] = useState('');
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
+  const [error, setError] : [string, Dispatch<string>] = useState('');
+  const [currPlanInfo, setCurrPlanInfo] : [CurrentPlanInfo, Dispatch<CurrentPlanInfo>] = useState({} as CurrentPlanInfo);
   const [showChangeEmailModal, setVisibilityEmailModal] : [boolean, Dispatch<boolean>] = useState(false);
   const [showEditInfoModal, setVisibilityInfoModal] : [boolean, Dispatch<boolean>] = useState(false);
   const [showPasswordModal, setVisibilityPassModal] : [boolean, Dispatch<boolean>] = useState(false);
@@ -58,27 +66,39 @@ const UserInfo = () => {
   };
 
   const getNextPayment = () => {
-    const created = userData.plan_subscription?.created_at;
-    if(created) {
-      const today = new Date();
-      const date = new Date(created);
-      const day = date.getDate();
-      const nextMonth = new Date(today);
-      nextMonth.setMonth(today.getMonth() + 1);
-      return `${day} de ${months[nextMonth.getMonth()]} de ${nextMonth.getFullYear()}`;
+    if(currPlanInfo.nextDate) {
+      const date = currPlanInfo.nextDate;
+      return `${date.getDate()} de ${months[date.getMonth()]} de ${date.getFullYear()}`;
     } else {
       return '';
     }
   };
 
+  const getPlanInfo = (id: number) => {
+    billingService.getCurrentPlan(id).then((response: any) => {
+      setCurrPlanInfo({
+        active: true,
+        nextDate: new Date(response[0].schedulingDate),
+      })
+      setLoading(false);
+    }).catch(() => {
+      setError('Ocorreu um erro ao consultar as informações do plano.');
+      setLoading(false);
+    });
+  }
+
   const getUserInfo = () => {
     accountService.getUserData().then(
       (response: UserResponseModel) => {
         dispatch(userUpdate(response));
-        setLoading(false);
+        if(response.plan_subscription?.status?.data === 'ACTIVE' && response.plan_subscription?.id) {
+          getPlanInfo(response.plan_subscription.id);
+        } else {
+          setLoading(false);
+        }
       }).catch(() => {
-      location.reload();
-    });
+        location.reload();
+      });
   };
 
   const cancelPlan = () => {
@@ -164,7 +184,7 @@ const UserInfo = () => {
               </div>
             </Grid>
             <Grid className={(userData.plan_pro ? 'not-align-self' : '')  + ' white-box'}>
-              {userData.plan_pro ? 
+              {userData.plan_pro && currPlanInfo.active? 
                 <div>
                   <div className='sub-title plan-sub-title'>{TEXTS.myAccount.plan}</div>
                   <div className='plan-type'>{TEXTS.myAccount.proPlan}</div>
@@ -173,25 +193,35 @@ const UserInfo = () => {
                     <div className='card-box'></div>
                     <div className='card-digits'>**** **** **** {userData.credit_card?.last_four_digits}</div>
                   </div>
+               
 
-                  <div className='small-text'>{TEXTS.myAccount.nextCharge} {getNextPayment()}.</div>
+                    <div>
+                      <div className='small-text'>{TEXTS.myAccount.nextCharge} {getNextPayment()}.</div>
 
-                  <div 
-                    onClick={() => setVisibilityPaymentModal(true)}
-                    className='hover-animation manage-payment modal-link'
-                  >
-                    <div className='form-link'>
-                      {TEXTS.myAccount.changePayment} <ArrowRight/>
+                      <div 
+                        onClick={() => setVisibilityPaymentModal(true)}
+                        className='hover-animation manage-payment modal-link'
+                      >
+                        <div className='form-link'>
+                          {TEXTS.myAccount.changePayment} <ArrowRight/>
+                        </div>
+                      </div>
+                      <InputError classess='cancelling-error'>{cancellingError}</InputError>
+                      <ButtonOutlined onClick={() => setVisibilityCancelPlan(true)} fullWidth>{TEXTS.myAccount.cancelPlan}</ButtonOutlined>
                     </div>
-                  </div>
-                  <InputError classess='cancelling-error'>{cancellingError}</InputError>
-                  <ButtonOutlined onClick={() => setVisibilityCancelPlan(true)} fullWidth>{TEXTS.myAccount.cancelPlan}</ButtonOutlined>
                 </div>
                 :
                 <div>
                   <div className='sub-title plan-sub-title'>{TEXTS.myAccount.plan}</div>
-                  <div className='plan-type'>{TEXTS.myAccount.basic}</div>
-                  <Link to={urls.purchase.url}><ButtonGreen fullWidth>{TEXTS.myAccount.startTest}</ButtonGreen></Link>
+                  {error ? 
+                    <div className='plan-error'>{error}</div>
+                    : 
+                    <div>
+                      <div className='plan-type'>{TEXTS.myAccount.basic}</div>
+                      <Link to={urls.purchase.url}><ButtonGreen fullWidth>{TEXTS.myAccount.startTest}</ButtonGreen></Link>
+                    </div>
+                  }
+                  
                 </div>
               }
             </Grid>

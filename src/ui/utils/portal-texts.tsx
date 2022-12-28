@@ -11,7 +11,7 @@ export const TEXTS = {
   defaultSubmitText: 'Continuar',
   stateList: [
     'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF'
-  ],
+  ].sort((a, b) => a.localeCompare(b)),
   cookieAlert: {
     text: 'Nós utilizamos cookies essenciais para o site funcionar e alguns adicionais para entender como você utiliza o Diário do Clima. Mais detalhes nos Termos.'
   },
@@ -566,6 +566,7 @@ export const TEXTS = {
       createAlert: 'Criar alerta',
     },
     list: {
+      maxResults: ' - Sua busca retornou o número máximo de resultados, tente adicionar filtros ou termos mais específicos.',
       results: 'resultados encontrados',
       createAlert: 'Criar alerta',
       orderSelect: 'Ordenar por',
