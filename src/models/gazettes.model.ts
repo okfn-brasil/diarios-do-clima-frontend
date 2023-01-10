@@ -39,7 +39,18 @@ export const parseGazettes = (gazettes: GazetteModel[], query: string) => {
       }
     });
     const date = new Date(item.date);
-    let replacedText = newText.replace(/~~~/g, 'a').replace(/~%/g, 'b');
+
+    const replaceEntity = newText.split('<~%>');
+    let newTextEntity = '';
+    replaceEntity.forEach(textFragment => { 
+      const entityIndex = textFragment.indexOf('</~%>');
+      if (entityIndex > 0) {
+        newTextEntity += `<b class='entity-term'>${textFragment}`;
+      } else {
+        newTextEntity += textFragment;
+      }
+    });
+    let replacedText = newTextEntity.replace(/~~~/g, 'a').replace(/~%/g, 'b');
   
     return {
       ...item,

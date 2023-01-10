@@ -21,6 +21,10 @@ export default class BillingService {
     return api.get('/plans/').then((response) => response as PlansResponse);
   }
 
+  getCurrentPlan(id: number) {
+    return api.get(`/subscriptions/orders/${id}`).then((response) => response);
+  }
+
   addAddress(form: FormPurchaseModel, method: string) {
     const address = {
       street: form.address.value,

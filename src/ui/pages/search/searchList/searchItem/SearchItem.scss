@@ -13,7 +13,9 @@
     white-space: pre-wrap;
 
     a {
-      color: $black;
+      color: $white;
+      background-color: $dark;
+      padding: 0 2px;
       text-decoration: underline;
     }
   }
@@ -66,4 +68,11 @@
       }
     }
   }
+
+  .entity-term {
+    background-color: $baseGray1;
+    padding: 0 2px;
+  }
+
+
 }

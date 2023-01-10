@@ -1,6 +1,6 @@
 import { Dispatch, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import emptyListImage from '@app/assets/images/empty-list.svg';
+import emptyListImage from '@app/assets/images/empty.png';
 import bellIcon from '@app/assets/images/icons/black-bell.svg';
 import EmptySearch from '@app/assets/images/icons/empty-search.svg';
 import { FiltersState, OrderFilter, parseUrlToFilters } from '@app/models/filters.model';
@@ -47,7 +47,7 @@ const SearchList = ({list, listSize, searchTimes, isLoading, openCreateAlert}: P
       <Grid item sm={10}>
         {listSize ? 
           <div>
-            <h3 className='h3-class title'>{listSize} {TEXTS.searchPage.list.results}</h3>
+            <h3 className='h3-class title'>{listSize} {TEXTS.searchPage.list.results} {listSize >= 10000 ? TEXTS.searchPage.list.maxResults : ''}</h3>
           </div>
           : <></>
         }
@@ -97,7 +97,7 @@ const SearchList = ({list, listSize, searchTimes, isLoading, openCreateAlert}: P
             <Grid container justifyContent='center' className='container empty-list'>
               <div>
                 <div className='text-area'>
-                  <img src={emptyListImage} alt='busca vazia'/>
+                  <img src={emptyListImage} className='empty-list-image' alt='busca vazia'/>
                   <h3 className='h3-class'>{TEXTS.searchPage.list.emptyResult}</h3>
                 </div>
               </div>
