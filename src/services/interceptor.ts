@@ -10,7 +10,7 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
   params: {},
-  baseURL: `http${location.hostname.includes('localhost') ? '' : 's'}://staging.diariodoclima.jurema.la/api`,
+  baseURL: `http${location.hostname.includes('localhost') ? '' : 's'}://backend-api.diariodoclima.ok.org.br/api`,
 });
 
 api.interceptors.request.use(
