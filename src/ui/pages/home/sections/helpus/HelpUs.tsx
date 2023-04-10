@@ -18,13 +18,13 @@ const HelpUs = () => {
 
       <Grid item xs={10} md={8} className='buttons'>
         <LinkManager to={urls.purchase.url}>
-          <ButtonSolidGreen classess='button'>
+          <ButtonSolidGreen classes='button'>
             {TEXTS.home.helpUs.buttonSubscribe}
           </ButtonSolidGreen>
         </LinkManager>
 
         <LinkManager to={urls.registration.url}>
-          <ButtonSoliddark classess='button'>
+          <ButtonSoliddark classes='button'>
             {TEXTS.home.helpUs.buttonStart}
           </ButtonSoliddark>
         </LinkManager>

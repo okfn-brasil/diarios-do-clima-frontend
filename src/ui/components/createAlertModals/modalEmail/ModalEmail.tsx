@@ -74,7 +74,7 @@ const ModalEmail = ({isOpen, userEmail, alertEmail, onBack, onApply}: ModalEmail
             label={TEXTS.editEmail.inputLabel}
           />
           <InputError >{ hasError }</InputError>
-          <ButtonGreen disabled={(hasError === TEXTS.editEmail.invalidError) || !email} classess='button-apply-email' fullWidth onClick={apply}>{TEXTS.editEmail.submit}</ButtonGreen>
+          <ButtonGreen disabled={(hasError === TEXTS.editEmail.invalidError) || !email} classes='button-apply-email' fullWidth onClick={apply}>{TEXTS.editEmail.submit}</ButtonGreen>
           <Loading isLoading={isLoading}/>
         </div>
       </Modal>

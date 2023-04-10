@@ -31,8 +31,8 @@ const UnderlinText =({
 };
 
 interface PropsOption {
-  id: number;
-  selectedId: number;
+  id: string;
+  selectedId: string;
   label: string;
   icon: string;
   onClick: MouseEventHandler<HTMLDivElement>;
@@ -51,21 +51,21 @@ const Option = ({ id, selectedId, label, icon, onClick }: PropsOption) => {
   );
 };
 
-const getLeadImage = (index: number) => {
-  if (index === 1)
-    return HistoryLead;
-
-  if (index === 2)
+const getLeadImage = (index: string) => {
+  if (index === 'theme')
     return ThemeLead;
 
-  if (index === 3)
+  if (index === 'alerts')
     return AlertsLead;
 
   return HistoryLead;
 };
 
+
 const WeOffer = () => {
-  const [selectedId, setSelectedId] = useState(1);
+  const [selectedId, setSelectedId] = useState<string>('theme');
+  const texts = TEXTS.home.weOffer.leads[selectedId] as Record<string, string>;
+  
   return (
     <Grid container className='we-offer container light-blue-area' justifyContent='center'>
       <Grid item container xs={10} className='vertical-spacing-container'>
@@ -76,19 +76,19 @@ const WeOffer = () => {
         </Grid>
         <Grid item container xs={12}>
           <Grid item container xs={12} md={3} justifyContent='space-between'>
-            <Option id={2} onClick={() => setSelectedId(2)} icon={ThemeLogo} label={TEXTS.home.weOffer.option.theme} selectedId={selectedId} />
-            <Option id={1} onClick={() => setSelectedId(1)} icon={HistoryLogo} label={TEXTS.home.weOffer.option.history} selectedId={selectedId} />
-            <Option id={3} onClick={() => setSelectedId(3)} icon={AlertsLogo} label={TEXTS.home.weOffer.option.alerts} selectedId={selectedId} />
+            <Option id={'theme'} onClick={() => setSelectedId('theme')} icon={ThemeLogo} label={TEXTS.home.weOffer.option.theme} selectedId={selectedId} />
+            <Option id={'history'} onClick={() => setSelectedId('history')} icon={HistoryLogo} label={TEXTS.home.weOffer.option.history} selectedId={selectedId} />
+            <Option id={'alerts'} onClick={() => setSelectedId('alerts')} icon={AlertsLogo} label={TEXTS.home.weOffer.option.alerts} selectedId={selectedId} />
           </Grid>
           <Grid item container justifyContent='center' xs={12} md={5}>
             <img src={getLeadImage(selectedId)} className='central-img' alt='visual representation of option'/>
           </Grid>
           <Grid item xs={12} md={4} className='call-to-action'>
-            <h3 className='h3-class'>{TEXTS.home.weOffer.subtitle}</h3>
-            <p className='paragraph-class'>{TEXTS.home.weOffer.text}</p>
+            <h3 className='h3-class'>{texts?.subtitle}</h3>
+            <p className='paragraph-class'>{texts?.text}</p>
             <div>
               <LinkManager to={urls.purchase.url}>
-                <ButtonGreen classess='call-to-action-button'>
+                <ButtonGreen classes='call-to-action-button'>
                   {TEXTS.home.weOffer.buttonTrial}
                 </ButtonGreen>
               </LinkManager>

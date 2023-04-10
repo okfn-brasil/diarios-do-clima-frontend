@@ -66,13 +66,13 @@ const SearchField = ({onClickFilters, openCreateAlert, onClickAdvenced, filters}
           </form>
           <div className='only-mobile'>
             <Grid container justifyContent='space-between' className='buttons'>
-              <ButtonGreen onClick={onClickFilters} classess='mobile-button-class'>
+              <ButtonGreen onClick={onClickFilters} classes='mobile-button-class'>
                 <Grid container  justifyContent='space-between'>
                   <img src={filterIcon} className='button-icon' alt='filtrar'/>
                   <div className='filter-button'>{TEXTS.searchPage.searchfield.filter}</div>
                 </Grid>
               </ButtonGreen>
-              <ButtonOutlined onClick={openCreateAlert} classess='mobile-button-class'>
+              <ButtonOutlined onClick={openCreateAlert} classes='mobile-button-class'>
                 <Grid container justifyContent='space-between'>
                   <img src={bellIcon} className='button-icon' alt='criar alerta'/>
                   <div className='alert-button'>{TEXTS.searchPage.searchfield.createAlert}</div>

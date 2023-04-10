@@ -2,12 +2,12 @@ import './InputError.scss';
 
 interface PropsInputError {
   children?: JSX.Element | string | boolean;
-  classess?: string;
+  classes?: string;
 }
 
-const InputError = ({ children, classess }: PropsInputError) => {
+const InputError = ({ children, classes }: PropsInputError) => {
   return (
-    <div className={`input-error-warn ${classess}`}>
+    <div className={`input-error-warn ${classes}`}>
       { children }
     </div>
   );

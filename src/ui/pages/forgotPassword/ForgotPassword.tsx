@@ -73,7 +73,7 @@ const ForgotPassowrd = ({onClickClose}: ForgotPasswordModal) => {
                     required 
                     type='email'
                   />
-                  <InputError classess='send-error'>{error}</InputError>
+                  <InputError classes='send-error'>{error}</InputError>
                 </div>
                 <div className='button-area'>
                   <ButtonGreen onClick={onSubmit}>{TEXTS.forgotPassword.button}</ButtonGreen>

@@ -4,13 +4,13 @@ import './ButtonDark.scss';
 
 interface PropsButtondark {
   children: JSX.Element | string;
-  classess?: string;
+  classes?: string;
   fullWidth?: boolean;
 }
 
-const Buttondark = ({ children, classess, fullWidth }: PropsButtondark) => {
+const Buttondark = ({ children, classes, fullWidth }: PropsButtondark) => {
   return (
-    <ButtonBase className={`base-button button-dark-blue font-white-bold ${classess}`} style={{width: fullWidth ? '100%' : ''}}>
+    <ButtonBase className={`base-button button-dark-blue font-white-bold ${classes}`} style={{width: fullWidth ? '100%' : ''}}>
       {children}
     </ButtonBase>
   );

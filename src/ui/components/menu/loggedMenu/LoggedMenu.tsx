@@ -11,10 +11,10 @@ import './LoggedMenu.scss';
 
 interface PropsLoggedMenu {
   isWhite: boolean;
-  classess?: string;
+  classes?: string;
 }
 
-const LoggedMenu = ({isWhite, classess}: PropsLoggedMenu) => {
+const LoggedMenu = ({isWhite, classes}: PropsLoggedMenu) => {
   const navigate: NavigateFunction = useNavigate();
   const routerLocation = useLocation();
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ const LoggedMenu = ({isWhite, classess}: PropsLoggedMenu) => {
   };
 
   return (
-    <div className={`user-menu ${classess}`}>
+    <div className={`user-menu ${classes}`}>
       <button 
         className='hover-animation menu-img' 
         onClick={showMenu} 

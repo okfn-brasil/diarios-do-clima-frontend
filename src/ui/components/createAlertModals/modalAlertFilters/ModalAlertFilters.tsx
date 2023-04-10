@@ -68,7 +68,7 @@ const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: Moda
         
           <EntityFilter onChange={inputChange} value={currFilters.ente as string}/>
 
-          <ButtonGreen classess='modal-filter-apply' fullWidth onClick={apply}>{TEXTS.filters.applyFilters}</ButtonGreen>
+          <ButtonGreen classes='modal-filter-apply' fullWidth onClick={apply}>{TEXTS.filters.applyFilters}</ButtonGreen>
         </div>
       </div>
     </Modal>

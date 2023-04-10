@@ -239,7 +239,7 @@ const SimulationForm = () => {
           <InputError>{themeError}</InputError>
         </div>
 
-        <SubmitForm label='Solicitar uma proposta' disabled={isLoading} classess='submit-simulation'/>
+        <SubmitForm label='Solicitar uma proposta' disabled={isLoading} classes='submit-simulation'/>
         <InputError>{submitError}</InputError>
       </form>
     </Grid>

@@ -11,6 +11,25 @@
   align-items: center;
   display: flex;
 
+  .password-field {
+    margin-top: 15px;
+  }
+
+  .form-field {
+    position: relative;
+
+    .label-login {
+      position: absolute;
+      bottom: 15px;
+      opacity: 0.6;
+      transition: 0.4s;
+
+      &.has-focus {
+        transform: translateY(-30px);
+      }
+    }
+  }
+
   .container {
     animation: fadeIn 0.4s;
   }
