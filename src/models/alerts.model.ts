@@ -3,7 +3,7 @@ import { AxiosRequestConfig, AxiosResponse } from 'axios';
 export interface SubmitAlertForm extends AxiosRequestConfig {
   query_string: string;
   email?: string;
-  territory_id?: string;
+  territories?: string;
   sub_themes?: string[];
   gov_entities?: string[];
 }
@@ -16,7 +16,7 @@ export interface AlertModel extends AxiosResponse  {
   id: string;
   query_string: string;
   sub_themes?: string[];
-  territory_id?: string;
+  territories?: string[];
   user: string;
 }
 

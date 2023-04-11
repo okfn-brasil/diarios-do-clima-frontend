@@ -2,8 +2,10 @@ import { Dispatch, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import emptyListImage from '@app/assets/images/empty-list.svg';
 import { AlertModel, AlertsList } from '@app/models/alerts.model';
+import { City } from '@app/models/cities.model';
 import { UserState } from '@app/models/user.model';
 import AlertsService from '@app/services/alerts';
+import CitiesService from '@app/services/cities';
 import { RootState } from '@app/stores/store';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
@@ -18,8 +20,6 @@ import AlertItem from './alertItem/AlertItem';
 import DeleteAlert from './deleteAlert/DeleteAlert';
 
 import './MyAlerts.scss';
-import { City } from '@app/models/cities.model';
-import CitiesService from '@app/services/cities';
 
 interface AlertsListModel {
   [key: number]: AlertModel[];
