@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { Option } from '@app/models/forms.model';
 import { FiltersStatePayload } from '@app/models/filters.model';
+import { Option } from '@app/models/forms.model';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import EntityFilter from '@app/ui/components/filters/entityFilter/EntityFilter';
 import LocationFilter from '@app/ui/components/filters/locationFilter/LocationFilter';
@@ -32,11 +32,6 @@ const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: Moda
     setFilters(filters);
   }, [filters]);
 
-  const inputChange = (event: SelectChangeEvent<string>) => {
-    const {name, value} = event.target;
-    setFilters((values: FiltersStatePayload) => ({...values, [name]: value}));
-  };
-
   const inputLocationChange = (name: string, newValues: Option[]) => {
     setFilters((values: FiltersStatePayload) => ({...values, [name]: newValues.map(item => item.value)}));
   };
@@ -46,6 +41,15 @@ const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: Moda
     
     setFilters((values: FiltersStatePayload) => ({...values, themes: {
       ...values.themes,
+      [name]: checked
+    }}));
+  };
+
+  const entitiesCheckBoxChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const {name, checked} = event.target;
+    
+    setFilters((values: FiltersStatePayload) => ({...values, ente: {
+      ...values.ente,
       [name]: checked
     }}));
   };
@@ -66,7 +70,7 @@ const ModalAlertFilters = ({isOpen, emptyFields, onBack, onApply, filters}: Moda
 
           <ThemeFilter themesFilter={currFilters.themes} onChange={checkBoxChange} hasProPlan={true} />
         
-          <EntityFilter onChange={inputChange} value={currFilters.ente as string}/>
+          <EntityFilter entityFilter={currFilters.ente} onChange={entitiesCheckBoxChange}/>
 
           <ButtonGreen classes='modal-filter-apply' fullWidth onClick={apply}>{TEXTS.filters.applyFilters}</ButtonGreen>
         </div>

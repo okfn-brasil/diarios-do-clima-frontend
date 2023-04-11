@@ -4,7 +4,7 @@ import LOGOinfoamazonia from '@app/assets/images/infoamazonia.org.png';
 import LOGOoeco from '@app/assets/images/oeco.org.br.png';
 import LOGOokbr from '@app/assets/images/okbr.png';
 import LOGOProjetoColabora from '@app/assets/images/projetocolabora.com.br.png';
-import { Theme } from '@app/models/filters.model';
+import { CheckBoxFilter } from '@app/models/filters.model';
 
 import { urls } from './urls';
 
@@ -464,7 +464,7 @@ export const TEXTS = {
       subTitle: 'Você pode encomendar um relatório personalizado. Preencha o formulário abaixo para receber uma cotação.',
       value: 'Valor estimado',
       submitError: 'Ocorreu um erro ao enviar a mensagem, por favor, tente novamente.',
-      message: (phone: string, horizon: string, cities: string[], themes: Theme) => {
+      message: (phone: string, horizon: string, cities: string[], themes: CheckBoxFilter) => {
         const selectedThemes: string[] = [];
         Object.keys(themes).forEach(theme => {
           if(themes[theme]) {

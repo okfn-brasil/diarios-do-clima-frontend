@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch, useEffect, useState } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { Theme } from '@app/models/filters.model';
+import { CheckBoxFilter } from '@app/models/filters.model';
 import GazettesService from '@app/services/gazettes';
 import HelpIcon from '@app/ui/components/helpIcon/HelpIcon';
 import ProFlag from '@app/ui/components/proFlag/ProFlag';
@@ -12,19 +12,19 @@ import './ThemeFilter.scss';
 
 interface ThemeFilterProps {
   hasProPlan: boolean;
-  themesFilter?: Theme;
+  themesFilter?: CheckBoxFilter;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const ThemeFilter = ({onChange, hasProPlan, themesFilter}: ThemeFilterProps) => {
   const navigate: NavigateFunction = useNavigate();
   const gazzetesService = new GazettesService();
-  const [themes, setThemes] : [Theme, Dispatch<Theme>] = useState({} as Theme);
+  const [themes, setThemes] = useState<CheckBoxFilter>({} as CheckBoxFilter);
   const [showMoreThemes, setShowMoreThemes] : [boolean, Dispatch<boolean>] = useState(false);
 
   useEffect(() => {
     gazzetesService.getThemes().then(response => {
-      const themesObj: Theme = {};
+      const themesObj: CheckBoxFilter = {};
       (response as string[]).forEach(key => {
         themesObj[key] = null;
       });
@@ -45,9 +45,10 @@ const ThemeFilter = ({onChange, hasProPlan, themesFilter}: ThemeFilterProps) => 
           <p>{TEXTS.searchPage.filters.themeSubtitle}</p>
           <div>
             <FormGroup>
-              {Object.keys(themes as Theme)
+              {Object.keys(themes as CheckBoxFilter)
+                .sort((a, b) => a.localeCompare(b))
                 .sort((themeA, themeB) => { 
-                  const items: Theme = themesFilter || themes;
+                  const items: CheckBoxFilter = themesFilter || themes;
                   return (themes[themeA] === items[themeB])? 0 : items[themeA]? -1 : 1;
                 })
                 .map((key: string, index: number) => {

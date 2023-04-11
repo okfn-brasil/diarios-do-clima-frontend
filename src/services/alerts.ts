@@ -7,12 +7,12 @@ export default class AlertsService {
   itemsPerPage = 6;
 
   postAlert(filters: ModalFilters, query: string) {
-    const newFilters: SubmitAlertForm = {
+    const newFilters = {
       query_string: query,
-      territory_id: filters.territory_id as string,
+      territory_id: filters.territory_id,
       sub_themes: filters.themes && filters.themes.length ? filters.themes as string[] : undefined,
-      gov_entities: filters.ente ? [filters.ente] : undefined,
-    }
+      gov_entities: filters.ente && filters.ente.length ? filters.ente as string[] : undefined,
+    };
     return api.post(this.currentUrl, newFilters).then((response) => response as AlertModel);
   }
 

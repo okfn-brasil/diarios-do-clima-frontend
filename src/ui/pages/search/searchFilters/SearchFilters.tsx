@@ -1,7 +1,7 @@
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Option } from '@app/models/forms.model';
 import { Dates, FiltersStatePayload, parseUrlToFilters, SubmitDates } from '@app/models/filters.model';
+import { Option } from '@app/models/forms.model';
 import { UserState } from '@app/models/user.model';
 import { updateFilters } from '@app/stores/filters.store';
 import { RootState } from '@app/stores/store';
@@ -11,7 +11,7 @@ import LocationFilter from '@app/ui/components/filters/locationFilter/LocationFi
 import ThemeFilter from '@app/ui/components/filters/themeFilter/ThemeFilter';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import CloseIcon from '@mui/icons-material/Close';
-import { Grid, SelectChangeEvent } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import './SearchFilters.scss';
 
@@ -21,7 +21,6 @@ interface PropsSearchFilters{
 
 const initialFilters: FiltersStatePayload = {
   territory_id: '0',
-  ente: '0',
   period: 0,
 };
 
@@ -49,10 +48,6 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
     }
   }, []);
 
-  const inputChange = (event: SelectChangeEvent<string>) => {
-    const {name, value} = event.target;
-    setFilters((values: FiltersStatePayload) => ({...values, [name]: value}));
-  };
 
   const inputLocationChange = (name: string, newValues: Option[]) => {
     setFilters((values: FiltersStatePayload) => ({...values, [name]: newValues.map(item => item.value)}));
@@ -63,6 +58,15 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
     
     setFilters((values: FiltersStatePayload) => ({...values, themes: {
       ...values.themes,
+      [name]: checked
+    }}));
+  };
+
+  const entitiesCheckBoxChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const {name, checked} = event.target;
+    
+    setFilters((values: FiltersStatePayload) => ({...values, ente: {
+      ...values.ente,
       [name]: checked
     }}));
   };
@@ -102,7 +106,7 @@ const SearchFilters = ({onClose}: PropsSearchFilters) => {
         </section>
         <ThemeFilter themesFilter={filters.themes} onChange={checkBoxChange} hasProPlan={!!userData.plan_pro} />
         
-        <EntityFilter onChange={inputChange} value={filters.ente as string}/>
+        <EntityFilter onChange={entitiesCheckBoxChange} entityFilter={filters.ente}/>
         
       </div>
     </Grid>
