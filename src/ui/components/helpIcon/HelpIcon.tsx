@@ -3,7 +3,7 @@ import icon from '@app/assets/images/icons/help.svg';
 import './HelpIcon.scss';
 
 interface HelpIconProps {
-  tooltip: string | React.ReactElement<any>;
+  tooltip?: string | React.ReactElement;
 }
 
 const HelpIcon = ({tooltip}: HelpIconProps) => {

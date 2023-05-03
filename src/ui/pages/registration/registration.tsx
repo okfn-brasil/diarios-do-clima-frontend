@@ -177,7 +177,7 @@ const Registration = () => {
             />
           </div>
 
-          <PasswordField id='password-registration' errorMessage={inputs.password.errorMessage} value={inputs.password.value} onChange={inputChange} name='password' classess='input-class'/>
+          <PasswordField id='password-registration' errorMessage={inputs.password.errorMessage} value={inputs.password.value} onChange={inputChange} name='password' classes='input-class'/>
           
           <SubmitForm />
         </div>
@@ -248,7 +248,7 @@ const Registration = () => {
             required={true}
           />
 
-          <SubmitForm classess='submit-registration' label={TEXTS.registration.labels.lastSubmit} disabled={isLoading}/>
+          <SubmitForm classes='submit-registration' label={TEXTS.registration.labels.lastSubmit} disabled={isLoading}/>
         </div>
       </div>
     );

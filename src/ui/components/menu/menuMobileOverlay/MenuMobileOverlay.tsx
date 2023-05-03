@@ -43,13 +43,13 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobi
           <>
             <Grid item xs={12} className='buttons-area'>
               <Link to={urls.registration.url}>
-                <ButtonGreen classess='buttons'>
+                <ButtonGreen classes='buttons'>
                   {TEXTS.menu.buttonSearch}
                 </ButtonGreen>
               </Link>
             </Grid>
             <Grid  onClick={onShowLoginForm} item xs={12} className='buttons-area'>
-              <ButtonOutlined classess='buttons outlined'>
+              <ButtonOutlined classes='buttons outlined'>
                 {TEXTS.menu.buttonSession}
               </ButtonOutlined>
             </Grid>

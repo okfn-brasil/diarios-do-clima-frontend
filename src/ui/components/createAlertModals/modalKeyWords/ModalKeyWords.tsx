@@ -46,7 +46,7 @@ const ModalKeyWords = ({isOpen, onBack, onApply, filters, emptyFields}: ModalKey
           name='keywords'
           label={TEXTS.modalQuery.inputLabel}
         /> 
-        <ButtonGreen disabled={!keyWords} classess='button-apply-key-words' fullWidth onClick={apply}>{TEXTS.modalQuery.apply}</ButtonGreen>
+        <ButtonGreen disabled={!keyWords} classes='button-apply-key-words' fullWidth onClick={apply}>{TEXTS.modalQuery.apply}</ButtonGreen>
       </div>
     </Modal>
   );

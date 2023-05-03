@@ -29,6 +29,8 @@ const LoginForm = ({showLoginForm, onClickForgot}: PropsLoginForm) => {
   const [passFieldType, setPassType]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(true);
   const [isLoading, setLoading]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
   const [error, setError]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
+  const [emailFocus, setEmailFocus] = useState<boolean>(false);
+  const [passFocus, setPassFocus] = useState<boolean>(false);
   const [inputs, setInputs] : [LoginModel, Dispatch<SetStateAction<LoginModel>>] = useState({
     email: '',
     password: '',
@@ -96,11 +98,15 @@ const LoginForm = ({showLoginForm, onClickForgot}: PropsLoginForm) => {
           <p className='paragraph-class'>{TEXTS.loginForm.subTitle}</p>
 
           <form onSubmit={handleSubmit}>
-            <Input id='user-login' required type='email' value={inputs.email} className='input-class' name='email' onChange={inputChange} placeholder={TEXTS.loginForm.inputEmail} />
+            <div className='form-field'>
+              <label className={`label-login ${(emailFocus || inputs.email) && 'has-focus'}`} htmlFor='user-login'>{TEXTS.loginForm.inputEmail}</label>
+              <Input id='user-login' required type='email' value={inputs.email} className='input-class' name='email' onBlur={() => setEmailFocus(false)} onFocus={() => setEmailFocus(true)} onChange={inputChange} placeholder='' />
+            </div>
             
-            <div className='password-field'>
+            <div className='password-field form-field'>
+              <label className={`label-login ${(passFocus || inputs.password) && 'has-focus'}`} htmlFor='password-login'>{TEXTS.loginForm.inputPassword}</label>
               <img className={'hover-animation ' + (passFieldType ? 'low-opacity' : '')} src={ShowPassIcon} onClick={changeFieldType} />
-              <Input id='password-login' required type={passFieldType ? 'password' : 'text'} value={inputs.password} className='input-class' name='password' onChange={inputChange} placeholder={TEXTS.loginForm.inputPassword} />
+              <Input id='password-login' onBlur={() => setPassFocus(false)} onFocus={() => setPassFocus(true)} required type={passFieldType ? 'password' : 'text'} value={inputs.password} className='input-class' name='password' onChange={inputChange} placeholder='' />
             </div>
             <div className='forgot-link'>
               <Link to='' onClick={onForgotPassword} className='hover-animation'>

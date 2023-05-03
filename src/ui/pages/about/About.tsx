@@ -1,17 +1,17 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import firstBanner from '@app/assets/images/about/about-desktop-top.png';
 import secondBanner from '@app/assets/images/about/about.png';
+import firstBanner from '@app/assets/images/about/about-desktop-top.png';
+import { UserState } from '@app/models/user.model';
+import { RootState } from '@app/stores/store';
 import ButtonSolidGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
+import LinkManager from '@app/ui/components/linkManager/LinkManager';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
 
 import './About.scss';
-import LinkManager from '@app/ui/components/linkManager/LinkManager';
-import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
-import { UserState } from '@app/models/user.model';
-import { useSelector } from 'react-redux';
-import { RootState } from '@app/stores/store';
 
 const AboutPage = () => {
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
@@ -43,7 +43,7 @@ const AboutPage = () => {
               {TEXTS.aboutPage.secondSubTitle}
             </p>
             <LinkManager to={urls.registration.url}>
-              <ButtonGreen classess='start-search'>
+              <ButtonGreen classes='start-search'>
                 {TEXTS.aboutPage.secondBannerButton}
               </ButtonGreen>
             </LinkManager>
@@ -81,12 +81,11 @@ const AboutPage = () => {
           <Grid item sm={8} container>
             <h3 className='h3-class partners-title'>{TEXTS.aboutPage.partnersTitle}</h3>
           </Grid>
-          <Grid item sm={8} container className='partners-list'>
+          <Grid item sm={12} container className='partners-list'>
             {TEXTS.partners.map(partner => {
               return (
                 <div key={partner.logo} className={`partner-box ${partner.customSize? 'has-custom-size' : ''}`}>
                   <div className='partner-logo'><img width={partner?.customSize?.width} alt='logo' src={partner.logo}/></div>
-                  <div className='partner-link'><a className='blue-link' href={partner.link}>{TEXTS.aboutPage.accessSite}</a></div>
                 </div>
               );
             })}

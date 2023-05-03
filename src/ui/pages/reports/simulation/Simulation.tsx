@@ -1,23 +1,24 @@
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react';
-import { Theme } from '@app/models/filters.model';
+import { CheckBoxFilter } from '@app/models/filters.model';
 import { FieldValidation, InputModel, InputType } from '@app/models/forms.model';
+import { Option } from '@app/models/forms.model';
+import { QuotationPostModel } from '@app/models/reports.model';
+import CitiesService from '@app/services/cities';
+import ReportsService from '@app/services/reports';
 import ThemeFilter from '@app/ui/components/filters/themeFilter/ThemeFilter';
 import TextInput from '@app/ui/components/forms/input/Input';
 import InputError from '@app/ui/components/forms/inputError/inputError';
+import SelectWithSearch from '@app/ui/components/forms/selectWithSearch/SelectWithSearch';
 import SubmitForm from '@app/ui/components/forms/submitForm/SubmitForm';
+import Loading from '@app/ui/components/loading/Loading';
 import { getInputWithoutMask, homePhoneMask, inputValidation, mobilePhoneMask } from '@app/ui/utils/form.utils';
 import { testEmail } from '@app/ui/utils/functions.utils';
 import { TEXTS } from '@app/ui/utils/portal-texts';
-import { Option } from '@app/models/forms.model';
 import { Grid } from '@mui/material';
 
-import './Simulation.scss';
-import SelectWithSearch from '@app/ui/components/forms/selectWithSearch/SelectWithSearch';
-import CitiesService from '@app/services/cities';
-import ReportsService from '@app/services/reports';
-import { QuotationPostModel } from '@app/models/reports.model';
 import ModalSubmitted from '../modalSubmitted/ModalSubmitted';
-import Loading from '@app/ui/components/loading/Loading';
+
+import './Simulation.scss';
 
 interface MultipleSelect {
   value: string[];
@@ -39,7 +40,7 @@ const initialValue = {
   cities: { value: [] as string[] },
   phone: { value: '' },
   horizon: { value: '' },
-}
+};
 
 const fieldValidations: FieldValidation = {
   name: (value: string) => { return value && value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false; },
@@ -51,7 +52,7 @@ const fieldValidations: FieldValidation = {
 const SimulationForm = () => {
   const [inputs, setInputs] : [SimulationModel, Dispatch<SetStateAction<SimulationModel>>] = useState(initialValue);
   const [selectedCities, setCities] : [string[], Dispatch<SetStateAction<string[]>>] = useState([] as string[]);
-  const [themes, setThemes] : [Theme, Dispatch<SetStateAction<Theme>>] = useState({});
+  const [themes, setThemes] : [CheckBoxFilter, Dispatch<SetStateAction<CheckBoxFilter>>] = useState({});
   const [themeError, setThemeError] : [string, Dispatch<SetStateAction<string>>] = useState('');
   const [phoneMask, setPhoneMask] : [string, Dispatch<SetStateAction<string>>] = useState(homePhoneMask);
   const [citiesList, setCitiesList]: [Option[], Dispatch<SetStateAction<Option[]>>] = useState([] as Option[]);
@@ -67,7 +68,7 @@ const SimulationForm = () => {
       const newCities = response.data.cities.map(city => { return {
         value: city.territory_id,
         label: `${city.territory_name} (${city.state_code})`,
-      }}).sort((a, b) => a.label.localeCompare(b.label));
+      };}).sort((a, b) => a.label.localeCompare(b.label));
       setCitiesList(newCities);
     });
   }, []);
@@ -97,7 +98,7 @@ const SimulationForm = () => {
   const onChangeTheme = (event: ChangeEvent<HTMLInputElement>) => {
     const {name, checked} = event.target;
     
-    setThemes((values: Theme) => ({
+    setThemes((values: CheckBoxFilter) => ({
       ...values,
       [name]: checked,
     }));
@@ -140,10 +141,10 @@ const SimulationForm = () => {
   const onRemoveCity = (id: string) => {
     let newCities = [...selectedCities];
     newCities = newCities.filter(function(item) {
-      return item !== id
+      return item !== id;
     });
     setCities(newCities);
-  }
+  };
 
   const submit = () => {
     setLoading(true);
@@ -152,11 +153,11 @@ const SimulationForm = () => {
       email: inputs.email.value,
       name: inputs.name.value,
       message: TEXTS.reportsPage.simulation.message(inputs.phone.value, inputs.horizon.value, selectedCities, themes)
-    }
+    };
     reportsService.postQuotation(message).then(() => {
       setInputs(initialValue);
       setThemes({});
-      setCities([])
+      setCities([]);
       setSubmittted(true);
       setLoading(false);
       setResetCities(Math.random());
@@ -239,7 +240,7 @@ const SimulationForm = () => {
           <InputError>{themeError}</InputError>
         </div>
 
-        <SubmitForm label='Solicitar uma proposta' disabled={isLoading} classess='submit-simulation'/>
+        <SubmitForm label='Solicitar uma proposta' disabled={isLoading} classes='submit-simulation'/>
         <InputError>{submitError}</InputError>
       </form>
     </Grid>

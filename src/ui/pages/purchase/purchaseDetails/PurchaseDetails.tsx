@@ -35,7 +35,7 @@ const PurchaseDetails = ({isLoading, plan, isModal}: PropsPurchaseDetails) => {
               <InputError>{plan.title}</InputError>
             </>}
         </div>
-        <SubmitForm disabled={isLoading || (!plan || !plan.id)} classess='submit-purchase' label={isModal ? TEXTS.myAccount.savePayment : TEXTS.purchasePage.submitLabel}/>
+        <SubmitForm disabled={isLoading || (!plan || !plan.id)} classes='submit-purchase' label={isModal ? TEXTS.myAccount.savePayment : TEXTS.purchasePage.submitLabel}/>
 
         <div className='purchase-terms'>
           {TEXTS.purchasePage.purchaseTerms}

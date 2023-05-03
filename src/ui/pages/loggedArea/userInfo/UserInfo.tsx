@@ -206,7 +206,7 @@ const UserInfo = () => {
                           {TEXTS.myAccount.changePayment} <ArrowRight/>
                         </div>
                       </div>
-                      <InputError classess='cancelling-error'>{cancellingError}</InputError>
+                      <InputError classes='cancelling-error'>{cancellingError}</InputError>
                       <ButtonOutlined onClick={() => setVisibilityCancelPlan(true)} fullWidth>{TEXTS.myAccount.cancelPlan}</ButtonOutlined>
                     </div>
                 </div>

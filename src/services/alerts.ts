@@ -9,10 +9,10 @@ export default class AlertsService {
   postAlert(filters: ModalFilters, query: string) {
     const newFilters: SubmitAlertForm = {
       query_string: query,
-      territory_id: filters.territory_id as string,
+      territories: filters.territory_id,
       sub_themes: filters.themes && filters.themes.length ? filters.themes as string[] : undefined,
-      gov_entities: filters.ente ? [filters.ente] : undefined,
-    }
+      gov_entities: filters.ente && filters.ente.length ? filters.ente as string[] : undefined,
+    };
     return api.post(this.currentUrl, newFilters).then((response) => response as AlertModel);
   }
 

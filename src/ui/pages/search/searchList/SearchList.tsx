@@ -55,7 +55,7 @@ const SearchList = ({list, listSize, searchTimes, isLoading, openCreateAlert}: P
           <div >
             <Grid item container sm={12} justifyContent='space-between'>
               <span className='hover-animation only-desktop'>
-                <ButtonOutlined onClick={openCreateAlert} classess='create-alert-button'>
+                <ButtonOutlined onClick={openCreateAlert} classes='create-alert-button'>
                   <Grid container justifyContent='space-between'>
                     <img src={bellIcon} alt='criar alerta'/>
                     <div className='alert-button'>{TEXTS.searchPage.list.createAlert}</div>

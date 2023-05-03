@@ -1,10 +1,12 @@
-import { urls } from './urls';
-import LOGOProjetoColabora from '@app/assets/images/projetocolabora.com.br.png';
+import LogoEcoNordeste from '@app/assets/images/econordeste_horizontal.png';
+import LOGOenvolverde from '@app/assets/images/envolverde.jpeg';
 import LOGOinfoamazonia from '@app/assets/images/infoamazonia.org.png';
 import LOGOoeco from '@app/assets/images/oeco.org.br.png';
-import LOGOenvolverde from '@app/assets/images/envolverde.jpeg';
 import LOGOokbr from '@app/assets/images/okbr.png';
-import { Theme } from '@app/models/filters.model';
+import LOGOProjetoColabora from '@app/assets/images/projetocolabora.com.br.png';
+import { CheckBoxFilter } from '@app/models/filters.model';
+
+import { urls } from './urls';
 
 export const TEXTS = {
   contactEmail: 'teste@contato.com',
@@ -139,10 +141,22 @@ export const TEXTS = {
         alerts: 'ALERTAS'
       },
       optionImageAlt: 'Representação visual da opção atualmente selecionada',
-      subtitle: 'Acesse todo o histórico de resultados',
-      text: 'Veja tudo o que já foi publicado, além dos três últimos meses, sobre políticas públicas ambientais',
       buttonTrial: 'Teste grátis por 7 dias',
-      linkAboutSubscription: 'Saiba mais sobre a assinatura'
+      linkAboutSubscription: 'Saiba mais sobre a assinatura',
+      leads: {
+        history: {
+          subtitle: 'Acesse todo o histórico de resultados',
+          text: 'Veja tudo o que já foi publicado, além dos três últimos meses, sobre políticas públicas ambientais',
+        },
+        theme: {
+          subtitle: 'Busque por assunto relevante',
+          text: 'Filtre os resultados pesquisados por temas inteligentes e encontre respostas para os seus assuntos de interesse',
+        },
+        alerts: {
+          subtitle: 'Receba avisos diários sobre novos atos',
+          text: 'Crie alertas personalizados e seja avisado sempre que um novo ato que corresponda à sua busca for publicado',
+        },
+      } as Record<string, Record<string, string>>
     },
     helpUs: {
       title: 'Ajude o diário do clima a crescer e receba benefícios',
@@ -450,7 +464,7 @@ export const TEXTS = {
       subTitle: 'Você pode encomendar um relatório personalizado. Preencha o formulário abaixo para receber uma cotação.',
       value: 'Valor estimado',
       submitError: 'Ocorreu um erro ao enviar a mensagem, por favor, tente novamente.',
-      message: (phone: string, horizon: string, cities: string[], themes: Theme) => {
+      message: (phone: string, horizon: string, cities: string[], themes: CheckBoxFilter) => {
         const selectedThemes: string[] = [];
         Object.keys(themes).forEach(theme => {
           if(themes[theme]) {
@@ -608,6 +622,9 @@ export const TEXTS = {
     {
       logo: LOGOenvolverde,
       link: 'https://envolverde.com.br/',
+    },
+    {
+      logo: LogoEcoNordeste,
     },
     {
       logo: LOGOokbr,

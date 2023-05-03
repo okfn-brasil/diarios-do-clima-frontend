@@ -94,7 +94,7 @@ const ChangePasswordModal = ({isOpen, setLoading, onClose}: ChangePassword) => {
           placeholder='Nova senha'
           onChange={onChangeInput} 
           name='new' 
-          classess='input-class'
+          classes='input-class'
         />
         <InputError>{error}</InputError>
       </div>

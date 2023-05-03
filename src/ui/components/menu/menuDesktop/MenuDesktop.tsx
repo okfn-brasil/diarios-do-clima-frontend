@@ -33,16 +33,16 @@ const MenuDesktop = ({isWhite, showLoginForm}: PropsMenuDesktop) => {
         <span className={`hover-animation menu-desktop-link ${isWhite ? 'dark-blue-link' : ''}`}>{TEXTS.menu.about}</span>
       </Link>
       { userData.access ? 
-        <LoggedMenu isWhite={isWhite} classess='logged-menu' ></LoggedMenu> :
+        <LoggedMenu isWhite={isWhite} classes='logged-menu' ></LoggedMenu> :
         <>
           <Link to={urls.registration.url}>
-            <ButtonGreen classess='font-small-button'>
+            <ButtonGreen classes='font-small-button'>
               {TEXTS.menu.buttonSearch}
             </ButtonGreen>
           </Link>
 
           <div onClick={onShowLoginForm}>
-            <ButtonOutlined classess={`font-small-button ${isWhite ? 'dark-blue-link' : ''}`}>
+            <ButtonOutlined classes={`font-small-button ${isWhite ? 'dark-blue-link' : ''}`}>
               {TEXTS.menu.buttonSession}
             </ButtonOutlined>
           </div>

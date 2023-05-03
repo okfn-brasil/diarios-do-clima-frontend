@@ -47,8 +47,8 @@ const BecomePro = () => {
           </div>
         </div>
         <div className='button-area'>
-          <Link to={urls.purchase.url}><ButtonGreen classess='card-button'>{TEXTS.becomeProPage.signUp}</ButtonGreen></Link>
-          <ButtonOutlined onClick={continueNavigation} classess='card-button button-gray'>{TEXTS.becomeProPage.continue}</ButtonOutlined>
+          <Link to={urls.purchase.url}><ButtonGreen classes='card-button'>{TEXTS.becomeProPage.signUp}</ButtonGreen></Link>
+          <ButtonOutlined onClick={continueNavigation} classes='card-button button-gray'>{TEXTS.becomeProPage.continue}</ButtonOutlined>
         </div>
       </Grid>
     </Grid>

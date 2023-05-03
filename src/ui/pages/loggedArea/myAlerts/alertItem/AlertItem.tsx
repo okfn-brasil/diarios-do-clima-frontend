@@ -25,7 +25,7 @@ const AlertItem = ({alert, cities, onDelete}: AlertProps) => {
           <div className='font-sora filter-title'>{TEXTS.myAlerts.alertItem.filters}</div>
           <div className='filter-item'>
             <img src={LocationIcon} alt='icone de localização' />
-            {alert.territory_id ? cities.find(city => city.territory_id === alert.territory_id)?.territory_name : 'Nenhuma localização selecionada'}
+            {alert.territories ? cities.map(city => alert.territories?.includes(city.territory_id) ? city.territory_name : '').filter(item => !!item).join(', ') : 'Nenhuma localização selecionada'}
           </div> 
           <div className='filter-item'>
             <img src={ThemeIcon} alt='icone de tema' />
@@ -34,7 +34,7 @@ const AlertItem = ({alert, cities, onDelete}: AlertProps) => {
           
           <div className='filter-item'>
             <img src={EnteIcon} alt='icone de ente governamental' />
-            {alert.gov_entities && alert.gov_entities.length ?  alert.gov_entities[0] : 'Nenhum ente do governo selecionado'}
+            {alert.gov_entities && alert.gov_entities.length ?  alert.gov_entities.join(', ') : 'Nenhum ente do governo selecionado'}
           </div> 
         </div> 
       </div> 

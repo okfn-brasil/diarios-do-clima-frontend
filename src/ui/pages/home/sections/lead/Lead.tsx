@@ -23,7 +23,7 @@ const Lead = () => {
             {TEXTS.home.lead.subtitle}
           </p>
           <LinkManager to={urls.registration.url}>
-            <ButtonGreen classess='start-search'>
+            <ButtonGreen classes='start-search'>
               {TEXTS.home.lead.buttonTitle}
             </ButtonGreen>
           </LinkManager>

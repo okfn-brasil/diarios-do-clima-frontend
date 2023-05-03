@@ -21,8 +21,8 @@ const ModalBecomePro = ({isOpen, onClose}: ModalBecomeProProps) => {
         <p className='paragraph-class'>{TEXTS.becomeProModal.subtitle}</p>
         <Link className='blue-link hover-animation' to={urls.plans.url}>{TEXTS.becomeProModal.knowMore}</Link>
         <div className='buttons'>
-          <Link to={urls.purchase.url}><ButtonGreen classess='hover-animation'>{TEXTS.becomeProModal.startTest}</ButtonGreen></Link>
-          <ButtonOutlined classess='hover-animation' onClick={onClose}>{TEXTS.becomeProModal.cancel}</ButtonOutlined>
+          <Link to={urls.purchase.url}><ButtonGreen classes='hover-animation'>{TEXTS.becomeProModal.startTest}</ButtonGreen></Link>
+          <ButtonOutlined classes='hover-animation' onClick={onClose}>{TEXTS.becomeProModal.cancel}</ButtonOutlined>
         </div>
       </div>
     </Modal>

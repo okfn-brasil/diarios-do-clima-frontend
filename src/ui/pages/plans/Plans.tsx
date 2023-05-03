@@ -51,7 +51,7 @@ const Plans = () => {
               <h1 className='card-price'>{TEXTS.plansPage.basicPrice}</h1>
               <div className='card-status'>{!userData.plan_pro ? TEXTS.plansPage.state : ''}</div>
               <Link to={userData.id ? urls.search.url : urls.registration.url} className='hover-animation'>
-                <ButtonOutlined classess='card-button'>
+                <ButtonOutlined classes='card-button'>
                   {TEXTS.plansPage.startSearch}
                 </ButtonOutlined>
               </Link>
@@ -80,7 +80,7 @@ const Plans = () => {
               <p className='card-desc'>{TEXTS.plansPage.proDesc}</p>
               <h1 className='card-price'>{TEXTS.plansPage.proPrice}<span>{TEXTS.plansPage.perMonth}</span></h1>
               <Link to={userData.id ? urls.purchase.url : urls.registration.url} className='hover-animation'>
-                <ButtonGreen classess='card-button'>
+                <ButtonGreen classes='card-button'>
                   {TEXTS.plansPage.startTestLink}
                 </ButtonGreen>
               </Link>
@@ -126,7 +126,7 @@ const Plans = () => {
           <p className='paragraph-class'>{TEXTS.plansPage.preOrderDesc}</p>
           <Grid>
             <Link to={urls.reports.url}>
-              <ButtonOutlined classess='button button-gray'>
+              <ButtonOutlined classes='button button-gray'>
                 {TEXTS.plansPage.simulate}
               </ButtonOutlined>
             </Link>
