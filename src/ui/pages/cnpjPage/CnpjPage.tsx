@@ -42,12 +42,15 @@ const CnpjPage = () => {
   const gazettesService = new GazettesService();
 
   useEffect(() => {
+    console.log("entrou")
     setLoading(true);
     gazettesService.getCnpj(params.id as string).then(result => {
+      console.log("chamou")
       setCNPJ(result.cnpj_info as CNPJInfo);
       getPartners(params.id as string);
       setLoading(false);
     }).catch(() => {
+      console.log("erro")
       setLoading(false);
       navigate(urls.notFound.url);
     });

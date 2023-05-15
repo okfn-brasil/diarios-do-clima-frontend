@@ -12,6 +12,7 @@ export default class GazettesService {
   }
 
   getCnpj(cnpj: string) {
+    console.log("get_cnpj")
     return api.get(this.currentUrl + 'cnpjs/' + cnpj).then((response) => response as CNPJResponse);
   }
 
