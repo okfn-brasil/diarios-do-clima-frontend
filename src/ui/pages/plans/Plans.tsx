@@ -136,18 +136,6 @@ const Plans = () => {
 
       <Grid container item sm={12} justifyContent='center' className='vertical-spacing-container'>
         <Grid item sm={8} className='container'>
-          <h3 className='h3-class' >{TEXTS.plansPage.discount}</h3>
-          <p className='paragraph-class'>{TEXTS.plansPage.discountDesc}</p>
-          <a href={'mailto:' + TEXTS.contactEmail}>
-            <ButtonGreen>
-              {TEXTS.plansPage.getDiscount}
-            </ButtonGreen>
-          </a>
-        </Grid>
-      </Grid>
-
-      <Grid container item sm={12} justifyContent='center' className='vertical-spacing-container'>
-        <Grid item sm={8} className='container'>
           <h2 className='h2-class faq-title'>{TEXTS.plansPage.faq}</h2>
           <div>
             {TEXTS.plansPage.faqItems.map(faqItem => 
