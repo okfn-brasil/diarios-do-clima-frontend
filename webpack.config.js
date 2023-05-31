@@ -3,8 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require("webpack");
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const options = {
-  "short_name": "Diário do clima",
-  "name": "Diário do clima",
+  "short_name": "Diário do Clima",
+  "name": "Diário do Clima",
   "icons": [
     {
       "src": "logo.ico",
@@ -45,7 +45,6 @@ module.exports = {
       title: 'Production',
       favicon: "./public/logo.ico",
       filename: "index.html",
-      manifest: "./public/manifest.json",
     }),
     new WebpackManifestPlugin(options),
     new webpack.HotModuleReplacementPlugin(),
