@@ -91,7 +91,7 @@ const UserInfo = () => {
     accountService.getUserData().then(
       (response: UserResponseModel) => {
         dispatch(userUpdate(response));
-        if(response.plan_subscription?.status?.data === 'ACTIVE' && response.plan_subscription?.id) {
+        if(response.plan_subscription?.status?.data === 'ACTIVE' && response.plan_subscription?.plan?.pagseguro_plan_id) {
           getPlanInfo(response.plan_subscription.id);
         } else {
           setLoading(false);
