@@ -55,7 +55,6 @@ const AboutPage = () => {
           <div className='spacing-top'>
             <h3 className='h3-class'>{TEXTS.aboutPage.whereStarted}</h3>
             <p className='paragraph-class'>{TEXTS.aboutPage.p1}</p>
-            <p className='paragraph-class'>{TEXTS.aboutPage.p2}</p>
           </div>
 
           <div className='vertical-spacing-container'>
@@ -85,7 +84,7 @@ const AboutPage = () => {
             {TEXTS.partners.map(partner => {
               return (
                 <div key={partner.logo} className={`partner-box ${partner.customSize? 'has-custom-size' : ''}`}>
-                  <div className='partner-logo'><img width={partner?.customSize?.width} alt='logo' src={partner.logo}/></div>
+                  <div className='partner-logo'><a href={partner.link} target='_noblank'><img width={partner?.customSize?.width} alt='logo' src={partner.logo}/></a></div>
                 </div>
               );
             })}

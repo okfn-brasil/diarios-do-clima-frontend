@@ -62,7 +62,7 @@ const UserInfo = () => {
     const date = new Date(userData.date_joined || '');
     const month = date.getMonth()? months[date.getMonth()] : '';
     const year = date.getFullYear()? date.getFullYear(): '';
-    return `${month} ${year}`;
+    return `${month} de ${year}`;
   };
 
   const getNextPayment = () => {

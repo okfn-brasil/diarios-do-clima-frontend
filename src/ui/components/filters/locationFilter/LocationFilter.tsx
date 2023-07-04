@@ -32,7 +32,7 @@ const LocationFilter = ({value, onChange}: LocationFilterProps) => {
           <HelpIcon 
             tooltip={
             <div>
-              O Diário do Clima está integrado ao Querido Diário, ferramenta que monitora os diários oficiais de dezenas de municípios e está em constante evolução. Veja a lista completa de cidades em: <a target='_blank' href='https://go.ok.org.br/cidades-qd'>go.ok.org.br/cidades-qd</a>
+              O Diário do Clima está integrado ao Querido Diário, ferramenta que monitora os diários oficiais de dezenas de municípios e está em constante evolução. Veja a lista completa de cidades em: <a target='_blank' href='https://queridodiario.ok.org.br/cidades-disponiveis'>queridodiario.ok.org.br/cidades-disponiveis</a>
             </div>}
           />
         </h3>

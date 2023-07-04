@@ -77,7 +77,7 @@ const CnpjPage = () => {
                 <div className='h3-class font-sora'>{cnpj.razao_social}</div>
               </div>
               <div>
-                <Link to={urls.search.url + '?period=1&query=' + cnpj.cnpj_completo}>
+                <Link to={urls.search.url + '?period=1&query="' + cnpj.cnpj_completo + '"'}>
                   <Buttondark>{TEXTS.cnpjPage.search}</Buttondark>
                 </Link>
               </div>

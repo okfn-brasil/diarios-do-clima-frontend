@@ -34,9 +34,15 @@ const EntityFilter = ({onChange, entityFilter}: ThemeFilterProps) => {
       { (entities && Object.keys(entities).length) ?
         <section className='section-filter-class theme-filter'>
           <h3 className='h3-class'>
-            {TEXTS.searchPage.filters.themeTitle} <HelpIcon />
+            {TEXTS.searchPage.filters.entityTitle}
+            <HelpIcon
+              tooltip={
+              <div>
+		Prefeituras podem citar entes governamentais relevantes nas publicações. Os mais relevantes e frequentes foram selecionados e marcados em cada excerto que são citados.
+              </div>}
+            />
           </h3>
-          <p>{TEXTS.searchPage.filters.themeSubtitle}</p>
+          <p>{TEXTS.searchPage.filters.entitySubtitle}</p>
           <div>
             <FormGroup>
               {Object.keys(entities as Record<string, boolean | null >)

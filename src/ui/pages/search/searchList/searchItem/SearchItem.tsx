@@ -29,7 +29,7 @@ const SearchItem = ({data}: PropsSearchItem) => {
     <div className='search-item'>
       <div className='search-item-desc' dangerouslySetInnerHTML={{__html: data.excerpt}}></div>
       <div className='search-item-date'>
-        {data.date as string} • <span>{data.territory_name}</span>
+        {data.date as string} • <span>{data.territory_name} ({data.state_code})</span>
       </div>
       <span className='hover-animation download-link'>
         <span onClick={showTooltip} className='hyper-link'>{TEXTS.searchPage.item.download}</span>

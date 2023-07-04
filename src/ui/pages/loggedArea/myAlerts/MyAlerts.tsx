@@ -152,7 +152,7 @@ const MyAlerts = () => {
         <Grid sm={10} xs={12} item container className='alerts-list' justifyContent='center'>
           <Grid item lg={8} sm={12} className='alerts-header'>
             <h3 className='h3-class'>{TEXTS.myAlerts.title}</h3>
-            <p className='paragraph-class'>{TEXTS.myAlerts.text1A} <b>{TEXTS.myAlerts.text1B}a</b>.</p>
+            <p className='paragraph-class'>{TEXTS.myAlerts.text1A} <b>{TEXTS.myAlerts.text1B}</b>.</p>
             <p className='paragraph-class'>{TEXTS.myAlerts.text2A} <b>{TEXTS.myAlerts.text2B}</b>.</p>
             <div className='buttons'>
               <ButtonGreen onClick={openCreateAlert}>{TEXTS.myAlerts.createAlert}</ButtonGreen>

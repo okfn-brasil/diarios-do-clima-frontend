@@ -25,7 +25,7 @@ const AlertItem = ({alert, cities, onDelete}: AlertProps) => {
           <div className='font-sora filter-title'>{TEXTS.myAlerts.alertItem.filters}</div>
           <div className='filter-item'>
             <img src={LocationIcon} alt='icone de localização' />
-            {alert.territories ? cities.map(city => alert.territories?.includes(city.territory_id) ? city.territory_name : '').filter(item => !!item).join(', ') : 'Nenhuma localização selecionada'}
+            {alert.territories ? cities.map(city => alert.territories?.includes(city.territory_id) ? `${city.territory_name} (${city.state_code})` : '').filter(item => !!item).join(', ') : 'Nenhuma localização selecionada'}
           </div> 
           <div className='filter-item'>
             <img src={ThemeIcon} alt='icone de tema' />

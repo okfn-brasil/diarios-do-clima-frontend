@@ -1,5 +1,6 @@
 import { Dispatch, useState } from 'react';
 import Arrow from '@app/assets/images/icons/arrow-down.svg';
+import { City } from '@app/models/cities.model';
 import { ModalFilters } from '@app/models/filters.model';
 import { UserState } from '@app/models/user.model';
 import AlertsService from '@app/services/alerts';
@@ -24,9 +25,10 @@ interface ModalSetAlertSpecProps {
   query: string;
   email: string;
   isAlertsPage?: boolean;
+  cities: City[];
 }
 
-const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmail, onClose, openBecomePro, onSubmit, isAlertsPage, userData, email, filters, query}: ModalSetAlertSpecProps) => {
+const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmail, onClose, openBecomePro, onSubmit, isAlertsPage, userData, email, filters, query, cities}: ModalSetAlertSpecProps) => {
   const alertsService = new AlertsService();
   const [isLoading, setLoading] : [boolean, Dispatch<boolean>] = useState(false);
   const [hasError, setError] : [boolean, Dispatch<boolean>] = useState(false);
@@ -73,7 +75,7 @@ const ModalSetAlertSpec = ({isOpen, onClickFilters, onClickKeyWords, onClickEmai
           <div className='alert-filters' onClick={() => {checkPlan(onFilters);}}>
             <div className='green-arrow'><img src={Arrow} alt='seta para a direita'/></div>
             <div className='small-text alert-filter-desc'>{TEXTS.createAlertModal.filters}</div>
-            {filters.territory_id ? <div className='small-text alert-filter-keys'>{TEXTS.createAlertModal.localFilter} {filters.territory_id}</div> : <></>}
+            {filters.territory_id ? <div className='small-text alert-filter-keys'>{TEXTS.createAlertModal.localFilter} {cities.map(city => filters.territory_id?.includes(city.territory_id) ? city.territory_name : '').filter(item => !!item).join(', ')}</div> : <></>}
             {filters.themes && filters.themes.length ? <div className='small-text alert-filter-keys'>{TEXTS.createAlertModal.themesFilter} {filters.themes?.join(', ')}</div> : <></>}
             {filters.ente && filters.ente.length ? <div className='small-text alert-filter-keys'>{TEXTS.createAlertModal.enteFilter} {filters.ente?.join(', ')}</div> : <></>}
           </div>

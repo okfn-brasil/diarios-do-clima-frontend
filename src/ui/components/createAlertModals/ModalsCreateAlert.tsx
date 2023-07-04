@@ -1,7 +1,8 @@
-
 import React, { Dispatch, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { City } from '@app/models/cities.model';
 import { convertFiltersToModalFilters, FiltersStatePayload, ModalFilters } from '@app/models/filters.model';
+import CitiesService from '@app/services/cities';
 import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
 
@@ -27,6 +28,7 @@ interface ModalCreateAlertProps {
 
 const ModalsCreateAlert = ({isOpen, onClose, onCreated, clean, onOpen, isAlertsPage, filters = initialFilters}: ModalCreateAlertProps) => {
   const userData: UserState = useSelector((state: RootState) => state.user as UserState);
+  const citiesService = new CitiesService();
   const [isOpenBecomePro, setStateBecomePro] : [boolean, Dispatch<boolean>] = useState(false);
   const [isOpenFilters, setStateFilters] : [boolean, Dispatch<boolean>] = useState(false);
   const [isOpenKeyWords, setStateKeyWords] : [boolean, Dispatch<boolean>] = useState(false);
@@ -36,6 +38,7 @@ const ModalsCreateAlert = ({isOpen, onClose, onCreated, clean, onOpen, isAlertsP
   const [query, setQuery] : [string, Dispatch<string>] = useState('');
   const [email, setEmail] : [string, Dispatch<string>] = useState('');
   const [emptyFields, setEmptyFields] : [number, Dispatch<number>] = useState(0);
+  const [citiesList, setCitiesList] : [City[], Dispatch<City[]>] = useState([] as City[]);
 
   useEffect(() => {
     setQuery('');
@@ -46,6 +49,9 @@ const ModalsCreateAlert = ({isOpen, onClose, onCreated, clean, onOpen, isAlertsP
   useEffect(() => {
     setdefinedFilters(convertFiltersToModalFilters(filters));
     setQuery(filters.query as string);
+    citiesService.getAll().then(response => {
+      setCitiesList(response.data.cities);
+    });
   },[filters]);
 
   const onOpenBecomePro = () => {
@@ -128,6 +134,7 @@ const ModalsCreateAlert = ({isOpen, onClose, onCreated, clean, onOpen, isAlertsP
   return (
     <>
       <ModalSetAlertSpec 
+        cities={citiesList}
         filters={definedFilters} 
         query={query} 
         onClickEmail={onClickEmail} 
