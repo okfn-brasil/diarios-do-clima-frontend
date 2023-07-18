@@ -24,9 +24,6 @@ export interface GazetteModel {
 export const parseGazettes = (gazettes: GazetteModel[], query: string) => {
   return gazettes.map(item => {
     item.excerpt = item.excerpt.replace(/entidadecnpj/g, '~~~').replace(/entidadeambiental/g, '~%');
-    if(query) {
-      item.excerpt = replaceQueryToBold(item.excerpt, query.trim());
-    }
     const replaceCnpj = item.excerpt.split('<~~~>');
     let newText = '';
     replaceCnpj.forEach(textFragment => { 
@@ -62,10 +59,4 @@ export const parseGazettes = (gazettes: GazetteModel[], query: string) => {
 
 export const formatMonth = (number: number) => {
   return number < 10 ? `0${number}` : number;
-}
-
-const replaceQueryToBold = (text: string, query: string) => {
-  return text.replace(new RegExp(query, 'g'), `<b>${query}</b>`)
-    .replace(new RegExp(query.toLowerCase(), 'g'), `<b>${query.toLowerCase()}</b>`)
-    .replace(new RegExp(query.toUpperCase(), 'g'), `<b>${query.toUpperCase()}</b>`)
 }
