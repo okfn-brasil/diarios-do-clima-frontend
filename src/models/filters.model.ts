@@ -54,6 +54,7 @@ export interface FiltersStatePayload {
   territory_id?: string;
   ente?: CheckBoxFilter;
   dates?: Dates;
+  scraped_dates?: Dates;
   themes?: CheckBoxFilter;
   period?: number;
   [key: string]: FiltersKeys;
@@ -71,6 +72,7 @@ export interface FiltersState {
   territory_id?: string;
   ente?: CheckBoxFilter;
   dates?: Dates;
+  scraped_dates?: Dates;
   themes?: CheckBoxFilter;
   period?: number;
   [key: string]: FiltersKeys;
@@ -127,6 +129,10 @@ export const parseUrlToFilters = () => {
       start: filters.startDate ? new Date(filters.startDate) : '',
       end: filters.endDate ? new Date(filters.endDate) : '',
     },
+    scraped_dates: {
+      start: filters.scraped_since || '',
+      end: filters.scraped_until || '',
+    },
     themes: themes,
     period: parseInt(filters.period),
   };
@@ -136,7 +142,8 @@ export const parseUrlToFilters = () => {
 // FILTERS TO URL
 export const parseFiltersToUrl = (filters: FiltersState) => {
   const [start, end] = [getDate(filters.dates, 'start'), getDate(filters.dates, 'end')];
-  const period = start || end ? 0 : filters.period;
+  const [scraped_since, scraped_until] = [filters.scraped_dates?.start || null, filters.scraped_dates?.end || null];
+  const period = start || end || scraped_since || scraped_until ? 0 : filters.period;
 
   const newFilters: FilterUrl = {
     query: filters.query,
@@ -146,6 +153,8 @@ export const parseFiltersToUrl = (filters: FiltersState) => {
       .map(ente => (filters.ente as CheckBoxFilter)[ente] ? ente : null).filter(item=> !!item) : [],
     startDate: start,
     endDate: end,
+    scraped_since: scraped_since,
+    scraped_until: scraped_until,
     themes: filters.themes ? Object.keys(filters.themes as CheckBoxFilter)
       .map(theme => (filters.themes as CheckBoxFilter)[theme] ? theme : null).filter(item=> !!item) : [],
     period: period,
@@ -179,8 +188,10 @@ export const parseFiltersToApi = (filters: FiltersState, currPage: number) => {
     sort_by: parsedFilters.order,
     offset: offset,
     size: pageSize,
-    until: parseDate(filters.dates?.end),
+    published_until: parseDate(filters.dates?.end),
     published_since: filters.dates?.start || filters.dates?.end ? parseDate(filters.dates?.start) : parsePeriod(parsedFilters.period as number),
+    scraped_since: filters.scraped_dates?.start,
+    scraped_until: filters.scraped_dates?.end,
     territory_ids: typeof parsedFilters.territory_id === 'string' ? parsedFilters.territory_id?.split(',') : parsedFilters.territory_id,
     subthemes: parsedFilters.themes?.map(theme => theme?.replace(/ /g, '+')) as string[],
     entities: parsedFilters.ente?.map(ente => ente?.replace(/ /g, '+')) as string[],
