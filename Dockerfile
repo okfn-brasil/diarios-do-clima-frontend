@@ -1,8 +1,9 @@
-FROM node:latest AS build
+FROM node:14.17.0 AS build
 WORKDIR /build
 
+COPY package-lock.json package-lock.json
 COPY package.json package.json
-RUN npm install --force
+RUN npm ci
 
 COPY public/ public
 COPY src/ src
