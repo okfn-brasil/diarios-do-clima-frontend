@@ -79,7 +79,7 @@ const SelectWithSearch = ({value, resetField, label, classes, showAlways, onChan
   const onBlur = () => {
     setTimeout(() => {
       setShowMenu(false);
-    }, 100);
+    }, 250);
   }
 
   const onClick = () => {
@@ -127,7 +127,7 @@ const SelectWithSearch = ({value, resetField, label, classes, showAlways, onChan
       />
       {showMenu ? 
         <div className='select-menu'>
-          {options.filter(option => (inputValue.length >=3 || showAlways) && option.label.toLowerCase().includes(inputValue.toLowerCase()))
+          {options.filter(option => (inputValue.length >=3 || showAlways) && option.label.toLowerCase().includes(inputValue.toLowerCase()) && !selectedOptions.includes(option))
             .map(option => <div key={option.value} onClick={() => onClickOption(option)} className='option'>{option.label}</div>)}
         </div>
         : <></>
