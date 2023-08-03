@@ -117,7 +117,14 @@ const ChangeInfoModal = ({isOpen, setLoading, onClose, userData}: ChangeEmail) =
 
         <SelectInput 
           classes='select-area-class' 
-          options={[{value: 'Area 1', label: 'Area 1'},{value: 'Area 2', label: 'Area 2'},{value: 'Area 3', label: 'Area 3'}]} 
+          options={[
+              {value: 'Consultoria', label: 'Consultoria'},
+              {value: 'Ensino e pesquisa', label: 'Ensino e pesquisa'},
+              {value: 'Jornalismo', label: 'Jornalismo'},
+              {value: 'Organização da Sociedade Civil', label: 'Organização da Sociedade Civil'},
+              {value: 'Setor público', label: 'Setor público'},
+              {value: 'Outras áreas', label: 'Outras áreas'}
+          ]}
           label={TEXTS.registration.labels.area}
           value={userInfo.sector} 
           name='sector' 
