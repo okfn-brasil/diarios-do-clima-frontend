@@ -3,13 +3,20 @@
   <head>
     <base href="/">
     <meta charset="utf-8" />
-    <meta name="theme-color" content="#000000" />
     <title>Diário do Clima</title>
     <link rel="manifest" href="./manifest.json" />
+
     <meta name="description" content="Encontre um ato ambiental" />
+    <meta name="theme-color" content="#f8f4dd">
+    <meta name="msapplication-TileColor" content="#00a300">
     <meta property="og:image" content="<%= require('./og.png').default %>" />
-    <meta name="twitter:card" content="summary_large_image"/>
     <meta property="twitter:image" content="<%= require('./og.png').default %>" />
+    <meta name="twitter:card" content="summary_large_image"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= require('./apple-touch-icon.png').default %>">
+    <link rel="shortcut icon" sizes="192x192" href="<%= require('./android-chrome-192x192.png').default %>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= require('./favicon-32x32.png').default %>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= require('./favicon-16x16.png').default %>">
+    <link rel="mask-icon" href="<%= require('./safari-pinned-tab.svg').default %>" color="#f8f4dd">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

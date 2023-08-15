@@ -7,8 +7,8 @@ const options = {
   "name": "Diário do Clima",
   "icons": [
     {
-      "src": "logo.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "favicon.ico",
+      "sizes": "48x48 32x32 16x16",
       "type": "image/x-icon"
     },
     {
@@ -20,12 +20,22 @@ const options = {
       "src": "logo.png",
       "type": "image/png",
       "sizes": "512x512"
-    }
+    },
+    {
+        "src": "android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    },
+    {
+        "src": "apple-touch-icon.png",
+        "sizes": "180x180",
+        "type": "image/png"
+    },
   ],
+  "theme_color": "#f9f6de",
+  "background_color": "#f9f6de",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
 };
 
 module.exports = {
@@ -43,8 +53,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: path.resolve(__dirname, "public", "index.html"),
       title: 'Production',
-      favicon: "./public/logo.ico",
+      favicon: "./public/favicon.ico",
       filename: "index.html",
+      meta: options,
     }),
     new WebpackManifestPlugin(options),
     new webpack.HotModuleReplacementPlugin(),
