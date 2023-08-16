@@ -9,7 +9,7 @@ import { CheckBoxFilter } from '@app/models/filters.model';
 import { urls } from './urls';
 
 export const TEXTS = {
-  contactEmail: 'teste@contato.com',
+  contactEmail: 'contato@diariodoclima.org.br',
   defaultSubmitText: 'Continuar',
   stateList: [
     'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF'
