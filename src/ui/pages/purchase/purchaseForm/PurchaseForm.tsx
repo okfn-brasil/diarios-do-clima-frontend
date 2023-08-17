@@ -197,7 +197,7 @@ const PurchaseForm = ({isModal, onSubmit, filledFields}: PurchaseFormInterface) 
               <TextInput
                 label={TEXTS.purchasePage.labels.card}
                 name='card'
-                mask='9999 9999 9999 9999 9999'
+                mask='9999 9999 9999 9999'
                 error={inputs.card.errorMessage}
                 value={inputs.card.value}
                 onChange={inputChange}
