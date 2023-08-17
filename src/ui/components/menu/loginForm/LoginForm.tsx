@@ -99,8 +99,8 @@ const LoginForm = ({showLoginForm, onClickForgot}: PropsLoginForm) => {
 
           <form onSubmit={handleSubmit}>
             <div className='form-field'>
-              <label className={`label-login ${(emailFocus || inputs.email) && 'has-focus'}`} htmlFor='user-login'>{TEXTS.loginForm.inputEmail}</label>
-              <Input id='user-login' required type='email' value={inputs.email} className='input-class' name='email' onBlur={() => setEmailFocus(false)} onFocus={() => setEmailFocus(true)} onChange={inputChange} placeholder='' />
+              <label className={`label-login ${(emailFocus || inputs.email) && 'has-focus'}`} htmlFor='email-login'>{TEXTS.loginForm.inputEmail}</label>
+              <Input id='email-login' required type='email' value={inputs.email} className='input-class' name='email' onBlur={() => setEmailFocus(false)} onFocus={() => setEmailFocus(true)} onChange={inputChange} placeholder='' />
             </div>
             
             <div className='password-field form-field'>

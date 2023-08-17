@@ -22,7 +22,7 @@ interface PropsInput {
   const TextInput = ({id, value, autoComplete, disabled, required, classes, onBlur, onChange, name, label, type, error, mask}: PropsInput) => {
   return (
     <FormControl className={`form-input ${classes}`} fullWidth>
-      <InputLabel id={name}>{label}</InputLabel>
+      <InputLabel for={id} id={name}>{label}</InputLabel>
       {mask ? 
         <InputMask mask={mask} value={value} onChange={onChange}>
           {() => <Input 

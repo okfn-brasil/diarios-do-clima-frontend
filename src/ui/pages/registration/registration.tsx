@@ -26,7 +26,7 @@ interface FormsSelector {
 }
 const emptyError = <></>;
 const inputsDefaultValue = {
-  username: { value: '' },
+  name: { value: '' },
   email: { value: '' },
   password: { value: '' },
   gender: { value: '' },
@@ -36,7 +36,7 @@ const inputsDefaultValue = {
 };
 
 const fieldValidations: ValidationInputModel = {
-  username: (s: InputModel) => { return s.value && s.value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false; },
+  name: (s: InputModel) => { return s.value && s.value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false; },
   password: (s: InputModel) => { return s.isValid ? false : 'A senha deve atender todos os requisitos a baixo'; },
   email: (s: InputModel) => { return testEmail(s.value) ? false : 'O e-mail inserido é invalido'; },
   city: (s: InputModel) => { return s.value && s.value.length < 5  ? 'O campo deve possuir no mínimo 5 caracteres' : false; },
@@ -59,7 +59,7 @@ const Registration = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     const errors = [];
-    ['username', 'email', 'password', 'city'].forEach((key: string) => {
+    ['name', 'email', 'password', 'city'].forEach((key: string) => {
       const input: InputModel = inputs[key];
       const validator = fieldValidations[key] ? fieldValidations[key](input) : false;
       if(inputs[key].value) {
@@ -153,10 +153,10 @@ const Registration = () => {
           <TextInput
             label={TEXTS.registration.labels.name}
             classes='first-input'
-            name='username'
-            id='username-registration'
-            error={inputs.username.errorMessage}
-            value={inputs.username.value}
+            name='name'
+            id='name-registration'
+            error={inputs.name.errorMessage}
+            value={inputs.name.value}
             onChange={inputChange}
             required={true}
           />

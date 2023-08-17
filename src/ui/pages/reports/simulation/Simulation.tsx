@@ -181,6 +181,7 @@ const SimulationForm = () => {
           type='text'
           onChange={inputChange}
           name='name'
+          id='name-simulation'
           label='Nome completo'
           error={inputs.name.errorMessage as string}
         />
@@ -191,6 +192,7 @@ const SimulationForm = () => {
           type='email'
           onChange={inputChange}
           name='email'
+          id='email-simulation'
           label='E-mail'
           error={inputs.email.errorMessage as string}
         />
@@ -198,6 +200,7 @@ const SimulationForm = () => {
         <TextInput
           label={TEXTS.purchasePage.labels.phone}
           name='phone'
+          id='phone-simulation'
           error={inputs.phone.errorMessage}
           value={inputs.phone.value}
           onChange={inputChange}
