@@ -115,12 +115,12 @@ export const TEXTS = {
       title: 'Dados confiáveis baseados no Querido Diário',
       label: {
         city: {
-          data: '88',
+          data: '102',
           featured: 'cidades',
           label: ' já estão disponíveis para buscas',
         },
         diaries: {
-          data: '200 mil',
+          data: '226 mil',
           featured: 'diários oficiais',
           label: ' encontrados pela busca até o momento',
         },
@@ -400,7 +400,7 @@ export const TEXTS = {
         title: '',
         titleSize: 'h4',
         paragraphs: [
-          'Estes documentos ─ “Termos de uso” e “Política de privacidade” ─ foram publicados em XX/XX/XXXX, data de lançamento da plataforma, e sempre poderão ser consultados por meio desta página. Eventuais atualizações nos documentos poderão ocorrer a qualquer tempo e sem aviso prévio, cabendo a quem utiliza a plataforma consultá-los.',
+          'Estes documentos ─ “Termos de uso” e “Política de privacidade” ─ foram publicados em 31/08/2023, data de lançamento da plataforma, e sempre poderão ser consultados por meio desta página. Eventuais atualizações nos documentos poderão ocorrer a qualquer tempo e sem aviso prévio, cabendo a quem utiliza a plataforma consultá-los.',
         ]
       },
     ]
