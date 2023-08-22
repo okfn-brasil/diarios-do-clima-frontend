@@ -15,7 +15,7 @@ const Lead = () => {
         background: `url(${backgroundImage})`,
       }}>
       <Grid item container xs={12} className='banner-content' alignItems='center'>
-        <Grid item xs={12} lg={6} className='banner-container'>
+        <Grid item xs={12} lg={6} className='banner-container vertical-spacing-container'>
           <p className='title'>
             {TEXTS.home.lead.title}
           </p>
