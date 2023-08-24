@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { InputModel } from '@app/models/forms.model';
 
 export interface RegistrationModel {
-  username: InputModel;
+  name: InputModel;
   email: InputModel;
   password: InputModel;
   gender: InputModel;

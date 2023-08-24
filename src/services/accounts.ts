@@ -10,7 +10,7 @@ export default class AccountService {
       email: form.email.value,
       password: form.password.value,
       city: form.city.value,
-      full_name: form.username.value,    
+      full_name: form.name.value,
       gender: form.gender.value,
       state: form.state.value,
       sector: form.sector.value,
