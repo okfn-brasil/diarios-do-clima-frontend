@@ -674,13 +674,13 @@ export const TEXTS = {
       tab2: 'Intervalo de tempo',
       from: 'De',
       to: 'Até',
-      entityTitle: 'Entes do governo',
+      entityTitle: 'Entes citados',
       entityLabel: 'Selecione um ou mais entes',
-      entitySubtitle: 'Escolha um ou mais entes citados nos resultados para filtrá-los.',
+      entitySubtitle: 'Escolha um ou mais entes relevantes mencionados nos resultados para filtrá-los.',
       locationTitle: 'Municípios',
       locationLabel: 'Comece a digitar para encontrar',
       themeTitle: 'Subtemas',
-      themeSubtitle: 'Escolha uma ou mais políticas ambientais que estão relacionadas aos resultados para filtrá-los.'
+      themeSubtitle: 'Escolha um ou mais subtemas ambientais relacionados aos resultados para filtrá-los.'
     }
   },
   partners: [

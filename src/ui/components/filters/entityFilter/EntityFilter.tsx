@@ -38,7 +38,7 @@ const EntityFilter = ({onChange, entityFilter}: ThemeFilterProps) => {
             <HelpIcon
               tooltip={
               <div>
-		Prefeituras podem citar entes governamentais relevantes nas publicações. Os mais relevantes e frequentes foram selecionados e marcados em cada excerto que são citados.
+		Prefeituras podem citar entes relevantes (órgãos, programas, conceitos, etc.) nas publicações. Os mais relevantes e frequentes foram selecionados e marcados em cada excerto que são citados.
               </div>}
             />
           </h3>
