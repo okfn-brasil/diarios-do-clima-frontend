@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <base href="/">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <base href="/">
+
     <title>Diário do Clima</title>
+    <meta name="description" content="O Diário do Clima filtra informações dos diários oficiais para você encontrar o que precisa mais fácil e rapidamente." />
+
     <link rel="manifest" href="./manifest.json" />
 
-    <meta name="description" content="Encontre um ato ambiental. O Diário do Clima filtra informações dos diários oficiais para você encontrar o que precisa mais fácil e rapidamente" />
     <meta name="theme-color" content="#f8f4dd">
-    <meta name="msapplication-TileColor" content="#00a300">
-    <meta property="og:image" content="<%= require('./og.png').default %>" />
-    <meta property="twitter:image" content="<%= require('./og.png').default %>" />
-    <meta name="twitter:card" content="summary_large_image"/>
-    <link rel="apple-touch-icon" sizes="180x180" href="<%= require('./apple-touch-icon.png').default %>">
-    <link rel="shortcut icon" sizes="192x192" href="<%= require('./android-chrome-192x192.png').default %>">
+
     <link rel="icon" type="image/png" sizes="32x32" href="<%= require('./favicon-32x32.png').default %>">
     <link rel="icon" type="image/png" sizes="16x16" href="<%= require('./favicon-16x16.png').default %>">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="<%= require('./apple-touch-icon.png').default %>">
     <link rel="mask-icon" href="<%= require('./safari-pinned-tab.svg').default %>" color="#f8f4dd">
+    <link rel="shortcut icon" sizes="192x192" href="<%= require('./android-chrome-192x192.png').default %>">
+    <meta name="msapplication-TileColor" content="#00a300">
+
+    <meta property="og:title" content="Diário do Clima">
+    <meta property="og:description" content="O Diário do Clima filtra informações dos diários oficiais para você encontrar o que precisa mais fácil e rapidamente.">
+    <meta property="og:image" content="<%= require('./og.png').default %>" />
+    <meta name="twitter:title" content="Diário do Clima">
+    <meta name="twitter:description" content="O Diário do Clima filtra informações dos diários oficiais para você encontrar o que precisa mais fácil e rapidamente.">
+    <meta name="twitter:image" content="<%= require('./og.png').default %>" />
+    <meta name="twitter:card" content="summary_large_image"/>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
