@@ -31,14 +31,13 @@ const NotFound = () => {
             <img src={ImageNotFound} alt='imagem - pagina não encontrada'/>
           </Grid>
           <Grid item sm={7}>
-            <div className='h3-class'>{TEXTS.notFound.links}</div>
+            <div className='h3-class'>{TEXTS.notFound.links.title}</div>
             <div className='links-utils'>
-              <div className='hover-animation'><Link to={urls.search.url}>Busque diários </Link></div>
-              <div className='hover-animation'><Link to={urls.registration.url}>Criar uma conta</Link></div>
-              <div className='hover-animation'><Link to={urls.reports.url}>Relatórios de análise</Link></div>
-              <div className='hover-animation'><Link to={urls.plans.url}>Assinatura PRO</Link></div>
-              <div className='hover-animation'><Link to={urls.about.url}>Sobre o diário do clima</Link></div>
-              <div className='hover-animation'><Link to={urls.about.url}>Sobre o diário do clima</Link></div>
+              <div className='hover-animation'><Link to={urls.search.url}>{TEXTS.notFound.links.search}</Link></div>
+              <div className='hover-animation'><Link to={urls.registration.url}>{TEXTS.notFound.links.registration}</Link></div>
+              <div className='hover-animation'><Link to={urls.plans.url}>{TEXTS.notFound.links.pro}</Link></div>
+              <div className='hover-animation'><Link to={urls.reports.url}>{TEXTS.notFound.links.reports}</Link></div>
+              <div className='hover-animation'><Link to={urls.about.url}>{TEXTS.notFound.links.about}</Link></div>
             </div>
           </Grid>
         </Grid>

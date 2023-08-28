@@ -282,7 +282,14 @@ export const TEXTS = {
     title: '404 - Página não encontrada',
     subTitle: 'A página que você tentou acessar não existe.',
     text: 'Não foi possível encontrar nenhuma página neste endereço. Você pode voltar à página anterior ou navegar pelos links úteis abaixo para tentar localizar o que estava buscando. Se você acredita que isso foi um erro do Diário do Clima, por favor, entre em contato.',
-    links: 'Links úteis:'
+    links: {
+      title: 'Links úteis:',
+      search: 'Faça buscas em diários',
+      registration: 'Não possui uma conta? Se cadastre',
+      pro: 'Já possui uma conta gratuita? Veja as vantagens de ser PRO',
+      reports: 'Solicite relatórios personalizados',
+      about: 'Sobre o Diário do Clima',
+    },
   },
   startSearchPage: {
     title: 'Vamos começar a buscar!',
