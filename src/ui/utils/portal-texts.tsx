@@ -66,7 +66,7 @@ export const TEXTS = {
   },
   becomeProModal: {
     title: 'Atualize para a versão PRO',
-    subtitle: 'Faça um teste gratuito por 7 dias e acesse todas as funcionalidades disponíveis no Diário do Clima.',
+    subtitle: 'Faça um teste gratuito por 15 dias e acesse todas as funcionalidades disponíveis no Diário do Clima.',
     cancel: 'Cancelar',
     startTest: 'Iniciar período gratuito',
     knowMore: 'Saiba mais sobre a assinatura',
@@ -140,7 +140,7 @@ export const TEXTS = {
         alerts: 'ALERTAS'
       },
       optionImageAlt: 'Representação visual da opção atualmente selecionada',
-      buttonTrial: 'Teste grátis por 7 dias',
+      buttonTrial: 'Teste grátis por 15 dias',
       linkAboutSubscription: 'Saiba mais sobre a assinatura',
       leads: {
         history: {
@@ -330,7 +330,7 @@ export const TEXTS = {
           '1.4.1. A plataforma disponibiliza dois planos de assinatura: “básico” e “PRO”.',
           '1.4.2. O plano “básico” possibilita à pessoa usuária fazer buscas por palavras-chave ou CNPJ; buscas com sintaxe avançada; filtrar as buscas por município; filtrar resultados com termos relevantes pré-selecionados; além de visualizar todos os resultados publicados nos últimos 3 meses. A assinatura do plano “básico” pode ser cancelada a qualquer tempo por meio da exclusão da conta na plataforma.',
           '1.4.3. O plano “PRO” possibilita à pessoa usuária, além de contar com as funcionalidades do plano “básico”: visualizar resultados de todo o histórico disponível no banco de dados; fazer buscas com filtro por temas inteligentes; e criar alertas com filtros e palavras-chave personalizadas.',
-          '1.4.4. O pagamento para o plano “PRO” só será efetivado após um período de 7 dias para testes, e renovado mensalmente até que a assinatura seja cancelada. O cancelamento do plano “PRO” pode ser realizado a qualquer tempo por meio da própria plataforma e a assinatura terá validade até o encerramento do mês pago. O Diário do Clima se reserva o direito de não restituir valores de mensalidades já pagas e devidamente debitadas após o período de testes.',
+          '1.4.4. O pagamento para o plano “PRO” só será efetivado após um período de 15 dias para testes, e renovado mensalmente até que a assinatura seja cancelada. O cancelamento do plano “PRO” pode ser realizado a qualquer tempo por meio da própria plataforma e a assinatura terá validade até o encerramento do mês pago. O Diário do Clima se reserva o direito de não restituir valores de mensalidades já pagas e devidamente debitadas após o período de testes.',
         ]
       },
       {
@@ -416,7 +416,7 @@ export const TEXTS = {
     title: 'Diário do Clima PRO',
     subtitle: 'Acesse todos os benefícios e nos ajude a crescer',
     startTest: 'Iniciar teste gratuito',
-    testCost: 'Teste sem custos por 7 dias • Depois, R$ 19,90/mês',
+    testCost: 'Teste sem custos por 15 dias • Depois, R$ 19,90/mês',
     testWarn: 'Cancele a qualquer momento. Enviaremos um lembrete 2 dias antes do término do período de testes',
     cardsTitle: 'Assinatura',
     cardsSubTitle: 'Tenha nas mãos todas as informações que você precisa sobre políticas ambientais.',
@@ -475,12 +475,12 @@ export const TEXTS = {
     ]
   },
   purchasePage: {
-    title: 'Comece seu período de 7 dias de testes de forma gratuita.',
+    title: 'Comece seu período de 15 dias de testes de forma gratuita.',
     subTitle: 'Usufrua dos benefícios de ser PRO sem compromisso. Cancele a qualquer momento.',
     detailsTitle: 'Detalhes da assinatura',
     perMonth: '/mês*',
     getPlanError: 'Ocorreu um erro ao carregar o plano PRO. Por favor, recarregue a página. Caso o erro persista, entre em contato conosco.',
-    detailAlert: '* cobrado mensalmente após o período de 7 dias de testes',
+    detailAlert: '* cobrado mensalmente após o período de 15 dias de testes',
     purchaseTerms: <span>
       Ao clicar em assinar você está concordando com nossos
       <a href={urls.terms.url} className='hover-animation blue-link'> termos de uso e política de privacidade. </a>
