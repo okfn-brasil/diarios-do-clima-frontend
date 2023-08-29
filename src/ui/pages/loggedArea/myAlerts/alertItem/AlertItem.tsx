@@ -34,7 +34,7 @@ const AlertItem = ({alert, cities, onDelete}: AlertProps) => {
           
           <div className='filter-item'>
             <img src={EnteIcon} alt='icone de ente governamental' />
-            {alert.gov_entities && alert.gov_entities.length ?  alert.gov_entities.join(', ') : 'Nenhum ente do governo selecionado'}
+            {alert.gov_entities && alert.gov_entities.length ?  alert.gov_entities.join(', ') : 'Nenhum ente selecionado'}
           </div> 
         </div> 
       </div> 

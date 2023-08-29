@@ -96,7 +96,7 @@ export const TEXTS = {
     filters: 'Edite os filtros para receber alertas com os temas desejados',
     localFilter: 'Municípios:',
     themesFilter: 'Subtemas:',
-    enteFilter: 'Entes do governo:',
+    enteFilter: 'Entes citados:',
     keyWords: 'Adicione palavras-chave',
     keyWordsPlaceHolder: 'Cadastre palavras-chaves na sua busca (Obrigatório)',
     alertDestination: 'Seus alertas serão encaminhados para',
