@@ -115,12 +115,12 @@ export const TEXTS = {
       title: 'Dados confiáveis baseados no Querido Diário',
       label: {
         city: {
-          data: '237',
+          data: '356',
           featured: 'cidades',
           label: ' já estão disponíveis para buscas',
         },
         diaries: {
-          data: '369 mil',
+          data: '444 mil',
           featured: 'diários oficiais',
           label: ' encontrados pela busca até o momento',
         },
