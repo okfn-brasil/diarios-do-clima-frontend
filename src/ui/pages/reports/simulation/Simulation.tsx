@@ -29,6 +29,7 @@ interface SimulationModel {
   email: InputModel;
   name: InputModel;
   phone: InputModel;
+  description: InputModel;
   cities: MultipleSelect;
   horizon: InputModel;
   [key: string]: InputModel | MultipleSelect;
@@ -37,8 +38,9 @@ interface SimulationModel {
 const initialValue = {
   email: { value: '' },
   name: { value: '' },
-  cities: { value: [] as string[] },
   phone: { value: '' },
+  description: { value: '' },
+  cities: { value: [] as string[] },
   horizon: { value: '' },
 };
 
@@ -46,6 +48,7 @@ const fieldValidations: FieldValidation = {
   name: (value: string) => { return value && value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false; },
   email: (value: string) => { return testEmail(value) ? false : 'O e-mail inserido é invalido'; },
   phone: (value: string) => { return inputValidation(value, 11, 'O número de telefone inserido é inválido');},
+  description: (value: string) => { return value && value.length < 50 ? 'O campo deve possuir no mínimo 50 caracteres' : false; },
   horizon: (value: string) => { return value && value.length < 8 ? 'O campo deve possuir no mínimo 8 caracteres' : false; },
 };
 
@@ -152,7 +155,7 @@ const SimulationForm = () => {
     const message: QuotationPostModel = {
       email: inputs.email.value,
       name: inputs.name.value,
-      message: TEXTS.reportsPage.simulation.message(inputs.phone.value, inputs.horizon.value, selectedCities, themes)
+      message: TEXTS.reportsPage.simulation.message(inputs.phone.value, inputs.description.value, inputs.horizon.value, selectedCities, themes)
     };
     reportsService.postQuotation(message).then(() => {
       setInputs(initialValue);
@@ -208,11 +211,20 @@ const SimulationForm = () => {
           mask={phoneMask}
         />
 
+        <TextInput 
+          value={inputs.description.value}
+          required
+          onChange={inputChange}
+          name='description'
+          label='Descrição'
+          error={inputs.description.errorMessage as string}
+        />
+
         <div>
           <SelectWithSearch
             showAlways={true}
             options={citiesList} 
-            label='Cidades de interesse (Comece a digitar para encontrar cidades)'
+            label='Cidades de interesse (comece a digitar para encontrar cidades)'
             value={inputs.cities.value}
             name='cities'
             resetField={resetCities}
@@ -230,7 +242,7 @@ const SimulationForm = () => {
           required
           onChange={inputChange}
           name='horizon'
-          label='Horizonte temporal'
+          label='Horizonte temporal (data inicial a data final)'
           error={inputs.horizon.errorMessage as string}
         />
 
@@ -243,7 +255,7 @@ const SimulationForm = () => {
           <InputError>{themeError}</InputError>
         </div>
 
-        <SubmitForm label='Solicitar uma proposta' disabled={isLoading} classes='submit-simulation'/>
+        <SubmitForm label='Solicitar orçamento' disabled={isLoading} classes='submit-simulation'/>
         <InputError>{submitError}</InputError>
       </form>
     </Grid>

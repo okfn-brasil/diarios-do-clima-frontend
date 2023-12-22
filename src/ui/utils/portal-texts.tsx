@@ -237,7 +237,7 @@ export const TEXTS = {
     title: 'Meus relatórios',
     download: 'Baixar relatório',
     knowMore: 'Saiba mais sobre os relatórios',
-    simulate: 'Solicitar proposta',
+    simulate: 'Solicitar orçamento',
     emptyList: 'Você ainda não possui nenhum relatório',
   },
   myAccount: {
@@ -440,7 +440,7 @@ export const TEXTS = {
     proItem3: 'Criação de alertas com filtros e palavras-chaves personalizadas',
     preOrder: 'Encomende um relatório',
     preOrderDesc: 'Para organizações que precisam de conteúdos personalizados sobre um determinado assunto, selecionados e analisados por especialistas.',
-    simulate: 'Simular custo',
+    simulate: 'Encomendar relatório',
     discount: '50% para organizações que não visam lucro',
     discountDesc: 'Seu impacto é importante. O Diário do Clima apoia pessoas e organizações independentes que desejam utilizar nosso conteúdo para transformar a sociedade. Para solicitar seu desconto, escreva-nos um e-mail.',
     getDiscount: 'Solicitar desconto',
@@ -543,11 +543,11 @@ export const TEXTS = {
   },
   reportsPage: {
     simulation: {
-      title: 'Solicite um relatório personalizado',
-      subTitle: 'Você pode encomendar um relatório personalizado. Preencha o formulário abaixo para receber uma cotação.',
+      title: 'Solicite o orçamento para um relatório personalizado',
+      subTitle: 'Você pode encomendar um relatório, que faz uso da base de dados do Diário do Clima, para organizações especialistas. Preencha o formulário abaixo e aguarde um orçamento pelos meios de contato informados.',
       value: 'Valor estimado',
       submitError: 'Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.',
-      message: (phone: string, horizon: string, cities: string[], themes: CheckBoxFilter) => {
+      message: (phone: string, description: string, horizon: string, cities: string[], themes: CheckBoxFilter) => {
         const selectedThemes: string[] = [];
         Object.keys(themes).forEach(theme => {
           if(themes[theme]) {
@@ -557,13 +557,14 @@ export const TEXTS = {
 
         return `
           Telefone: ${phone}
+          Descrição: ${description}
           Horizonte temporal: ${horizon}
           Cidades de interesse: ${cities.join(',')}
           Temas: ${selectedThemes.join(',')}
         `;
       }
     },
-    submitButton: 'Solicitar uma proposta',
+    submitButton: 'Solicitar orçamento',
     error: 'Ocorreu um erro ao carregar os relatórios públicos.',
     submitError: 'Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.',
     submitSuccess: {
@@ -574,7 +575,7 @@ export const TEXTS = {
     reloadPage: 'Recarregar página',
     title: 'Relatórios de análises aprofundadas do Diário do Clima',
     subtitle: 'Informações qualificadas, baseadas nos diários oficiais, selecionadas e avaliadas por profissionais. Mais resultados e insights do que a interface do Diário do Clima oferece.',
-    simulateButton: 'Simular o custo',
+    simulateButton: 'Solicitar um orçamento',
     professionals: 'Para profissionais de pesquisa e consultores',
     professionalsDesc: 'Obtenha uma visão geral e abrangente sobre um tema',
     organizations: 'Para organizações',
