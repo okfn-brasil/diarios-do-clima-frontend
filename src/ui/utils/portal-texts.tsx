@@ -115,12 +115,12 @@ export const TEXTS = {
       title: 'Dados confiáveis baseados no Querido Diário',
       label: {
         city: {
-          data: '356',
+          data: '379',
           featured: 'cidades',
           label: ' já estão disponíveis para buscas',
         },
         diaries: {
-          data: '444 mil',
+          data: '512 mil',
           featured: 'diários oficiais',
           label: ' encontrados pela busca até o momento',
         },
@@ -172,7 +172,7 @@ export const TEXTS = {
   aboutPage: {
     title: 'SOBRE O DIÁRIO DO CLIMA',
     subTitle: 'Nós estamos aqui para promover transparência',
-    description: <span>Acompanhar as decisões dos governos municipais sobre meio ambiente e clima é um desafio no Brasil. Novas autorizações e normas são publicadas todos os dias e afetam o meio ambiente e o cotidiano de pessoas e empresas. Juntar e analisar dados de cada cidade é um trabalho braçal.<br /><br />O Diário do Clima é uma plataforma capaz de agregar dados de políticas ambientais para auxiliar na pesquisa dos atos publicados por municípios brasileiros. Com uso de inteligência artificial, monitoramos diários oficiais para identificar os documentos mais relevantes para quem acompanha o tema. Cada ato é categorizado e organizado, de modo que os usuários possam filtrar e receber alertas sobre temas e locais de interesse.<br /><br />Jornalistas, pesquisadores, ativistas e profissionais dos setores de sustentabilidade podem usar a tecnologia como aliada para monitorar assuntos que, antes, fugiam do radar. Juntos, vamos produzir ações efetivas em prol da sustentabilidade e transparência.<br /><br />A informação que disponibilizamos vai multiplicar nosso poder de ação como sociedade.</span>,
+    description: <span>Acompanhar as decisões dos governos municipais sobre meio ambiente e clima é um desafio no Brasil. Novas autorizações e normas são publicadas todos os dias e afetam o meio ambiente e o cotidiano de pessoas e empresas. Juntar e analisar dados de cada cidade é um trabalho braçal.<br /><br />O Diário do Clima é uma plataforma capaz de agregar dados de políticas ambientais para auxiliar na pesquisa dos atos publicados por municípios brasileiros. Com uso de automatização tecnológica, monitoramos diários oficiais para identificar os documentos mais relevantes para quem acompanha o tema. Cada ato é categorizado e organizado, de modo que os usuários possam filtrar e receber alertas sobre temas e locais de interesse.<br /><br />Jornalistas, pesquisadores, ativistas e profissionais dos setores de sustentabilidade podem usar a tecnologia como aliada para monitorar assuntos que, antes, fugiam do radar. Juntos, vamos produzir ações efetivas em prol da sustentabilidade e transparência.<br /><br />A informação que disponibilizamos vai multiplicar nosso poder de ação como sociedade.</span>,
     photoLegend: 'Foto por USGS no Unsplash',
     whereStarted: 'Como tudo começou',
     p1: 'O Diário do Clima foi construído por uma coalizão especializada em temas sociais, ambientais e de transparência de dados. São seis organizações envolvidas: ((o))eco, Eco Nordeste, Agência Envolverde, InfoAmazonia, Open Knowledge Brasil e Projeto #Colabora. O projeto teve início em agosto de 2021 depois de um apoio da Google News Initiative para a sua versão inicial. A interface do site foi desenvolvida pelo estúdio de software Jurema com design de Ster Farache, e o motor de busca usa como fonte de dados o Querido Diário, plataforma de código aberto da Open Knowledge Brasil.',
