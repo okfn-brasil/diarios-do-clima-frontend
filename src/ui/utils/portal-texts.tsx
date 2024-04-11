@@ -107,7 +107,7 @@ export const TEXTS = {
   home: {
     lead: {
       title: 'Encontre um ato ambiental',
-      subtitle: 'O Diário do Clima filtra informações dos diários oficiais para você encontrar o que precisa mais fácil e rapidamente',
+      subtitle: 'O Diário do Clima filtra informações dos diários oficiais municipais para você encontrar o que precisa mais fácil e rapidamente',
       buttonTitle: 'Começar a buscar',
       deviceImageAlt: 'Composição de tela de celular com a logo do Diário do Clima e a primeira página de um diário oficial',
     },
