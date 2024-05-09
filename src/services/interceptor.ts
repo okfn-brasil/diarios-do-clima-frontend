@@ -10,7 +10,7 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
   params: {},
-  baseURL: `https://backend-api.diariodoclima.org.br/api`,
+  baseURL: `https://backend-api.diariosdoclima.org.br/api`,
 });
 
 api.interceptors.request.use(

@@ -43,7 +43,7 @@ const ThemeFilter = ({onChange, hasProPlan, themesFilter}: ThemeFilterProps) => 
             <HelpIcon 
               tooltip={
               <div>
-                Cada excerto de diário oficial disponível no Diário do Clima é classificado quanto a um subtema. Cada subtema foi escolhido pela nossa equipe de especialistas e endereçam os principais tópicos encontrados em diários oficiais municipais. No entanto, a lista de subtemas e os excertos associados a cada um podem variar mediante melhorias no filtro temático. 
+                Cada excerto de diário oficial disponível no Diários do Clima é classificado quanto a um subtema. Cada subtema foi escolhido pela nossa equipe de especialistas e endereçam os principais tópicos encontrados em diários oficiais municipais. No entanto, a lista de subtemas e os excertos associados a cada um podem variar mediante melhorias no filtro temático. 
               </div>}
             />
             <ProFlag spaceBottom={2} margin={38} show={!hasProPlan}/>

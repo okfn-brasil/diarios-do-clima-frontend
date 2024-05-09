@@ -1,5 +1,5 @@
 services:
-  diario-do-clima-frontend-server:
+  diarios-do-clima-frontend-server:
     restart: always
     build: ./
     ports:
@@ -9,7 +9,7 @@ services:
       - certbot-verify:/www/certbot:ro
       - certbot-keys:/etc/nginx/ssl:ro
 
-  diario-do-clima-certbot:
+  diarios-do-clima-certbot:
     image: docker.io/certbot/certbot:v2.6.0
     volumes:    
       - certbot-verify:/var/www/certbot/:rw  

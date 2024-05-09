@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import DiarioLogo from '@app/assets/images/logo.svg';
+import DiariosLogo from '@app/assets/images/logo.svg';
 import { TEXTS } from '@app/ui/utils/portal-texts';
 import { urls } from '@app/ui/utils/urls';
 import { Grid } from '@mui/material';
@@ -14,7 +14,7 @@ const Footer = () => {
       className='footer font-sora container'
     >
       <Grid container item sm={10} justifyContent='space-between' alignItems='center'>
-        <img src={DiarioLogo} alt='Logo do Diario do Clima' />
+        <img src={DiariosLogo} alt='Logo do Diários do Clima' />
         <div className='footer-links'>
           
           <div className='footer-link'><Link to={urls.plans.url}>{TEXTS.footer.pro}</Link></div>

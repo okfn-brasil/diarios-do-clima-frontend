@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import DiarioLogo from '@app/assets/images/logo.svg';
-import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
+import DiariosLogo from '@app/assets/images/logo.svg';
+import DiariosLogoBlack from '@app/assets/images/logo-black.svg';
 import { UserState } from '@app/models/user.model';
 import { RootState } from '@app/stores/store';
 import ForgotPassowrd from '@app/ui/pages/forgotPassword/ForgotPassword';
@@ -70,7 +70,7 @@ const Menu = () => {
           alignItems='center'
           xs={12} sm={10}
         >
-          <Link to='/'><img src={isWhiteMenu ? DiarioLogoBlack : DiarioLogo} alt={TEXTS.menu.logoImageAlt} /></Link>
+          <Link to='/'><img src={isWhiteMenu ? DiariosLogoBlack : DiariosLogo} alt={TEXTS.menu.logoImageAlt} /></Link>
           <div>
             <div className='only-desktop'><MenuDesktop showLoginForm={showLoginForm} isWhite={isWhiteMenu  as boolean} /> </div>
             <div className='only-mobile'><MenuMobile showLoginForm={showLoginForm} isWhite={isWhiteMenu as boolean} /></div>

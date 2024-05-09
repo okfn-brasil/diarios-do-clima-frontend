@@ -2,7 +2,7 @@ import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useState } from 'reac
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ShowPassIcon from '@app/assets/images/icons/show-pass.svg';
-import DiarioLogoBlack from '@app/assets/images/logo-black.svg';
+import DiariosLogoBlack from '@app/assets/images/logo-black.svg';
 import { LoginModel, LoginResponse } from '@app/models/login.model';
 import { UserResponseModel } from '@app/models/user.model';
 import AccountService from '@app/services/accounts';
@@ -92,7 +92,7 @@ const LoginForm = ({showLoginForm, onClickForgot}: PropsLoginForm) => {
           </div>
           <hr className='thin-line' />
           <div>
-            <img className='logo' src={DiarioLogoBlack}/>
+            <img className='logo' src={DiariosLogoBlack}/>
           </div>
           <p className='h3-class'>{TEXTS.loginForm.title}</p>
           <p className='paragraph-class'>{TEXTS.loginForm.subTitle}</p>

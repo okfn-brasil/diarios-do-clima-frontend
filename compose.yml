@@ -1,5 +1,5 @@
 services:
-  diario-do-clima-frontend-server:
+  diarios-do-clima-frontend-server:
     build:
       context: ./
       target: install

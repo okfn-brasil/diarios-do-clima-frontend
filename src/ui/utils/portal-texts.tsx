@@ -9,13 +9,13 @@ import { CheckBoxFilter } from '@app/models/filters.model';
 import { urls } from './urls';
 
 export const TEXTS = {
-  contactEmail: 'contato@diariodoclima.org.br',
+  contactEmail: 'contato@diariosdoclima.org.br',
   defaultSubmitText: 'Continuar',
   stateList: [
     'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF'
   ].sort((a, b) => a.localeCompare(b)),
   cookieAlert: {
-    text: 'Nós utilizamos cookies essenciais para o site funcionar e alguns adicionais para entender como você utiliza o Diário do Clima. Confira mais detalhes na Política de Privacidade.'
+    text: 'Nós utilizamos cookies essenciais para o site funcionar e alguns adicionais para entender como você utiliza o Diários do Clima. Confira mais detalhes na Política de Privacidade.'
   },
   passwordValidation: {
     eightChars: 'Ter 8 ou mais caracteres',
@@ -28,11 +28,11 @@ export const TEXTS = {
     ok: 'Ok, entendi',
   },
   menu: {
-    logoImageAlt: 'Logo do Diário do Clima',
-    pro: 'Diário do Clima PRO',
+    logoImageAlt: 'Logo do Diários do Clima',
+    pro: 'Diários do Clima PRO',
     reports: 'Relatórios',
     search: 'Buscar',
-    about: 'Sobre o Diário do Clima',
+    about: 'Sobre o Diários do Clima',
     buttonSearch: 'Começar a buscar',
     buttonSession: 'Iniciar Sessão',
     contactUs: 'Fale conosco',
@@ -45,7 +45,7 @@ export const TEXTS = {
     singOut: 'Deslogar',
   },
   footer: {
-    about: 'Sobre o Diário do Clima',
+    about: 'Sobre o Diários do Clima',
     reports: 'Relatórios de análises aprofundadas',
     pro: 'Assinatura PRO',
     termsAndConditions: 'Termos de uso'
@@ -66,7 +66,7 @@ export const TEXTS = {
   },
   becomeProModal: {
     title: 'Atualize para a versão PRO',
-    subtitle: 'Faça um teste gratuito por 15 dias e acesse todas as funcionalidades disponíveis no Diário do Clima.',
+    subtitle: 'Faça um teste gratuito por 15 dias e acesse todas as funcionalidades disponíveis no Diários do Clima.',
     cancel: 'Cancelar',
     startTest: 'Iniciar período gratuito',
     knowMore: 'Saiba mais sobre a assinatura',
@@ -107,9 +107,9 @@ export const TEXTS = {
   home: {
     lead: {
       title: 'Encontre um ato ambiental',
-      subtitle: 'O Diário do Clima filtra informações dos diários oficiais municipais para você encontrar o que precisa mais fácil e rapidamente',
+      subtitle: 'O Diários do Clima filtra informações dos diários oficiais municipais para você encontrar o que precisa mais fácil e rapidamente',
       buttonTitle: 'Começar a buscar',
-      deviceImageAlt: 'Composição de tela de celular com a logo do Diário do Clima e a primeira página de um diário oficial',
+      deviceImageAlt: 'Composição de tela de celular com a logo do Diários do Clima e a primeira página de um diário oficial',
     },
     data: {
       title: 'Dados confiáveis baseados no Querido Diário',
@@ -133,7 +133,7 @@ export const TEXTS = {
     },
     weOffer: {
       titleA: 'O que oferecemos no',
-      titleB: 'Diário do Clima PRO',
+      titleB: 'Diários do Clima PRO',
       option: {
         history: 'HISTÓRICO',
         theme: 'TEMAS',
@@ -158,7 +158,7 @@ export const TEXTS = {
       } as Record<string, Record<string, string>>
     },
     helpUs: {
-      title: 'Ajude o Diário do Clima a crescer e receba benefícios',
+      title: 'Ajude o Diários do Clima a crescer e receba benefícios',
       subtitle: 'Ao assinar nossa ferramenta, você contribui para a inclusão de novos recursos e municípios e obtém todas as informações que você e sua equipe precisam sobre políticas públicas ambientais',
       buttonSubscribe: 'Quero apoiar assinando',
       buttonStart: 'Começar a buscar gratuitamente'
@@ -170,17 +170,17 @@ export const TEXTS = {
     },
   },
   aboutPage: {
-    title: 'SOBRE O DIÁRIO DO CLIMA',
+    title: 'SOBRE O DIÁRIOS DO CLIMA',
     subTitle: 'Nós estamos aqui para promover transparência',
-    description: <span>Acompanhar as decisões dos governos municipais sobre meio ambiente e clima é um desafio no Brasil. Novas autorizações e normas são publicadas todos os dias e afetam o meio ambiente e o cotidiano de pessoas e empresas. Juntar e analisar dados de cada cidade é um trabalho braçal.<br /><br />O Diário do Clima é uma plataforma capaz de agregar dados de políticas ambientais para auxiliar na pesquisa dos atos publicados por municípios brasileiros. Com uso de automatização tecnológica, monitoramos diários oficiais para identificar os documentos mais relevantes para quem acompanha o tema. Cada ato é categorizado e organizado, de modo que os usuários possam filtrar e receber alertas sobre temas e locais de interesse.<br /><br />Jornalistas, pesquisadores, ativistas e profissionais dos setores de sustentabilidade podem usar a tecnologia como aliada para monitorar assuntos que, antes, fugiam do radar. Juntos, vamos produzir ações efetivas em prol da sustentabilidade e transparência.<br /><br />A informação que disponibilizamos vai multiplicar nosso poder de ação como sociedade.</span>,
+    description: <span>Acompanhar as decisões dos governos municipais sobre meio ambiente e clima é um desafio no Brasil. Novas autorizações e normas são publicadas todos os dias e afetam o meio ambiente e o cotidiano de pessoas e empresas. Juntar e analisar dados de cada cidade é um trabalho braçal.<br /><br />O Diários do Clima é uma plataforma capaz de agregar dados de políticas ambientais para auxiliar na pesquisa dos atos publicados por municípios brasileiros. Com uso de automatização tecnológica, monitoramos diários oficiais para identificar os documentos mais relevantes para quem acompanha o tema. Cada ato é categorizado e organizado, de modo que os usuários possam filtrar e receber alertas sobre temas e locais de interesse.<br /><br />Jornalistas, pesquisadores, ativistas e profissionais dos setores de sustentabilidade podem usar a tecnologia como aliada para monitorar assuntos que, antes, fugiam do radar. Juntos, vamos produzir ações efetivas em prol da sustentabilidade e transparência.<br /><br />A informação que disponibilizamos vai multiplicar nosso poder de ação como sociedade.</span>,
     photoLegend: 'Foto por USGS no Unsplash',
     whereStarted: 'Como tudo começou',
-    p1: 'O Diário do Clima foi construído por uma coalizão especializada em temas sociais, ambientais e de transparência de dados. São seis organizações envolvidas: ((o))eco, Eco Nordeste, Agência Envolverde, InfoAmazonia, Open Knowledge Brasil e Projeto #Colabora. O projeto teve início em agosto de 2021 depois de um apoio da Google News Initiative para a sua versão inicial. A interface do site foi desenvolvida pelo estúdio de software Jurema com design de Ster Farache, e o motor de busca usa como fonte de dados o Querido Diário, plataforma de código aberto da Open Knowledge Brasil.',
+    p1: 'O Diários do Clima foi construído por uma coalizão especializada em temas sociais, ambientais e de transparência de dados. São seis organizações envolvidas: ((o))eco, Eco Nordeste, Agência Envolverde, InfoAmazonia, Open Knowledge Brasil e Projeto #Colabora. O projeto teve início em agosto de 2021 depois de um apoio da Google News Initiative para a sua versão inicial. A interface do site foi desenvolvida pelo estúdio de software Jurema com design de Ster Farache, e o motor de busca usa como fonte de dados o Querido Diário, plataforma de código aberto da Open Knowledge Brasil.',
     objective: 'Nosso propósito é facilitar o acesso a dados sobre o clima para proteger o meio ambiente',
     support: 'Apoie e receba recursos exclusivos',
-    becomePro: 'Assine o Diário do Clima e receba todos os benefícios de ser PRO, como a busca em todo o período histórico disponível e a possibilidade de criar alertas personalizados. Com o seu apoio, vamos continuar desenvolvendo novos recursos e abrir os dados de mais cidades para que a plataforma seja cada vez mais útil para você.',
+    becomePro: 'Assine o Diários do Clima e receba todos os benefícios de ser PRO, como a busca em todo o período histórico disponível e a possibilidade de criar alertas personalizados. Com o seu apoio, vamos continuar desenvolvendo novos recursos e abrir os dados de mais cidades para que a plataforma seja cada vez mais útil para você.',
     signUp: 'Quero assinar',
-    partnersTitle: 'Quem faz o Diário do Clima',
+    partnersTitle: 'Quem faz o Diários do Clima',
     accessSite: 'Acessar o site',
     
     secondTitle: 'Este produto tem uma interface pública gratuita, para que possamos focar em temas que são verdadeiramente de interesse público.',
@@ -189,8 +189,8 @@ export const TEXTS = {
   },
   becomeProPage: {
     title: 'Torne-se assinante do',
-    titleSpan: 'Diário do Clima PRO',
-    signDescription: 'Ao assinar, você nos ajuda a desenvolver este projeto sem fins lucrativos e tem acesso aos benefícios do Diário do Clima PRO',
+    titleSpan: 'Diários do Clima PRO',
+    signDescription: 'Ao assinar, você nos ajuda a desenvolver este projeto sem fins lucrativos e tem acesso aos benefícios do Diários do Clima PRO',
     basicPlanTitle: 'O seu cadastro básico inclui:',
     basicItem: 'Acesso limitado ao conteúdo',
     proPlanTitle: 'A assinatura PRO inclui:',
@@ -281,20 +281,20 @@ export const TEXTS = {
   notFound: {
     title: '404 - Página não encontrada',
     subTitle: 'A página que você tentou acessar não existe.',
-    text: 'Não foi possível encontrar nenhuma página neste endereço. Você pode voltar à página anterior ou navegar pelos links úteis abaixo para tentar localizar o que estava buscando. Se você acredita que isso foi um erro do Diário do Clima, por favor, entre em contato.',
+    text: 'Não foi possível encontrar nenhuma página neste endereço. Você pode voltar à página anterior ou navegar pelos links úteis abaixo para tentar localizar o que estava buscando. Se você acredita que isso foi um erro do Diários do Clima, por favor, entre em contato.',
     links: {
       title: 'Links úteis:',
       search: 'Faça buscas em diários',
       registration: 'Não possui uma conta? Se cadastre',
       pro: 'Já possui uma conta gratuita? Veja as vantagens de ser PRO',
       reports: 'Solicite relatórios personalizados',
-      about: 'Sobre o Diário do Clima',
+      about: 'Sobre o Diários do Clima',
     },
   },
   startSearchPage: {
     title: 'Vamos começar a buscar!',
     proText: 'Pronto, agora você pode utilizar todos as funcionalidades disponíveis no nosso plano PRO',
-    basicText: 'Pronto, agora você já pode utilizar o Diário do Clima para encontrar uma política ambiental',
+    basicText: 'Pronto, agora você já pode utilizar o Diários do Clima para encontrar uma política ambiental',
     start: 'Começar a buscar',
   },
   termsPage: {
@@ -304,8 +304,8 @@ export const TEXTS = {
         title: '1. TERMOS DE USO',
         titleSize: 'h3',
         paragraphs: [
-          '1.1. A plataforma Diário do Clima foi construída por uma coalizão de seis organizações especializada em temas sociais, ambientais e de transparência de dados: ((o))eco, Eco Nordeste, Agência Envolverde, InfoAmazonia, Open Knowledge Brasil e Projeto #Colabora. Seu objetivo é facilitar o acompanhamento das decisões dos governos municipais brasileiros sobre meio ambiente e clima, na medida em que monitora diários oficiais e identifica os documentos mais relevantes sobre os temas.',
-          <span>1.2. Nesse sentido, as informações disponíveis na plataforma não têm caráter oficial e são mera reprodução do conteúdo publicado por prefeituras em seus respectivos diários oficiais. O acesso a uma parte das informações – oriundas de documentos publicados nos últimos 3 meses – é gratuito, ao passo que o acesso aos resultados de todo o histórico disponível, associado a outras funcionalidades, na modalidade “PRO”, é oferecido <a style={{color: '#52ce5f'}} href="https://diariodoclima.org.br/planos" target="_blank" rel="noopener">mediante assinatura</a>. Além disso, é possível solicitar o serviço de confecção de relatórios, desenvolvidos por especialistas que integram as organizações da coalizão, contendo análises aprofundadas sobre dados extraídos do Diário do Clima. Em todos esses casos, é solicitado que a pessoa usuária faça um breve cadastro (saiba mais abaixo, na seção 2 – Política de Privacidade).</span>
+          '1.1. A plataforma Diários do Clima foi construída por uma coalizão de seis organizações especializada em temas sociais, ambientais e de transparência de dados: ((o))eco, Eco Nordeste, Agência Envolverde, InfoAmazonia, Open Knowledge Brasil e Projeto #Colabora. Seu objetivo é facilitar o acompanhamento das decisões dos governos municipais brasileiros sobre meio ambiente e clima, na medida em que monitora diários oficiais e identifica os documentos mais relevantes sobre os temas.',
+          <span>1.2. Nesse sentido, as informações disponíveis na plataforma não têm caráter oficial e são mera reprodução do conteúdo publicado por prefeituras em seus respectivos diários oficiais. O acesso a uma parte das informações – oriundas de documentos publicados nos últimos 3 meses – é gratuito, ao passo que o acesso aos resultados de todo o histórico disponível, associado a outras funcionalidades, na modalidade “PRO”, é oferecido <a style={{color: '#52ce5f'}} href="https://diariosdoclima.org.br/planos" target="_blank" rel="noopener">mediante assinatura</a>. Além disso, é possível solicitar o serviço de confecção de relatórios, desenvolvidos por especialistas que integram as organizações da coalizão, contendo análises aprofundadas sobre dados extraídos do Diários do Clima. Em todos esses casos, é solicitado que a pessoa usuária faça um breve cadastro (saiba mais abaixo, na seção 2 – Política de Privacidade).</span>
         ]
       }, 
       {
@@ -313,12 +313,12 @@ export const TEXTS = {
         titleSize: 'h4',
         paragraphs: [],
         list: [
-          <span>1.3.1. O motor de busca do Diário do Clima utiliza como fonte de dados o <a style={{color: '#52ce5f'}} href="http://queridodiario.ok.org.br" target="_blank" rel="noopener">Querido Diário</a> (QD), plataforma de código aberto desenvolvida e mantida pela Open Knowledge Brasil. O código do QD está disponível em <a style={{color: '#52ce5f'}} href="https://github.com/okfn-brasil?q=querido-diario&amp;type=all&amp;language=&amp;sort=" target="_blank" rel="noopener">repositórios públicos no GitHub</a>, podendo ser auditado por qualquer pessoa.</span>,
+          <span>1.3.1. O motor de busca do Diários do Clima utiliza como fonte de dados o <a style={{color: '#52ce5f'}} href="http://queridodiario.ok.org.br" target="_blank" rel="noopener">Querido Diário</a> (QD), plataforma de código aberto desenvolvida e mantida pela Open Knowledge Brasil. O código do QD está disponível em <a style={{color: '#52ce5f'}} href="https://github.com/okfn-brasil?q=querido-diario&amp;type=all&amp;language=&amp;sort=" target="_blank" rel="noopener">repositórios públicos no GitHub</a>, podendo ser auditado por qualquer pessoa.</span>,
           <span>1.3.2. Em resumo, a tecnologia por trás do QD funciona da seguinte forma: robôs fazem diariamente a varredura dos <a style={{color: '#52ce5f'}} href="https://queridodiario.ok.org.br/cidades-disponiveis" target="_blank" rel="noopener">diários oficiais que já foram incorporados</a> à plataforma. Essa ferramenta foi construída de acordo com boas práticas de desenvolvimento, de maneira a não sobrecarregar sites públicos com requisições excessivas.</span>,
           '1.3.3. Havendo novo conteúdo disponível, a informação é coletada na forma bruta em que se encontra (PDF, por exemplo), os documentos são armazenados e seu conteúdo é extraído e convertido para o formato TXT (texto puro). Em seguida, esse conteúdo é indexado e também armazenado em um servidor mantido em nuvem e administrado pela OKBR.',
           <span>1.3.4. O Querido Diário disponibiliza esses dados de duas formas: em uma <a style={{color: '#52ce5f'}} href="http://queridodiario.ok.org.br" target="_blank" rel="noopener">interface de busca</a> e por meio de uma <a style={{color: '#52ce5f'}} href="https://queridodiario.ok.org.br/api/docs" target="_blank" rel="noopener">API</a> – sigla do inglês para o termo “Application Programming Interface”, ferramenta para pessoas desenvolvedoras que desejem reutilizar o conteúdo de outras formas, como realizando consultas automáticas, por exemplo.</span>,
-          '1.3.5. A plataforma do Diário do Clima utiliza a API do QD e, por meio de automatização tecnológica, identifica os resultados relacionados a meio ambiente e clima. Portanto, ao realizar uma busca na plataforma, a pessoa usuária obterá resultados que já passaram por um filtro automático, podendo assim se concentrar em seus temas de interesse. Isso só é possível graças a um amplo processo de curadoria realizado por especialistas que integram a equipe do Diário do Clima, no qual a principal tarefa é “educar” o algoritmo da plataforma para elaborar tal filtro, que está sob constante revisão e aprimoramento. Após a identificação dos excertos filtrados, a plataforma utiliza técnicas de inteligência artificial para ranquear os resultados, a fim de destacar nas primeiras posições os documentos mais importantes.',
-          '1.3.6. Vale ressaltar que o Diário do Clima não realiza qualquer operação com o objetivo de alterar o conteúdo original das informações oficiais publicadas nos diários oficiais. No entanto, a operação de raspagem e extração do texto puro pode provocar erros de formatação em conteúdos que estavam dispostos em tabelas ou imagens, ou problemas de acentuação, grafia etc. Por isso, o documento original também é oferecido nos resultados de busca para checagem por parte da pessoa usuária.',
+          '1.3.5. A plataforma do Diários do Clima utiliza a API do QD e, por meio de automatização tecnológica, identifica os resultados relacionados a meio ambiente e clima. Portanto, ao realizar uma busca na plataforma, a pessoa usuária obterá resultados que já passaram por um filtro automático, podendo assim se concentrar em seus temas de interesse. Isso só é possível graças a um amplo processo de curadoria realizado por especialistas que integram a equipe do Diários do Clima, no qual a principal tarefa é “educar” o algoritmo da plataforma para elaborar tal filtro, que está sob constante revisão e aprimoramento. Após a identificação dos excertos filtrados, a plataforma utiliza técnicas de inteligência artificial para ranquear os resultados, a fim de destacar nas primeiras posições os documentos mais importantes.',
+          '1.3.6. Vale ressaltar que o Diários do Clima não realiza qualquer operação com o objetivo de alterar o conteúdo original das informações oficiais publicadas nos diários oficiais. No entanto, a operação de raspagem e extração do texto puro pode provocar erros de formatação em conteúdos que estavam dispostos em tabelas ou imagens, ou problemas de acentuação, grafia etc. Por isso, o documento original também é oferecido nos resultados de busca para checagem por parte da pessoa usuária.',
           <span>1.3.7. Da mesma forma, a atualização da ferramenta, realizada diariamente, também pode sofrer interrupções ou falhas técnicas, e o conteúdo de determinado município pode ter lacunas ou indisponibilidade por certo tempo, até que a falha possa ser solucionada. Diante disso, para acessar diretamente o diário oficial de determinado município, é possível consultar o link na base de dados do <a style={{color: '#52ce5f'}} href="https://censo.ok.org.br" target="_blank" rel="noopener">Censo Querido Diário</a>, de forma a localizar a informação oficial original.</span>,
         ]
       },
@@ -330,25 +330,25 @@ export const TEXTS = {
           '1.4.1. A plataforma disponibiliza dois planos de assinatura: “básico” e “PRO”.',
           '1.4.2. O plano “básico” possibilita à pessoa usuária fazer buscas por palavras-chave ou CNPJ; buscas com sintaxe avançada; filtrar as buscas por município; filtrar resultados com termos relevantes pré-selecionados; além de visualizar todos os resultados publicados nos últimos 3 meses. A assinatura do plano “básico” pode ser cancelada a qualquer tempo por meio da exclusão da conta na plataforma.',
           '1.4.3. O plano “PRO” possibilita à pessoa usuária, além de contar com as funcionalidades do plano “básico”: visualizar resultados de todo o histórico disponível no banco de dados; fazer buscas com filtro por temas inteligentes; e criar alertas com filtros e palavras-chave personalizadas.',
-          '1.4.4. O pagamento para o plano “PRO” só será efetivado após um período de 15 dias para testes, e renovado mensalmente até que a assinatura seja cancelada. O cancelamento do plano “PRO” pode ser realizado a qualquer tempo por meio da própria plataforma e a assinatura terá validade até o encerramento do mês pago. O Diário do Clima se reserva o direito de não restituir valores de mensalidades já pagas e devidamente debitadas após o período de testes.',
+          '1.4.4. O pagamento para o plano “PRO” só será efetivado após um período de 15 dias para testes, e renovado mensalmente até que a assinatura seja cancelada. O cancelamento do plano “PRO” pode ser realizado a qualquer tempo por meio da própria plataforma e a assinatura terá validade até o encerramento do mês pago. O Diários do Clima se reserva o direito de não restituir valores de mensalidades já pagas e devidamente debitadas após o período de testes.',
         ]
       },
       {
-        title: '1.5. A quem pertencem as informações disponibilizadas pelo Diário do Clima?',
+        title: '1.5. A quem pertencem as informações disponibilizadas pelo Diários do Clima?',
         titleSize: 'h4',
         paragraphs: [],
         list: [
-          '1.5.1. As informações dos diários oficiais são consideradas públicas e, portanto, é direito de qualquer pessoa acessá-las, reutilizá-las e redistribuí-las para quaisquer fins — nos termos da Lei de Acesso à Informação - LAI (Lei Federal 12.527/2011) e normas relacionadas. No caso do Diário do Clima, as operações realizadas modificam o formato da informação pública com o objetivo de ampliar e democratizar seu acesso, uma vez que a forma original não atende aos requisitos de formato legível por máquinas previsto na legislação. Além disso, realiza um filtro prévio a fim de selecionar e destacar resultados relacionados a meio ambiente e clima. Não há qualquer tipo de parceria da plataforma com os órgãos públicos responsáveis pelos respectivos diários oficiais, e a veracidade das informações depende única e exclusivamente do ente público que as divulgou originalmente.',
+          '1.5.1. As informações dos diários oficiais são consideradas públicas e, portanto, é direito de qualquer pessoa acessá-las, reutilizá-las e redistribuí-las para quaisquer fins — nos termos da Lei de Acesso à Informação - LAI (Lei Federal 12.527/2011) e normas relacionadas. No caso do Diários do Clima, as operações realizadas modificam o formato da informação pública com o objetivo de ampliar e democratizar seu acesso, uma vez que a forma original não atende aos requisitos de formato legível por máquinas previsto na legislação. Além disso, realiza um filtro prévio a fim de selecionar e destacar resultados relacionados a meio ambiente e clima. Não há qualquer tipo de parceria da plataforma com os órgãos públicos responsáveis pelos respectivos diários oficiais, e a veracidade das informações depende única e exclusivamente do ente público que as divulgou originalmente.',
         ]
       },
       {
-        title: '1.6. O que você pode fazer com as informações obtidas por meio do Diário do Clima?',
+        title: '1.6. O que você pode fazer com as informações obtidas por meio do Diários do Clima?',
         titleSize: 'h4',
         paragraphs: [],
         list: [
-          '1.6.1. Por serem de natureza pública, as informações dos diários oficiais são disponibilizadas sob licenças livres, estejam elas declaradas ou não pelos órgãos públicos responsáveis por sua publicação (conforme art. 4º, inciso IV, e art. 29, caput, LAI). Isso significa que podem ser livremente acessadas, reutilizadas e redistribuídas por qualquer pessoa e para qualquer finalidade lícita. Todas as outras informações produzidas pela equipe do Diário do Clima e publicadas na plataforma, tais como relatórios, análises, boletins, reportagens são disponibilizadas sob licença Creative Commons CC-BY-NC-SA 4.0, o que significa que podem ser livremente reutilizadas desde que (a) citada a fonte, (b) não se faça uso comercial, (c) os trabalhos derivados sejam licenciados da mesma forma – salvo quando apontada outra licença específica no material em questão. Já os relatórios solicitados sob demanda, contendo análises aprofundadas sobre dados extraídos do Diário do Clima, serão entregues exclusivamente às partes contratantes, com alguns direitos reservados, sob termos a serem acordados.',
-          '1.6.2. Ressaltamos que quaisquer decisões que as pessoas usuárias de tais informações — seja dos diários oficiais ou dos documentos produzidos pela equipe do Diário do Clima — adotarem a partir do seu uso é de sua responsabilidade exclusiva. Finalmente, salientamos que a plataforma deve ser utilizada tão-somente para consulta aos dados públicos, respeitando a finalidade pela qual tais dados são disponibilizados.',
-          '1.6.3. A arquitetura da plataforma e as fontes de dados acessadas por ela poderão ser modificadas a qualquer momento e a exclusivo critério da coalizão que administra o Diário do Clima.',
+          '1.6.1. Por serem de natureza pública, as informações dos diários oficiais são disponibilizadas sob licenças livres, estejam elas declaradas ou não pelos órgãos públicos responsáveis por sua publicação (conforme art. 4º, inciso IV, e art. 29, caput, LAI). Isso significa que podem ser livremente acessadas, reutilizadas e redistribuídas por qualquer pessoa e para qualquer finalidade lícita. Todas as outras informações produzidas pela equipe do Diários do Clima e publicadas na plataforma, tais como relatórios, análises, boletins, reportagens são disponibilizadas sob licença Creative Commons CC-BY-NC-SA 4.0, o que significa que podem ser livremente reutilizadas desde que (a) citada a fonte, (b) não se faça uso comercial, (c) os trabalhos derivados sejam licenciados da mesma forma – salvo quando apontada outra licença específica no material em questão. Já os relatórios solicitados sob demanda, contendo análises aprofundadas sobre dados extraídos do Diários do Clima, serão entregues exclusivamente às partes contratantes, com alguns direitos reservados, sob termos a serem acordados.',
+          '1.6.2. Ressaltamos que quaisquer decisões que as pessoas usuárias de tais informações — seja dos diários oficiais ou dos documentos produzidos pela equipe do Diários do Clima — adotarem a partir do seu uso é de sua responsabilidade exclusiva. Finalmente, salientamos que a plataforma deve ser utilizada tão-somente para consulta aos dados públicos, respeitando a finalidade pela qual tais dados são disponibilizados.',
+          '1.6.3. A arquitetura da plataforma e as fontes de dados acessadas por ela poderão ser modificadas a qualquer momento e a exclusivo critério da coalizão que administra o Diários do Clima.',
         ]
       },
       {
@@ -356,7 +356,7 @@ export const TEXTS = {
         titleSize: 'h4',
         paragraphs: [],
         list: [
-          '1.7.1. Todas as informações divulgadas pelos diários oficiais brasileiros, incluindo dados pessoais, são públicas. O Diário do Clima apenas reproduz os mesmos dados publicados pelos entes públicos em seus diários oficiais em um formato mais acessível e amigável, e a partir de um filtro que prioriza a seleção de resultados relacionados a meio ambiente e clima. Dessa forma, não nos responsabilizamos pela veracidade, integridade ou qualidade dessas informações, bem como por eventuais violações decorrentes de publicação de informações pessoais. Por divulgar apenas os dados necessários segundo a finalidade específica da publicação nos diários oficiais, o Diário do Clima tampouco se vê na obrigação legal de remover quaisquer dados da plataforma.',
+          '1.7.1. Todas as informações divulgadas pelos diários oficiais brasileiros, incluindo dados pessoais, são públicas. O Diários do Clima apenas reproduz os mesmos dados publicados pelos entes públicos em seus diários oficiais em um formato mais acessível e amigável, e a partir de um filtro que prioriza a seleção de resultados relacionados a meio ambiente e clima. Dessa forma, não nos responsabilizamos pela veracidade, integridade ou qualidade dessas informações, bem como por eventuais violações decorrentes de publicação de informações pessoais. Por divulgar apenas os dados necessários segundo a finalidade específica da publicação nos diários oficiais, o Diários do Clima tampouco se vê na obrigação legal de remover quaisquer dados da plataforma.',
           '1.7.2. Em caso de questionamento quanto à veracidade, à integridade ou à qualidade de qualquer informação, recomendamos que as pessoas titulares de dados ou outras partes interessadas contactem diretamente o ente responsável pela publicação original, por meio de seus órgãos de controle (como ouvidoria ou controladoria) ou da pessoa encarregada pelo tratamento dos dados naquela instituição, de acordo com o art. 23, inciso III, da Lei Geral de Proteção de Dados - LGPD (Lei Federal 13.709/2018).',
         ]
       },
@@ -370,9 +370,9 @@ export const TEXTS = {
         titleSize: 'h4',
         paragraphs: [],
         list: [
-          '2.1.1. Para a utilização da plataforma por meio da assinatura básica (gratuita), é solicitado um cadastro simples para criação de conta, que coleta os seguintes dados: nome completo, endereço de e-mail, gênero, área de atuação, estado e cidade de residência, além de senha de acesso. Esses dados são coletados com a finalidade de criação e manutenção da conta da pessoa usuária na plataforma e a geração de dados estatísticos sobre o perfil demográfico das pessoas usuárias, e são compartilhados exclusivamente entre as organizações da coalizão que gerenciam o Diário do Clima, no contexto da finalidade mencionada. Tais dados são armazenados em ambiente seguro até que a pessoa usuária solicite a exclusão de sua conta.',
-          <span>2.1.2. Para utilização da plataforma por meio da assinatura PRO, são solicitadas outras informações: dados completos do cartão de crédito, endereço completo do titular, CPF, data de nascimento e telefone. Esses dados são coletados com a finalidade exclusiva de processar o pagamento da assinatura, sendo processados e armazenados pelo gateway de pagamento PagSeguro, que é responsável por validar a transação e automaticamente informar a plataforma que é possível oferecer o nível de acesso PRO. Desse modo, o Diário do Clima não armazena e não tem acesso às informações do cartão de crédito, CPF ou data de nascimento de clientes. Para ter acesso à política de Segurança Cibernética do PagSeguro, <a style={{color: '#52ce5f'}} href="https://pagseguro.uol.com.br/politica-de-seguranca-cibernetica" target="_blank" rel="noopener">clique aqui</a>.</span>,
-          '2.1.3. Para solicitar relatórios contendo análises aprofundadas sobre dados extraídos do Diário do Clima, são solicitados os seguintes dados: nome completo, endereço de e-mail, telefone, além de cidades, horizonte temporal e temas de interesse. Esses dados são coletados com a finalidade de elaboração de proposta comercial que atenda à solicitação enviada pelo formulário, além de contactar a pessoa ou organização solicitante, e são compartilhados exclusivamente entre as organizações da coalizão que gerenciam o Diário do Clima, no contexto da finalidade mencionada. A coleta desses dados não implica a criação de conta na plataforma e as informações são armazenadas em ambiente seguro até que a proposta seja apresentada à parte solicitante.',
+          '2.1.1. Para a utilização da plataforma por meio da assinatura básica (gratuita), é solicitado um cadastro simples para criação de conta, que coleta os seguintes dados: nome completo, endereço de e-mail, gênero, área de atuação, estado e cidade de residência, além de senha de acesso. Esses dados são coletados com a finalidade de criação e manutenção da conta da pessoa usuária na plataforma e a geração de dados estatísticos sobre o perfil demográfico das pessoas usuárias, e são compartilhados exclusivamente entre as organizações da coalizão que gerenciam o Diários do Clima, no contexto da finalidade mencionada. Tais dados são armazenados em ambiente seguro até que a pessoa usuária solicite a exclusão de sua conta.',
+          <span>2.1.2. Para utilização da plataforma por meio da assinatura PRO, são solicitadas outras informações: dados completos do cartão de crédito, endereço completo do titular, CPF, data de nascimento e telefone. Esses dados são coletados com a finalidade exclusiva de processar o pagamento da assinatura, sendo processados e armazenados pelo gateway de pagamento PagSeguro, que é responsável por validar a transação e automaticamente informar a plataforma que é possível oferecer o nível de acesso PRO. Desse modo, o Diários do Clima não armazena e não tem acesso às informações do cartão de crédito, CPF ou data de nascimento de clientes. Para ter acesso à política de Segurança Cibernética do PagSeguro, <a style={{color: '#52ce5f'}} href="https://pagseguro.uol.com.br/politica-de-seguranca-cibernetica" target="_blank" rel="noopener">clique aqui</a>.</span>,
+          '2.1.3. Para solicitar relatórios contendo análises aprofundadas sobre dados extraídos do Diários do Clima, são solicitados os seguintes dados: nome completo, endereço de e-mail, telefone, além de cidades, horizonte temporal e temas de interesse. Esses dados são coletados com a finalidade de elaboração de proposta comercial que atenda à solicitação enviada pelo formulário, além de contactar a pessoa ou organização solicitante, e são compartilhados exclusivamente entre as organizações da coalizão que gerenciam o Diários do Clima, no contexto da finalidade mencionada. A coleta desses dados não implica a criação de conta na plataforma e as informações são armazenadas em ambiente seguro até que a proposta seja apresentada à parte solicitante.',
         ]
       },
       {
@@ -380,9 +380,9 @@ export const TEXTS = {
         titleSize: 'h4',
         paragraphs: [],
         list: [
-          '2.2.1. Embora apresente níveis de acesso mediante assinatura paga e ofereça relatórios analíticos como serviço, o Diário do Clima obtém remuneração apenas pelos serviços oferecidos na plataforma e de desenvolvimento de análises sobre os dados de órgãos oficiais nela disponibilizados. Dessa forma, em nenhuma hipótese o Diário do Clima vende, repassa ou doa informações pessoais de pessoas usuárias a terceiros.',
+          '2.2.1. Embora apresente níveis de acesso mediante assinatura paga e ofereça relatórios analíticos como serviço, o Diários do Clima obtém remuneração apenas pelos serviços oferecidos na plataforma e de desenvolvimento de análises sobre os dados de órgãos oficiais nela disponibilizados. Dessa forma, em nenhuma hipótese o Diários do Clima vende, repassa ou doa informações pessoais de pessoas usuárias a terceiros.',
           '2.2.2. É possível que, ao realizar o processamento de dados públicos, a plataforma acabe por coletar e republicar dados pessoais de quaisquer pessoas em atividade pública ou interação com entes públicos, e que foram originalmente divulgados por esses entes em seus respectivos diários oficiais. São exemplos desses dados: nomes, CPFs, endereços, idades etc.',
-          '2.2.3. Neste caso, o Diário do Clima usa de boa-fé que esses dados passaram por avaliação do órgão público e foram presumivelmente disponibilizados de forma regular pela administração pública. Sendo assim, agimos com a premissa de que esse tipo de informação é de interesse público e, portanto, a base legal para esse tratamento é a de atender legítimo interesse em razão do exercício regular do direito de controle social da administração pública (art. 7º, inciso IX da LGPD c/c art. 3º, incisos II, III e V, e art. 31, parágrafo 3º, incisos IV e V e §4º da LAI). Como consequência disso, o Diário do Clima não necessita de uma autorização para tratamento de tais dados.',
+          '2.2.3. Neste caso, o Diários do Clima usa de boa-fé que esses dados passaram por avaliação do órgão público e foram presumivelmente disponibilizados de forma regular pela administração pública. Sendo assim, agimos com a premissa de que esse tipo de informação é de interesse público e, portanto, a base legal para esse tratamento é a de atender legítimo interesse em razão do exercício regular do direito de controle social da administração pública (art. 7º, inciso IX da LGPD c/c art. 3º, incisos II, III e V, e art. 31, parágrafo 3º, incisos IV e V e §4º da LAI). Como consequência disso, o Diários do Clima não necessita de uma autorização para tratamento de tais dados.',
         ]
       },
       {
@@ -390,9 +390,9 @@ export const TEXTS = {
         titleSize: 'h4',
         paragraphs: [],
         list: [
-          '2.3.1. Assim como todas as informações públicas republicadas pelo Diário do Clima em formato aberto, eventuais informações pessoais que tenham sido disponibilizadas pelos órgãos públicos são tratadas pela plataforma com a finalidade de promover o acesso aberto e amigável a essa informação pública, além de prestar os serviços descritos neste documento. Não editamos ou alteramos o conteúdo de qualquer informação original e tampouco nos responsabilizamos por usos irregulares que terceiros possam fazer dessa informação.',
+          '2.3.1. Assim como todas as informações públicas republicadas pelo Diários do Clima em formato aberto, eventuais informações pessoais que tenham sido disponibilizadas pelos órgãos públicos são tratadas pela plataforma com a finalidade de promover o acesso aberto e amigável a essa informação pública, além de prestar os serviços descritos neste documento. Não editamos ou alteramos o conteúdo de qualquer informação original e tampouco nos responsabilizamos por usos irregulares que terceiros possam fazer dessa informação.',
           '2.3.2. Novos conteúdos são atualizados diariamente — a menos que haja falha técnica na coleta de dados — e armazenados por tempo indeterminado, uma vez que o objetivo desse armazenamento é disponibilizar a série histórica de publicações dos diários oficiais à medida que essa coleta for possível e viável.',
-          '2.3.3. A controladora dos dados disponíveis na plataforma é a coalizão que gerencia o Diário do Clima e eventuais dúvidas poderão ser encaminhadas para o email contato ARROBA diariodoclima.org.br',
+          '2.3.3. A controladora dos dados disponíveis na plataforma é a coalizão que gerencia o Diários do Clima e eventuais dúvidas poderão ser encaminhadas para o email contato ARROBA diariosdoclima.org.br',
         ]
       },
       {
@@ -400,7 +400,7 @@ export const TEXTS = {
         titleSize: 'h4',
         paragraphs: [],
         list: [
-          <span>2.4.1. Com a finalidade de coletar estatísticas de acesso, de modo a saber quantas pessoas visitantes utilizam a plataforma e como interagem com seus conteúdos internos, o Diário do Clima dispõe da ferramenta Google Analytics, que utiliza principalmente cookies primários para registrar tais dados. <a style={{color: '#52ce5f'}} href="https://support.google.com/analytics/answer/6004245#zippy=%2Cnossa-pol%C3%ADtica-de-privacidade%2Ccookies-e-identificadores-do-google-analytics" target="_blank" rel="noopener">Esta página</a> apresenta a política de privacidade da ferramenta, bem como o modo como ela opera e como é possível proteger os seus dados ao acessar sites que a utilizam. Informações gerais e agregadas sobre as estatísticas da plataforma poderão ser publicadas pelo Diário do Clima e/ou compartilhadas com parceiros, contratantes, apoiadores e financiadores.</span>,
+          <span>2.4.1. Com a finalidade de coletar estatísticas de acesso, de modo a saber quantas pessoas visitantes utilizam a plataforma e como interagem com seus conteúdos internos, o Diários do Clima dispõe da ferramenta Google Analytics, que utiliza principalmente cookies primários para registrar tais dados. <a style={{color: '#52ce5f'}} href="https://support.google.com/analytics/answer/6004245#zippy=%2Cnossa-pol%C3%ADtica-de-privacidade%2Ccookies-e-identificadores-do-google-analytics" target="_blank" rel="noopener">Esta página</a> apresenta a política de privacidade da ferramenta, bem como o modo como ela opera e como é possível proteger os seus dados ao acessar sites que a utilizam. Informações gerais e agregadas sobre as estatísticas da plataforma poderão ser publicadas pelo Diários do Clima e/ou compartilhadas com parceiros, contratantes, apoiadores e financiadores.</span>,
         ]
       },
       {
@@ -413,7 +413,7 @@ export const TEXTS = {
     ]
   },
   plansPage: {
-    title: 'Diário do Clima PRO',
+    title: 'Diários do Clima PRO',
     subtitle: 'Acesse todos os benefícios e nos ajude a crescer',
     startTest: 'Iniciar teste gratuito',
     testCost: 'Teste sem custos por 15 dias • Depois, R$ 19,90/mês',
@@ -442,12 +442,12 @@ export const TEXTS = {
     preOrderDesc: 'Para organizações que precisam de conteúdos personalizados sobre um determinado assunto, selecionados e analisados por especialistas.',
     simulate: 'Encomendar relatório',
     discount: '50% para organizações que não visam lucro',
-    discountDesc: 'Seu impacto é importante. O Diário do Clima apoia pessoas e organizações independentes que desejam utilizar nosso conteúdo para transformar a sociedade. Para solicitar seu desconto, escreva-nos um e-mail.',
+    discountDesc: 'Seu impacto é importante. O Diários do Clima apoia pessoas e organizações independentes que desejam utilizar nosso conteúdo para transformar a sociedade. Para solicitar seu desconto, escreva-nos um e-mail.',
     getDiscount: 'Solicitar desconto',
     faq: 'Perguntas frequentes',
     faqItems: [
       {
-        title:'Como funciona a assinatura PRO do Diário do Clima?',
+        title:'Como funciona a assinatura PRO do Diários do Clima?',
         text: 'Ao assinar com um cartão de crédito, você será cobrado mensalmente e terá acesso a todos os recursos PRO. Você pode cancelar a qualquer momento e, se fizer isso, vai passar a ter acesso aos recursos básicos assim que o ciclo de sua assinatura terminar.'
       },
       {
@@ -455,11 +455,11 @@ export const TEXTS = {
         text: 'Aceitamos apenas pagamento por cartão de crédito. Os seus dados estão seguros, não teremos acesso ao número completo do seu cartão. O pagamento é intermediado e processado pelo Pagseguro.'
       },
       {
-        title:'Quão seguro é o Diário do Clima?',
-        text: 'O Diário do Clima se responsabiliza pela adoção e manutenção de medidas de segurança, técnicas e administrativas, que visam à proteção dos dados pessoais contra situações acidentais ou ilícitas de destruição, perda, alteração, comunicação ou qualquer forma de tratamento inadequado ou ilícito, bem como processamento discriminatório de informações, conforme critérios definidos pelos melhores padrões de mercado e em consonância com a legislação aplicável. Confira nossos termos de uso para mais informações.'
+        title:'Quão seguro é o Diários do Clima?',
+        text: 'O Diários do Clima se responsabiliza pela adoção e manutenção de medidas de segurança, técnicas e administrativas, que visam à proteção dos dados pessoais contra situações acidentais ou ilícitas de destruição, perda, alteração, comunicação ou qualquer forma de tratamento inadequado ou ilícito, bem como processamento discriminatório de informações, conforme critérios definidos pelos melhores padrões de mercado e em consonância com a legislação aplicável. Confira nossos termos de uso para mais informações.'
       },
       {
-        title:'Como eu cancelo minha assinatura do Diário do Clima?',
+        title:'Como eu cancelo minha assinatura do Diários do Clima?',
         text: <div>
           <p>O procedimento de cancelamento deve ser realizado pelo assinante. O mesmo pode ser realizado de forma simples e segura, através das configurações de seu perfil.</p>
 
@@ -523,8 +523,8 @@ export const TEXTS = {
       reason: 'Motivo do erro:',
       tryAgain: 'Clique aqui para voltar ao início do cadastro',
     },
-    titlePageA: 'Crie uma conta para começar a buscar no Diário do Clima',
-    titlePageB: 'Boas vindas ao Diário do Clima',
+    titlePageA: 'Crie uma conta para começar a buscar no Diários do Clima',
+    titlePageB: 'Boas vindas ao Diários do Clima',
     subtitle: 'Queremos te conhecer um pouco melhor! Complete seu cadastro',
     agree: 'Ao se cadastrar, você está aceitando os nossos',
     terms: 'Termos de uso',
@@ -544,7 +544,7 @@ export const TEXTS = {
   reportsPage: {
     simulation: {
       title: 'Solicite o orçamento para um relatório personalizado',
-      subTitle: 'Você pode encomendar um relatório, que faz uso da base de dados do Diário do Clima, para organizações especialistas. Preencha o formulário abaixo e aguarde um orçamento pelos meios de contato informados.',
+      subTitle: 'Você pode encomendar um relatório, que faz uso da base de dados do Diários do Clima, para organizações especialistas. Preencha o formulário abaixo e aguarde um orçamento pelos meios de contato informados.',
       value: 'Valor estimado',
       submitError: 'Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.',
       message: (phone: string, description: string, horizon: string, cities: string[], themes: CheckBoxFilter) => {
@@ -573,8 +573,8 @@ export const TEXTS = {
       button: 'ok',
     },
     reloadPage: 'Recarregar página',
-    title: 'Relatórios de análises aprofundadas do Diário do Clima',
-    subtitle: 'Informações qualificadas, baseadas nos diários oficiais, selecionadas e avaliadas por profissionais. Mais resultados e insights do que a interface do Diário do Clima oferece.',
+    title: 'Relatórios de análises aprofundadas do Diários do Clima',
+    subtitle: 'Informações qualificadas, baseadas nos diários oficiais, selecionadas e avaliadas por profissionais. Mais resultados e insights do que a interface do Diários do Clima oferece.',
     simulateButton: 'Solicitar um orçamento',
     professionals: 'Para profissionais de pesquisa e consultores',
     professionalsDesc: 'Obtenha uma visão geral e abrangente sobre um tema',
@@ -617,7 +617,7 @@ export const TEXTS = {
     advancedSearch: [
       {
         title: '| entre termos significa operação "OU"',
-        desc: 'Também conhecido como “operador OR”, funciona usando o símbolo de barra vertical ( | ) para buscar um termo ou outro em toda extensão do excerto. Experimente ver os resultados da busca por resíduo | lixo e repare como são de trechos que tem pelo menos uma das palavras em seu conteúdo. Atenção: Este é o operador padrão no Diário do Clima. Se você não explicitar qual operador quer utilizar, a ferramenta vai sempre adotá-lo.',
+        desc: 'Também conhecido como “operador OR”, funciona usando o símbolo de barra vertical ( | ) para buscar um termo ou outro em toda extensão do excerto. Experimente ver os resultados da busca por resíduo | lixo e repare como são de trechos que tem pelo menos uma das palavras em seu conteúdo. Atenção: Este é o operador padrão no Diários do Clima. Se você não explicitar qual operador quer utilizar, a ferramenta vai sempre adotá-lo.',
         ex: 'resíduo | lixo',
       },
       {

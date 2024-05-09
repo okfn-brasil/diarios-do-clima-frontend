@@ -1,6 +1,6 @@
 import { MouseEvent, MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
-import DiarioLogo from '@app/assets/images/logo.svg';
+import DiariosLogo from '@app/assets/images/logo.svg';
 import ButtonGreen from '@app/ui/components/button/ButtonGreen/ButtonGreen';
 import ButtonOutlined from '@app/ui/components/button/buttonOutlined/ButtonOutlined';
 import { TEXTS } from '@app/ui/utils/portal-texts';
@@ -32,7 +32,7 @@ const MenuMobileOverlay = ({ onClose, showLoginForm, isLoggedIn }: PropsMenuMobi
     <div className='menu-overlay'>
       <Grid item container onClick={closeMenu}>
         <Grid item xs={12} className='logo-area'>
-          <img src={DiarioLogo} alt='Logo do Diario do Clima' />
+          <img src={DiariosLogo} alt='Logo do Diários do Clima' />
           <CloseIcon className='close-icon' onClick={onClose} />
         </Grid>
         { isLoggedIn ? <div className='menu-item'><Link to={urls.search.url}>{TEXTS.menu.search}</Link></div> : <></>}
