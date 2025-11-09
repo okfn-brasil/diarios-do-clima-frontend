@@ -1,4 +1,4 @@
-FROM docker.io/node:14.17.0 AS install
+FROM docker.io/node:20 AS install
 WORKDIR /build
 COPY public/ public
 COPY src/ src
