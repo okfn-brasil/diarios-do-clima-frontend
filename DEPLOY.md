@@ -116,6 +116,22 @@ diariosdoclima.org.br
 
 O workflow copia este arquivo para a pasta `dist/` durante o build, garantindo que o domínio customizado seja preservado após cada deploy.
 
+## 🔀 Roteamento de SPA
+
+Este projeto é uma Single Page Application (SPA) usando React Router. O GitHub Pages não tem suporte nativo para roteamento de SPAs, então implementamos uma solução com `404.html`:
+
+- Todas as rotas (ex: `/meus-dados`, `/sobre`, etc) funcionam tanto para navegação quanto para acesso direto
+- O arquivo `404.html` redireciona rotas não encontradas para o `index.html`
+- Um script no `index.html` restaura a URL original
+
+**Documentação completa**: Ver [docs/ROUTING.md](./docs/ROUTING.md)
+
+### Rotas testadas:
+- ✅ `/` - Home
+- ✅ `/meus-dados` - Área do usuário
+- ✅ `/busca` - Busca
+- ✅ Todas as outras rotas da aplicação
+
 ## 🔍 Monitoramento
 
 ### Ver Status do Deploy
