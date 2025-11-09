@@ -9,6 +9,10 @@ COPY package.json package.json
 RUN npm ci
 
 FROM install AS build
+ARG REACT_APP_BACKEND_API
+ARG REACT_APP_QUERIDO_DIARIO_API
+ENV REACT_APP_BACKEND_API=${REACT_APP_BACKEND_API}
+ENV REACT_APP_QUERIDO_DIARIO_API=${REACT_APP_QUERIDO_DIARIO_API}
 COPY webpack.prod.js webpack.prod.js
 COPY nginx.conf nginx.conf
 RUN npm run build

@@ -24,6 +24,10 @@ module.exports = {
     }),
     new WebpackManifestPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_BACKEND_API': JSON.stringify(process.env.REACT_APP_BACKEND_API),
+      'process.env.REACT_APP_QUERIDO_DIARIO_API': JSON.stringify(process.env.REACT_APP_QUERIDO_DIARIO_API),
+    }),
   ],
   resolve: {
     alias: {

@@ -1,5 +1,6 @@
 import { tokenKeys } from '@app/ui/utils/storage-utils';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { API_CONFIG } from '@app/config/api';
 
 interface RefreshResponse extends AxiosResponse {
   access: string;
@@ -10,7 +11,7 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
   params: {},
-  baseURL: `https://backend-api.diariosdoclima.org.br/api`,
+  baseURL: API_CONFIG.BACKEND_API,
 });
 
 api.interceptors.request.use(
