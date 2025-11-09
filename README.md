@@ -1,4 +1,18 @@
-# Getting Started with Create React App
+# Diários do Clima - Frontend
+
+[![Deploy to GitHub Pages](https://github.com/okfn-brasil/diarios-do-clima-frontend/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/okfn-brasil/diarios-do-clima-frontend/actions/workflows/deploy-gh-pages.yml)
+
+Frontend da aplicação Diários do Clima, desenvolvido com React e TypeScript.
+
+## 🌐 Deploy
+
+A aplicação está configurada para deploy automático no GitHub Pages com domínio customizado.
+
+**URL de produção**: https://diariosdoclima.org.br
+
+📖 **Documentação completa de deploy**: Ver [DEPLOY.md](./DEPLOY.md)
+
+## 🚀 Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
