@@ -5,7 +5,7 @@ Este documento descreve como as APIs são configuradas no projeto.
 ## 📡 APIs Utilizadas
 
 ### 1. Backend API (Diários do Clima)
-- **URL Padrão**: `https://backend-api.diariosdoclima.org.br/api`
+- **URL Padrão**: `https://api.diariosdoclima.org.br`
 - **Uso**: Autenticação, relatórios, alertas, contas, etc.
 - **Variável de ambiente**: `REACT_APP_BACKEND_API`
 
@@ -22,7 +22,7 @@ As URLs das APIs são centralizadas em `src/config/api.ts`:
 
 ```typescript
 export const API_CONFIG = {
-  BACKEND_API: process.env.REACT_APP_BACKEND_API || 'https://backend-api.diariosdoclima.org.br/api',
+  BACKEND_API: process.env.REACT_APP_BACKEND_API || 'https://api.diariosdoclima.org.br',
   QUERIDO_DIARIO_API: process.env.REACT_APP_QUERIDO_DIARIO_API || 'https://api.queridodiario.org.br',
 };
 ```
@@ -33,7 +33,7 @@ Configure as URLs no arquivo `.env`:
 
 ```bash
 # Backend API
-REACT_APP_BACKEND_API=https://backend-api.diariosdoclima.org.br/api
+REACT_APP_BACKEND_API=https://api.diariosdoclima.org.br
 
 # Querido Diário API
 REACT_APP_QUERIDO_DIARIO_API=https://api.queridodiario.org.br
@@ -45,7 +45,7 @@ Se você estiver rodando as APIs localmente, ajuste o `.env`:
 
 ```bash
 # Backend API local
-REACT_APP_BACKEND_API=http://localhost:8000/api
+REACT_APP_BACKEND_API=http://localhost:8000
 
 # Querido Diário API local
 REACT_APP_QUERIDO_DIARIO_API=http://localhost:3001
@@ -100,7 +100,7 @@ Para testar com diferentes APIs:
 
 ```bash
 # Testar com staging
-REACT_APP_BACKEND_API=https://staging-api.diariosdoclima.org.br/api npm start
+REACT_APP_BACKEND_API=https://staging-api.diariosdoclima.org.br npm start
 
 # Testar com ambiente local
 REACT_APP_QUERIDO_DIARIO_API=http://localhost:3001 npm start
