@@ -2,25 +2,21 @@ import { useEffect } from 'react';
 import { FormPurchaseModel, getCardType, Plan, SessionModel, SubscriptionModel } from '@app/models/purchase.model';
 import BillingService from '@app/services/billing';
 import { TEXTS } from '@app/ui/utils/portal-texts';
-declare const PagSeguroDirectPayment: {
-  setSessionId: (e: string) => void;
-  createCardToken: (e: {
-    cardNumber: string;
-    brand: string | null;
-    cvv: string;
-    expirationMonth: string;
-    expirationYear: string;
-    complete: (response: PagSeguroResponse) => void;
-    success: (response: PagSeguroResponse) => void;
-    error: () => void;
-  }) => void
+declare const PagSeguro: {
+  encryptCard: (e: {
+    publicKey: string;
+    holder: string;
+    number: string;
+    expMonth: string;
+    expYear: string;
+    securityCode: string;
+  }) => PagSeguroResponse;
 };
 
 interface PagSeguroResponse {
-  error: boolean;
-  card: {
-    token: string;
-  }
+  hasErrors: boolean;
+  errors?: any;
+  encryptedCard: string;
 }
 
 interface PropsPurchaseSubmit {
@@ -52,27 +48,26 @@ const PurchaseSubmit = ({form, onSuccess, onError, plan, isModal, isSubmitting, 
     const paymentErrorMessage = TEXTS.purchasePage.errors.onPayment;
     billingService.getSessionId().then(
       (response: SessionModel) => {
-        PagSeguroDirectPayment.setSessionId(response.session);
-        PagSeguroDirectPayment.createCardToken({
-          cardNumber: form.card.value,
-          brand: getCardType(form.card.value),
-          cvv: form.cvv.value,
-          expirationMonth: form.validity.value.substring(0, 2),
-          expirationYear: form.validity.value.substring(2, 6),
-          complete: (response: PagSeguroResponse) => {
-            if(response.error) {
-              onError(errorMessage(paymentErrorMessage));
-            }
-          },
-          success: (response: PagSeguroResponse) => {
-            postCard(response.card.token);
-          },
-          error: () => {
+        try {
+          const encrypted = PagSeguro.encryptCard({
+            publicKey: response.public_key,
+            holder: form.fullName.value,
+            number: form.card.value.replace(/\D/g, ''),
+            expMonth: form.validity.value.substring(0, 2),
+            expYear: form.validity.value.substring(2, 6),
+            securityCode: form.cvv.value,
+          });
+
+          if (encrypted.hasErrors) {
             onError(errorMessage(paymentErrorMessage));
-          },
-        });
+          } else {
+            postCard(encrypted.encryptedCard);
+          }
+        } catch (e) {
+          onError(errorMessage(paymentErrorMessage));
+        }
       }
-    ). catch(() => {
+    ).catch(() => {
       onError(errorMessage(paymentErrorMessage));
     });
   };
