@@ -34,7 +34,7 @@ export interface Plan {
 }
 
 export interface SessionModel extends AxiosResponse {
-  session: string;
+  public_key: string;
 }
 
 export interface SubscriptionModel extends AxiosResponse {
